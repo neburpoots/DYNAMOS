@@ -1,5 +1,10 @@
 # prometheus-community helm chart: https://artifacthub.io/packages/helm/prometheus-community/prometheus 
 
+prometheus-node-exporter:
+  # Docker Desktop Kubernetes does not expose / as a shared/slave mount, which
+  # makes the default node-exporter daemonset crash locally.
+  enabled: false
+
 extraScrapeConfigs: |
   - job_name: 'kubelet'
     scheme: https

@@ -1,10 +1,37 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
-# Change this to the path of the DYNAMOS repository on your disk
 echo "Setting up paths..."
-DYNAMOS_ROOT="${HOME}/DYNAMOS"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DYNAMOS_ROOT="${DYNAMOS_ROOT:-$(cd "${SCRIPT_DIR}/.." && pwd)}"
+KUBE_CONTEXT="${KUBE_CONTEXT:-}"
+DOCKER_ARTIFACT_ACCOUNT="${DOCKER_ARTIFACT_ACCOUNT:-dynamos1}"
+BRANCH_NAME_TAG="${BRANCH_NAME_TAG:-main}"
+IMAGE_PULL_POLICY="${IMAGE_PULL_POLICY:-Always}"
+SUDO="${SUDO:-}"
+
+kubectl_cmd() {
+    if [[ -n "${KUBE_CONTEXT}" ]]; then
+        kubectl --context "${KUBE_CONTEXT}" "$@"
+    else
+        kubectl "$@"
+    fi
+}
+
+helm_cmd() {
+    if [[ -n "${KUBE_CONTEXT}" ]]; then
+        helm --kube-context "${KUBE_CONTEXT}" "$@"
+    else
+        helm "$@"
+    fi
+}
+
+image_values_args=(
+    --set "dockerArtifactAccount=${DOCKER_ARTIFACT_ACCOUNT}"
+    --set "branchNameTag=${BRANCH_NAME_TAG}"
+    --set "imagePullPolicy=${IMAGE_PULL_POLICY}"
+)
 
 # Charts
 charts_path="${DYNAMOS_ROOT}/charts"
@@ -50,46 +77,50 @@ fi
 echo "Installing namespaces..."
 
 # Install namespaces
-helm upgrade -i -f ${namespace_chart}/values.yaml namespaces ${namespace_chart} --set secret.password=${rabbit_pw}
+helm_cmd upgrade -i -f "${namespace_chart}/values.yaml" namespaces "${namespace_chart}" --set "secret.password=${rabbit_pw}"
 
 echo "Preparing PVC"
 
 {
     cd ${DYNAMOS_ROOT}/configuration
-    ./fill-rabbit-pvc.sh
+    KUBE_CONTEXT="${KUBE_CONTEXT}" ./fill-rabbit-pvc.sh
 }
 
 #Install prometheus
 echo "Installing Prometheus..."
 
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
-helm upgrade -i -f "${core_chart}/prometheus-values.yaml" prometheus prometheus-community/prometheus
+helm_cmd repo add prometheus-community https://prometheus-community.github.io/helm-charts --force-update
+helm_cmd repo update
+helm_cmd upgrade -i -f "${core_chart}/prometheus-values.yaml" prometheus prometheus-community/prometheus
 
 echo "Installing NGINX..."
-helm install -f "${core_chart}/ingress-values.yaml" nginx oci://ghcr.io/nginxinc/charts/nginx-ingress -n ingress --version 0.18.0
+helm_cmd upgrade -i -f "${core_chart}/ingress-values.yaml" nginx oci://ghcr.io/nginxinc/charts/nginx-ingress -n ingress --version 0.18.0
+
+echo "Installing Grafana dashboards..."
+kubectl_cmd -n core delete configmap grafana-dashboards --ignore-not-found
+kubectl_cmd -n core create configmap grafana-dashboards --from-file="${config_path}/grafana"
 
 echo "Installing DYNAMOS core..."
-helm upgrade -i -f ${core_chart}/values.yaml core ${core_chart} --set hostPath=${HOME}
+helm_cmd upgrade -i -f "${core_chart}/values.yaml" core "${core_chart}" --set "hostPath=${DYNAMOS_ROOT}"
 
 sleep 3
 # Install orchestrator layer
-helm upgrade -i -f "${orchestrator_chart}/values.yaml" orchestrator ${orchestrator_chart}
+helm_cmd upgrade -i -f "${orchestrator_chart}/values.yaml" orchestrator "${orchestrator_chart}" "${image_values_args[@]}"
 
 sleep 1
 
 echo "Installing agents layer"
-helm upgrade -i -f "${agents_chart}/values.yaml" agents ${agents_chart}
+helm_cmd upgrade -i -f "${agents_chart}/values.yaml" agents "${agents_chart}" "${image_values_args[@]}"
 
 sleep 1
 
 echo "Installing thirdparty layer..."
-helm upgrade -i -f "${ttp_chart}/values.yaml" surf ${ttp_chart}
+helm_cmd upgrade -i -f "${ttp_chart}/values.yaml" surf "${ttp_chart}" "${image_values_args[@]}"
 
 sleep 1
 
 echo "Installing api gateway"
-helm upgrade -i -f "${api_gw_chart}/values.yaml" api-gateway ${api_gw_chart}
+helm_cmd upgrade -i -f "${api_gw_chart}/values.yaml" api-gateway "${api_gw_chart}" "${image_values_args[@]}"
 
 echo "Finished setting up DYNAMOS"
 

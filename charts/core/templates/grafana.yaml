@@ -47,8 +47,8 @@ spec:
               mountPath: /entrypoint
       volumes:
         - name: grafana-dashboards
-          hostPath:
-            path:  {{ .Values.hostPath }}/configuration/grafana
+          configMap:
+            name: grafana-dashboards
         - name: grafana-entrypoint
           configMap:
             name: grafana-entrypoint

@@ -19,15 +19,27 @@ spec:
       containers:
       - name: vu
         image: {{ .Values.dockerArtifactAccount }}/agent:{{ .Values.branchNameTag }}
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.imagePullPolicy | default "Always" }}
         env:
         - name: DATA_STEWARD_NAME
           value: VU
         - name: OC_AGENT_HOST
           value: {{ .Values.tracingEndpoint }}
+        - name: MICROSERVICE_REPOSITORY_NAME
+          value: {{ .Values.dockerArtifactAccount | quote }}
+        - name: SIDECAR_REPOSITORY_NAME
+          value: {{ .Values.dockerArtifactAccount | quote }}
+        - name: MICROSERVICE_TAG
+          value: {{ .Values.branchNameTag | quote }}
+        - name: SIDECAR_TAG
+          value: {{ .Values.branchNameTag | quote }}
+        - name: MICROSERVICE_IMAGE_PULL_POLICY
+          value: {{ .Values.imagePullPolicy | default "Always" | quote }}
+        - name: SIDECAR_IMAGE_PULL_POLICY
+          value: {{ .Values.imagePullPolicy | default "Always" | quote }}
       - name: sidecar
         image: {{ .Values.dockerArtifactAccount }}/sidecar:{{ .Values.branchNameTag }}
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.imagePullPolicy | default "Always" }}
         env:
         - name: AMQ_PASSWORD
           valueFrom:

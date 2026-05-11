@@ -109,7 +109,7 @@ func deployJob(ctx context.Context, msChain []mschain.MicroserviceMetadata, jobN
 		container := v1.Container{
 			Name:            microservice.Name,
 			Image:           fullImage,
-			ImagePullPolicy: "Always",
+			ImagePullPolicy: getImagePullPolicy("MICROSERVICE_IMAGE_PULL_POLICY"),
 			Env: []v1.EnvVar{
 				{Name: "DATA_STEWARD_NAME", Value: strings.ToUpper(dataStewardName)},
 				{Name: "DESIGNATED_GRPC_PORT", Value: strconv.Itoa(port)},
@@ -165,7 +165,7 @@ func addSidecar() v1.Container {
 	return v1.Container{
 		Name:            sidecarName,
 		Image:           fullImage,
-		ImagePullPolicy: "Always",
+		ImagePullPolicy: getImagePullPolicy("SIDECAR_IMAGE_PULL_POLICY"),
 		Env: []v1.EnvVar{
 			{Name: "DESIGNATED_GRPC_PORT", Value: strconv.Itoa(firstPortMicroservice - 1)},
 			{Name: "TEMPORARY_JOB", Value: "true"},
@@ -264,12 +264,37 @@ func replaceLastCharacter(name string, replaceWith int) string {
 }
 
 func getMicroserviceTag(msName string) string {
-	tag := os.Getenv(fmt.Sprintf("%s_TAG", strings.ToUpper(msName)))
+	tagEnvName := fmt.Sprintf("%s_TAG", strings.ReplaceAll(strings.ToUpper(msName), "-", "_"))
+	tag := os.Getenv(tagEnvName)
 	logger.Sugar().Debugf("Tag in getMicroserviceTag: %s", tag)
 
 	if tag != "" {
 		return tag
 	}
 
+	tag = os.Getenv("MICROSERVICE_TAG")
+	if tag != "" {
+		return tag
+	}
+
 	return "main"
+}
+
+func getImagePullPolicy(envName string) v1.PullPolicy {
+	pullPolicy := os.Getenv(envName)
+	if pullPolicy == "" {
+		pullPolicy = os.Getenv("IMAGE_PULL_POLICY")
+	}
+
+	switch strings.ToLower(strings.ReplaceAll(pullPolicy, "_", "")) {
+	case "", "always":
+		return v1.PullAlways
+	case "never":
+		return v1.PullNever
+	case "ifnotpresent":
+		return v1.PullIfNotPresent
+	default:
+		logger.Sugar().Warnf("Unknown image pull policy %q in %s, falling back to Always", pullPolicy, envName)
+		return v1.PullAlways
+	}
 }

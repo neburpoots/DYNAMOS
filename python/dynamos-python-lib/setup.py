@@ -12,6 +12,7 @@ setup(
         'retrying>=1.3.4',
         'grpclib>=0.4.5',
         'protobuf==4.25.3',
+        'setuptools<81',
         'opentelemetry-api==1.19.0',
         'opentelemetry-instrumentation>=0.40b0',
         'opentelemetry-instrumentation-grpc>=0.40b0',
@@ -27,4 +28,3 @@ setup(
     description='Python lib to interface microservice to DYNAMOS',
     url='https://github.com/jorrit05/DYNAMOS'
 )
-
