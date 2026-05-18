@@ -14,6 +14,9 @@ rabbitmq:
 
 hostPath: default
 
+observability:
+  enabled: true
+
 etcd:
   nodeName: 0
   replicaCount: 3
@@ -36,3 +39,6 @@ grafana:
   image: grafana/grafana:latest
   ports:
     - 3000:3000
+
+linkerdJaegerNodePort:
+  enabled: true

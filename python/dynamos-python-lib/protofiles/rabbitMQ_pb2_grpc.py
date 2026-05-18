@@ -77,6 +77,11 @@ class RabbitMQStub(object):
                 request_serializer=microserviceCommunication__pb2.MicroserviceCommunication.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
+        self.SendMicroserviceCommStream = channel.stream_unary(
+                '/dynamos.RabbitMQ/SendMicroserviceCommStream',
+                request_serializer=microserviceCommunication__pb2.MicroserviceCommunicationChunk.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.CreateQueue = channel.unary_unary(
                 '/dynamos.RabbitMQ/CreateQueue',
                 request_serializer=rabbitMQ__pb2.QueueInfo.SerializeToString,
@@ -175,6 +180,12 @@ class RabbitMQServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SendMicroserviceCommStream(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateQueue(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -260,6 +271,11 @@ def add_RabbitMQServicer_to_server(servicer, server):
             'SendMicroserviceComm': grpc.unary_unary_rpc_method_handler(
                     servicer.SendMicroserviceComm,
                     request_deserializer=microserviceCommunication__pb2.MicroserviceCommunication.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'SendMicroserviceCommStream': grpc.stream_unary_rpc_method_handler(
+                    servicer.SendMicroserviceCommStream,
+                    request_deserializer=microserviceCommunication__pb2.MicroserviceCommunicationChunk.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'CreateQueue': grpc.unary_unary_rpc_method_handler(
@@ -493,6 +509,23 @@ class RabbitMQ(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/dynamos.RabbitMQ/SendMicroserviceComm',
             microserviceCommunication__pb2.MicroserviceCommunication.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SendMicroserviceCommStream(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(request_iterator, target, '/dynamos.RabbitMQ/SendMicroserviceCommStream',
+            microserviceCommunication__pb2.MicroserviceCommunicationChunk.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

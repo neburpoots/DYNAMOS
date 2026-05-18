@@ -25,10 +25,16 @@ func sqlDataRequestHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		logger.Debug("Entering sqlDataRequestHandler")
 
-		ctxWithTimeout, cancel := context.WithTimeout(r.Context(), 30*time.Second)
+		requestTimeout := 30 * time.Second
+		if api.WantsNDJSON(r) {
+			requestTimeout = 20 * time.Minute
+		}
+		ctxWithTimeout, cancel := context.WithTimeout(r.Context(), requestTimeout)
 		defer cancel()
 
-		// Get the sql data request 
+		streamFlusher, streamResponses := streamHTTPResponses(w, r)
+
+		// Get the sql data request
 		sqlDataRequest := &pb.SqlDataRequest{}
 		sqlDataRequest.RequestMetadata = &pb.RequestMetadata{}
 
@@ -69,9 +75,26 @@ func sqlDataRequestHandler() http.HandlerFunc {
 			http.Error(w, "No job found for this user", http.StatusBadRequest)
 			return
 		}
+		if compositionRequest.Transport == "" && sqlDataRequest.RequestMetadata.Transport != "" {
+			compositionRequest.Transport = lib.NormalizeTransport(sqlDataRequest.RequestMetadata.Transport)
+		}
 
 		// Generate correlationID for this request
 		correlationId := uuid.New().String()
+
+		responseChan := make(chan dataResponse, 16)
+		cleanupWaitingResponse := true
+		mutex.Lock()
+		responseMap[correlationId] = responseChan
+		mutex.Unlock()
+		defer func() {
+			if !cleanupWaitingResponse {
+				return
+			}
+			mutex.Lock()
+			delete(responseMap, correlationId)
+			mutex.Unlock()
+		}()
 
 		// Switch on the role we have in this data request
 		if strings.EqualFold(compositionRequest.Role, "computeProvider") {
@@ -95,44 +118,114 @@ func sqlDataRequestHandler() http.HandlerFunc {
 			return
 		}
 
-		// Create a channel to receive the response
-		responseChan := make(chan dataResponse)
-
-		// Store the request information in the map
-		mutex.Lock()
-		responseMap[correlationId] = responseChan
-		mutex.Unlock()
-
-		select {
-		case dataResponseStruct := <-responseChan:
-			msComm := dataResponseStruct.response
-
-			logger.Sugar().Debugf("Received response, %s", msComm.RequestMetadata.CorrelationId)
-			msgBytes, err := proto.Marshal(msComm)
-			if err != nil {
-				logger.Sugar().Warnf("error marshalling proto message, %v", err)
-			}
-			jsonBytes, err := json.Marshal(msComm)
-			if err != nil {
-				logger.Sugar().Warnf("error marshalling jsonBytes message, %v", err)
-			}
-
-			span.AddAttributes(trace.Int64Attribute("sqlDataRequestHandler.proto.messageSize", int64(len(msgBytes))))
-			span.AddAttributes(trace.Int64Attribute("sqlDataRequestHandler.json.messageSize", int64(len(jsonBytes))))
-			span.AddAttributes(trace.Int64Attribute("sqlDataRequestHandler.String.messageSize", int64(len(msComm.Result))))
-			// Print result (only use for debugging and testing, this is sometimes a very large output in the logs)
-			// logger.Sugar().Debugf("Result: %s", msComm.Result)
-
-			//Handle response information
+		if streamResponses {
+			prepareStreamResponseHeaders(w)
 			w.WriteHeader(http.StatusOK)
-			w.Write(msComm.Result)
-			return
+			if err := writeStreamEvent(w, streamFlusher, api.StreamResponse{
+				Type:          api.StreamEventTypeProviderAccepted,
+				JobID:         sqlDataRequest.RequestMetadata.JobId,
+				Provider:      serviceName,
+				CorrelationID: correlationId,
+			}); err != nil {
+				logger.Sugar().Warnf("Error writing accepted stream event: %v", err)
+				return
+			}
+		}
 
-		case <-ctx.Done():
-			http.Error(w, "Request timed out", http.StatusRequestTimeout)
-			return
+		for {
+			select {
+			case dataResponseStruct := <-responseChan:
+				msComm := dataResponseStruct.response
+				isFinalResponse := lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true)
+
+				logger.Sugar().Debugf("Received response, %s", msComm.RequestMetadata.CorrelationId)
+				msgBytes, err := proto.Marshal(msComm)
+				if err != nil {
+					logger.Sugar().Warnf("error marshalling proto message, %v", err)
+				}
+				jsonBytes, err := json.Marshal(msComm)
+				if err != nil {
+					logger.Sugar().Warnf("error marshalling jsonBytes message, %v", err)
+				}
+
+				span.AddAttributes(trace.Int64Attribute("sqlDataRequestHandler.proto.messageSize", int64(len(msgBytes))))
+				span.AddAttributes(trace.Int64Attribute("sqlDataRequestHandler.json.messageSize", int64(len(jsonBytes))))
+				span.AddAttributes(trace.Int64Attribute("sqlDataRequestHandler.String.messageSize", int64(len(msComm.Result))))
+
+				if streamResponses {
+					resultEvent := api.StreamResponse{
+						Type:          api.StreamEventTypeProviderResult,
+						JobID:         sqlDataRequest.RequestMetadata.JobId,
+						Provider:      serviceName,
+						CorrelationID: correlationId,
+						Partial:       lib.MetadataBool(msComm.Metadata, lib.StreamPartialMetadataKey, false),
+						Sequence:      lib.MetadataInt(msComm.Metadata, lib.StreamSequenceMetadataKey),
+						RowsProcessed: lib.MetadataInt(msComm.Metadata, lib.StreamRowsProcessedMetadataKey),
+						RowsTotal:     lib.MetadataInt(msComm.Metadata, lib.StreamRowsTotalMetadataKey),
+					}
+					resultEvent.SetResultBody(msComm.Result)
+					if err := writeStreamEvent(w, streamFlusher, resultEvent); err != nil {
+						logger.Sugar().Warnf("Error writing result stream event: %v", err)
+						return
+					}
+				}
+
+				if !isFinalResponse {
+					continue
+				}
+
+				cleanupWaitingResponse = false
+				if streamResponses {
+					return
+				}
+
+				w.WriteHeader(http.StatusOK)
+				w.Write(msComm.Result)
+				return
+
+			case <-ctx.Done():
+				if streamResponses {
+					if err := writeStreamEvent(w, streamFlusher, api.StreamResponse{
+						Type:          api.StreamEventTypeProviderError,
+						JobID:         sqlDataRequest.RequestMetadata.JobId,
+						Provider:      serviceName,
+						CorrelationID: correlationId,
+						Error:         "request timed out",
+					}); err != nil {
+						logger.Sugar().Warnf("Error writing timeout stream event: %v", err)
+					}
+					return
+				}
+				http.Error(w, "Request timed out", http.StatusRequestTimeout)
+				return
+			}
 		}
 	}
+}
+
+func streamHTTPResponses(w http.ResponseWriter, r *http.Request) (http.Flusher, bool) {
+	if !api.WantsNDJSON(r) {
+		return nil, false
+	}
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		return nil, false
+	}
+	return flusher, true
+}
+
+func prepareStreamResponseHeaders(w http.ResponseWriter) {
+	w.Header().Set("Content-Type", api.NDJSONContentType)
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("X-Accel-Buffering", "no")
+}
+
+func writeStreamEvent(w http.ResponseWriter, flusher http.Flusher, event api.StreamResponse) error {
+	if err := api.WriteNDJSON(w, event); err != nil {
+		return err
+	}
+	flusher.Flush()
+	return nil
 }
 
 // handleSqlAll means we do all work for this request, not third part involved (computeToData archeType)
@@ -151,9 +244,12 @@ func handleSqlAll(ctx context.Context, jobName string, compositionRequest *pb.Co
 
 	msComm := &pb.MicroserviceCommunication{}
 	msComm.RequestMetadata = &pb.RequestMetadata{}
+	msComm.Metadata = map[string]string{}
 	msComm.Type = "microserviceCommunication"
 	msComm.RequestMetadata.DestinationQueue = jobName
 	msComm.RequestMetadata.ReturnAddress = agentConfig.RoutingKey
+	msComm.RequestMetadata.Transport = lib.NormalizeTransport(compositionRequest.Transport)
+	msComm.Metadata[lib.TransportMetadataKey] = msComm.RequestMetadata.Transport
 	msComm.RequestType = compositionRequest.RequestType
 
 	any, err := anypb.New(sqlDataRequest)
@@ -208,6 +304,7 @@ func handleSqlComputeProvider(ctx context.Context, jobName string, compositionRe
 
 		sqlDataRequest.RequestMetadata.CorrelationId = correlationId
 		sqlDataRequest.RequestMetadata.JobName = compositionRequest.JobName
+		sqlDataRequest.RequestMetadata.Transport = lib.NormalizeTransport(compositionRequest.Transport)
 		logger.Sugar().Debugf("Sending sqlDataRequest to: %s", sqlDataRequest.RequestMetadata.DestinationQueue)
 
 		// Debug prints to check the compositionRequest and other related information

@@ -18,10 +18,13 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
+	"sync"
 
 	"github.com/Jorrit05/DYNAMOS/pkg/lib"
 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/rabbitmq/rabbitmq-stream-go-client/pkg/stream"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -33,14 +36,28 @@ type ConsumerManager struct {
 	cancel   context.CancelFunc
 }
 
+type pendingStreamPublish struct {
+	mu        sync.Mutex
+	ids       []int64
+	remaining int
+	done      chan error
+	completed bool
+}
+
 type serverInstance struct {
 	pb.UnimplementedRabbitMQServer
 	pb.UnimplementedEtcdServer
 	pb.UnimplementedMicroserviceServer
-	consumerManager *ConsumerManager
-	channel         *amqp.Channel
-	conn            *amqp.Connection
-	routingKey      string
+	consumerManager  *ConsumerManager
+	channel          *amqp.Channel
+	conn             *amqp.Connection
+	routingKey       string
+	streamProducerMu sync.Mutex
+	streamEnv        *stream.Environment
+	streamProducers  map[string]*stream.Producer
+	streamPublishSeq int64
+	streamPendingMu  sync.Mutex
+	streamPending    map[int64]*pendingStreamPublish
 }
 
 func (s *serverInstance) InitRabbitMq(ctx context.Context, in *pb.InitRequest) (*emptypb.Empty, error) {
@@ -108,6 +125,7 @@ func (s *serverInstance) Consume(in *pb.ConsumeRequest, stream pb.RabbitMQ_Consu
 	}
 
 	logger.Sugar().Infof("Started consuming from %s", in.QueueName)
+	go s.consumeRabbitMQStream(stream.Context(), in.QueueName, stream)
 
 	for msg := range messages {
 		logger.Sugar().Debugw("switchin: ", "msg,Type", msg.Type, "Port:", port)
@@ -170,7 +188,7 @@ func (s *serverInstance) Consume(in *pb.ConsumeRequest, stream pb.RabbitMQ_Consu
 // Returns:
 //   - ContinueReceiving: A boolean indicating if the sidecar should continue receiving messages
 //   - error: An error if the function fails
-func (s *serverInstance) SendData(ctx context.Context, data *pb.MicroserviceCommunication) (*pb.ContinueReceiving, error) {
+func (s *serverInstance) handleSendData(ctx context.Context, data *pb.MicroserviceCommunication) error {
 	logger.Sugar().Debugf("Starting (to AMQ) lib.SendData: %v", data.RequestMetadata.DestinationQueue)
 
 	ctx, span, err := lib.StartRemoteParentSpan(ctx, "sidecar SendData/func:", data.Traces)
@@ -181,9 +199,29 @@ func (s *serverInstance) SendData(ctx context.Context, data *pb.MicroserviceComm
 
 	if _, err := SendDataThroughAMQ(ctx, data, s); err != nil {
 		logger.Sugar().Errorf("Callback Error: %v", err)
-		return &pb.ContinueReceiving{ContinueReceiving: false}, nil
+		return err
 	}
 
 	logger.Debug("Returning from SendData (to Microservice)")
-	return &pb.ContinueReceiving{ContinueReceiving: false}, nil
+	return nil
+}
+
+func (s *serverInstance) SendData(ctx context.Context, data *pb.MicroserviceCommunication) (*pb.ContinueReceiving, error) {
+	return &pb.ContinueReceiving{ContinueReceiving: false}, s.handleSendData(ctx, data)
+}
+
+func (s *serverInstance) SendDataStream(stream pb.Microservice_SendDataStreamServer) error {
+	for {
+		data, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&pb.ContinueReceiving{ContinueReceiving: false})
+		}
+		if err != nil {
+			return err
+		}
+
+		if err := s.handleSendData(stream.Context(), data); err != nil {
+			return err
+		}
+	}
 }

@@ -11,6 +11,7 @@ import "generic.proto";
 // The sidecar definition.
 service Microservice {
   rpc SendData(MicroserviceCommunication) returns (ContinueReceiving) {}
+  rpc SendDataStream(stream MicroserviceCommunication) returns (ContinueReceiving) {}
 }
 
 message MicroserviceCommunication {
@@ -23,6 +24,22 @@ message MicroserviceCommunication {
   map<string, bytes> traces = 7;// Binary or textual representation of span context
   bytes result = 8;
   repeated string routing_data = 9; // To be used for persistent jobs
+}
+
+message MicroserviceCommunicationChunk {
+  string type = 1;
+  string request_type = 2;
+  google.protobuf.Struct data = 3;
+  map<string, string> metadata = 4;
+  google.protobuf.Any original_request = 5;
+  RequestMetadata request_metadata = 6;
+  map<string, bytes> traces = 7;
+  bytes result_chunk = 8;
+  repeated string routing_data = 9;
+  uint32 chunk_index = 10;
+  bool is_final = 11;
+  uint32 total_chunks = 12;
+  string correlation_id = 13;
 }
 
 message ContinueReceiving {

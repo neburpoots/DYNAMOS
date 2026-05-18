@@ -114,8 +114,11 @@ func messageHandler(config *msinit.Configuration) func(ctx context.Context, msCo
 			logger.Sugar().Errorf("Unknown RequestType type: %v", msComm.RequestType)
 		}
 
-    // Send data to the next MS, handled by the msInit configuration 
-		config.NextClient.SendData(ctx, msComm)
+		// Send data to the next MS, handled by the msInit configuration.
+		// This keeps gRPC client streams open automatically when the transport is set to "streaming".
+		if err := config.SendToNext(ctx, msComm); err != nil {
+			logger.Sugar().Errorf("Failed to forward message to next microservice: %v", err)
+		}
 
 		close(config.StopMicroservice)
 		return nil

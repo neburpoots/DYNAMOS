@@ -1,3 +1,4 @@
+{{- if .Values.observability.enabled }}
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -151,3 +152,4 @@ subjects:
 - kind: ServiceAccount
   name: promtail
   namespace: core
+{{- end }}

@@ -61,6 +61,7 @@ func stopSidecar(s *grpc.Server, grpcServerInstance *serverInstance, finished ch
 	<-stop
 	logger.Info("Stopping sidecar wait for a few 4 seconds before initating stop")
 	time.Sleep(4 * time.Second)
+	grpcServerInstance.closeRabbitMQStreamResources()
 
 	if grpcServerInstance.channel != nil {
 		close_channel(grpcServerInstance.channel, grpcServerInstance.conn)

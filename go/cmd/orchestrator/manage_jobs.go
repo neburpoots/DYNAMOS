@@ -360,6 +360,7 @@ func handleRequestApproval(ctx context.Context, validationResponse *pb.Validatio
 	result.AuthorizedProviders = make(map[string]string)
 	result.AuthorizedProviders = userTargets
 	result.JobId = compositionRequest.JobName
+	result.RequestMetadata.Transport = compositionRequest.Transport
 
 	c.SendRequestApprovalResponse(ctx, result)
 }

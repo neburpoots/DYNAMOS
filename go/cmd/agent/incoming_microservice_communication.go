@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/Jorrit05/DYNAMOS/pkg/lib"
 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
 	"go.opencensus.io/trace"
 )
@@ -13,6 +14,16 @@ func isJobWaiting(ctx context.Context, msComm *pb.MicroserviceCommunication, cor
 
 	ctx, span := trace.StartSpan(ctx, "isJobWaiting")
 	defer span.End()
+	final := lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true)
+	if msComm.GetRequestMetadata().GetReturnAddress() == agentConfig.RoutingKey {
+		logger.Sugar().Debugw(
+			"Skipping waiting-job routing for message returning from local job",
+			"correlationId", correlationId,
+			"destinationQueue", msComm.GetRequestMetadata().GetDestinationQueue(),
+			"returnAddress", msComm.GetRequestMetadata().GetReturnAddress(),
+		)
+		return false
+	}
 
 	// Check if there is a job waiting for this result
 	waitingJobMutex.Lock()
@@ -30,10 +41,15 @@ func isJobWaiting(ctx context.Context, msComm *pb.MicroserviceCommunication, cor
 	if ok && waitingJob.nrOfDataStewards > 0 {
 		logger.Sugar().Infof("Nr. of stewards: %d", waitingJob.nrOfDataStewards)
 		handleFurtherProcessing(ctx, waitingJob.job.Name, msComm)
-		waitingJob.nrOfDataStewards = waitingJob.nrOfDataStewards - 1
-		if waitingJob.nrOfDataStewards == 0 {
+		if final {
 			waitingJobMutex.Lock()
-			delete(waitingJobMap, correlationId)
+			currentWaitingJob, stillWaiting := waitingJobMap[correlationId]
+			if stillWaiting && currentWaitingJob != nil {
+				currentWaitingJob.nrOfDataStewards = currentWaitingJob.nrOfDataStewards - 1
+				if currentWaitingJob.nrOfDataStewards == 0 {
+					delete(waitingJobMap, correlationId)
+				}
+			}
 			waitingJobMutex.Unlock()
 		}
 
@@ -64,9 +80,11 @@ func isHttpWaiting(ctx context.Context, msComm *pb.MicroserviceCommunication, co
 		// Send a signal on the channel to indicate that the response is ready
 		dataResponseChan <- dataResponse{response: msComm, localContext: ctx}
 
-		mutex.Lock()
-		delete(responseMap, correlationId)
-		mutex.Unlock()
+		if lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true) {
+			mutex.Lock()
+			delete(responseMap, correlationId)
+			mutex.Unlock()
+		}
 
 		// logger.Debug("returning from responding......")
 		return true
@@ -83,7 +101,7 @@ func isThirdPartyWaiting(ctx context.Context, msComm *pb.MicroserviceCommunicati
 
 	// Check if there is a third party where this goes back to
 	ttpMutex.Lock()
-	returnAddress, ok := thirdPartyMap[correlationId]
+	waitingThirdParty, ok := thirdPartyMap[correlationId]
 	ttpMutex.Unlock()
 
 	// Add additional trace attributes for debugging
@@ -91,11 +109,22 @@ func isThirdPartyWaiting(ctx context.Context, msComm *pb.MicroserviceCommunicati
 	logger.Sugar().Debugf("isThirdPartyWaiting: correlationId=%s, thirdPartyFound=%t, mapContent=%v", correlationId, ok, thirdPartyMap)
 
 	if ok {
-		logger.Sugar().Infof("Sending sql response to returnAddress: %s", returnAddress)
+		logger.Sugar().Infof("Sending sql response to returnAddress: %s", waitingThirdParty.returnAddress)
 
-		msComm.RequestMetadata.DestinationQueue = returnAddress
+		msComm.RequestMetadata.DestinationQueue = waitingThirdParty.returnAddress
+		msComm.RequestMetadata.Transport = lib.NormalizeTransport(waitingThirdParty.transport)
+		if msComm.Metadata == nil {
+			msComm.Metadata = map[string]string{}
+		}
+		msComm.Metadata[lib.TransportMetadataKey] = msComm.RequestMetadata.Transport
 
 		c.SendMicroserviceComm(ctx, msComm)
+
+		if lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true) {
+			ttpMutex.Lock()
+			delete(thirdPartyMap, correlationId)
+			ttpMutex.Unlock()
+		}
 
 		// logger.Debug("returning from forwarding to 3rd party......")
 		return true

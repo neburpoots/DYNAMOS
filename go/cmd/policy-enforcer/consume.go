@@ -23,6 +23,9 @@ func handleIncomingMessages(ctx context.Context, grpcMsg *pb.SideCarMessage) err
 		}
 
 		logger.Sugar().Infof("User name: %s", requestApproval.User.UserName)
+		logger.Sugar().Infow("Received request approval transport",
+			"transport", requestApproval.Transport,
+		)
 		checkRequestApproval(ctx, &requestApproval)
 	case "policyUpdate":
 		ctx, span, err := lib.StartRemoteParentSpan(ctx, serviceName+"/func: policyUpdate", grpcMsg.Traces)

@@ -1,6 +1,7 @@
 package api
 
 import (
+	"bufio"
 	"bytes"
 	"context"
 	"encoding/json"
@@ -19,6 +20,67 @@ import (
 var (
 	logger = lib.InitLogger(logLevel)
 )
+
+const NDJSONContentType = "application/x-ndjson"
+
+const (
+	StreamEventTypeJob              = "job"
+	StreamEventTypeProviderAccepted = "providerAccepted"
+	StreamEventTypeProviderResult   = "providerResult"
+	StreamEventTypeProviderError    = "providerError"
+	StreamEventTypeDone             = "done"
+)
+
+type StreamResponse struct {
+	Type               string          `json:"type"`
+	JobID              string          `json:"jobId,omitempty"`
+	Provider           string          `json:"provider,omitempty"`
+	CorrelationID      string          `json:"correlationId,omitempty"`
+	Result             json.RawMessage `json:"result,omitempty"`
+	ResultText         string          `json:"resultText,omitempty"`
+	Partial            bool            `json:"partial,omitempty"`
+	Sequence           int             `json:"sequence,omitempty"`
+	RowsProcessed      int             `json:"rowsProcessed,omitempty"`
+	RowsTotal          int             `json:"rowsTotal,omitempty"`
+	Error              string          `json:"error,omitempty"`
+	ProviderCount      int             `json:"providerCount,omitempty"`
+	CompletedProviders int             `json:"completedProviders,omitempty"`
+}
+
+func (s *StreamResponse) SetResultBody(body []byte) {
+	trimmed := bytes.TrimSpace(body)
+	if len(trimmed) == 0 {
+		s.Result = nil
+		s.ResultText = ""
+		return
+	}
+
+	if json.Valid(trimmed) {
+		s.Result = append(json.RawMessage(nil), trimmed...)
+		s.ResultText = ""
+		return
+	}
+
+	s.Result = nil
+	// Preserve the original payload when it is not valid JSON.
+	s.ResultText = string(body)
+}
+
+func WantsNDJSON(r *http.Request) bool {
+	if r == nil {
+		return false
+	}
+	return headerAcceptsContentType(r.Header.Get("Accept"), NDJSONContentType)
+}
+
+func WriteNDJSON(w io.Writer, value any) error {
+	payload, err := json.Marshal(value)
+	if err != nil {
+		return err
+	}
+	_, err = w.Write(append(payload, '\n'))
+	return err
+}
 
 type Auth struct {
 	AccessToken  string `json:"accessToken"`
@@ -46,12 +108,14 @@ type RequestApproval struct {
 	Type          string   `json:"type"`
 	User          User     `json:"user"`
 	DataProviders []string `json:"dataProviders"`
+	Transport     string   `json:"transport"`
 	// DataRequest   DataRequest `json:"dataRequest"`
 	DataRequest json.RawMessage `json:"data_request"`
 }
 
 type DataRequestOptions struct {
-	Options map[string]bool `json:"options"`
+	Options   map[string]bool `json:"options"`
+	Transport string          `json:"transport"`
 	// Algorithm string          `json:"algorithm"`
 	// Query     string          `json:"query"`
 }
@@ -222,11 +286,94 @@ func GenericPutToEtcd[T any](w http.ResponseWriter, req *http.Request, etcdClien
 }
 
 func PostRequest(url string, body string, extra_headers map[string]string) ([]byte, error) {
+	return PostRequestWithContext(context.Background(), url, body, extra_headers)
+}
+
+func PostRequestWithContext(ctx context.Context, url string, body string, extra_headers map[string]string) ([]byte, error) {
+	resp, err := doPostRequest(ctx, url, body, extra_headers)
+	if err != nil {
+		return []byte(""), err
+	}
+	defer resp.Body.Close()
+
+	respBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		logger.Sugar().Infof("Failed to read response body: %v", err)
+		return []byte(""), err
+	}
+
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
+		err = badResponseError(resp.Status, respBody)
+		logger.Sugar().Infof("%v", err)
+		return []byte(""), err
+	}
+
+	return respBody, nil
+}
+
+func PostRequestStream(ctx context.Context, url string, body string, extra_headers map[string]string, onMessage func([]byte) error) error {
+	if onMessage == nil {
+		return fmt.Errorf("onMessage callback is required")
+	}
+
+	resp, err := doPostRequest(ctx, url, body, extra_headers)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
+		respBody, readErr := io.ReadAll(resp.Body)
+		if readErr != nil {
+			logger.Sugar().Infof("Failed to read error response body: %v", readErr)
+			return readErr
+		}
+		return badResponseError(resp.Status, respBody)
+	}
+
+	if !headerAcceptsContentType(resp.Header.Get("Content-Type"), NDJSONContentType) {
+		respBody, err := io.ReadAll(resp.Body)
+		if err != nil {
+			logger.Sugar().Infof("Failed to read response body: %v", err)
+			return err
+		}
+		trimmed := bytes.TrimSpace(respBody)
+		if len(trimmed) == 0 {
+			return nil
+		}
+		return onMessage(trimmed)
+	}
+
+	scanner := bufio.NewScanner(resp.Body)
+	scanner.Buffer(make([]byte, 0, 64*1024), 10*1024*1024)
+	for scanner.Scan() {
+		line := bytes.TrimSpace(scanner.Bytes())
+		if len(line) == 0 {
+			continue
+		}
+		if err := onMessage(append([]byte(nil), line...)); err != nil {
+			return err
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		logger.Sugar().Infof("Failed to read streaming response body: %v", err)
+		return err
+	}
+
+	return nil
+}
+
+func doPostRequest(ctx context.Context, url string, body string, extra_headers map[string]string) (*http.Response, error) {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
 	reqBody := bytes.NewBufferString(body)
-	req, err := http.NewRequest(http.MethodPost, url, reqBody)
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, url, reqBody)
 	if err != nil {
 		logger.Sugar().Infof("Failed to create request: %v", err)
-		return []byte(""), err
+		return nil, err
 	}
 
 	headers := map[string]string{
@@ -244,21 +391,24 @@ func PostRequest(url string, body string, extra_headers map[string]string) ([]by
 	resp, err := client.Do(req)
 	if err != nil {
 		logger.Sugar().Infof("Failed to make request: %v", err)
-		return []byte(""), err
+		return nil, err
 	}
-	defer resp.Body.Close()
+	return resp, nil
+}
 
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		logger.Sugar().Infof("Failed to read response body: %v", err)
-		return []byte(""), err
+
+func badResponseError(status string, body []byte) error {
+	trimmed := strings.TrimSpace(string(body))
+	if trimmed == "" {
+		return fmt.Errorf("bad response from server: %s", status)
 	}
+	return fmt.Errorf("bad response from server: %s: %s", status, trimmed)
+}
 
-	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
-		err = fmt.Errorf(fmt.Sprintf("Bad response from server: %s", resp.Status))
-		logger.Sugar().Infof("%v", err)
-		return []byte(""), err
+
+func headerAcceptsContentType(headerValue string, contentType string) bool {
+	if headerValue == "" || contentType == "" {
+		return false
 	}
-
-	return respBody, nil
+	return strings.Contains(strings.ToLower(headerValue), strings.ToLower(contentType))
 }

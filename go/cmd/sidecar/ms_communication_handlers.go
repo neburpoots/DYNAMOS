@@ -43,6 +43,11 @@ func SendDataThroughAMQ(ctx context.Context, data *pb.MicroserviceCommunication,
 	logger.Debug("Starting lib.SendDataThroughAMQ")
 
 	ctx, span := trace.StartSpan(ctx, "sidecar SendDataThroughAMQ/func:")
+	target := data.RequestMetadata.ReturnAddress
+	if shouldSendThroughRabbitMQStream(data, target) {
+		span.End()
+		return SendDataThroughRabbitMQStream(ctx, data, target, s)
+	}
 
 	// Marshaling google.protobuf.Struct to Proto wire format
 	body, err := proto.Marshal(data)
@@ -75,7 +80,7 @@ func SendDataThroughAMQ(ctx context.Context, data *pb.MicroserviceCommunication,
 	timeoutCtx, cancel := context.WithTimeout(ctx, 8*time.Second)
 	defer cancel()
 
-	err = s.channel.PublishWithContext(timeoutCtx, exchangeName, data.RequestMetadata.ReturnAddress, true, false, msg)
+	err = s.channel.PublishWithContext(timeoutCtx, exchangeName, target, true, false, msg)
 	if err != nil {
 		logger.Sugar().Errorf("Error sending microserviceCommunication: %v", err)
 		// return &emptypb.Empty{}, err

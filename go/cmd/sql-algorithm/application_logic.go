@@ -5,13 +5,28 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
+	"sync"
 
+	"github.com/Jorrit05/DYNAMOS/pkg/lib"
 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
 
 	"github.com/gogo/protobuf/jsonpb"
 	"go.opencensus.io/trace"
 	"go.opencensus.io/trace/propagation"
 	"google.golang.org/protobuf/types/known/structpb"
+)
+
+type averageAccumulator struct {
+	totalMaleSalary   float64
+	totalFemaleSalary float64
+	maleCount         int
+	femaleCount       int
+	seenBatches       map[string]struct{}
+}
+
+var (
+	averageAccumulatorMu sync.Mutex
+	averageAccumulators  = map[string]*averageAccumulator{}
 )
 
 // // func ReveiceData() {
@@ -31,7 +46,7 @@ import (
 // // }
 
 // This is the function being called by the last microservice
-func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunication) error {
+func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunication) (bool, error) {
 	ctx, span := trace.StartSpan(ctx, "handleSqlDataRequest")
 	defer span.End()
 
@@ -76,6 +91,7 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 	}
 
 	msComm.Traces["binaryTrace"] = propagation.Binary(span.SpanContext())
+	final := lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true)
 
 	if sqlDataRequest.Options["graph"] {
 		// jsonString, _ := json.Marshal(msComm.Data)
@@ -85,15 +101,18 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 		jsonString, _ := m.MarshalToString(msComm.Data)
 		msComm.Result = []byte(jsonString)
 
-		return nil
+		return true, nil
 	}
 
 	if sqlDataRequest.Algorithm == "average" {
-		// jsonString, _ := json.Marshal(msComm.Data)
-		// msComm.Result = jsonString
-
-		msComm.Result = getAverage(msComm.Data)
-		return nil
+		msComm.Result = getAverage(msComm, final)
+		msComm.Data = nil
+		if msComm.Metadata == nil {
+			msComm.Metadata = map[string]string{}
+		}
+		msComm.Metadata[lib.StreamPartialMetadataKey] = strconv.FormatBool(!final)
+		msComm.Metadata[lib.StreamFinalMetadataKey] = strconv.FormatBool(final)
+		return final, nil
 	}
 
 	// // Just pass on the data for now...
@@ -104,8 +123,9 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 	// Process all data to make this service more realistic.
 	ctx, allResults := convertAllData(ctx, msComm.Data)
 	msComm.Result = allResults
+	msComm.Data = nil
 
-	return nil
+	return true, nil
 }
 
 func convertAllData(ctx context.Context, data *structpb.Struct) (context.Context, []byte) {
@@ -175,48 +195,121 @@ func getFirstRow(data *structpb.Struct) []byte {
 	return jsonData
 }
 
-func getAverage(data *structpb.Struct) []byte {
+func getAverage(msComm *pb.MicroserviceCommunication, final bool) []byte {
+	correlationID := ""
+	if msComm.GetRequestMetadata() != nil {
+		correlationID = msComm.GetRequestMetadata().GetCorrelationId()
+	}
+
+	averageAccumulatorMu.Lock()
+	defer averageAccumulatorMu.Unlock()
+
+	accumulator := &averageAccumulator{}
+	if correlationID != "" {
+		storedAccumulator, ok := averageAccumulators[correlationID]
+		if !ok {
+			storedAccumulator = &averageAccumulator{}
+			averageAccumulators[correlationID] = storedAccumulator
+		}
+		accumulator = storedAccumulator
+	}
+
+	if markAverageBatchSeen(accumulator, msComm) {
+		logger.Sugar().Warnw("Ignoring duplicate algorithm average stream batch", "correlationId", correlationID, "batchId", averageBatchIdentity(msComm))
+	} else {
+		updateAverageAccumulator(accumulator, msComm.Data)
+	}
+	jsonResult := marshalAverageAccumulator(accumulator)
+
+	if final && correlationID != "" {
+		delete(averageAccumulators, correlationID)
+	}
+
+	return jsonResult
+}
+
+func markAverageBatchSeen(accumulator *averageAccumulator, msComm *pb.MicroserviceCommunication) bool {
+	if accumulator == nil {
+		return false
+	}
+	if accumulator.seenBatches == nil {
+		accumulator.seenBatches = map[string]struct{}{}
+	}
+	batchID := averageBatchIdentity(msComm)
+	if batchID == "" {
+		return false
+	}
+	if _, seen := accumulator.seenBatches[batchID]; seen {
+		return true
+	}
+	accumulator.seenBatches[batchID] = struct{}{}
+	return false
+}
+
+func averageBatchIdentity(msComm *pb.MicroserviceCommunication) string {
+	if msComm == nil || msComm.Metadata == nil {
+		return ""
+	}
+	if batchID := msComm.Metadata[lib.StreamBatchIDMetadataKey]; batchID != "" {
+		return batchID
+	}
+	provider := msComm.Metadata[lib.StreamProviderMetadataKey]
+	sequence := msComm.Metadata[lib.StreamSequenceMetadataKey]
+	if provider == "" || sequence == "" {
+		return ""
+	}
+	return provider + ":" + sequence
+}
+
+func updateAverageAccumulator(accumulator *averageAccumulator, data *structpb.Struct) {
+	if accumulator == nil || data == nil {
+		return
+	}
 
 	gendersField, ok1 := data.GetFields()["Geslacht"]
 	salariesField, ok2 := data.GetFields()["Salschal"]
-
 	if !ok1 || !ok2 {
 		logger.Error("Genders or Salaries field not found")
-		return nil
+		return
 	}
 
 	genders := gendersField.GetListValue().GetValues()
 	salaries := salariesField.GetListValue().GetValues()
-
-	var totalMaleSalary, totalFemaleSalary float64
-	maleCount, femaleCount := 0, 0
-
 	for index, gender := range genders {
-		genderStr := gender.GetStringValue()
-		if salaryStr := salaries[index].GetStringValue(); salaryStr != "" {
-			salary, err := strconv.ParseFloat(salaryStr, 64)
-			if err != nil {
-				fmt.Printf("Error parsing salary value: %v\n", err)
-				continue
-			}
+		if index >= len(salaries) {
+			break
+		}
 
-			if genderStr == "M" {
-				totalMaleSalary += salary
-				maleCount++
-			} else if genderStr == "V" {
-				totalFemaleSalary += salary
-				femaleCount++
-			}
+		genderStr := gender.GetStringValue()
+		salaryStr := salaries[index].GetStringValue()
+		if salaryStr == "" {
+			continue
+		}
+
+		salary, err := strconv.ParseFloat(salaryStr, 64)
+		if err != nil {
+			fmt.Printf("Error parsing salary value: %v\n", err)
+			continue
+		}
+
+		switch genderStr {
+		case "M":
+			accumulator.totalMaleSalary += salary
+			accumulator.maleCount++
+		case "V":
+			accumulator.totalFemaleSalary += salary
+			accumulator.femaleCount++
 		}
 	}
+}
 
+func marshalAverageAccumulator(accumulator *averageAccumulator) []byte {
 	result := make(map[string]string)
-	if maleCount != 0 {
-		result["avg_salary_scale_men"] = fmt.Sprintf("%.3f", totalMaleSalary/float64(maleCount))
+	if accumulator.maleCount != 0 {
+		result["avg_salary_scale_men"] = fmt.Sprintf("%.3f", accumulator.totalMaleSalary/float64(accumulator.maleCount))
 	}
-	if femaleCount != 0 {
-		result["avg_salary_scale_women"] = fmt.Sprintf("%.3f", totalFemaleSalary/float64(femaleCount))
-
+	if accumulator.femaleCount != 0 {
+		result["avg_salary_scale_women"] = fmt.Sprintf("%.3f", accumulator.totalFemaleSalary/float64(accumulator.femaleCount))
 	}
 
 	jsonResult, err := json.Marshal(result)

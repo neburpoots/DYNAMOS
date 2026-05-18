@@ -89,16 +89,11 @@ class MicroserviceServicer(msCommServer.MicroserviceServicer):
         self.callback: CallbackType = msCommHandler
         self.logger = logger
 
-
-    def SendData(self, msComm: msCommTypes.MicroserviceCommunication, context):
-        """
-        Send the data to the next microservice in the chain.
-        """
+    def _handle_message(self, msComm: msCommTypes.MicroserviceCommunication):
         self.logger.debug(f"Starting MicroserviceServicer grpc_server.py/SendData: {msComm.request_metadata.destination_queue}")
 
         span = trace.get_current_span()
         try:
-            # Start a new span
             with trace.get_tracer(__name__).start_as_current_span("grpc_server.py/SendData") as span:
                 pass
         except Exception as err:
@@ -113,13 +108,22 @@ class MicroserviceServicer(msCommServer.MicroserviceServicer):
             self.callback(msComm)
         except TypeError as e:
             self.logger.error(f"TypeError: {e}")
-            return Empty()
         except Exception as err:
             self.logger.error(f"SendData Error: {err}")
-            return Empty()
 
+        return msCommTypes.ContinueReceiving(continue_receiving=False)
 
-        return Empty()
+    def SendData(self, msComm: msCommTypes.MicroserviceCommunication, context):
+        """
+        Send the data to the next microservice in the chain.
+        """
+        return self._handle_message(msComm)
+
+    def SendDataStream(self, request_iterator, context):
+        response = msCommTypes.ContinueReceiving(continue_receiving=False)
+        for msComm in request_iterator:
+            response = self._handle_message(msComm)
+        return response
 
 
 class GRPCServer(BaseClient):

@@ -15,6 +15,7 @@ dynamos.egg.info/*
 *.so
 *.dylib
 log.txt
+benchmark-results/
 # Test binary, built with `go test -c`
 *.test
 __pycache__

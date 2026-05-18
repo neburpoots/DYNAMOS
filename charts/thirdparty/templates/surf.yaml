@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: surf
+        component: agent-service
       annotations:
         "linkerd.io/inject" : enabled
     spec:
@@ -27,6 +28,8 @@ spec:
           value: SURF
         - name: OC_AGENT_HOST
           value: {{ .Values.tracingEndpoint }}
+        - name: SQL_STREAM_BATCH_ROWS
+          value: {{ .Values.sqlStreamBatchRows | default "5000" | quote }}
         - name: MICROSERVICE_REPOSITORY_NAME
           value: {{ .Values.dockerArtifactAccount | quote }}
         - name: SIDECAR_REPOSITORY_NAME
@@ -52,6 +55,10 @@ spec:
           value: normal_user
         - name: OC_AGENT_HOST
           value: {{ .Values.tracingEndpoint }}
+        - name: RABBITMQ_STREAM_CHUNK_ROWS
+          value: {{ .Values.rabbitmqStreamChunkRows | default "100" | quote }}
+        - name: RABBITMQ_STREAM_CHUNK_BYTES
+          value: {{ .Values.rabbitmqStreamChunkBytes | default "65536" | quote }}
 
 ---
 
@@ -63,6 +70,7 @@ metadata:
 spec:
   selector:
     app: surf
+    component: agent-service
   ports:
     - name: http-surf-api
       protocol: TCP

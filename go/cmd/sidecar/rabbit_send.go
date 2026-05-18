@@ -238,6 +238,10 @@ func (s *serverInstance) SendPolicyUpdate(ctx context.Context, in *pb.PolicyUpda
 }
 
 func (s *serverInstance) SendMicroserviceComm(ctx context.Context, in *pb.MicroserviceCommunication) (*emptypb.Empty, error) {
+	if shouldSendThroughRabbitMQStream(in, in.RequestMetadata.DestinationQueue) {
+		return SendDataThroughRabbitMQStream(ctx, in, in.RequestMetadata.DestinationQueue, s)
+	}
+
 	data, err := proto.Marshal(in)
 	if err != nil {
 		logger.Sugar().Errorf("Marshal SendMicroserviceComm failed: %s", err)

@@ -53,14 +53,10 @@ func handleIncomingMessages(ctx context.Context, grpcMsg *pb.SideCarMessage) err
 			logger.Sugar().Errorf("Failed to unmarshal sqlResult message: %v", err)
 		}
 
-		// Store the original sender's return address in a map using the CorrelationId
-		ttpMutex.Lock()
-		thirdPartyMap[sqlDataRequest.RequestMetadata.CorrelationId] = sqlDataRequest.RequestMetadata.ReturnAddress
-		ttpMutex.Unlock()
-
 		// Prepare a MicroserviceCommunication message to forward the request internally
 		msComm := &pb.MicroserviceCommunication{}
 		msComm.RequestMetadata = &pb.RequestMetadata{}
+		msComm.Metadata = map[string]string{}
 		msComm.Type = "microserviceCommunication"
 		msComm.RequestType = sqlDataRequest.Type
 		// Set own routing key as return address to ensure the response comes back to me and then returned to where it needs
@@ -84,6 +80,20 @@ func handleIncomingMessages(ctx context.Context, grpcMsg *pb.SideCarMessage) err
 
 		// Set the internal destination queue based on the compositionRequest
 		msComm.RequestMetadata.DestinationQueue = compositionRequest.LocalJobName
+		if compositionRequest.Transport == "" && sqlDataRequest.RequestMetadata.Transport != "" {
+			compositionRequest.Transport = lib.NormalizeTransport(sqlDataRequest.RequestMetadata.Transport)
+		}
+
+		// Preserve the caller-selected transport for the third-party return path.
+		ttpMutex.Lock()
+		thirdPartyMap[sqlDataRequest.RequestMetadata.CorrelationId] = thirdPartyWait{
+			returnAddress: sqlDataRequest.RequestMetadata.ReturnAddress,
+			transport:     lib.NormalizeTransport(compositionRequest.Transport),
+		}
+		ttpMutex.Unlock()
+
+		msComm.RequestMetadata.Transport = lib.NormalizeTransport(compositionRequest.Transport)
+		msComm.Metadata[lib.TransportMetadataKey] = msComm.RequestMetadata.Transport
 
 		// Construct etcd key/value for queue coordination
 		key := fmt.Sprintf("/agents/jobs/%s/queueInfo/%s", serviceName, compositionRequest.LocalJobName)

@@ -25,22 +25,27 @@ func getCompositionRequest(userName string, jobName string) (*pb.CompositionRequ
 
 	key := fmt.Sprintf("%s/%s/%s/%s", etcdJobRootKey, agentConfig.Name, userName, jobName)
 
-	// Due to timing issues in ETCD we should check again. Up for a smarter way of solving this issue
-	for i := 0; i <= 5; i++ {
-
+	deadline := time.Now().Add(30 * time.Second)
+	var lastErr error
+	for {
 		jsonVal, err := etcd.GetAndUnmarshalJSON(etcdClient, key, &compositionRequest)
-		if err != nil {
-			logger.Sugar().Warnf("Error getting composition request for key: %s, error: %v", key, err)
-			return nil, err
+		if err == nil && jsonVal != nil {
+			break
 		}
-
-		if jsonVal != nil {
+		if err != nil {
+			lastErr = err
+			logger.Sugar().Warnf("Error getting composition request for key: %s, error: %v", key, err)
+		}
+		if time.Now().After(deadline) {
 			break
 		}
 		time.Sleep(1 * time.Second)
 	}
 
 	if compositionRequest == nil {
+		if lastErr != nil {
+			return nil, fmt.Errorf("error getting composition request for user: %v, jobName: %v: %w", userName, jobName, lastErr)
+		}
 		return nil, fmt.Errorf("no job found for user: %v, jobName: %v", userName, jobName)
 	}
 	return compositionRequest, nil

@@ -20,12 +20,13 @@ spec:
         image: "{{ .Values.rabbitmq.image }}"
         ports:
         - containerPort: 5672
+        - containerPort: 5552
         - containerPort: 15672
         - containerPort: 15692
         command:
           - /bin/sh
           - -c
-          - cp /mnt/definitions.json /opt/ && cp /mnt/rabbitmq.conf /etc/rabbitmq/conf.d/ && docker-entrypoint.sh rabbitmq-server
+          - rabbitmq-plugins enable --offline rabbitmq_stream rabbitmq_stream_management && cp /mnt/definitions.json /opt/ && cp /mnt/rabbitmq.conf /etc/rabbitmq/conf.d/ && docker-entrypoint.sh rabbitmq-server
         env:
         - name: RABBITMQ_ERLANG_COOKIE
           value: "{{ .Values.rabbitmq.env.RABBITMQ_ERLANG_COOKIE }}"

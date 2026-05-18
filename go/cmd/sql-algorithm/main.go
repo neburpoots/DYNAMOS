@@ -47,9 +47,11 @@ func messageHandler(config *msinit.Configuration) func(ctx context.Context, msCo
 		// Wait till all services and connections have started
 		<-COORDINATOR
 
+		shouldStop := true
+
 		switch msComm.RequestType {
 		case "sqlDataRequest":
-			err := handleSqlDataRequest(ctx, msComm)
+			shouldStop, err = handleSqlDataRequest(ctx, msComm)
 			if err != nil {
 				logger.Sugar().Errorf("Failed to process %s message: %v", msComm.RequestType, err)
 			}
@@ -59,10 +61,14 @@ func messageHandler(config *msinit.Configuration) func(ctx context.Context, msCo
 		}
 
 		// Send the data to the next microservice
-		config.NextClient.SendData(ctx, msComm)
+		if err := config.SendToNext(ctx, msComm); err != nil {
+			logger.Sugar().Errorf("Failed to forward message to next microservice: %v", err)
+		}
 
 		// Close the channel (i.e., tell the waiting routine that processing is done)
-		close(config.StopMicroservice)
+		if shouldStop {
+			close(config.StopMicroservice)
+		}
 		return nil
 	}
 }

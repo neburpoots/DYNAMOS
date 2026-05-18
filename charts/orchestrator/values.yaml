@@ -5,3 +5,5 @@ tracingEndpoint: collector.linkerd-jaeger:55678
 branchNameTag: "main"
 dockerArtifactAccount: "dynamos1"
 imagePullPolicy: "Always"
+rabbitmqStreamChunkRows: "100"
+rabbitmqStreamChunkBytes: "65536"

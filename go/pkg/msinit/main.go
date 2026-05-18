@@ -6,6 +6,7 @@ import (
 	"net"
 	"os"
 	"strconv"
+	"sync"
 	"time"
 
 	"contrib.go.opencensus.io/exporter/ocagent"
@@ -20,6 +21,8 @@ var (
 )
 
 func (s *Configuration) CloseConnection() {
+	s.closeNextClientStreams()
+
 	if s.NextClientConnection != nil {
 		s.NextClientConnection.Close()
 	}
@@ -43,6 +46,111 @@ type Configuration struct {
 	NextClientConnection      *grpc.ClientConn
 	RabbitMsgClient           pb.RabbitMQClient
 	NextClient                pb.MicroserviceClient
+	nextClientStreamMu        sync.Mutex
+	nextClientStreams         map[string]pb.Microservice_SendDataStreamClient
+}
+
+func resolveMicroserviceTransport(data *pb.MicroserviceCommunication) string {
+	if data == nil {
+		return lib.TransportUnary
+	}
+	if data.RequestMetadata != nil && data.RequestMetadata.Transport != "" {
+		return lib.NormalizeTransport(data.RequestMetadata.Transport)
+	}
+	if data.Metadata != nil && data.Metadata[lib.TransportMetadataKey] != "" {
+		return lib.NormalizeTransport(data.Metadata[lib.TransportMetadataKey])
+	}
+	return lib.TransportUnary
+}
+
+func isFinalStreamMessage(data *pb.MicroserviceCommunication) bool {
+	partial := lib.MetadataBool(data.GetMetadata(), lib.StreamPartialMetadataKey, false)
+	return lib.MetadataBool(data.GetMetadata(), lib.StreamFinalMetadataKey, !partial)
+}
+
+func (s *Configuration) closeNextClientStreams() {
+	s.nextClientStreamMu.Lock()
+	defer s.nextClientStreamMu.Unlock()
+
+	for correlationID, stream := range s.nextClientStreams {
+		if stream != nil {
+			_ = stream.CloseSend()
+		}
+		delete(s.nextClientStreams, correlationID)
+	}
+}
+
+func (s *Configuration) getOrCreateNextClientStream(ctx context.Context, correlationID string) (pb.Microservice_SendDataStreamClient, error) {
+	s.nextClientStreamMu.Lock()
+	defer s.nextClientStreamMu.Unlock()
+
+	if s.nextClientStreams == nil {
+		s.nextClientStreams = make(map[string]pb.Microservice_SendDataStreamClient)
+	}
+
+	if stream, ok := s.nextClientStreams[correlationID]; ok {
+		return stream, nil
+	}
+
+	// Outbound streams can span multiple inbound handler invocations for the same
+	// correlation ID, so they must not inherit a single request-scoped context.
+	stream, err := s.NextClient.SendDataStream(context.Background())
+	if err != nil {
+		return nil, err
+	}
+
+	s.nextClientStreams[correlationID] = stream
+	return stream, nil
+}
+
+func (s *Configuration) dropNextClientStream(correlationID string, closeStream bool) {
+	s.nextClientStreamMu.Lock()
+	stream := s.nextClientStreams[correlationID]
+	delete(s.nextClientStreams, correlationID)
+	s.nextClientStreamMu.Unlock()
+
+	if closeStream && stream != nil {
+		_ = stream.CloseSend()
+	}
+}
+
+func (s *Configuration) SendToNext(ctx context.Context, data *pb.MicroserviceCommunication) error {
+	if s.NextClient == nil {
+		return fmt.Errorf("next client is not configured")
+	}
+
+	transport := resolveMicroserviceTransport(data)
+	if !lib.IsGrpcStreamingTransport(transport) {
+		_, err := s.NextClient.SendData(ctx, data)
+		return err
+	}
+
+	correlationID := ""
+	if data.RequestMetadata != nil {
+		correlationID = data.RequestMetadata.CorrelationId
+	}
+	if correlationID == "" {
+		_, err := s.NextClient.SendData(ctx, data)
+		return err
+	}
+
+	stream, err := s.getOrCreateNextClientStream(ctx, correlationID)
+	if err != nil {
+		return err
+	}
+
+	if err := stream.Send(data); err != nil {
+		s.dropNextClientStream(correlationID, true)
+		return err
+	}
+
+	if !isFinalStreamMessage(data) {
+		return nil
+	}
+
+	_, err = stream.CloseAndRecv()
+	s.dropNextClientStream(correlationID, false)
+	return err
 }
 
 func NewConfiguration(
@@ -112,7 +220,23 @@ func NewConfiguration(
 			Port:            conf.Port,
 		}
 
-		conf.RabbitMsgClient.InitRabbitForChain(ctx, chainRequest)
+		var initErr error
+		for attempt := 1; attempt <= 7; attempt++ {
+			initCtx, cancel := context.WithTimeout(ctx, 10*time.Second)
+			_, initErr = conf.RabbitMsgClient.InitRabbitForChain(initCtx, chainRequest)
+			cancel()
+			if initErr == nil {
+				break
+			}
+
+			logger.Sugar().Warnw("InitRabbitForChain failed", "service", conf.ServiceName, "routingKey", chainRequest.RoutingKey, "attempt", attempt, "error", initErr)
+			if attempt < 7 {
+				time.Sleep(1 * time.Second)
+			}
+		}
+		if initErr != nil {
+			return nil, fmt.Errorf("failed to init rabbit chain for %s: %w", conf.ServiceName, initErr)
+		}
 
 	} else if conf.LastService {
 		conf.GrpcServer = grpc.NewServer()

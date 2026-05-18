@@ -43,6 +43,12 @@ func startCompositionRequest(ctx context.Context, validationResponse *pb.Validat
 	compositionRequest.ArchetypeId = archetype
 	compositionRequest.RequestType = validationResponse.RequestType
 	compositionRequest.JobName = lib.GenerateJobName(validationResponse.User.UserName, 8)
+	compositionRequest.Transport = selectTransport(validationResponse.Transport, archetypeConfig)
+	logger.Sugar().Infow("Selected composition transport",
+		"requestedTransport", validationResponse.Transport,
+		"selectedTransport", compositionRequest.Transport,
+		"computeProvider", archetypeConfig.ComputeProvider,
+	)
 
 	// Save the ActiveJob to etcd
 	// var activeJob = &pb.ActiveJob{
@@ -99,6 +105,16 @@ func startCompositionRequest(ctx context.Context, validationResponse *pb.Validat
 	return userTargets, ctx, nil
 }
 
+func selectTransport(requestedTransport string, archetypeConfig api.Archetype) string {
+	if requestedTransport != "" {
+		return lib.NormalizeTransport(requestedTransport)
+	}
+	if archetypeConfig.ComputeProvider == "other" {
+		return lib.TransportRabbitMQStreams
+	}
+	return lib.TransportUnary
+}
+
 // Simple sorting to return the archetype with the least weight
 func pickArchetypeBasedOnWeight() (*api.Archetype, error) {
 	logger.Sugar().Info("Start pickArchetypeBasedOnWeight")
@@ -152,11 +168,11 @@ func getArchetypeBasedOnOptions(validationResponse *pb.ValidationResponse, autho
 					return "dataThroughTtp"
 				}
 			} else if len(authorizedDataProviders) > 1 { // aggregate is false here as the previous condition (is true) is not met
-			// If aggregate is not enabled and multiple data providers are used, enforce the 'computeToData' archetype
-			// This is because without the aggregate option, the 'dataThroughTtp' would only use the data of one data provider, which 
-			// does not make sense. Also, this is the counterpart of the above option that enables the 'dataThroughTtp' archetype when aggregate is true.
-				
-				// Check if all authorized data providers allow the archetype				
+				// If aggregate is not enabled and multiple data providers are used, enforce the 'computeToData' archetype
+				// This is because without the aggregate option, the 'dataThroughTtp' would only use the data of one data provider, which
+				// does not make sense. Also, this is the counterpart of the above option that enables the 'dataThroughTtp' archetype when aggregate is true.
+
+				// Check if all authorized data providers allow the archetype
 				allowed := true
 				for provider := range authorizedDataProviders {
 					if !slices.Contains(validationResponse.ValidArchetypes.Archetypes[provider].Archetypes, "computeToData") {

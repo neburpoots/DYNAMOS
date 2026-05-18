@@ -14,7 +14,6 @@ var (
 	logger               = lib.InitLogger(logLevel)
 	COORDINATOR          = make(chan struct{})
 	NR_OF_DATA_PROVIDERS = getNrOfDataProviders()
-	msCommList           = []*pb.MicroserviceCommunication{}
 )
 
 func getNrOfDataProviders() int {
@@ -61,36 +60,30 @@ func messageHandler(config *msinit.Configuration) func(ctx context.Context, msCo
 		// Wait till all services and connections have started
 		<-COORDINATOR
 
-		msCommList = append(msCommList, msComm)
-		logger.Sugar().Infof("msCommList: %v", msCommList)
-		logger.Sugar().Infof("amount of data providers %v", NR_OF_DATA_PROVIDERS)
-		logger.Sugar().Infof("Length of msCommList %v", len(msCommList))
+		nextMsComm := msComm
+		shouldForward := true
+		shouldStop := true
 
-		// If NR_OF_DATA_PROVIDERS == 0 aggregate won't actually function and pass on the message.
-		// This can happen at this moment if the aggregate flag is set to True, but it is not allowed by policy.
-		if len(msCommList) == NR_OF_DATA_PROVIDERS || NR_OF_DATA_PROVIDERS == 0 {
-			logger.Sugar().Debugf(msCommList[0].Data.String())
-			// All messages have arrived
-			logger.Sugar().Infof("All messages have arrived, %v", len(msCommList))
-
-			switch msComm.RequestType {
-			case "sqlDataRequest":
-				ctx, msComm, err = handleSqlDataRequest(ctx, msCommList)
-				if err != nil {
-					logger.Sugar().Errorf("Failed to process %s message: %v", msComm.RequestType, err)
-				}
-
-			default:
-				logger.Sugar().Errorf("Unknown RequestType type: %v", msComm.RequestType)
+		switch msComm.RequestType {
+		case "sqlDataRequest":
+			nextMsComm, shouldForward, shouldStop, err = handleSqlDataRequest(ctx, msComm)
+			if err != nil {
+				logger.Sugar().Errorf("Failed to process %s message: %v", msComm.RequestType, err)
 			}
-		} else {
-			logger.Sugar().Infof("Waiting for %v messages", NR_OF_DATA_PROVIDERS-len(msCommList))
-			return nil
+
+		default:
+			logger.Sugar().Errorf("Unknown RequestType type: %v", msComm.RequestType)
 		}
 
-		config.NextClient.SendData(ctx, msComm)
+		if shouldForward {
+			if err := config.SendToNext(ctx, nextMsComm); err != nil {
+				logger.Sugar().Errorf("Failed to forward message to next microservice: %v", err)
+			}
+		}
 
-		close(config.StopMicroservice)
+		if shouldStop {
+			close(config.StopMicroservice)
+		}
 		return nil
 	}
 }

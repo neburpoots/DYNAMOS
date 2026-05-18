@@ -19,6 +19,7 @@ message RequestMetadata {
     // Optional Binary or textual representation of span context (in proto3, all fields are "optional" by default (unless marked as repeated or oneof)
     // adheres to the msComm.Traces type, also expected when passing it to StartRemoteParentSpan() function
     map<string, bytes> traces = 6;
+    string transport = 7;
 }
 
 message ServiceName {

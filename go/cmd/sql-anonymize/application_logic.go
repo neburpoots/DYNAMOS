@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"strconv"
 
+	"github.com/Jorrit05/DYNAMOS/pkg/lib"
 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
 	"github.com/gogo/protobuf/jsonpb"
 	"go.opencensus.io/trace"
@@ -11,7 +13,7 @@ import (
 )
 
 // This is the function being called by the last microservice
-func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunication) (context.Context, error) {
+func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunication) (context.Context, bool, error) {
 	ctx, span := trace.StartSpan(ctx, "anonymize: handleSqlDataRequest")
 	defer span.End()
 
@@ -20,8 +22,10 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 	sqlDataRequest := &pb.SqlDataRequest{}
 	if err := msComm.OriginalRequest.UnmarshalTo(sqlDataRequest); err != nil {
 		logger.Sugar().Errorf("Failed to unmarshal sqlDataRequest message: %v", err)
-		return ctx, err
+		return ctx, true, err
 	}
+
+	final := lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true)
 
 	anonymizeDatesInStruct(msComm.Data)
 
@@ -32,12 +36,17 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 		m := &jsonpb.Marshaler{}
 		jsonString, _ := m.MarshalToString(msComm.Data)
 		msComm.Result = []byte(jsonString)
+		if msComm.Metadata == nil {
+			msComm.Metadata = map[string]string{}
+		}
+		msComm.Metadata[lib.StreamPartialMetadataKey] = strconv.FormatBool(!final)
+		msComm.Metadata[lib.StreamFinalMetadataKey] = strconv.FormatBool(final)
 
-		return ctx, nil
+		return ctx, final, nil
 	}
 
 	msComm.Traces["binaryTrace"] = propagation.Binary(span.SpanContext())
-	return ctx, nil
+	return ctx, final, nil
 }
 
 func anonymizeDatesInStruct(data *structpb.Struct) {

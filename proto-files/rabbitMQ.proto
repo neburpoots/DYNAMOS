@@ -22,6 +22,7 @@ service RabbitMQ {
   rpc SendPolicyUpdate(PolicyUpdate) returns  (google.protobuf.Empty) {}
   rpc SendTest(SqlDataRequest) returns  (google.protobuf.Empty) {}
   rpc SendMicroserviceComm(MicroserviceCommunication) returns  (google.protobuf.Empty) {}
+  rpc SendMicroserviceCommStream(stream MicroserviceCommunicationChunk) returns  (google.protobuf.Empty) {}
   rpc CreateQueue(QueueInfo) returns  (google.protobuf.Empty) {}
   rpc DeleteQueue(QueueInfo) returns  (google.protobuf.Empty) {}
   rpc SendRequestApprovalResponse(RequestApprovalResponse) returns (google.protobuf.Empty) {}
@@ -91,6 +92,7 @@ message ValidationResponse {
   bool request_approved = 7;
   UserArchetypes valid_archetypes = 8;
   map<string,bool> options = 9;
+  string transport = 10;
 }
 
 message User {
@@ -104,6 +106,7 @@ message RequestApproval {
   repeated string data_providers = 3;
   string destination_queue = 4;
   map<string, bool> options = 5;
+  string transport = 6;
 }
 
 message RequestApprovalResponse  {
@@ -133,6 +136,7 @@ message CompositionRequest {
     string destination_queue = 6;
     string job_name = 7;
     string local_job_name = 8; // for saving the generated local job name with this composition request
+    string transport = 9;
 }
 
 message SqlDataRequest {

@@ -35,7 +35,7 @@ var (
 	queueInfoMutex  = &sync.Mutex{}
 
 	responseMap   = make(map[string]chan dataResponse)
-	thirdPartyMap = make(map[string]string)
+	thirdPartyMap = make(map[string]thirdPartyWait)
 	jobCounter    = make(map[string]int)
 	waitingJobMap = make(map[string]*waitingJob)
 	queueInfoMap  = make(map[string]*pb.QueueInfo)
@@ -47,6 +47,11 @@ var (
 type dataResponse struct {
 	response     *pb.MicroserviceCommunication
 	localContext context.Context
+}
+
+type thirdPartyWait struct {
+	returnAddress string
+	transport     string
 }
 
 type waitingJob struct {

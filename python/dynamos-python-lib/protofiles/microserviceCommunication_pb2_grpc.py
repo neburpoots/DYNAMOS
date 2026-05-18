@@ -20,6 +20,11 @@ class MicroserviceStub(object):
                 request_serializer=microserviceCommunication__pb2.MicroserviceCommunication.SerializeToString,
                 response_deserializer=microserviceCommunication__pb2.ContinueReceiving.FromString,
                 )
+        self.SendDataStream = channel.stream_unary(
+                '/dynamos.Microservice/SendDataStream',
+                request_serializer=microserviceCommunication__pb2.MicroserviceCommunication.SerializeToString,
+                response_deserializer=microserviceCommunication__pb2.ContinueReceiving.FromString,
+                )
 
 
 class MicroserviceServicer(object):
@@ -32,11 +37,22 @@ class MicroserviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SendDataStream(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MicroserviceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'SendData': grpc.unary_unary_rpc_method_handler(
                     servicer.SendData,
+                    request_deserializer=microserviceCommunication__pb2.MicroserviceCommunication.FromString,
+                    response_serializer=microserviceCommunication__pb2.ContinueReceiving.SerializeToString,
+            ),
+            'SendDataStream': grpc.stream_unary_rpc_method_handler(
+                    servicer.SendDataStream,
                     request_deserializer=microserviceCommunication__pb2.MicroserviceCommunication.FromString,
                     response_serializer=microserviceCommunication__pb2.ContinueReceiving.SerializeToString,
             ),
@@ -63,6 +79,23 @@ class Microservice(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/dynamos.Microservice/SendData',
+            microserviceCommunication__pb2.MicroserviceCommunication.SerializeToString,
+            microserviceCommunication__pb2.ContinueReceiving.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SendDataStream(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(request_iterator, target, '/dynamos.Microservice/SendDataStream',
             microserviceCommunication__pb2.MicroserviceCommunication.SerializeToString,
             microserviceCommunication__pb2.ContinueReceiving.FromString,
             options, channel_credentials,

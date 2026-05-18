@@ -16,7 +16,7 @@ from google.protobuf import any_pb2 as google_dot_protobuf_dot_any__pb2
 import generic_pb2 as generic__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1fmicroserviceCommunication.proto\x12\x07\x64ynamos\x1a\x1cgoogle/protobuf/struct.proto\x1a\x19google/protobuf/any.proto\x1a\rgeneric.proto\"\xd4\x03\n\x19MicroserviceCommunication\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x14\n\x0crequest_type\x18\x02 \x01(\t\x12%\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x42\n\x08metadata\x18\x04 \x03(\x0b\x32\x30.dynamos.MicroserviceCommunication.MetadataEntry\x12.\n\x10original_request\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x32\n\x10request_metadata\x18\x06 \x01(\x0b\x32\x18.dynamos.RequestMetadata\x12>\n\x06traces\x18\x07 \x03(\x0b\x32..dynamos.MicroserviceCommunication.TracesEntry\x12\x0e\n\x06result\x18\x08 \x01(\x0c\x12\x14\n\x0crouting_data\x18\t \x03(\t\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a-\n\x0bTracesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c:\x02\x38\x01\"/\n\x11\x43ontinueReceiving\x12\x1a\n\x12\x63ontinue_receiving\x18\x01 \x01(\x08\x32\\\n\x0cMicroservice\x12L\n\x08SendData\x12\".dynamos.MicroserviceCommunication\x1a\x1a.dynamos.ContinueReceiving\"\x00\x42\'Z%github.com/Jorrit05/DYNAMOS/pkg/protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1fmicroserviceCommunication.proto\x12\x07\x64ynamos\x1a\x1cgoogle/protobuf/struct.proto\x1a\x19google/protobuf/any.proto\x1a\rgeneric.proto\"\xd4\x03\n\x19MicroserviceCommunication\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x14\n\x0crequest_type\x18\x02 \x01(\t\x12%\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x42\n\x08metadata\x18\x04 \x03(\x0b\x32\x30.dynamos.MicroserviceCommunication.MetadataEntry\x12.\n\x10original_request\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x32\n\x10request_metadata\x18\x06 \x01(\x0b\x32\x18.dynamos.RequestMetadata\x12>\n\x06traces\x18\x07 \x03(\x0b\x32..dynamos.MicroserviceCommunication.TracesEntry\x12\x0e\n\x06result\x18\x08 \x01(\x0c\x12\x14\n\x0crouting_data\x18\t \x03(\t\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a-\n\x0bTracesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c:\x02\x38\x01\"\xbe\x04\n\x1eMicroserviceCommunicationChunk\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x14\n\x0crequest_type\x18\x02 \x01(\t\x12%\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12G\n\x08metadata\x18\x04 \x03(\x0b\x32\x35.dynamos.MicroserviceCommunicationChunk.MetadataEntry\x12.\n\x10original_request\x18\x05 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x32\n\x10request_metadata\x18\x06 \x01(\x0b\x32\x18.dynamos.RequestMetadata\x12\x43\n\x06traces\x18\x07 \x03(\x0b\x32\x33.dynamos.MicroserviceCommunicationChunk.TracesEntry\x12\x14\n\x0cresult_chunk\x18\x08 \x01(\x0c\x12\x14\n\x0crouting_data\x18\t \x03(\t\x12\x13\n\x0b\x63hunk_index\x18\n \x01(\r\x12\x10\n\x08is_final\x18\x0b \x01(\x08\x12\x14\n\x0ctotal_chunks\x18\x0c \x01(\r\x12\x16\n\x0e\x63orrelation_id\x18\r \x01(\t\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a-\n\x0bTracesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c:\x02\x38\x01\"/\n\x11\x43ontinueReceiving\x12\x1a\n\x12\x63ontinue_receiving\x18\x01 \x01(\x08\x32\xb2\x01\n\x0cMicroservice\x12L\n\x08SendData\x12\".dynamos.MicroserviceCommunication\x1a\x1a.dynamos.ContinueReceiving\"\x00\x12T\n\x0eSendDataStream\x12\".dynamos.MicroserviceCommunication\x1a\x1a.dynamos.ContinueReceiving\"\x00(\x01\x42\'Z%github.com/Jorrit05/DYNAMOS/pkg/protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -28,14 +28,24 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _MICROSERVICECOMMUNICATION_METADATAENTRY._serialized_options = b'8\001'
   _MICROSERVICECOMMUNICATION_TRACESENTRY._options = None
   _MICROSERVICECOMMUNICATION_TRACESENTRY._serialized_options = b'8\001'
+  _MICROSERVICECOMMUNICATIONCHUNK_METADATAENTRY._options = None
+  _MICROSERVICECOMMUNICATIONCHUNK_METADATAENTRY._serialized_options = b'8\001'
+  _MICROSERVICECOMMUNICATIONCHUNK_TRACESENTRY._options = None
+  _MICROSERVICECOMMUNICATIONCHUNK_TRACESENTRY._serialized_options = b'8\001'
   _globals['_MICROSERVICECOMMUNICATION']._serialized_start=117
   _globals['_MICROSERVICECOMMUNICATION']._serialized_end=585
   _globals['_MICROSERVICECOMMUNICATION_METADATAENTRY']._serialized_start=491
   _globals['_MICROSERVICECOMMUNICATION_METADATAENTRY']._serialized_end=538
   _globals['_MICROSERVICECOMMUNICATION_TRACESENTRY']._serialized_start=540
   _globals['_MICROSERVICECOMMUNICATION_TRACESENTRY']._serialized_end=585
-  _globals['_CONTINUERECEIVING']._serialized_start=587
-  _globals['_CONTINUERECEIVING']._serialized_end=634
-  _globals['_MICROSERVICE']._serialized_start=636
-  _globals['_MICROSERVICE']._serialized_end=728
+  _globals['_MICROSERVICECOMMUNICATIONCHUNK']._serialized_start=588
+  _globals['_MICROSERVICECOMMUNICATIONCHUNK']._serialized_end=1162
+  _globals['_MICROSERVICECOMMUNICATIONCHUNK_METADATAENTRY']._serialized_start=491
+  _globals['_MICROSERVICECOMMUNICATIONCHUNK_METADATAENTRY']._serialized_end=538
+  _globals['_MICROSERVICECOMMUNICATIONCHUNK_TRACESENTRY']._serialized_start=540
+  _globals['_MICROSERVICECOMMUNICATIONCHUNK_TRACESENTRY']._serialized_end=585
+  _globals['_CONTINUERECEIVING']._serialized_start=1164
+  _globals['_CONTINUERECEIVING']._serialized_end=1211
+  _globals['_MICROSERVICE']._serialized_start=1214
+  _globals['_MICROSERVICE']._serialized_end=1392
 # @@protoc_insertion_point(module_scope)

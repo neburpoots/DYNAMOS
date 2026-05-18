@@ -40,3 +40,7 @@ spec:
           value: normal_user
         - name: OC_AGENT_HOST
           value: {{ .Values.tracingEndpoint }}
+        - name: RABBITMQ_STREAM_CHUNK_ROWS
+          value: {{ .Values.rabbitmqStreamChunkRows | default "100" | quote }}
+        - name: RABBITMQ_STREAM_CHUNK_BYTES
+          value: {{ .Values.rabbitmqStreamChunkBytes | default "65536" | quote }}

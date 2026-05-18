@@ -45,9 +45,11 @@ func messageHandler(config *msinit.Configuration) func(ctx context.Context, msCo
 		// Wait till all services and connections have started
 		<-COORDINATOR
 
+		shouldStop := true
+
 		switch msComm.RequestType {
 		case "sqlDataRequest":
-			ctx, err = handleSqlDataRequest(ctx, msComm)
+			ctx, shouldStop, err = handleSqlDataRequest(ctx, msComm)
 			if err != nil {
 				logger.Sugar().Errorf("Failed to process %s message: %v", msComm.RequestType, err)
 			}
@@ -56,9 +58,13 @@ func messageHandler(config *msinit.Configuration) func(ctx context.Context, msCo
 			logger.Sugar().Errorf("Unknown RequestType type: %v", msComm.RequestType)
 		}
 
-		config.NextClient.SendData(ctx, msComm)
+		if err := config.SendToNext(ctx, msComm); err != nil {
+			logger.Sugar().Errorf("Failed to forward message to next microservice: %v", err)
+		}
 
-		close(config.StopMicroservice)
+		if shouldStop {
+			close(config.StopMicroservice)
+		}
 		return nil
 	}
 }

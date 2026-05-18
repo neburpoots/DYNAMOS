@@ -13,7 +13,9 @@ Author: Jorrit Stutterheim
 """
 
 import grpc
+import queue
 import time
+import threading
 from .base_client import BaseClient
 from .rabbit_client import RabbitClient
 from opentelemetry.instrumentation.grpc import GrpcInstrumentorClient
@@ -21,6 +23,33 @@ from opentelemetry.instrumentation.grpc import GrpcInstrumentorClient
 import health_pb2_grpc as healthServer
 import health_pb2 as healthTypes
 import microserviceCommunication_pb2_grpc as msCommServer
+import microserviceCommunication_pb2 as msCommTypes
+
+
+class _MicroserviceRequestStream:
+    def __init__(self):
+        self._messages = queue.Queue()
+        self._closed = False
+
+    def put(self, message):
+        if self._closed:
+            raise RuntimeError("microservice request stream is closed")
+        self._messages.put(message)
+
+    def close(self):
+        if self._closed:
+            return
+        self._closed = True
+        self._messages.put(None)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        message = self._messages.get()
+        if message is None:
+            raise StopIteration
+        return message
 
 
 class GRPCClient(BaseClient):
@@ -48,6 +77,7 @@ class GRPCClient(BaseClient):
 
     def close_program(self):
         """Close the gRPC channel gracefully."""
+        self.ms_comm.close_streams()
         self.channel.close()
         self.logger.debug("Closed gRPC channel")
 
@@ -107,6 +137,59 @@ class MicroserviceClient:
         self.channel = channel
         self.service_name = service_name
         self.stub = msCommServer.MicroserviceStub(self.channel)
+        self._stream_lock = threading.Lock()
+        self._active_streams = {}
+
+    def _normalize_transport(self, transport):
+        normalized_transport = (transport or "").strip().lower()
+        if normalized_transport == "streaming":
+            return "streaming"
+        if normalized_transport == "rabbitmq-streams":
+            return "rabbitmq-streams"
+        return "unary"
+
+    def _resolve_transport(self, msComm):
+        request_metadata = getattr(msComm, "request_metadata", None)
+        if request_metadata is not None and request_metadata.transport:
+            return self._normalize_transport(request_metadata.transport)
+
+        transport = msComm.metadata.get("transport", "")
+        return self._normalize_transport(transport)
+
+    def _is_final_stream_message(self, metadata):
+        partial = metadata.get("stream_partial", "false").strip().lower() in {"1", "true", "yes"}
+        final_default = "false" if partial else "true"
+        return metadata.get("stream_final", final_default).strip().lower() in {"1", "true", "yes"}
+
+    def _get_or_create_stream(self, correlation_id):
+        with self._stream_lock:
+            stream_state = self._active_streams.get(correlation_id)
+            if stream_state is not None:
+                return stream_state
+
+            request_stream = _MicroserviceRequestStream()
+            response_future = self.stub.SendDataStream.future(iter(request_stream))
+            stream_state = {
+                "request_stream": request_stream,
+                "response_future": response_future,
+            }
+            self._active_streams[correlation_id] = stream_state
+            return stream_state
+
+    def _drop_stream(self, correlation_id, close_request_stream):
+        with self._stream_lock:
+            stream_state = self._active_streams.pop(correlation_id, None)
+
+        if close_request_stream and stream_state is not None:
+            stream_state["request_stream"].close()
+
+    def close_streams(self):
+        with self._stream_lock:
+            stream_states = list(self._active_streams.values())
+            self._active_streams.clear()
+
+        for stream_state in stream_states:
+            stream_state["request_stream"].close()
 
     # Define microservice-specific methods here
     def send_data(self, msComm, data, metadata):
@@ -128,6 +211,9 @@ class MicroserviceClient:
         for key, value in metadata.items():
             msComm.metadata[key] = value
 
+        prepared_message = msCommTypes.MicroserviceCommunication()
+        prepared_message.CopyFrom(msComm)
+
         # Add metadata to gRPC call
         # span = trace.get_current_span()
         # span_context = span.get_span_context()
@@ -137,7 +223,26 @@ class MicroserviceClient:
         # # print(f"Span trace_state: {span_context.trace_state}")
 
         self.logger.debug(f"Sending message to {self.stub}")
-        self.stub.SendData(msComm)
+
+        if self._resolve_transport(prepared_message) != "streaming":
+            self.stub.SendData(prepared_message)
+            return
+
+        correlation_id = prepared_message.request_metadata.correlation_id
+        if not correlation_id:
+            self.stub.SendData(prepared_message)
+            return
+
+        stream_state = self._get_or_create_stream(correlation_id)
+        stream_state["request_stream"].put(prepared_message)
+        if not self._is_final_stream_message(prepared_message.metadata):
+            return
+
+        stream_state["request_stream"].close()
+        try:
+            stream_state["response_future"].result()
+        finally:
+            self._drop_stream(correlation_id, False)
 
 
 class HealthClient:

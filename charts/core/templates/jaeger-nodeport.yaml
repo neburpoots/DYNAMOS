@@ -1,3 +1,4 @@
+{{- if and .Values.observability.enabled .Values.linkerdJaegerNodePort.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -69,4 +70,4 @@ spec:
         app: grafana
   client:
     unauthenticated: true # Or use 'authenticated' and provide a service account
-
+{{- end }}

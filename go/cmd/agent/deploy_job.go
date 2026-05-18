@@ -110,7 +110,7 @@ func deployJob(ctx context.Context, msChain []mschain.MicroserviceMetadata, jobN
 			Name:            microservice.Name,
 			Image:           fullImage,
 			ImagePullPolicy: getImagePullPolicy("MICROSERVICE_IMAGE_PULL_POLICY"),
-			Env: []v1.EnvVar{
+			Env: appendOptionalEnvVars([]v1.EnvVar{
 				{Name: "DATA_STEWARD_NAME", Value: strings.ToUpper(dataStewardName)},
 				{Name: "DESIGNATED_GRPC_PORT", Value: strconv.Itoa(port)},
 				{Name: "FIRST", Value: firstService},
@@ -121,7 +121,7 @@ func deployJob(ctx context.Context, msChain []mschain.MicroserviceMetadata, jobN
 				{Name: "NR_OF_DATA_PROVIDERS", Value: strconv.Itoa(nr_of_data_providers)},
 				// Add the role to allow further processing based on the role of the agent containing this microservice, such as dataProvider or computeProvider
 				{Name: "AGENT_ROLE", Value: compositionRequest.Role},
-			},
+			}, "SQL_STREAM_BATCH_ROWS"),
 			// Add additional container configuration here as needed
 		}
 
@@ -166,23 +166,40 @@ func addSidecar() v1.Container {
 		Name:            sidecarName,
 		Image:           fullImage,
 		ImagePullPolicy: getImagePullPolicy("SIDECAR_IMAGE_PULL_POLICY"),
-		Env: []v1.EnvVar{
-			{Name: "DESIGNATED_GRPC_PORT", Value: strconv.Itoa(firstPortMicroservice - 1)},
-			{Name: "TEMPORARY_JOB", Value: "true"},
-			{Name: "AMQ_USER", Value: rabbitMqUser},
-			{Name: "OC_AGENT_HOST", Value: tracingHost},
-			{Name: "AMQ_PASSWORD",
-				ValueFrom: &v1.EnvVarSource{
-					SecretKeyRef: &v1.SecretKeySelector{
-						LocalObjectReference: v1.LocalObjectReference{
-							Name: "rabbit",
+		Env: appendOptionalEnvVars(
+			[]v1.EnvVar{
+				{Name: "DESIGNATED_GRPC_PORT", Value: strconv.Itoa(firstPortMicroservice - 1)},
+				{Name: "TEMPORARY_JOB", Value: "true"},
+				{Name: "AMQ_USER", Value: rabbitMqUser},
+				{Name: "OC_AGENT_HOST", Value: tracingHost},
+				{
+					Name: "AMQ_PASSWORD",
+					ValueFrom: &v1.EnvVarSource{
+						SecretKeyRef: &v1.SecretKeySelector{
+							LocalObjectReference: v1.LocalObjectReference{
+								Name: "rabbit",
+							},
+							Key: "password",
 						},
-						Key: "password",
 					},
 				},
-			}},
+			},
+			"RABBITMQ_STREAM_CHUNK_ROWS",
+			"RABBITMQ_STREAM_CHUNK_BYTES",
+		),
 		// Add additional container configuration here as needed
 	}
+}
+
+func appendOptionalEnvVars(env []v1.EnvVar, names ...string) []v1.EnvVar {
+	for _, name := range names {
+		value := os.Getenv(name)
+		if value == "" {
+			continue
+		}
+		env = append(env, v1.EnvVar{Name: name, Value: value})
+	}
+	return env
 }
 
 func getRequiredMicroservices(microserviceMetada *[]mschain.MicroserviceMetadata, request *mschain.RequestType, role string) error {

@@ -3,6 +3,7 @@ package lib
 import (
 	"context"
 	"fmt"
+	"io"
 
 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -43,7 +44,7 @@ func (s *SharedServer) InitTracer(ctx context.Context, in *pb.ServiceName) (*emp
 // Returns:
 //   - ContinueReceiving: A boolean indicating if the sidecar should continue receiving messages
 //   - error: An error if the function fails
-func (s *SharedServer) SendData(ctx context.Context, data *pb.MicroserviceCommunication) (*pb.ContinueReceiving, error) {
+func (s *SharedServer) handleSendData(ctx context.Context, data *pb.MicroserviceCommunication) error {
 	logger.Sugar().Debugf("Starting (to next MS) lib.SendData: %v", data.RequestMetadata.DestinationQueue)
 
 	ctx, span, err := StartRemoteParentSpan(ctx, fmt.Sprintf("%s SendData/func:", s.ServiceName), data.Traces)
@@ -59,7 +60,28 @@ func (s *SharedServer) SendData(ctx context.Context, data *pb.MicroserviceCommun
 		}
 	} else {
 		logger.Sugar().Errorf("Unknown message type: %v", data.Type)
-		return &pb.ContinueReceiving{ContinueReceiving: false}, fmt.Errorf("unknown message type: %s", data.Type)
+		return fmt.Errorf("unknown message type: %s", data.Type)
 	}
+	return err
+}
+
+func (s *SharedServer) SendData(ctx context.Context, data *pb.MicroserviceCommunication) (*pb.ContinueReceiving, error) {
+	err := s.handleSendData(ctx, data)
 	return &pb.ContinueReceiving{ContinueReceiving: false}, err
+}
+
+func (s *SharedServer) SendDataStream(stream pb.Microservice_SendDataStreamServer) error {
+	for {
+		data, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&pb.ContinueReceiving{ContinueReceiving: false})
+		}
+		if err != nil {
+			return err
+		}
+
+		if err := s.handleSendData(stream.Context(), data); err != nil {
+			return err
+		}
+	}
 }

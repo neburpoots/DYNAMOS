@@ -14,14 +14,24 @@ import (
 	"github.com/Jorrit05/DYNAMOS/pkg/lib"
 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"go.opencensus.io/trace/propagation"
 	"go.opencensus.io/trace"
+	"go.opencensus.io/trace/propagation"
 )
+
+type providerResponse struct {
+	provider string
+	body     string
+	err      error
+}
 
 func requestHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		logger.Debug("Starting requestApprovalHandler")
-		ctxWithTimeout, cancel := context.WithTimeout(r.Context(), 30*time.Second)
+		requestTimeout := 30 * time.Second
+		if api.WantsNDJSON(r) {
+			requestTimeout = 20 * time.Minute
+		}
+		ctxWithTimeout, cancel := context.WithTimeout(r.Context(), requestTimeout)
 		defer cancel()
 
 		// Start a new span with the context that has a timeout
@@ -57,6 +67,19 @@ func requestHandler() http.HandlerFunc {
 			return
 		}
 
+		transport := ""
+		if apiReqApproval.Transport != "" {
+			transport = lib.NormalizeTransport(apiReqApproval.Transport)
+		} else if dataRequestOptions.Transport != "" {
+			transport = lib.NormalizeTransport(dataRequestOptions.Transport)
+		}
+		logger.Sugar().Infow("Resolved request transport",
+			"topLevelTransport", apiReqApproval.Transport,
+			"dataRequestTransport", dataRequestOptions.Transport,
+			"normalizedTransport", transport,
+		)
+		delete(dataRequestInterface, "transport")
+
 		dataRequestInterface["user"] = userPb
 
 		// Create protobuf struct for the req approval flow
@@ -66,6 +89,7 @@ func requestHandler() http.HandlerFunc {
 			DataProviders:    apiReqApproval.DataProviders,
 			DestinationQueue: "policyEnforcer-in",
 			Options:          dataRequestOptions.Options,
+			Transport:        transport,
 		}
 
 		// Create a channel to receive the response
@@ -85,6 +109,10 @@ func requestHandler() http.HandlerFunc {
 			msg := validationStruct.response
 
 			logger.Sugar().Infof("Received response, %s", msg.Type)
+			logger.Sugar().Infow("Received request approval response transport",
+				"responseTransport", msg.GetRequestMetadata().GetTransport(),
+				"requestedTransport", transport,
+			)
 			if msg.Type != "requestApprovalResponse" {
 				logger.Sugar().Errorf("Unexpected message received, type: %s", msg.Type)
 				http.Error(w, "Internal server error", http.StatusInternalServerError)
@@ -95,11 +123,18 @@ func requestHandler() http.HandlerFunc {
 			requestMetadata := &pb.RequestMetadata{
 				// Add the job id from the request approval to the data request body
 				JobId: msg.JobId,
+				// Keep the selected internal transport on the request path.
+				Transport: transport,
 				// initialize the map to add values to it
 				Traces: make(map[string][]byte),
 			}
 			// Add the binary trace of the span to the data request (used for appending the traces)
 			requestMetadata.Traces["binaryTrace"] = propagation.Binary(span.SpanContext())
+			if msg.RequestMetadata != nil && msg.RequestMetadata.Transport != "" {
+				requestMetadata.Transport = lib.NormalizeTransport(msg.RequestMetadata.Transport)
+			} else {
+				requestMetadata.Transport = lib.NormalizeTransport(transport)
+			}
 			// Set the data request interface to the request metadata from the previous steps
 			dataRequestInterface["requestMetadata"] = requestMetadata
 
@@ -111,6 +146,16 @@ func requestHandler() http.HandlerFunc {
 			}
 
 			logger.Sugar().Infof("Data Prepared jsonData: %s", dataRequestJson)
+
+			if streamed, err := streamDataToAuthProviders(ctx, w, r, dataRequestJson, msg.AuthorizedProviders, apiReqApproval.Type, msg.JobId); err != nil {
+				logger.Sugar().Errorf("Error streaming data to providers: %v", err)
+				if !streamed {
+					http.Error(w, "Internal server error", http.StatusInternalServerError)
+				}
+				return
+			} else if streamed {
+				return
+			}
 
 			// Send the data to the authorized providers
 			responses := sendDataToAuthProviders(dataRequestJson, msg.AuthorizedProviders, apiReqApproval.Type, msg.JobId)
@@ -128,9 +173,8 @@ func requestHandler() http.HandlerFunc {
 // Use the data request that was previously built and send it to the authorised providers
 // acquired from the request approval
 func sendDataToAuthProviders(dataRequest []byte, authorizedProviders map[string]string, msgType string, jobId string) []byte {
-	// Setup the wait group for async data requests
 	var wg sync.WaitGroup
-	var responses []string
+	results := make(chan providerResponse, len(authorizedProviders))
 
 	// This will be replaced with AMQ in the future
 	agentPort := "8080"
@@ -145,20 +189,27 @@ func sendDataToAuthProviders(dataRequest []byte, authorizedProviders map[string]
 		logger.Sugar().Infof("Sending request to %s. Endpoint: %s JSON:%v", target, endpoint, string(dataRequest))
 
 		// Async call send the data
-		go func() {
-			respData, err := sendData(endpoint, dataRequest)
-			if err != nil {
-				logger.Sugar().Errorf("Error sending data, %v", err)
-			}
-			responses = append(responses, respData)
-			// Signal that the data request has been sent to all auth providers
-			wg.Done()
-		}()
+		go func(provider string, providerEndpoint string) {
+			defer wg.Done()
+			respData, err := sendData(providerEndpoint, dataRequest)
+			results <- providerResponse{provider: provider, body: respData, err: err}
+		}(auth, endpoint)
 	}
 
 	// Wait until all the requests are complete
 	wg.Wait()
+	close(results)
 	logger.Sugar().Debug("Returning responses")
+
+	responses := make([]string, 0, len(authorizedProviders))
+	for result := range results {
+		if result.err != nil {
+			logger.Sugar().Errorf("Error sending data to %s, %v", result.provider, result.err)
+			responses = append(responses, "")
+			continue
+		}
+		responses = append(responses, result.body)
+	}
 
 	responseMap := map[string]interface{}{
 		"jobId":     jobId,
@@ -180,12 +231,15 @@ func cleanupAndMarshalResponse(responseMap map[string]interface{}) []byte {
 }
 
 func sendData(endpoint string, jsonData []byte) (string, error) {
-	// FIXME: Change to an actual token in the future?
-	headers := map[string]string{
+	return sendDataWithHeaders(context.Background(), endpoint, jsonData, map[string]string{
 		"Authorization": "bearer 1234",
-	}
+	})
+}
+
+func sendDataWithHeaders(ctx context.Context, endpoint string, jsonData []byte, headers map[string]string) (string, error) {
+	// FIXME: Change to an actual token in the future?
 	// Request the data using the endpoint, body and headers
-	body, err := api.PostRequest(endpoint, string(jsonData), headers)
+	body, err := api.PostRequestWithContext(ctx, endpoint, string(jsonData), headers)
 	if err != nil {
 		return "", err
 	}
@@ -196,6 +250,130 @@ func sendData(endpoint string, jsonData []byte) (string, error) {
 	// Here we should send the request over the socket
 	// For now we should append it to a list so that we gather all responses and send them in bulk
 	return string(body), nil
+}
+
+func streamDataToAuthProviders(ctx context.Context, w http.ResponseWriter, r *http.Request, dataRequest []byte, authorizedProviders map[string]string, msgType string, jobId string) (bool, error) {
+	if !api.WantsNDJSON(r) {
+		return false, nil
+	}
+
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		return false, nil
+	}
+
+	w.Header().Set("Content-Type", api.NDJSONContentType)
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("X-Accel-Buffering", "no")
+	w.WriteHeader(http.StatusOK)
+	if err := api.WriteNDJSON(w, api.StreamResponse{
+		Type:          api.StreamEventTypeJob,
+		JobID:         jobId,
+		ProviderCount: len(authorizedProviders),
+	}); err != nil {
+		return true, err
+	}
+	flusher.Flush()
+
+	bufferSize := len(authorizedProviders) * 8
+	if bufferSize < 16 {
+		bufferSize = 16
+	}
+	updates := make(chan api.StreamResponse, bufferSize)
+	var wg sync.WaitGroup
+
+	agentPort := "8080"
+	for auth, url := range authorizedProviders {
+		provider := auth
+		target := strings.ToLower(auth)
+		endpoint := fmt.Sprintf("http://%s:%s/agent/v1/%s/%s", url, agentPort, msgType, target)
+		logger.Sugar().Infof("Streaming request to %s. Endpoint: %s JSON:%v", target, endpoint, string(dataRequest))
+
+		wg.Add(1)
+		go func(providerName string, providerEndpoint string) {
+			defer wg.Done()
+			headers := map[string]string{
+				"Authorization": "bearer 1234",
+				"Accept":        api.NDJSONContentType,
+			}
+			err := api.PostRequestStream(ctx, providerEndpoint, string(dataRequest), headers, func(message []byte) error {
+				select {
+				case updates <- normalizeProviderStreamEvent(providerName, jobId, message):
+					return nil
+				case <-ctx.Done():
+					return ctx.Err()
+				}
+			})
+			if err != nil {
+				select {
+				case updates <- api.StreamResponse{
+					Type:     api.StreamEventTypeProviderError,
+					JobID:    jobId,
+					Provider: providerName,
+					Error:    err.Error(),
+				}:
+				case <-ctx.Done():
+				}
+			}
+		}(provider, endpoint)
+	}
+
+	go func() {
+		wg.Wait()
+		close(updates)
+	}()
+
+	completedProviders := map[string]struct{}{}
+	for {
+		select {
+		case update, ok := <-updates:
+			if !ok {
+				doneEvent := api.StreamResponse{
+					Type:               api.StreamEventTypeDone,
+					JobID:              jobId,
+					ProviderCount:      len(authorizedProviders),
+					CompletedProviders: len(completedProviders),
+				}
+				if err := api.WriteNDJSON(w, doneEvent); err != nil {
+					return true, err
+				}
+				flusher.Flush()
+				return true, nil
+			}
+
+			if update.Provider != "" && (update.Type == api.StreamEventTypeProviderError || (update.Type == api.StreamEventTypeProviderResult && !update.Partial)) {
+				completedProviders[update.Provider] = struct{}{}
+			}
+
+			if err := api.WriteNDJSON(w, update); err != nil {
+				return true, err
+			}
+			flusher.Flush()
+		case <-ctx.Done():
+			return true, ctx.Err()
+		}
+	}
+}
+
+func normalizeProviderStreamEvent(provider string, jobId string, payload []byte) api.StreamResponse {
+	var event api.StreamResponse
+	if err := json.Unmarshal(payload, &event); err == nil && event.Type != "" {
+		if event.Provider == "" {
+			event.Provider = provider
+		}
+		if event.JobID == "" {
+			event.JobID = jobId
+		}
+		return event
+	}
+
+	event = api.StreamResponse{
+		Type:     api.StreamEventTypeProviderResult,
+		JobID:    jobId,
+		Provider: provider,
+	}
+	event.SetResultBody(payload)
+	return event
 }
 
 func availableProvidersHandler() http.HandlerFunc {
