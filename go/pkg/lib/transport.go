@@ -9,6 +9,7 @@ const (
 	TransportUnary                 = "unary"
 	TransportStreaming             = "streaming"
 	TransportRabbitMQStreams       = "rabbitmq-streams"
+	ClassicUnaryOptionKey          = "classicUnary"
 	TransportMetadataKey           = "transport"
 	StreamPartialMetadataKey       = "stream_partial"
 	StreamFinalMetadataKey         = "stream_final"
@@ -17,6 +18,7 @@ const (
 	StreamRowsTotalMetadataKey     = "stream_rows_total"
 	StreamProviderMetadataKey      = "stream_provider"
 	StreamBatchIDMetadataKey       = "stream_batch_id"
+	StreamColumnsMetadataKey       = "stream_columns"
 )
 
 func NormalizeTransport(transport string) string {

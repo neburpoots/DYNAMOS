@@ -24,13 +24,15 @@ type providerResponse struct {
 	err      error
 }
 
+type providerErrorResponse struct {
+	Provider string `json:"provider"`
+	Error    string `json:"error"`
+}
+
 func requestHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		logger.Debug("Starting requestApprovalHandler")
-		requestTimeout := 30 * time.Second
-		if api.WantsNDJSON(r) {
-			requestTimeout = 20 * time.Minute
-		}
+		requestTimeout := api.RequestTimeoutFromEnv(r, "API_GATEWAY_HTTP_TIMEOUT", "API_GATEWAY_HTTP_STREAM_TIMEOUT", 30*time.Second, 20*time.Minute)
 		ctxWithTimeout, cancel := context.WithTimeout(r.Context(), requestTimeout)
 		defer cancel()
 
@@ -158,8 +160,12 @@ func requestHandler() http.HandlerFunc {
 			}
 
 			// Send the data to the authorized providers
-			responses := sendDataToAuthProviders(dataRequestJson, msg.AuthorizedProviders, apiReqApproval.Type, msg.JobId)
-			w.WriteHeader(http.StatusOK)
+			responses, hasProviderErrors := sendDataToAuthProviders(ctx, dataRequestJson, msg.AuthorizedProviders, apiReqApproval.Type, msg.JobId)
+			if hasProviderErrors {
+				w.WriteHeader(http.StatusBadGateway)
+			} else {
+				w.WriteHeader(http.StatusOK)
+			}
 			w.Write(responses)
 			return
 
@@ -172,7 +178,7 @@ func requestHandler() http.HandlerFunc {
 
 // Use the data request that was previously built and send it to the authorised providers
 // acquired from the request approval
-func sendDataToAuthProviders(dataRequest []byte, authorizedProviders map[string]string, msgType string, jobId string) []byte {
+func sendDataToAuthProviders(ctx context.Context, dataRequest []byte, authorizedProviders map[string]string, msgType string, jobId string) ([]byte, bool) {
 	var wg sync.WaitGroup
 	results := make(chan providerResponse, len(authorizedProviders))
 
@@ -191,7 +197,9 @@ func sendDataToAuthProviders(dataRequest []byte, authorizedProviders map[string]
 		// Async call send the data
 		go func(provider string, providerEndpoint string) {
 			defer wg.Done()
-			respData, err := sendData(providerEndpoint, dataRequest)
+			respData, err := sendDataWithHeaders(ctx, providerEndpoint, dataRequest, map[string]string{
+				"Authorization": "bearer 1234",
+			})
 			results <- providerResponse{provider: provider, body: respData, err: err}
 		}(auth, endpoint)
 	}
@@ -202,10 +210,14 @@ func sendDataToAuthProviders(dataRequest []byte, authorizedProviders map[string]
 	logger.Sugar().Debug("Returning responses")
 
 	responses := make([]string, 0, len(authorizedProviders))
+	providerErrors := make([]providerErrorResponse, 0)
 	for result := range results {
 		if result.err != nil {
 			logger.Sugar().Errorf("Error sending data to %s, %v", result.provider, result.err)
-			responses = append(responses, "")
+			providerErrors = append(providerErrors, providerErrorResponse{
+				Provider: result.provider,
+				Error:    result.err.Error(),
+			})
 			continue
 		}
 		responses = append(responses, result.body)
@@ -215,10 +227,13 @@ func sendDataToAuthProviders(dataRequest []byte, authorizedProviders map[string]
 		"jobId":     jobId,
 		"responses": responses,
 	}
+	if len(providerErrors) > 0 {
+		responseMap["providerErrors"] = providerErrors
+	}
 
 	// jsonResponse, _ := json.Marshal(responseMap)
 	// return jsonResponse
-	return cleanupAndMarshalResponse(responseMap)
+	return cleanupAndMarshalResponse(responseMap), len(providerErrors) > 0
 }
 
 // Now assumes input is map[string]interface{} and directly marshals it to prettified JSON.
@@ -350,7 +365,30 @@ func streamDataToAuthProviders(ctx context.Context, w http.ResponseWriter, r *ht
 			}
 			flusher.Flush()
 		case <-ctx.Done():
-			return true, ctx.Err()
+			for providerName := range authorizedProviders {
+				if _, completed := completedProviders[providerName]; completed {
+					continue
+				}
+				if err := api.WriteNDJSON(w, api.StreamResponse{
+					Type:     api.StreamEventTypeProviderError,
+					JobID:    jobId,
+					Provider: providerName,
+					Error:    "request timed out",
+				}); err != nil {
+					return true, err
+				}
+				completedProviders[providerName] = struct{}{}
+			}
+			if err := api.WriteNDJSON(w, api.StreamResponse{
+				Type:               api.StreamEventTypeDone,
+				JobID:              jobId,
+				ProviderCount:      len(authorizedProviders),
+				CompletedProviders: len(completedProviders),
+			}); err != nil {
+				return true, err
+			}
+			flusher.Flush()
+			return true, nil
 		}
 	}
 }

@@ -10,12 +10,19 @@ SQL_QUERY_BENCH_ROWS="${SQL_QUERY_BENCH_ROWS:-250000}"
 SQL_STREAM_BATCH_ROWS_LIST="${SQL_STREAM_BATCH_ROWS_LIST:-5000}"
 RABBITMQ_STREAM_CHUNK_ROWS_LIST="${RABBITMQ_STREAM_CHUNK_ROWS_LIST:-100}"
 RABBITMQ_STREAM_CHUNK_BYTES="${RABBITMQ_STREAM_CHUNK_BYTES:-65536}"
+HTTP_TIMEOUT="${HTTP_TIMEOUT:-30m}"
+HTTP_STREAM_TIMEOUT="${HTTP_STREAM_TIMEOUT:-45m}"
+BENCHMARK_TIMEOUT="${BENCHMARK_TIMEOUT:-2700}"
 PORT_FORWARD_PORT="${PORT_FORWARD_PORT:-18080}"
 REPETITIONS="${REPETITIONS:-3}"
 TRANSPORTS="${TRANSPORTS:-unary,streaming,rabbitmq-streams}"
+RESPONSE_MODES="${RESPONSE_MODES:-batched,classic-unary}"
+WORKLOADS="${WORKLOADS:-bulk,average}"
 DATASETS="${DATASETS:-large,original}"
 LARGE_LIMITS="${LARGE_LIMITS:-50000,250000}"
 ARCHETYPES="${ARCHETYPES:-dataThroughTtp,computeToData}"
+PROVIDER_SETS="${PROVIDER_SETS:-UVA;UVA,VU}"
+RUN_TEMPERATURES="${RUN_TEMPERATURES:-cold,warm}"
 ORIGINAL_LIMIT="${ORIGINAL_LIMIT:-1000000}"
 RESULT_DIR="${RESULT_DIR:-${ROOT}/benchmark-results/controlled-$(date +%Y%m%d-%H%M%S)}"
 RESET_CLUSTER="${RESET_CLUSTER:-1}"
@@ -222,7 +229,9 @@ helm_common_args() {
     --set "imagePullPolicy=IfNotPresent" \
     --set "sqlStreamBatchRows=${1}" \
     --set "rabbitmqStreamChunkRows=${2}" \
-    --set "rabbitmqStreamChunkBytes=${RABBITMQ_STREAM_CHUNK_BYTES}"
+    --set "rabbitmqStreamChunkBytes=${RABBITMQ_STREAM_CHUNK_BYTES}" \
+    --set "httpTimeout=${HTTP_TIMEOUT}" \
+    --set "httpStreamTimeout=${HTTP_STREAM_TIMEOUT}"
 }
 
 deploy_core_once() {
@@ -267,6 +276,23 @@ deploy_application() {
   kubectl -n surf rollout status deployment/surf --timeout=300s
 }
 
+restart_application_stack() {
+  log "Restarting application deployments for a cold benchmark sweep"
+  kubectl -n orchestrator rollout restart deployment/orchestrator >/dev/null
+  kubectl -n orchestrator rollout restart deployment/policy-enforcer >/dev/null
+  kubectl -n api-gateway rollout restart deployment/api-gateway >/dev/null
+  kubectl -n uva rollout restart deployment/uva >/dev/null
+  kubectl -n vu rollout restart deployment/vu >/dev/null
+  kubectl -n surf rollout restart deployment/surf >/dev/null
+
+  kubectl -n orchestrator rollout status deployment/orchestrator --timeout=300s
+  kubectl -n orchestrator rollout status deployment/policy-enforcer --timeout=300s
+  kubectl -n api-gateway rollout status deployment/api-gateway --timeout=300s
+  kubectl -n uva rollout status deployment/uva --timeout=300s
+  kubectl -n vu rollout status deployment/vu --timeout=300s
+  kubectl -n surf rollout status deployment/surf --timeout=300s
+}
+
 start_port_forward() {
   mkdir -p "${RESULT_DIR}"
   stop_port_forward
@@ -295,9 +321,12 @@ warm_endpoint() {
   python3 "${ROOT}/scripts/benchmark_ndjson.py" \
     --url "http://127.0.0.1:${PORT_FORWARD_PORT}/api/v1/requestApproval" \
     --transport unary \
-    --dataset original \
-    --limit "${ORIGINAL_LIMIT}" \
+    --response-mode batched \
+    --workload bulk \
+    --dataset large \
+    --limit 1000 \
     --archetype dataThroughTtp \
+    --providers UVA \
     --timeout 1200 \
     >"${RESULT_DIR}/warmup.json" || true
 }
@@ -305,7 +334,8 @@ warm_endpoint() {
 run_matrix() {
   local sql_batch_rows="$1"
   local rmq_chunk_rows="$2"
-  local name="matrix-batch${sql_batch_rows}-chunk${rmq_chunk_rows}"
+  local temperature="$3"
+  local name="matrix-${temperature}-batch${sql_batch_rows}-chunk${rmq_chunk_rows}"
   local strict_args=()
   if [[ "${STRICT_BENCHMARKS}" == "1" ]]; then
     strict_args+=(--strict)
@@ -318,12 +348,16 @@ run_matrix() {
   python3 "${ROOT}/scripts/benchmark_matrix.py" \
     --url "http://127.0.0.1:${PORT_FORWARD_PORT}/api/v1/requestApproval" \
     --transports "${TRANSPORTS}" \
+    --response-modes "${RESPONSE_MODES}" \
+    --workloads "${WORKLOADS}" \
     --datasets "${DATASETS}" \
     --large-limits "${LARGE_LIMITS}" \
     --original-limit "${ORIGINAL_LIMIT}" \
     --archetypes "${ARCHETYPES}" \
+    --provider-sets "${PROVIDER_SETS}" \
+    --temperature "${temperature}" \
     --repetitions "${REPETITIONS}" \
-    --timeout 1800 \
+    --timeout "${BENCHMARK_TIMEOUT}" \
     --sql-batch-rows "${sql_batch_rows}" \
     --rabbitmq-chunk-rows "${rmq_chunk_rows}" \
     --output-dir "${RESULT_DIR}" \
@@ -368,12 +402,28 @@ main() {
       fi
 
       deploy_application "${sql_batch_rows}" "${rmq_chunk_rows}"
-      start_port_forward
-      warm_endpoint
-      if [[ "${RUN_MATRIX}" == "1" ]]; then
-        run_matrix "${sql_batch_rows}" "${rmq_chunk_rows}"
-      fi
-      stop_port_forward
+      IFS=',' read -r -a temperature_values <<< "${RUN_TEMPERATURES}"
+      local first_temperature=1
+      for temperature in "${temperature_values[@]}"; do
+        temperature="${temperature//[[:space:]]/}"
+        if [[ -z "${temperature}" ]]; then
+          continue
+        fi
+
+        if [[ "${temperature}" == "cold" && "${first_temperature}" != "1" ]]; then
+          restart_application_stack
+        fi
+
+        start_port_forward
+        if [[ "${temperature}" == "warm" ]]; then
+          warm_endpoint
+        fi
+        if [[ "${RUN_MATRIX}" == "1" ]]; then
+          run_matrix "${sql_batch_rows}" "${rmq_chunk_rows}" "${temperature}"
+        fi
+        stop_port_forward
+        first_temperature=0
+      done
       first_matrix=0
     done
   done

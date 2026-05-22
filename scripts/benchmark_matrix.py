@@ -3,6 +3,7 @@
 import argparse
 import csv
 import json
+import random
 import statistics
 import subprocess
 import sys
@@ -12,10 +13,17 @@ from typing import Any
 
 
 DEFAULT_TRANSPORTS = "unary,streaming,rabbitmq-streams"
+DEFAULT_RESPONSE_MODES = "batched,classic-unary"
 DEFAULT_DATASETS = "large,original"
 DEFAULT_ARCHETYPES = "dataThroughTtp,computeToData"
+DEFAULT_WORKLOADS = "bulk,average"
 DEFAULT_LARGE_LIMITS = "50000,250000"
-DEFAULT_PROVIDERS = "UVA,VU"
+DEFAULT_PROVIDER_SETS = "UVA;UVA,VU"
+RESPONSE_MODE_BATCHED = "batched"
+RESPONSE_MODE_CLASSIC_UNARY = "classic-unary"
+WORKLOAD_AVERAGE = "average"
+WORKLOAD_BULK = "bulk"
+SUPPORTED_RESPONSE_MODES = {RESPONSE_MODE_BATCHED, RESPONSE_MODE_CLASSIC_UNARY}
 
 
 def parse_csv(value: str) -> list[str]:
@@ -24,6 +32,15 @@ def parse_csv(value: str) -> list[str]:
 
 def parse_int_csv(value: str) -> list[int]:
     return [int(item) for item in parse_csv(value)]
+
+
+def parse_provider_sets(value: str) -> list[list[str]]:
+    provider_sets = []
+    for item in value.split(";"):
+        providers = parse_csv(item)
+        if providers:
+            provider_sets.append(providers)
+    return provider_sets
 
 
 def median(values: list[float]) -> float | None:
@@ -58,10 +75,42 @@ def benchmark_cases(datasets: list[str], large_limits: list[int], original_limit
     return cases
 
 
-def expected_rows(dataset: str, limit: int, providers: list[str]) -> int | None:
+def expected_rows(dataset: str, limit: int, providers: list[str], response_mode: str, workload: str) -> int | None:
     if dataset != "large":
         return None
+    if workload == WORKLOAD_AVERAGE and response_mode == RESPONSE_MODE_CLASSIC_UNARY:
+        return None
     return limit * len(providers)
+
+
+def response_modes_for_transport(transport: str, response_modes: list[str]) -> list[str]:
+    modes: list[str] = []
+    for response_mode in response_modes:
+        if response_mode == RESPONSE_MODE_BATCHED:
+            modes.append(response_mode)
+        elif response_mode == RESPONSE_MODE_CLASSIC_UNARY and transport == "unary":
+            modes.append(response_mode)
+    return modes
+
+
+def require_partial_for_case(
+    response_mode: str,
+    workload: str,
+    require_partial: bool,
+    expected_row_count: int | None,
+    sql_batch_rows: str | None,
+) -> bool:
+    if not require_partial:
+        return False
+    if response_mode == RESPONSE_MODE_CLASSIC_UNARY or workload != WORKLOAD_BULK:
+        return False
+    if expected_row_count is None:
+        return False
+    try:
+        batch_rows = int(sql_batch_rows) if sql_batch_rows else 0
+    except ValueError:
+        batch_rows = 0
+    return batch_rows <= 0 or expected_row_count > batch_rows
 
 
 def parse_benchmark_output(stdout: str) -> dict[str, Any]:
@@ -82,6 +131,8 @@ def run_once(
     limit: int,
     archetype: str,
     transport: str,
+    response_mode: str,
+    workload: str,
     providers: list[str],
     strict: bool,
     require_partial: bool,
@@ -93,6 +144,10 @@ def run_once(
         url,
         "--transport",
         transport,
+        "--response-mode",
+        response_mode,
+        "--workload",
+        workload,
         "--dataset",
         dataset,
         "--limit",
@@ -105,7 +160,7 @@ def run_once(
         str(timeout),
     ]
 
-    rows = expected_rows(dataset, limit, providers)
+    rows = expected_rows(dataset, limit, providers, response_mode, workload)
     if rows is not None:
         command.extend(["--expected-rows", str(rows)])
     if strict:
@@ -131,7 +186,8 @@ def aggregate_group(group: dict[str, Any], runs: list[dict[str, Any]]) -> dict[s
     first_values = [run["firstResultSeconds"] for run in successful if run.get("firstResultSeconds") is not None]
     done_values = [run["doneSeconds"] for run in successful if run.get("doneSeconds") is not None]
     observed_rows = [run["observedRows"] for run in successful if run.get("observedRows") is not None]
-    hashes = sorted({run.get("finalResultHash") for run in successful if run.get("finalResultHash")})
+    content_hashes = sorted({run.get("contentResultHash") or run.get("finalResultHash") for run in successful if run.get("contentResultHash") or run.get("finalResultHash")})
+    raw_hashes = sorted({run.get("rawResultHash") for run in successful if run.get("rawResultHash")})
     return {
         **group,
         "runs": len(runs),
@@ -144,32 +200,46 @@ def aggregate_group(group: dict[str, Any], runs: list[dict[str, Any]]) -> dict[s
             "min": min(observed_rows) if observed_rows else None,
             "max": max(observed_rows) if observed_rows else None,
         },
-        "finalResultHashes": hashes,
+        "contentResultHashes": content_hashes,
+        "rawResultHashes": raw_hashes,
+        "finalResultHashes": content_hashes,
         "errors": [run.get("errors") or run.get("error") for run in runs if not run.get("ok")],
     }
 
 
 def mark_cross_transport_mismatches(summaries: list[dict[str, Any]]) -> None:
-    groups: dict[tuple[Any, ...], set[str]] = {}
+    content_groups: dict[tuple[Any, ...], set[str]] = {}
+    raw_groups: dict[tuple[Any, ...], set[str]] = {}
     for summary in summaries:
         key = (
             summary["dataset"],
             summary["limit"],
+            summary["workload"],
             summary["archetype"],
+            summary["providersLabel"],
+            summary["temperature"],
+            summary["responseMode"],
             summary.get("sqlBatchRows"),
             summary.get("rabbitmqChunkRows"),
         )
-        groups.setdefault(key, set()).update(summary.get("finalResultHashes", []))
+        content_groups.setdefault(key, set()).update(summary.get("contentResultHashes", []))
+        raw_groups.setdefault(key, set()).update(summary.get("rawResultHashes", []))
 
     for summary in summaries:
         key = (
             summary["dataset"],
             summary["limit"],
+            summary["workload"],
             summary["archetype"],
+            summary["providersLabel"],
+            summary["temperature"],
+            summary["responseMode"],
             summary.get("sqlBatchRows"),
             summary.get("rabbitmqChunkRows"),
         )
-        summary["crossTransportResultMatch"] = len(groups.get(key, set())) <= 1
+        summary["crossTransportContentMatch"] = len(content_groups.get(key, set())) <= 1
+        summary["crossTransportRawMatch"] = len(raw_groups.get(key, set())) <= 1
+        summary["crossTransportResultMatch"] = summary["crossTransportContentMatch"]
 
 
 def write_json(path: Path, payload: Any) -> None:
@@ -182,8 +252,12 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
     fieldnames = [
         "dataset",
         "limit",
+        "workload",
         "archetype",
+        "providers",
+        "temperature",
         "transport",
+        "responseMode",
         "sqlBatchRows",
         "rabbitmqChunkRows",
         "runs",
@@ -196,7 +270,8 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
         "doneMin",
         "doneMax",
         "rowsMedian",
-        "crossTransportResultMatch",
+        "crossTransportContentMatch",
+        "crossTransportRawMatch",
     ]
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -206,8 +281,12 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
                 {
                     "dataset": summary["dataset"],
                     "limit": summary["limit"],
+                    "workload": summary["workload"],
                     "archetype": summary["archetype"],
+                    "providers": summary["providersLabel"],
+                    "temperature": summary["temperature"],
                     "transport": summary["transport"],
+                    "responseMode": summary["responseMode"],
                     "sqlBatchRows": summary.get("sqlBatchRows"),
                     "rabbitmqChunkRows": summary.get("rabbitmqChunkRows"),
                     "runs": summary["runs"],
@@ -220,7 +299,8 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
                     "doneMin": summary["doneSeconds"]["min"],
                     "doneMax": summary["doneSeconds"]["max"],
                     "rowsMedian": summary["observedRows"]["median"],
-                    "crossTransportResultMatch": summary["crossTransportResultMatch"],
+                    "crossTransportContentMatch": summary["crossTransportContentMatch"],
+                    "crossTransportRawMatch": summary["crossTransportRawMatch"],
                 }
             )
 
@@ -228,20 +308,24 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
 def write_markdown(path: Path, summaries: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        "| dataset | limit | archetype | transport | batch | chunk | ok/runs | first median (min-max) | done median (min-max) | rows | result match |",
-        "| --- | ---: | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+        "| dataset | limit | workload | archetype | providers | temperature | transport | response mode | batch | chunk | ok/runs | first median (min-max) | done median (min-max) | rows | content match | raw match |",
+        "| --- | ---: | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |",
     ]
     for summary in summaries:
         first = summary["firstResultSeconds"]
         done = summary["doneSeconds"]
         rows = summary["observedRows"]
         lines.append(
-            "| {dataset} | {limit} | {archetype} | {transport} | {batch} | {chunk} | {ok}/{runs} | "
-            "{first_median} ({first_min}-{first_max}) | {done_median} ({done_min}-{done_max}) | {rows_median} | {match} |".format(
+            "| {dataset} | {limit} | {workload} | {archetype} | {providers} | {temperature} | {transport} | {response_mode} | {batch} | {chunk} | {ok}/{runs} | "
+            "{first_median} ({first_min}-{first_max}) | {done_median} ({done_min}-{done_max}) | {rows_median} | {content_match} | {raw_match} |".format(
                 dataset=summary["dataset"],
                 limit=summary["limit"],
+                workload=summary["workload"],
                 archetype=summary["archetype"],
+                providers=summary["providersLabel"],
+                temperature=summary["temperature"],
                 transport=summary["transport"],
+                response_mode=summary["responseMode"],
                 batch=summary.get("sqlBatchRows") or "",
                 chunk=summary.get("rabbitmqChunkRows") or "",
                 ok=summary["okRuns"],
@@ -253,7 +337,8 @@ def write_markdown(path: Path, summaries: list[dict[str, Any]]) -> None:
                 done_min=done["min"],
                 done_max=done["max"],
                 rows_median=rows["median"],
-                match="yes" if summary["crossTransportResultMatch"] else "no",
+                content_match="yes" if summary["crossTransportContentMatch"] else "no",
+                raw_match="yes" if summary["crossTransportRawMatch"] else "no",
             )
         )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -264,17 +349,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--url", default="http://127.0.0.1:18080/api/v1/requestApproval")
     parser.add_argument("--benchmark-script", type=Path)
     parser.add_argument("--transports", default=DEFAULT_TRANSPORTS)
+    parser.add_argument("--response-modes", default=DEFAULT_RESPONSE_MODES)
+    parser.add_argument("--workloads", default=DEFAULT_WORKLOADS)
     parser.add_argument("--datasets", default=DEFAULT_DATASETS)
     parser.add_argument("--large-limits", default=DEFAULT_LARGE_LIMITS)
     parser.add_argument("--original-limit", type=int, default=1_000_000)
     parser.add_argument("--archetypes", default=DEFAULT_ARCHETYPES)
-    parser.add_argument("--providers", default=DEFAULT_PROVIDERS)
+    parser.add_argument("--provider-sets", default=DEFAULT_PROVIDER_SETS)
+    parser.add_argument("--providers")
     parser.add_argument("--repetitions", type=int, default=3)
     parser.add_argument("--timeout", type=int, default=1800)
     parser.add_argument("--sql-batch-rows")
     parser.add_argument("--rabbitmq-chunk-rows")
     parser.add_argument("--output-dir", type=Path, default=Path("benchmark-results"))
     parser.add_argument("--name", default=time.strftime("matrix-%Y%m%d-%H%M%S"))
+    parser.add_argument("--temperature", default="warm")
+    parser.add_argument("--shuffle-seed", type=int, default=0)
     parser.add_argument("--strict", action="store_true")
     parser.add_argument("--require-partial", action="store_true")
     return parser.parse_args()
@@ -285,50 +375,139 @@ def main() -> int:
     root = Path(__file__).resolve().parents[1]
     benchmark_script = args.benchmark_script or root / "scripts" / "benchmark_ndjson.py"
     transports = parse_csv(args.transports)
+    response_modes = parse_csv(args.response_modes)
+    workloads = parse_csv(args.workloads)
     datasets = parse_csv(args.datasets)
     archetypes = parse_csv(args.archetypes)
-    providers = parse_csv(args.providers)
+    if args.providers:
+        provider_sets = [parse_csv(args.providers)]
+    else:
+        provider_sets = parse_provider_sets(args.provider_sets)
     large_limits = parse_int_csv(args.large_limits)
     cases = benchmark_cases(datasets, large_limits, args.original_limit)
 
-    all_runs = []
-    summaries = []
+    invalid_response_modes = sorted(set(response_modes) - SUPPORTED_RESPONSE_MODES)
+    if invalid_response_modes:
+        print(json.dumps({"error": f"unsupported response modes: {', '.join(invalid_response_modes)}"}))
+        return 2
+    if not provider_sets:
+        print(json.dumps({"error": "no provider sets selected"}))
+        return 2
+
+    groups = []
     for dataset, limit in cases:
-        for archetype in archetypes:
-            for transport in transports:
-                group = {
-                    "dataset": dataset,
-                    "limit": limit,
-                    "archetype": archetype,
-                    "transport": transport,
-                    "sqlBatchRows": args.sql_batch_rows,
-                    "rabbitmqChunkRows": args.rabbitmq_chunk_rows,
-                }
-                runs = []
-                for repetition in range(1, args.repetitions + 1):
-                    print(
-                        f"running {dataset} limit={limit} {archetype} {transport} "
-                        f"rep={repetition}/{args.repetitions}",
-                        file=sys.stderr,
-                        flush=True,
-                    )
-                    run = run_once(
-                        benchmark_script,
-                        args.url,
-                        args.timeout,
-                        dataset,
-                        limit,
-                        archetype,
-                        transport,
-                        providers,
-                        args.strict,
-                        args.require_partial,
-                    )
-                    run.update(group)
-                    run["repetition"] = repetition
-                    runs.append(run)
-                    all_runs.append(run)
-                summaries.append(aggregate_group(group, runs))
+        for workload in workloads:
+            for providers in provider_sets:
+                providers_label = ",".join(providers)
+                for archetype in archetypes:
+                    for transport in transports:
+                        for response_mode in response_modes_for_transport(transport, response_modes):
+                            groups.append(
+                                {
+                                    "dataset": dataset,
+                                    "limit": limit,
+                                    "workload": workload,
+                                    "archetype": archetype,
+                                    "providers": providers,
+                                    "providersLabel": providers_label,
+                                    "temperature": args.temperature,
+                                    "transport": transport,
+                                    "responseMode": response_mode,
+                                    "sqlBatchRows": args.sql_batch_rows,
+                                    "rabbitmqChunkRows": args.rabbitmq_chunk_rows,
+                                }
+                            )
+
+    if not groups:
+        print(json.dumps({"error": "no benchmark cases selected after transport/response-mode filtering"}))
+        return 2
+
+    all_runs = []
+    runs_by_group: dict[tuple[Any, ...], list[dict[str, Any]]] = {
+        (
+            group["dataset"],
+            group["limit"],
+            group["workload"],
+            group["archetype"],
+            group["providersLabel"],
+            group["temperature"],
+            group["transport"],
+            group["responseMode"],
+            group["sqlBatchRows"],
+            group["rabbitmqChunkRows"],
+        ): []
+        for group in groups
+    }
+
+    for repetition in range(1, args.repetitions + 1):
+        repetition_groups = list(groups)
+        random.Random(args.shuffle_seed + repetition).shuffle(repetition_groups)
+        for group in repetition_groups:
+            print(
+                f"running {group['dataset']} limit={group['limit']} workload={group['workload']} "
+                f"providers={group['providersLabel']} {group['temperature']} {group['archetype']} {group['transport']} "
+                f"response-mode={group['responseMode']} rep={repetition}/{args.repetitions}",
+                file=sys.stderr,
+                flush=True,
+            )
+            run = run_once(
+                benchmark_script,
+                args.url,
+                args.timeout,
+                group["dataset"],
+                group["limit"],
+                group["archetype"],
+                group["transport"],
+                group["responseMode"],
+                group["workload"],
+                group["providers"],
+                args.strict,
+                require_partial_for_case(
+                    group["responseMode"],
+                    group["workload"],
+                    args.require_partial,
+                    expected_rows(
+                        group["dataset"],
+                        group["limit"],
+                        group["providers"],
+                        group["responseMode"],
+                        group["workload"],
+                    ),
+                    group["sqlBatchRows"],
+                ),
+            )
+            run.update(group)
+            run["repetition"] = repetition
+            key = (
+                group["dataset"],
+                group["limit"],
+                group["workload"],
+                group["archetype"],
+                group["providersLabel"],
+                group["temperature"],
+                group["transport"],
+                group["responseMode"],
+                group["sqlBatchRows"],
+                group["rabbitmqChunkRows"],
+            )
+            runs_by_group[key].append(run)
+            all_runs.append(run)
+
+    summaries = []
+    for group in groups:
+        key = (
+            group["dataset"],
+            group["limit"],
+            group["workload"],
+            group["archetype"],
+            group["providersLabel"],
+            group["temperature"],
+            group["transport"],
+            group["responseMode"],
+            group["sqlBatchRows"],
+            group["rabbitmqChunkRows"],
+        )
+        summaries.append(aggregate_group(group, runs_by_group[key]))
 
     mark_cross_transport_mismatches(summaries)
 
@@ -341,7 +520,7 @@ def main() -> int:
     write_markdown(markdown_path, summaries)
 
     print(json.dumps({"json": str(json_path), "csv": str(csv_path), "markdown": str(markdown_path)}))
-    failed = [summary for summary in summaries if summary["failedRuns"] > 0 or not summary["crossTransportResultMatch"]]
+    failed = [summary for summary in summaries if summary["failedRuns"] > 0 or not summary["crossTransportContentMatch"]]
     return 1 if failed and args.strict else 0
 
 

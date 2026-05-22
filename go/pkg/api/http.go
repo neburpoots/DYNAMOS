@@ -9,6 +9,8 @@ import (
 	"io"
 	"maps"
 	"net/http"
+	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -71,6 +73,31 @@ func WantsNDJSON(r *http.Request) bool {
 		return false
 	}
 	return headerAcceptsContentType(r.Header.Get("Accept"), NDJSONContentType)
+}
+
+func RequestTimeoutFromEnv(r *http.Request, nonStreamEnv string, streamEnv string, defaultNonStream time.Duration, defaultStream time.Duration) time.Duration {
+	if WantsNDJSON(r) {
+		return durationFromEnv(defaultStream, streamEnv, "DYNAMOS_HTTP_STREAM_TIMEOUT")
+	}
+	return durationFromEnv(defaultNonStream, nonStreamEnv, "DYNAMOS_HTTP_TIMEOUT")
+}
+
+func durationFromEnv(fallback time.Duration, names ...string) time.Duration {
+	for _, name := range names {
+		value := strings.TrimSpace(os.Getenv(name))
+		if value == "" {
+			continue
+		}
+
+		if seconds, err := strconv.Atoi(value); err == nil && seconds > 0 {
+			return time.Duration(seconds) * time.Second
+		}
+
+		if parsed, err := time.ParseDuration(value); err == nil && parsed > 0 {
+			return parsed
+		}
+	}
+	return fallback
 }
 
 func WriteNDJSON(w io.Writer, value any) error {
@@ -396,7 +423,6 @@ func doPostRequest(ctx context.Context, url string, body string, extra_headers m
 	return resp, nil
 }
 
-
 func badResponseError(status string, body []byte) error {
 	trimmed := strings.TrimSpace(string(body))
 	if trimmed == "" {
@@ -404,7 +430,6 @@ func badResponseError(status string, body []byte) error {
 	}
 	return fmt.Errorf("bad response from server: %s: %s", status, trimmed)
 }
-
 
 func headerAcceptsContentType(headerValue string, contentType string) bool {
 	if headerValue == "" || contentType == "" {

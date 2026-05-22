@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"sort"
 	"strconv"
 	"sync"
 
@@ -90,6 +91,9 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 		logger.Sugar().Errorf("Failed to unmarshal sqlDataRequest message: %v", err)
 	}
 
+	if msComm.Traces == nil {
+		msComm.Traces = map[string][]byte{}
+	}
 	msComm.Traces["binaryTrace"] = propagation.Binary(span.SpanContext())
 	final := lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true)
 
@@ -101,7 +105,12 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 		jsonString, _ := m.MarshalToString(msComm.Data)
 		msComm.Result = []byte(jsonString)
 
-		return true, nil
+		if msComm.Metadata == nil {
+			msComm.Metadata = map[string]string{}
+		}
+		msComm.Metadata[lib.StreamPartialMetadataKey] = strconv.FormatBool(!final)
+		msComm.Metadata[lib.StreamFinalMetadataKey] = strconv.FormatBool(final)
+		return final, nil
 	}
 
 	if sqlDataRequest.Algorithm == "average" {
@@ -121,32 +130,39 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 	// }
 
 	// Process all data to make this service more realistic.
-	ctx, allResults := convertAllData(ctx, msComm.Data)
+	ctx, allResults := convertAllData(ctx, msComm.Data, msComm.Metadata)
 	msComm.Result = allResults
 	msComm.Data = nil
+	if msComm.Metadata == nil {
+		msComm.Metadata = map[string]string{}
+	}
+	msComm.Metadata[lib.StreamPartialMetadataKey] = strconv.FormatBool(!final)
+	msComm.Metadata[lib.StreamFinalMetadataKey] = strconv.FormatBool(final)
 
-	return true, nil
+	return final, nil
 }
 
-func convertAllData(ctx context.Context, data *structpb.Struct) (context.Context, []byte) {
+func convertAllData(ctx context.Context, data *structpb.Struct, metadata map[string]string) (context.Context, []byte) {
 	ctx, span := trace.StartSpan(ctx, "convertAllData")
 	defer span.End()
-	keys := make([]string, 0)
-	allValues := make([][]string, 0)
+	keys := orderedColumns(data, metadata)
+	allValues := make([][]string, 0, len(keys))
 	maxLength := 0
 
-	for key, value := range data.GetFields() {
-		stringValues := value.GetListValue().GetValues()
-		if len(stringValues) > 0 {
-			keys = append(keys, key)
-			rowValues := make([]string, len(stringValues))
-			for i, v := range stringValues {
-				rowValues[i] = v.GetStringValue()
-			}
-			allValues = append(allValues, rowValues)
-			if len(rowValues) > maxLength {
-				maxLength = len(rowValues)
-			}
+	for _, key := range keys {
+		value := data.GetFields()[key]
+		listValue := value.GetListValue()
+		stringValues := []*structpb.Value{}
+		if listValue != nil {
+			stringValues = listValue.GetValues()
+		}
+		rowValues := make([]string, len(stringValues))
+		for i, v := range stringValues {
+			rowValues[i] = v.GetStringValue()
+		}
+		allValues = append(allValues, rowValues)
+		if len(rowValues) > maxLength {
+			maxLength = len(rowValues)
 		}
 	}
 
@@ -171,6 +187,43 @@ func convertAllData(ctx context.Context, data *structpb.Struct) (context.Context
 	}
 
 	return ctx, jsonData
+}
+
+func orderedColumns(data *structpb.Struct, metadata map[string]string) []string {
+	if data == nil {
+		return nil
+	}
+
+	fields := data.GetFields()
+	keys := make([]string, 0, len(fields))
+	seen := map[string]struct{}{}
+
+	if metadata != nil && metadata[lib.StreamColumnsMetadataKey] != "" {
+		var ordered []string
+		if err := json.Unmarshal([]byte(metadata[lib.StreamColumnsMetadataKey]), &ordered); err == nil {
+			for _, key := range ordered {
+				if _, ok := fields[key]; !ok {
+					continue
+				}
+				if _, ok := seen[key]; ok {
+					continue
+				}
+				keys = append(keys, key)
+				seen[key] = struct{}{}
+			}
+		}
+	}
+
+	remaining := make([]string, 0, len(fields))
+	for key := range fields {
+		if _, ok := seen[key]; ok {
+			continue
+		}
+		remaining = append(remaining, key)
+	}
+	sort.Strings(remaining)
+	keys = append(keys, remaining...)
+	return keys
 }
 
 func getFirstRow(data *structpb.Struct) []byte {

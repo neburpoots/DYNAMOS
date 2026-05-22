@@ -23,6 +23,10 @@ spec:
         env:
         - name: OC_AGENT_HOST
           value: {{ .Values.tracingEndpoint }}
+        - name: API_GATEWAY_HTTP_TIMEOUT
+          value: {{ .Values.httpTimeout | default "30s" | quote }}
+        - name: API_GATEWAY_HTTP_STREAM_TIMEOUT
+          value: {{ .Values.httpStreamTimeout | default "20m" | quote }}
         # resources:
         #   requests:
         #     memory: "128Mi"

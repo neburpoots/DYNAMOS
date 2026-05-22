@@ -59,25 +59,42 @@ func handleSqlDataRequest(ctx context.Context, msComm *pb.MicroserviceCommunicat
 	}
 
 	if sqlDataRequest.Algorithm == "average" {
+		if sqlDataRequest.Options[lib.ClassicUnaryOptionKey] {
+			merged, shouldForward, shouldStop := updateBufferedAggregateState(msComm, correlationID, expectedProviders, final)
+			addTrace(merged, span)
+			return merged, shouldForward, shouldStop, nil
+		}
+
 		forwarded, shouldForward, shouldStop := updateAverageStreamState(msComm, correlationID, expectedProviders, final)
 		if !shouldForward {
 			return nil, false, shouldStop, nil
 		}
-		if forwarded.Traces == nil {
-			forwarded.Traces = map[string][]byte{}
-		}
-		forwarded.Traces["binaryTrace"] = propagation.Binary(span.SpanContext())
+		addTrace(forwarded, span)
 		return forwarded, shouldForward, shouldStop, nil
 	}
 
-	merged, shouldForward, shouldStop := updateBufferedAggregateState(msComm, correlationID, expectedProviders, final)
-	if merged != nil {
-		if merged.Traces == nil {
-			merged.Traces = map[string][]byte{}
-		}
-		merged.Traces["binaryTrace"] = propagation.Binary(span.SpanContext())
+	if sqlDataRequest.Options[lib.ClassicUnaryOptionKey] {
+		merged, shouldForward, shouldStop := updateBufferedAggregateState(msComm, correlationID, expectedProviders, final)
+		addTrace(merged, span)
+		return merged, shouldForward, shouldStop, nil
 	}
-	return merged, shouldForward, shouldStop, nil
+
+	forwarded, shouldForward, shouldStop := updatePassThroughStreamState(msComm, correlationID, expectedProviders, final)
+	if !shouldForward {
+		return nil, false, shouldStop, nil
+	}
+	addTrace(forwarded, span)
+	return forwarded, shouldForward, shouldStop, nil
+}
+
+func addTrace(msComm *pb.MicroserviceCommunication, span *trace.Span) {
+	if msComm == nil {
+		return
+	}
+	if msComm.Traces == nil {
+		msComm.Traces = map[string][]byte{}
+	}
+	msComm.Traces["binaryTrace"] = propagation.Binary(span.SpanContext())
 }
 
 func mergeData(msCommList []*pb.MicroserviceCommunication) *pb.MicroserviceCommunication {
@@ -119,12 +136,16 @@ func mergeData(msCommList []*pb.MicroserviceCommunication) *pb.MicroserviceCommu
 }
 
 func updateAverageStreamState(msComm *pb.MicroserviceCommunication, correlationID string, expectedProviders int, final bool) (*pb.MicroserviceCommunication, bool, bool) {
+	return updatePassThroughStreamState(msComm, correlationID, expectedProviders, final)
+}
+
+func updatePassThroughStreamState(msComm *pb.MicroserviceCommunication, correlationID string, expectedProviders int, final bool) (*pb.MicroserviceCommunication, bool, bool) {
 	aggregateStateMu.Lock()
 	defer aggregateStateMu.Unlock()
 
 	state := getOrCreateAggregateState(correlationID)
 	if markAggregateBatchSeen(state, msComm) {
-		logger.Sugar().Warnw("Ignoring duplicate aggregate stream batch", "correlationId", correlationID, "batchId", streamBatchIdentity(msComm))
+		logger.Sugar().Warnw("Ignoring duplicate pass-through aggregate stream batch", "correlationId", correlationID, "batchId", streamBatchIdentity(msComm))
 		return nil, false, false
 	}
 
@@ -180,6 +201,10 @@ func updateBufferedAggregateState(msComm *pb.MicroserviceCommunication, correlat
 	if merged.Metadata == nil {
 		merged.Metadata = map[string]string{}
 	}
+	rowCount := structRowCount(merged.GetData())
+	merged.Metadata[lib.StreamSequenceMetadataKey] = strconv.Itoa(1)
+	merged.Metadata[lib.StreamRowsProcessedMetadataKey] = strconv.Itoa(rowCount)
+	merged.Metadata[lib.StreamRowsTotalMetadataKey] = strconv.Itoa(rowCount)
 	merged.Metadata[lib.StreamPartialMetadataKey] = strconv.FormatBool(false)
 	merged.Metadata[lib.StreamFinalMetadataKey] = strconv.FormatBool(true)
 	delete(aggregateStates, correlationID)

@@ -28,6 +28,10 @@ spec:
           value: {{ .Values.tracingEndpoint }}
         - name: SQL_STREAM_BATCH_ROWS
           value: {{ .Values.sqlStreamBatchRows | default "5000" | quote }}
+        - name: AGENT_HTTP_TIMEOUT
+          value: {{ .Values.httpTimeout | default "30s" | quote }}
+        - name: AGENT_HTTP_STREAM_TIMEOUT
+          value: {{ .Values.httpStreamTimeout | default "20m" | quote }}
         - name: MICROSERVICE_REPOSITORY_NAME
           value: {{ .Values.dockerArtifactAccount | quote }}
         - name: SIDECAR_REPOSITORY_NAME

@@ -25,10 +25,7 @@ func sqlDataRequestHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		logger.Debug("Entering sqlDataRequestHandler")
 
-		requestTimeout := 30 * time.Second
-		if api.WantsNDJSON(r) {
-			requestTimeout = 20 * time.Minute
-		}
+		requestTimeout := api.RequestTimeoutFromEnv(r, "AGENT_HTTP_TIMEOUT", "AGENT_HTTP_STREAM_TIMEOUT", 30*time.Second, 20*time.Minute)
 		ctxWithTimeout, cancel := context.WithTimeout(r.Context(), requestTimeout)
 		defer cancel()
 

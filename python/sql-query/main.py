@@ -52,10 +52,17 @@ STREAM_ROWS_PROCESSED_METADATA_KEY = "stream_rows_processed"
 STREAM_ROWS_TOTAL_METADATA_KEY = "stream_rows_total"
 STREAM_PROVIDER_METADATA_KEY = "stream_provider"
 STREAM_BATCH_ID_METADATA_KEY = "stream_batch_id"
+STREAM_COLUMNS_METADATA_KEY = "stream_columns"
+CLASSIC_UNARY_OPTION_KEY = "classicUnary"
 DEFAULT_STREAM_BATCH_ROWS = 5000
 TABLE_NAME_PATTERN = re.compile(r'\b(?:FROM|JOIN)\s+([A-Za-z_][A-Za-z0-9_]*)', re.IGNORECASE)
+SELECT_CLAUSE_PATTERN = re.compile(r'\bSELECT\s+(.*?)\s+\bFROM\b', re.IGNORECASE | re.DOTALL)
+SELECTED_COLUMN_PATTERN = re.compile(r'^([A-Za-z_][A-Za-z0-9_]*)\.([A-Za-z_][A-Za-z0-9_]*)$')
+FROM_ALIAS_PATTERN = re.compile(r'\bFROM\s+([A-Za-z_][A-Za-z0-9_]*)(?:\s+([A-Za-z_][A-Za-z0-9_]*))?', re.IGNORECASE)
+JOIN_ALIAS_PATTERN = re.compile(r'\bJOIN\s+([A-Za-z_][A-Za-z0-9_]*)(?:\s+([A-Za-z_][A-Za-z0-9_]*))?', re.IGNORECASE)
 LIMIT_PATTERN = re.compile(r'\bLIMIT\s+(\d+)\b', re.IGNORECASE)
 UNSUPPORTED_AVERAGE_STREAM_PATTERN = re.compile(r'\b(?:GROUP\s+BY|ORDER\s+BY|HAVING|UNION|DISTINCT)\b', re.IGNORECASE)
+UNSUPPORTED_JOIN_STREAM_PATTERN = re.compile(r'\b(?:GROUP\s+BY|ORDER\s+BY|HAVING|UNION|DISTINCT|WHERE)\b', re.IGNORECASE)
 UNIQUE_NUMBER_COLUMN = "Unieknr"
 GENDER_COLUMN = "Geslacht"
 SALARY_SCALE_COLUMN = "Salschal"
@@ -150,7 +157,16 @@ def stream_provider_name():
         return "unknown"
     return data_steward_name
 
-def with_stream_metadata(metadata, sequence, rows_processed, rows_total, final):
+def classic_unary_requested(sqlDataRequest):
+    options = getattr(sqlDataRequest, "options", None)
+    if options is None:
+        return False
+    return bool(options.get(CLASSIC_UNARY_OPTION_KEY, False))
+
+def empty_frame(columns):
+    return pd.DataFrame({column: pd.Series(dtype="string") for column in columns})
+
+def with_stream_metadata(metadata, sequence, rows_processed, rows_total, final, columns=None):
     stream_metadata = dict(metadata)
     provider = stream_provider_name()
     stream_metadata[STREAM_PARTIAL_METADATA_KEY] = "false" if final else "true"
@@ -160,6 +176,8 @@ def with_stream_metadata(metadata, sequence, rows_processed, rows_total, final):
     stream_metadata[STREAM_ROWS_TOTAL_METADATA_KEY] = str(rows_total)
     stream_metadata[STREAM_PROVIDER_METADATA_KEY] = provider
     stream_metadata[STREAM_BATCH_ID_METADATA_KEY] = f"{provider}:{sequence}"
+    if columns is not None:
+        stream_metadata[STREAM_COLUMNS_METADATA_KEY] = json.dumps(list(columns), separators=(",", ":"))
     return stream_metadata
 
 def get_dataset_path(file_path_prefix, table_name):
@@ -200,10 +218,85 @@ def build_average_stream_plan(query):
     }
 
 def empty_average_frame():
-    return pd.DataFrame({
-        GENDER_COLUMN: pd.Series(dtype="string"),
-        SALARY_SCALE_COLUMN: pd.Series(dtype="string"),
-    })
+    return empty_frame([GENDER_COLUMN, SALARY_SCALE_COLUMN])
+
+def build_join_stream_plan(query):
+    if query is None or UNSUPPORTED_JOIN_STREAM_PATTERN.search(query):
+        return None
+
+    select_match = SELECT_CLAUSE_PATTERN.search(query)
+    if select_match is None:
+        return None
+
+    alias_to_table = {}
+    from_match = FROM_ALIAS_PATTERN.search(query)
+    join_match = JOIN_ALIAS_PATTERN.search(query)
+    for match in (from_match, join_match):
+        if match is None:
+            continue
+        table_name = match.group(1)
+        alias = match.group(2) or table_name
+        alias_to_table[alias.lower()] = table_name
+
+    if len(alias_to_table) < 2:
+        return None
+
+    personen_alias = next((alias for alias, table in alias_to_table.items() if table.lower().startswith("personen")), None)
+    appointments_alias = next((alias for alias, table in alias_to_table.items() if table.lower().startswith("aanstellingen")), None)
+    if personen_alias is None or appointments_alias is None:
+        return None
+
+    limit_match = LIMIT_PATTERN.search(query)
+    if limit_match is None:
+        return None
+
+    try:
+        limit = int(limit_match.group(1))
+    except ValueError:
+        return None
+
+    if limit <= 0:
+        return None
+
+    selected_columns = []
+    output_columns = []
+    select_items = [item.strip() for item in select_match.group(1).split(",") if item.strip()]
+    if not select_items:
+        return None
+
+    for item in select_items:
+        column_match = SELECTED_COLUMN_PATTERN.fullmatch(item)
+        if column_match is None:
+            return None
+
+        alias, column_name = column_match.groups()
+        normalized_alias = alias.lower()
+        if normalized_alias not in alias_to_table:
+            return None
+        if column_name in output_columns:
+            return None
+
+        if normalized_alias == personen_alias:
+            source = "person"
+        elif normalized_alias == appointments_alias:
+            source = "appointment"
+        else:
+            return None
+
+        output_columns.append(column_name)
+        selected_columns.append({
+            "source": source,
+            "column": column_name,
+            "output": column_name,
+        })
+
+    return {
+        "personen_table": alias_to_table[personen_alias],
+        "appointments_table": alias_to_table[appointments_alias],
+        "limit": limit,
+        "selected_columns": selected_columns,
+        "output_columns": output_columns,
+    }
 
 def build_person_lookup(file_path_prefix, personen_table):
     personen_path = get_dataset_path(file_path_prefix, personen_table)
@@ -216,17 +309,33 @@ def build_person_lookup(file_path_prefix, personen_table):
     people_df = people_df.dropna(subset=[UNIQUE_NUMBER_COLUMN, GENDER_COLUMN])
     return dict(zip(people_df[UNIQUE_NUMBER_COLUMN], people_df[GENDER_COLUMN]))
 
-def stream_average_batches(file_path_prefix, query):
-    plan = build_average_stream_plan(query)
-    if plan is None:
-        return None
+def build_person_frame(file_path_prefix, personen_table, person_columns):
+    personen_path = get_dataset_path(file_path_prefix, personen_table)
+    usecols = [UNIQUE_NUMBER_COLUMN]
+    for column_name in person_columns:
+        if column_name not in usecols:
+            usecols.append(column_name)
 
+    people_df = pd.read_csv(
+        personen_path,
+        delimiter=';',
+        usecols=usecols,
+        dtype=str,
+    )
+    people_df[UNIQUE_NUMBER_COLUMN] = people_df[UNIQUE_NUMBER_COLUMN].fillna("")
+    people_df = people_df.loc[people_df[UNIQUE_NUMBER_COLUMN] != "", usecols]
+    people_df = people_df.drop_duplicates(subset=[UNIQUE_NUMBER_COLUMN], keep="first")
+    for column_name in person_columns:
+        if column_name in people_df.columns:
+            people_df[column_name] = people_df[column_name].fillna("")
+    return people_df
+
+def iter_average_frames(file_path_prefix, plan):
     people_by_id = build_person_lookup(file_path_prefix, plan["personen_table"])
     appointments_path = get_dataset_path(file_path_prefix, plan["appointments_table"])
     total_rows = plan["limit"]
     batch_rows = get_stream_batch_rows()
     rows_emitted = 0
-    sequence = 0
 
     chunk_reader = pd.read_csv(
         appointments_path,
@@ -256,34 +365,146 @@ def stream_average_batches(file_path_prefix, query):
             filtered = filtered.iloc[:remaining_rows]
 
         rows_emitted += len(filtered.index)
-        sequence += 1
-        data, metadata = dataframe_to_protobuf(filtered)
-        yield (
-            data,
-            with_stream_metadata(metadata, sequence, rows_emitted, total_rows, rows_emitted >= total_rows),
-        )
+        yield filtered.reset_index(drop=True)
 
         if rows_emitted >= total_rows:
             return
 
+def build_average_stream_request(file_path_prefix, query):
+    plan = build_average_stream_plan(query)
+    if plan is None:
+        return None
+    return {
+        "frames": iter_average_frames(file_path_prefix, plan),
+        "columns": [GENDER_COLUMN, SALARY_SCALE_COLUMN],
+        "requested_rows": plan["limit"],
+    }
+
+def iter_projection_frames(file_path_prefix, plan):
+    requested_rows = plan["limit"]
+    person_columns = []
+    appointment_columns = []
+    for selected in plan["selected_columns"]:
+        if selected["source"] == "person":
+            if selected["column"] != UNIQUE_NUMBER_COLUMN and selected["column"] not in person_columns:
+                person_columns.append(selected["column"])
+        elif selected["column"] != UNIQUE_NUMBER_COLUMN and selected["column"] not in appointment_columns:
+            appointment_columns.append(selected["column"])
+
+    people_df = build_person_frame(file_path_prefix, plan["personen_table"], person_columns)
+    appointments_path = get_dataset_path(file_path_prefix, plan["appointments_table"])
+    usecols = [UNIQUE_NUMBER_COLUMN] + appointment_columns
+    batch_rows = get_stream_batch_rows()
+    rows_emitted = 0
+
+    chunk_reader = pd.read_csv(
+        appointments_path,
+        delimiter=';',
+        usecols=usecols,
+        dtype=str,
+        chunksize=batch_rows,
+    )
+
+    for chunk in chunk_reader:
+        if rows_emitted >= requested_rows:
+            break
+
+        chunk[UNIQUE_NUMBER_COLUMN] = chunk[UNIQUE_NUMBER_COLUMN].fillna("")
+        for column_name in appointment_columns:
+            chunk[column_name] = chunk[column_name].fillna("")
+
+        merged = chunk.merge(people_df, on=UNIQUE_NUMBER_COLUMN, how="inner")
+        if merged.empty:
+            continue
+
+        projected = pd.DataFrame(
+            {
+                selected["output"]: merged[selected["column"]].fillna("")
+                for selected in plan["selected_columns"]
+            }
+        )
+        projected = projected.astype("string")
+
+        remaining_rows = requested_rows - rows_emitted
+        if len(projected.index) > remaining_rows:
+            projected = projected.iloc[:remaining_rows]
+        if projected.empty:
+            continue
+
+        rows_emitted += len(projected.index)
+        yield projected.reset_index(drop=True)
+
+        if rows_emitted >= requested_rows:
+            return
+
+def build_projection_stream_request(file_path_prefix, query):
+    plan = build_join_stream_plan(query)
+    if plan is None:
+        return None
+    return {
+        "frames": iter_projection_frames(file_path_prefix, plan),
+        "columns": plan["output_columns"],
+        "requested_rows": plan["limit"],
+    }
+
+def stream_frame_batches(frames, columns, requested_rows):
+    rows_emitted = 0
+    sequence = 0
+    for frame in frames:
+        if frame is None or frame.empty:
+            continue
+
+        rows_emitted += len(frame.index)
+        sequence += 1
+        data, metadata = dataframe_to_protobuf(frame)
+        yield (
+            data,
+            with_stream_metadata(metadata, sequence, rows_emitted, requested_rows, rows_emitted >= requested_rows, columns),
+        )
+
+        if rows_emitted >= requested_rows:
+            return
+
     if rows_emitted == 0:
-        data, metadata = dataframe_to_protobuf(empty_average_frame())
-        yield (data, with_stream_metadata(metadata, 1, 0, 0, True))
+        data, metadata = dataframe_to_protobuf(empty_frame(columns))
+        yield (data, with_stream_metadata(metadata, 1, 0, 0, True, columns))
         return
 
-    data, metadata = dataframe_to_protobuf(empty_average_frame())
-    yield (data, with_stream_metadata(metadata, sequence + 1, rows_emitted, rows_emitted, True))
+    data, metadata = dataframe_to_protobuf(empty_frame(columns))
+    yield (data, with_stream_metadata(metadata, sequence + 1, rows_emitted, rows_emitted, True, columns))
+
+def buffer_stream_frames(frames, columns):
+    buffered = [frame for frame in frames if frame is not None and not frame.empty]
+    if not buffered:
+        return empty_frame(columns)
+    return pd.concat(buffered, ignore_index=True)
 
 def process_sql_data_request(sqlDataRequest, ctx):
     global config
     logger.debug("Start process_sql_data_request")
 
     try:
+        use_classic_unary = classic_unary_requested(sqlDataRequest)
+        stream_request = None
         if sqlDataRequest.algorithm == "average":
-            streamed_batches = stream_average_batches(config.dataset_filepath, sqlDataRequest.query)
-            if streamed_batches is not None:
-                yield from streamed_batches
+            stream_request = build_average_stream_request(config.dataset_filepath, sqlDataRequest.query)
+        else:
+            stream_request = build_projection_stream_request(config.dataset_filepath, sqlDataRequest.query)
+
+        if stream_request is not None:
+            if use_classic_unary:
+                buffered_result = buffer_stream_frames(stream_request["frames"], stream_request["columns"])
+                data, metadata = dataframe_to_protobuf(buffered_result)
+                row_count = len(buffered_result.index)
+                yield (data, with_stream_metadata(metadata, 1, row_count, row_count, True, stream_request["columns"]))
                 return
+
+            yield from stream_frame_batches(
+                stream_request["frames"],
+                stream_request["columns"],
+                stream_request["requested_rows"],
+            )
+            return
 
         result = load_and_query_csv(config.dataset_filepath, sqlDataRequest.query)
         logger.debug("after load and query csv")
@@ -293,12 +514,17 @@ def process_sql_data_request(sqlDataRequest, ctx):
         row_count = len(result.index)
         if sqlDataRequest.algorithm != "average":
             data, metadata = dataframe_to_protobuf(result)
-            yield (data, metadata)
+            yield (data, with_stream_metadata(metadata, 1, row_count, row_count, True, list(result.columns)))
+            return
+
+        if use_classic_unary:
+            data, metadata = dataframe_to_protobuf(result)
+            yield (data, with_stream_metadata(metadata, 1, row_count, row_count, True, list(result.columns)))
             return
 
         if row_count == 0:
             data, metadata = dataframe_to_protobuf(result)
-            yield (data, with_stream_metadata(metadata, 1, 0, 0, True))
+            yield (data, with_stream_metadata(metadata, 1, 0, 0, True, list(result.columns)))
             return
 
         batch_rows = get_stream_batch_rows()
@@ -308,7 +534,7 @@ def process_sql_data_request(sqlDataRequest, ctx):
             data, metadata = dataframe_to_protobuf(batch_df)
             yield (
                 data,
-                with_stream_metadata(metadata, sequence, end, row_count, end >= row_count),
+                with_stream_metadata(metadata, sequence, end, row_count, end >= row_count, list(result.columns)),
             )
         return
     except FileNotFoundError:
