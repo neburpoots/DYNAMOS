@@ -1,0 +1,2 @@
+dataset,limit,workload,archetype,providers,temperature,transport,responseMode,sqlBatchRows,rabbitmqChunkRows,runs,okRuns,failedRuns,firstMedian,firstMin,firstMax,doneMedian,doneMin,doneMax,rowsMedian,crossTransportContentMatch,crossTransportRawMatch
+large,100000,bulk,dataThroughTtp,UVA,warm,streaming,batched,5000,100,10,10,0,7.682,5.961,17.033,9.299,7.945,17.985,100000.0,True,True

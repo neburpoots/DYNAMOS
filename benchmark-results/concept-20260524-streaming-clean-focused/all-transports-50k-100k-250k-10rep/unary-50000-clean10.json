@@ -1,0 +1,267 @@
+{
+  "runs": [
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.418,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 2,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.317,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 3,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.421,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 4,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.404,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 5,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.331,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 6,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.346,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 7,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.314,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 8,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.326,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 9,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.342,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 10,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 507, in main\n    for raw_line in response:\n  File \"/usr/lib/python3.12/http/client.py\", line 706, in readline\n    return super().readline(limit)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 698, in peek\n    return self._peek_chunked(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 736, in _peek_chunked\n    chunk_left = self._get_chunk_left()\n                 ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 584, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 544, in _read_next_chunk_size\n    line = self.fp.readline(_MAXLINE + 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 707, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 300.345,
+      "workload": "bulk"
+    }
+  ],
+  "summaries": [
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "benchmark produced no output"
+      ],
+      "failedRuns": 10,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 50000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "batched",
+      "runs": 10,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "bulk"
+    }
+  ]
+}

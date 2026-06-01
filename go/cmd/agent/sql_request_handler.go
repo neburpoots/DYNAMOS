@@ -25,10 +25,13 @@ func sqlDataRequestHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		logger.Debug("Entering sqlDataRequestHandler")
 
-		ctxWithTimeout, cancel := context.WithTimeout(r.Context(), 30*time.Second)
+		ctxWithTimeout, cancel := context.WithTimeout(
+			r.Context(),
+			api.DurationFromEnv("DYNAMOS_HTTP_REQUEST_TIMEOUT", 30*time.Second),
+		)
 		defer cancel()
 
-		// Get the sql data request 
+		// Get the sql data request
 		sqlDataRequest := &pb.SqlDataRequest{}
 		sqlDataRequest.RequestMetadata = &pb.RequestMetadata{}
 

@@ -1,0 +1,32 @@
+{
+  "clientTimeoutSeconds": 1800.0,
+  "elapsedSeconds": 14.259089,
+  "jobId": "jorrit-stutterheim-f44d07d2",
+  "limit": 100000,
+  "observedRows": 100000,
+  "providerResults": [
+    {
+      "bytes": 5194510,
+      "columns": [
+        "Gebdat",
+        "Ingdatdv",
+        "Geslacht",
+        "Salschal",
+        "Unieknr",
+        "Functcat"
+      ],
+      "empty": false,
+      "jsonType": "list",
+      "observedRows": 100000,
+      "sha256": "e1f233cbe3913344ede54703f42113b94aa906625d438db9790ce4d69e9a34de"
+    }
+  ],
+  "providers": [
+    "UVA"
+  ],
+  "requestBytes": 434,
+  "responseBytes": 6394605,
+  "responseSha256": "5339ca54d28172ce4bfe047ff798da9c4bbe23c19146c769c26044c5b3c2205e",
+  "status": 200,
+  "url": "http://127.0.0.1:18080/api/v1/requestApproval"
+}

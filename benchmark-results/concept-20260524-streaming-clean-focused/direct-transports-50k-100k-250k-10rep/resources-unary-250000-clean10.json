@@ -1,0 +1,382 @@
+{
+  "benchmarkResult": {
+    "csv": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/unary-250000-clean10.csv",
+    "json": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/unary-250000-clean10.json",
+    "markdown": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/unary-250000-clean10.md"
+  },
+  "command": [
+    "python3",
+    "/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_matrix.py",
+    "--url",
+    "http://127.0.0.1:18080/api/v1/requestApproval",
+    "--transports",
+    "unary",
+    "--response-modes",
+    "batched",
+    "--workloads",
+    "bulk",
+    "--datasets",
+    "large",
+    "--large-limits",
+    "250000",
+    "--archetypes",
+    "dataThroughTtp",
+    "--provider-sets",
+    "UVA",
+    "--temperature",
+    "warm",
+    "--repetitions",
+    "10",
+    "--timeout",
+    "600",
+    "--sql-batch-rows",
+    "5000",
+    "--rabbitmq-chunk-rows",
+    "100",
+    "--strict",
+    "--require-partial",
+    "--output-dir",
+    "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep",
+    "--name",
+    "unary-250000-clean10"
+  ],
+  "endedEpochSeconds": 1779636801.062723,
+  "excludeContainers": [
+    "POD"
+  ],
+  "namespaces": [
+    "api-gateway",
+    "core",
+    "orchestrator",
+    "surf",
+    "uva",
+    "vu"
+  ],
+  "resourceSummary": {
+    "containerMax": [
+      {
+        "container": "api-gateway",
+        "maxCpuMillicores": 20.0,
+        "maxMemoryBytes": 20971520,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7cb66584f4-pmdsz"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7cb66584f4-pmdsz"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7cb66584f4-pmdsz"
+      },
+      {
+        "container": "debug",
+        "maxCpuMillicores": 0.0,
+        "maxMemoryBytes": 1048576,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 25.0,
+        "maxMemoryBytes": 77594624,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 11.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 21.0,
+        "maxMemoryBytes": 34603008,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 15.0,
+        "maxMemoryBytes": 33554432,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "grafana",
+        "maxCpuMillicores": 11.0,
+        "maxMemoryBytes": 337641472,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "loki",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 171966464,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "promtail",
+        "maxCpuMillicores": 47.0,
+        "maxMemoryBytes": 111149056,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 17.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-bdxrp"
+      },
+      {
+        "container": "rabbitmq",
+        "maxCpuMillicores": 27.0,
+        "maxMemoryBytes": 222298112,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-bdxrp"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-6ff7c4cf5c-ffxgq"
+      },
+      {
+        "container": "orchestrator",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 14680064,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-6ff7c4cf5c-ffxgq"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-6ff7c4cf5c-ffxgq"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-9c5c546c-cdm4g"
+      },
+      {
+        "container": "policy-enforcer",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 13631488,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-9c5c546c-cdm4g"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-9c5c546c-cdm4g"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-5ef68fc4surf1-mb2rz"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-5ef68fc4surf1-mb2rz"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 12.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "surf-78ff675548-grmr8"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 131.0,
+        "maxMemoryBytes": 42991616,
+        "namespace": "surf",
+        "pod": "surf-78ff675548-grmr8"
+      },
+      {
+        "container": "surf",
+        "maxCpuMillicores": 92.0,
+        "maxMemoryBytes": 38797312,
+        "namespace": "surf",
+        "pod": "surf-78ff675548-grmr8"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 8388608,
+        "namespace": "surf",
+        "pod": "surf-ddddbcc9d-b26ts"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 14680064,
+        "namespace": "surf",
+        "pod": "surf-ddddbcc9d-b26ts"
+      },
+      {
+        "container": "surf",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 23068672,
+        "namespace": "surf",
+        "pod": "surf-ddddbcc9d-b26ts"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 67.0,
+        "maxMemoryBytes": 13631488,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-ab65f7cauva1-mtx6d"
+      },
+      {
+        "container": "sql-query",
+        "maxCpuMillicores": 462.0,
+        "maxMemoryBytes": 185597952,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-ab65f7cauva1-mtx6d"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 6.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "uva",
+        "pod": "uva-6fcdccf77-mf4sh"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 123.0,
+        "maxMemoryBytes": 40894464,
+        "namespace": "uva",
+        "pod": "uva-6fcdccf77-mf4sh"
+      },
+      {
+        "container": "uva",
+        "maxCpuMillicores": 67.0,
+        "maxMemoryBytes": 33554432,
+        "namespace": "uva",
+        "pod": "uva-6fcdccf77-mf4sh"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "vu",
+        "pod": "vu-5bbb75bfd9-w4p5h"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "vu",
+        "pod": "vu-5bbb75bfd9-w4p5h"
+      },
+      {
+        "container": "vu",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 11534336,
+        "namespace": "vu",
+        "pod": "vu-5bbb75bfd9-w4p5h"
+      }
+    ],
+    "maxTotalCpuMillicores": 1097.0,
+    "maxTotalMemoryBytes": 1444937728,
+    "namespaceMax": {
+      "api-gateway": {
+        "maxCpuMillicores": 26.0,
+        "maxMemoryBytes": 32505856
+      },
+      "core": {
+        "maxCpuMillicores": 175.0,
+        "maxMemoryBytes": 1010827264
+      },
+      "orchestrator": {
+        "maxCpuMillicores": 6.0,
+        "maxMemoryBytes": 49283072
+      },
+      "surf": {
+        "maxCpuMillicores": 237.0,
+        "maxMemoryBytes": 92274688
+      },
+      "uva": {
+        "maxCpuMillicores": 709.0,
+        "maxMemoryBytes": 270532608
+      },
+      "vu": {
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 20971520
+      }
+    },
+    "sampleCount": 38
+  },
+  "returnCode": 0,
+  "samplingErrors": [],
+  "samplingIntervalSeconds": 5.0,
+  "startedEpochSeconds": 1779636589.5719826,
+  "stderr": "running large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=1/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=2/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=3/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=4/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=5/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=6/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=7/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=8/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=9/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=10/10\n",
+  "stdout": "{\"json\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/unary-250000-clean10.json\", \"csv\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/unary-250000-clean10.csv\", \"markdown\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/unary-250000-clean10.md\"}\n",
+  "wallSeconds": 195.125
+}

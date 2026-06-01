@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#1f2933}.title{font-size:20px;font-weight:700}.label{font-size:13px}.tick{font-size:12px;fill:#52606d}.legend{font-size:13px}.grid{stroke:#d9e2ec;stroke-width:1}.axis{stroke:#243b53;stroke-width:1.4}</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="90" y="38" class="title">First result vs completion at 250k rows</text>
+<line x1="90" y1="415.0" x2="850" y2="415.0" class="grid"/>
+<text x="78" y="419.0" text-anchor="end" class="tick">0</text>
+<line x1="90" y1="357.5" x2="850" y2="357.5" class="grid"/>
+<text x="78" y="361.5" text-anchor="end" class="tick">5</text>
+<line x1="90" y1="300.0" x2="850" y2="300.0" class="grid"/>
+<text x="78" y="304.0" text-anchor="end" class="tick">10</text>
+<line x1="90" y1="242.5" x2="850" y2="242.5" class="grid"/>
+<text x="78" y="246.5" text-anchor="end" class="tick">15</text>
+<line x1="90" y1="185.0" x2="850" y2="185.0" class="grid"/>
+<text x="78" y="189.0" text-anchor="end" class="tick">20</text>
+<line x1="90" y1="127.5" x2="850" y2="127.5" class="grid"/>
+<text x="78" y="131.5" text-anchor="end" class="tick">25</text>
+<line x1="90" y1="70.0" x2="850" y2="70.0" class="grid"/>
+<text x="78" y="74.0" text-anchor="end" class="tick">30</text>
+<line x1="90" y1="70" x2="90" y2="415" class="axis"/>
+<line x1="90" y1="415" x2="850" y2="415" class="axis"/>
+<rect x="130.8" y="105.9" width="51.3" height="309.1" fill="#8ecae6"/>
+<text x="156.5" y="98.9" text-anchor="middle" class="tick">26.9</text>
+<rect x="187.8" y="105.9" width="51.3" height="309.1" fill="#264653"/>
+<text x="213.5" y="98.9" text-anchor="middle" class="tick">26.9</text>
+<text x="185.0" y="437.0" text-anchor="end" class="tick" transform="rotate(-25 185.0 437.0)">classic-unary</text>
+<rect x="320.9" y="347.6" width="51.3" height="67.4" fill="#8ecae6"/>
+<text x="346.5" y="340.6" text-anchor="middle" class="tick">5.9</text>
+<rect x="377.9" y="275.2" width="51.3" height="139.8" fill="#264653"/>
+<text x="403.5" y="268.2" text-anchor="middle" class="tick">12.2</text>
+<text x="375.0" y="437.0" text-anchor="end" class="tick" transform="rotate(-25 375.0 437.0)">unary-batched</text>
+<rect x="510.9" y="340.7" width="51.3" height="74.3" fill="#8ecae6"/>
+<text x="536.5" y="333.7" text-anchor="middle" class="tick">6.5</text>
+<rect x="567.9" y="271.3" width="51.3" height="143.7" fill="#264653"/>
+<text x="593.5" y="264.3" text-anchor="middle" class="tick">12.5</text>
+<text x="565.0" y="437.0" text-anchor="end" class="tick" transform="rotate(-25 565.0 437.0)">gRPC streaming</text>
+<rect x="700.9" y="334.3" width="51.3" height="80.7" fill="#8ecae6"/>
+<text x="726.5" y="327.3" text-anchor="middle" class="tick">7.0</text>
+<rect x="757.9" y="245.3" width="51.3" height="169.7" fill="#264653"/>
+<text x="783.5" y="238.3" text-anchor="middle" class="tick">14.8</text>
+<text x="755.0" y="437.0" text-anchor="end" class="tick" transform="rotate(-25 755.0 437.0)">RabbitMQ Streams</text>
+<rect x="690" y="80" width="16" height="16" fill="#8ecae6"/><text x="714" y="93" class="legend">First result</text>
+<rect x="690" y="106" width="16" height="16" fill="#264653"/><text x="714" y="119" class="legend">Done</text>
+<text x="22" y="242.5" text-anchor="middle" class="label" transform="rotate(-90 22 242.5)">Median time (s)</text>
+</svg>

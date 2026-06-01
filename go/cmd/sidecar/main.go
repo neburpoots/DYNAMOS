@@ -41,7 +41,11 @@ func setupListener() net.Listener {
 }
 
 func setupGRPCServer() (*grpc.Server, *serverInstance) {
-	grpcServer := grpc.NewServer(grpc.StatsHandler(&ocgrpc.ServerHandler{}))
+	serverOptions := append(
+		[]grpc.ServerOption{grpc.StatsHandler(&ocgrpc.ServerHandler{})},
+		lib.GrpcServerOptions()...,
+	)
+	grpcServer := grpc.NewServer(serverOptions...)
 
 	// register RabbitMQ, Etcd, and Microservice services on the gRPC server
 	sideCarServer := &serverInstance{}

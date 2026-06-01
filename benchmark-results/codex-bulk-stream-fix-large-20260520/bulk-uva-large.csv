@@ -1,0 +1,9 @@
+dataset,limit,workload,archetype,providers,temperature,transport,responseMode,sqlBatchRows,rabbitmqChunkRows,runs,okRuns,failedRuns,firstMedian,firstMin,firstMax,doneMedian,doneMin,doneMax,rowsMedian,crossTransportContentMatch,crossTransportRawMatch
+large,50000,bulk,dataThroughTtp,UVA,warm,unary,batched,5000,100,1,1,0,3.089,3.089,3.089,3.567,3.567,3.567,50000.0,True,True
+large,50000,bulk,dataThroughTtp,UVA,warm,unary,classic-unary,5000,100,1,1,0,3.716,3.716,3.716,3.716,3.716,3.716,50000.0,True,True
+large,50000,bulk,dataThroughTtp,UVA,warm,streaming,batched,5000,100,1,1,0,2.903,2.903,2.903,3.073,3.073,3.073,50000.0,True,True
+large,50000,bulk,dataThroughTtp,UVA,warm,rabbitmq-streams,batched,5000,100,1,1,0,2.931,2.931,2.931,3.676,3.676,3.676,50000.0,True,True
+large,250000,bulk,dataThroughTtp,UVA,warm,unary,batched,5000,100,1,1,0,4.108,4.108,4.108,8.941,8.941,8.941,250000.0,True,True
+large,250000,bulk,dataThroughTtp,UVA,warm,unary,classic-unary,5000,100,1,0,1,,,,,,,,True,True
+large,250000,bulk,dataThroughTtp,UVA,warm,streaming,batched,5000,100,1,1,0,2.865,2.865,2.865,6.043,6.043,6.043,250000.0,True,True
+large,250000,bulk,dataThroughTtp,UVA,warm,rabbitmq-streams,batched,5000,100,1,1,0,3.526,3.526,3.526,10.023,10.023,10.023,250000.0,True,True

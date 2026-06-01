@@ -1,0 +1,1488 @@
+{
+  "runs": [
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "7fb130a7d20c95230d40f37d74f09bf7a97c7b70a97c4077390458161f66b9fb",
+      "dataset": "large",
+      "doneSeconds": 4.018993019999925,
+      "errors": [
+        "missing partial providerResult before final"
+      ],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 5000,
+      "finalResultCount": 1,
+      "finalResultHash": "7fb130a7d20c95230d40f37d74f09bf7a97c7b70a97c4077390458161f66b9fb",
+      "firstResultSeconds": 4.018924710000192,
+      "limit": 5000,
+      "observedRows": 5000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 5000,
+          "rowsTotal": 5000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 4,
+      "rawResultHash": "6b9afba6ef9f4d06a7d933d8ccef26b08f7a3e18d9220534fd2e0795fa890be1",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "rowsProcessed": 5000,
+      "rowsTotal": 5000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "wallSeconds": 4.136,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "dataset": "large",
+      "doneSeconds": 2.8826577449999604,
+      "errors": [
+        "missing partial providerResult before final"
+      ],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 5000,
+      "finalResultCount": 1,
+      "finalResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "firstResultSeconds": 2.882620095999755,
+      "limit": 5000,
+      "observedRows": 5000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 5000,
+          "rowsTotal": 5000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 4,
+      "rawResultHash": "78ba9f9c35b5af0df79ea32a41b0e80e1d3aa2227073a0bdd8dbfe95330b18cf",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "rowsProcessed": 5000,
+      "rowsTotal": 5000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "wallSeconds": 2.944,
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "7fb130a7d20c95230d40f37d74f09bf7a97c7b70a97c4077390458161f66b9fb",
+      "dataset": "large",
+      "doneSeconds": 3.835922759999903,
+      "errors": [
+        "missing partial providerResult before final"
+      ],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 5000,
+      "finalResultCount": 1,
+      "finalResultHash": "7fb130a7d20c95230d40f37d74f09bf7a97c7b70a97c4077390458161f66b9fb",
+      "firstResultSeconds": 3.835848652000095,
+      "limit": 5000,
+      "observedRows": 5000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 5000,
+          "rowsTotal": 5000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 4,
+      "rawResultHash": "6b9afba6ef9f4d06a7d933d8ccef26b08f7a3e18d9220534fd2e0795fa890be1",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "rowsProcessed": 5000,
+      "rowsTotal": 5000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 3.96,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "dataset": "large",
+      "doneSeconds": 3.976204313999915,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 10000,
+      "finalResultCount": 1,
+      "finalResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "firstResultSeconds": 3.971443939999972,
+      "limit": 5000,
+      "observedRows": 10000,
+      "ok": true,
+      "partialResultCount": 1,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 10000,
+          "rowsTotal": 10000
+        }
+      },
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 5,
+      "rawResultHash": "e66df12944d3047b16e4123ef4618c2191dc7770db442955feb7a7f4ec994d2f",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 10000,
+      "rowsTotal": 10000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "wallSeconds": 4.043,
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0",
+      "dataset": "large",
+      "doneSeconds": 3.239871848000348,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 10000,
+      "finalResultCount": 1,
+      "finalResultHash": "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0",
+      "firstResultSeconds": 3.233371855000314,
+      "limit": 5000,
+      "observedRows": 10000,
+      "ok": true,
+      "partialResultCount": 1,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 10000,
+          "rowsTotal": 10000
+        }
+      },
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 5,
+      "rawResultHash": "35050ca5b8aabaca8b57a89fb4101650f02d0324dd4dcf392e136a8c8a1fd42e",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 10000,
+      "rowsTotal": 10000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "wallSeconds": 3.443,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "f1b1d6cf91f6634c5d7af39363ca437797d8d70ff0697e3a32230bc63d92083d",
+      "dataset": "large",
+      "doneSeconds": 2.9837525449997884,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 10000,
+      "finalResultCount": 1,
+      "finalResultHash": "f1b1d6cf91f6634c5d7af39363ca437797d8d70ff0697e3a32230bc63d92083d",
+      "firstResultSeconds": 2.9837525449997884,
+      "limit": 5000,
+      "observedRows": 10000,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {},
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 1,
+      "rawResultHash": "df41253a5abedff4c7ad3a9049726daa71ecced77b67ef6f6fe01958d4a4ff55",
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "rowsProcessed": null,
+      "rowsTotal": null,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 3.177,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "7fb130a7d20c95230d40f37d74f09bf7a97c7b70a97c4077390458161f66b9fb",
+      "dataset": "large",
+      "doneSeconds": 2.9934274930001266,
+      "errors": [
+        "missing partial providerResult before final"
+      ],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 5000,
+      "finalResultCount": 1,
+      "finalResultHash": "7fb130a7d20c95230d40f37d74f09bf7a97c7b70a97c4077390458161f66b9fb",
+      "firstResultSeconds": 2.9933593189998646,
+      "limit": 5000,
+      "observedRows": 5000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 5000,
+          "rowsTotal": 5000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 4,
+      "rawResultHash": "6b9afba6ef9f4d06a7d933d8ccef26b08f7a3e18d9220534fd2e0795fa890be1",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "rowsProcessed": 5000,
+      "rowsTotal": 5000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 3.126,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "dataset": "large",
+      "doneSeconds": 3.746414351000112,
+      "errors": [
+        "missing partial providerResult before final"
+      ],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 5000,
+      "finalResultCount": 1,
+      "finalResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "firstResultSeconds": 3.7463940829998137,
+      "limit": 5000,
+      "observedRows": 5000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 5000,
+          "rowsTotal": 5000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 4,
+      "rawResultHash": "78ba9f9c35b5af0df79ea32a41b0e80e1d3aa2227073a0bdd8dbfe95330b18cf",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "rowsProcessed": 5000,
+      "rowsTotal": 5000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 3.812,
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0",
+      "dataset": "large",
+      "doneSeconds": 4.182452576000287,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 10000,
+      "finalResultCount": 1,
+      "finalResultHash": "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0",
+      "firstResultSeconds": 4.132951952999974,
+      "limit": 5000,
+      "observedRows": 10000,
+      "ok": true,
+      "partialResultCount": 1,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 10000,
+          "rowsTotal": 10000
+        }
+      },
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 5,
+      "rawResultHash": "897dceb2ba6ad983139a1f5855b9590160b779fea3f63d42aeb2e9e77c99e06c",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 10000,
+      "rowsTotal": 10000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 4.36,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "dataset": "large",
+      "doneSeconds": 3.9925262860001567,
+      "errors": [
+        "missing partial providerResult before final"
+      ],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 5000,
+      "finalResultCount": 1,
+      "finalResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "firstResultSeconds": 3.992505462000281,
+      "limit": 5000,
+      "observedRows": 5000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 5000,
+          "rowsTotal": 5000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 4,
+      "rawResultHash": "78ba9f9c35b5af0df79ea32a41b0e80e1d3aa2227073a0bdd8dbfe95330b18cf",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "rowsProcessed": 5000,
+      "rowsTotal": 5000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 4.046,
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "dataset": "large",
+      "doneSeconds": 4.141081684000255,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 10000,
+      "finalResultCount": 1,
+      "finalResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "firstResultSeconds": 4.0909694050001235,
+      "limit": 5000,
+      "observedRows": 10000,
+      "ok": true,
+      "partialResultCount": 1,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 10000,
+          "rowsTotal": 10000
+        }
+      },
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 5,
+      "rawResultHash": "e66df12944d3047b16e4123ef4618c2191dc7770db442955feb7a7f4ec994d2f",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 10000,
+      "rowsTotal": 10000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 4.198,
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "cd29c657d554a0e220883e21cc5b17d03107ee73721241241f9065f6e6b3baea",
+      "dataset": "large",
+      "doneSeconds": 2.8954970039999353,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 5000,
+      "finalResultCount": 1,
+      "finalResultHash": "cd29c657d554a0e220883e21cc5b17d03107ee73721241241f9065f6e6b3baea",
+      "firstResultSeconds": 2.8954970039999353,
+      "limit": 5000,
+      "observedRows": 5000,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {},
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 1,
+      "rawResultHash": "0ebf6a73a3649431024cbf5d2f368a20679ee6ea74c121a8922aa99cd5d7f15d",
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "rowsProcessed": null,
+      "rowsTotal": null,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 3.03,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "dataset": "large",
+      "doneSeconds": 4.029441061000398,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 10000,
+      "finalResultCount": 1,
+      "finalResultHash": "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951",
+      "firstResultSeconds": 4.017681615000129,
+      "limit": 5000,
+      "observedRows": 10000,
+      "ok": true,
+      "partialResultCount": 1,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 10000,
+          "rowsTotal": 10000
+        }
+      },
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 5,
+      "rawResultHash": "e66df12944d3047b16e4123ef4618c2191dc7770db442955feb7a7f4ec994d2f",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 10000,
+      "rowsTotal": 10000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 4.093,
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "aded130c7232ce631434d10ccf9e4846c18fcf4e59f06b90bc14b0b9ce056d03",
+      "dataset": "large",
+      "doneSeconds": 2.983363608000218,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": null,
+      "finalResultCount": 1,
+      "finalResultHash": "aded130c7232ce631434d10ccf9e4846c18fcf4e59f06b90bc14b0b9ce056d03",
+      "firstResultSeconds": 2.983363608000218,
+      "limit": 5000,
+      "observedRows": null,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {},
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 1,
+      "rawResultHash": "a50bb49a8c02febbe035daadc9d190707f919424db45c513964137d3a57ec321",
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "rowsProcessed": null,
+      "rowsTotal": null,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 3.049,
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "aded130c7232ce631434d10ccf9e4846c18fcf4e59f06b90bc14b0b9ce056d03",
+      "dataset": "large",
+      "doneSeconds": 2.9101434560002417,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": null,
+      "finalResultCount": 1,
+      "finalResultHash": "aded130c7232ce631434d10ccf9e4846c18fcf4e59f06b90bc14b0b9ce056d03",
+      "firstResultSeconds": 2.9101434560002417,
+      "limit": 5000,
+      "observedRows": null,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerRows": {},
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 1,
+      "rawResultHash": "a50bb49a8c02febbe035daadc9d190707f919424db45c513964137d3a57ec321",
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "rowsProcessed": null,
+      "rowsTotal": null,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 2.971,
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0",
+      "dataset": "large",
+      "doneSeconds": 4.160829310999816,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 10000,
+      "finalResultCount": 1,
+      "finalResultHash": "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0",
+      "firstResultSeconds": 4.128370963999714,
+      "limit": 5000,
+      "observedRows": 10000,
+      "ok": true,
+      "partialResultCount": 1,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 10000,
+          "rowsTotal": 10000
+        }
+      },
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 5,
+      "rawResultHash": "897dceb2ba6ad983139a1f5855b9590160b779fea3f63d42aeb2e9e77c99e06c",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 10000,
+      "rowsTotal": 10000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 4.354,
+      "workload": "bulk"
+    }
+  ],
+  "summaries": [
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        [
+          "missing partial providerResult before final"
+        ]
+      ],
+      "failedRuns": 1,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "cd29c657d554a0e220883e21cc5b17d03107ee73721241241f9065f6e6b3baea"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 2.895,
+        "median": 2.895,
+        "min": 2.895
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "cd29c657d554a0e220883e21cc5b17d03107ee73721241241f9065f6e6b3baea"
+      ],
+      "firstResultSeconds": {
+        "max": 2.895,
+        "median": 2.895,
+        "min": 2.895
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 5000,
+        "median": 5000.0,
+        "min": 5000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "0ebf6a73a3649431024cbf5d2f368a20679ee6ea74c121a8922aa99cd5d7f15d"
+      ],
+      "responseMode": "classic-unary",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        [
+          "missing partial providerResult before final"
+        ]
+      ],
+      "failedRuns": 1,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        [
+          "missing partial providerResult before final"
+        ]
+      ],
+      "failedRuns": 1,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": false,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 4.161,
+        "median": 4.161,
+        "min": 4.161
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0"
+      ],
+      "firstResultSeconds": {
+        "max": 4.128,
+        "median": 4.128,
+        "min": 4.128
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 10000,
+        "median": 10000.0,
+        "min": 10000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "897dceb2ba6ad983139a1f5855b9590160b779fea3f63d42aeb2e9e77c99e06c"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "f1b1d6cf91f6634c5d7af39363ca437797d8d70ff0697e3a32230bc63d92083d"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 2.984,
+        "median": 2.984,
+        "min": 2.984
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "f1b1d6cf91f6634c5d7af39363ca437797d8d70ff0697e3a32230bc63d92083d"
+      ],
+      "firstResultSeconds": {
+        "max": 2.984,
+        "median": 2.984,
+        "min": 2.984
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 10000,
+        "median": 10000.0,
+        "min": 10000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "df41253a5abedff4c7ad3a9049726daa71ecced77b67ef6f6fe01958d4a4ff55"
+      ],
+      "responseMode": "classic-unary",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": false,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 3.24,
+        "median": 3.24,
+        "min": 3.24
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0"
+      ],
+      "firstResultSeconds": {
+        "max": 3.233,
+        "median": 3.233,
+        "min": 3.233
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 10000,
+        "median": 10000.0,
+        "min": 10000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "35050ca5b8aabaca8b57a89fb4101650f02d0324dd4dcf392e136a8c8a1fd42e"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": false,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 4.182,
+        "median": 4.182,
+        "min": 4.182
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "628db8e2b812b3fdb2acf04a92848059b37a7a3bd74c78660c875eac6b6c43f0"
+      ],
+      "firstResultSeconds": {
+        "max": 4.133,
+        "median": 4.133,
+        "min": 4.133
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 10000,
+        "median": 10000.0,
+        "min": 10000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "897dceb2ba6ad983139a1f5855b9590160b779fea3f63d42aeb2e9e77c99e06c"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        [
+          "missing partial providerResult before final"
+        ]
+      ],
+      "failedRuns": 1,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "aded130c7232ce631434d10ccf9e4846c18fcf4e59f06b90bc14b0b9ce056d03"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 2.91,
+        "median": 2.91,
+        "min": 2.91
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "aded130c7232ce631434d10ccf9e4846c18fcf4e59f06b90bc14b0b9ce056d03"
+      ],
+      "firstResultSeconds": {
+        "max": 2.91,
+        "median": 2.91,
+        "min": 2.91
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "a50bb49a8c02febbe035daadc9d190707f919424db45c513964137d3a57ec321"
+      ],
+      "responseMode": "classic-unary",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        [
+          "missing partial providerResult before final"
+        ]
+      ],
+      "failedRuns": 1,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        [
+          "missing partial providerResult before final"
+        ]
+      ],
+      "failedRuns": 1,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 4.029,
+        "median": 4.029,
+        "min": 4.029
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951"
+      ],
+      "firstResultSeconds": {
+        "max": 4.018,
+        "median": 4.018,
+        "min": 4.018
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 10000,
+        "median": 10000.0,
+        "min": 10000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "e66df12944d3047b16e4123ef4618c2191dc7770db442955feb7a7f4ec994d2f"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "aded130c7232ce631434d10ccf9e4846c18fcf4e59f06b90bc14b0b9ce056d03"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 2.983,
+        "median": 2.983,
+        "min": 2.983
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "aded130c7232ce631434d10ccf9e4846c18fcf4e59f06b90bc14b0b9ce056d03"
+      ],
+      "firstResultSeconds": {
+        "max": 2.983,
+        "median": 2.983,
+        "min": 2.983
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "a50bb49a8c02febbe035daadc9d190707f919424db45c513964137d3a57ec321"
+      ],
+      "responseMode": "classic-unary",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 3.976,
+        "median": 3.976,
+        "min": 3.976
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951"
+      ],
+      "firstResultSeconds": {
+        "max": 3.971,
+        "median": 3.971,
+        "min": 3.971
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 10000,
+        "median": 10000.0,
+        "min": 10000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "e66df12944d3047b16e4123ef4618c2191dc7770db442955feb7a7f4ec994d2f"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "workload": "average"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 4.141,
+        "median": 4.141,
+        "min": 4.141
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "846e750eff3f8e0a255d637ad6e7c509de21a35bb71358706c16306897244951"
+      ],
+      "firstResultSeconds": {
+        "max": 4.091,
+        "median": 4.091,
+        "min": 4.091
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 10000,
+        "median": 10000.0,
+        "min": 10000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "e66df12944d3047b16e4123ef4618c2191dc7770db442955feb7a7f4ec994d2f"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "workload": "average"
+    }
+  ]
+}

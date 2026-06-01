@@ -1,0 +1,9 @@
+running main classic limit=100000 providers=UVA rep=1/3
+running main classic limit=250000 providers=UVA rep=1/3
+running main classic limit=50000 providers=UVA rep=1/3
+running main classic limit=100000 providers=UVA rep=2/3
+running main classic limit=250000 providers=UVA rep=2/3
+running main classic limit=50000 providers=UVA rep=2/3
+running main classic limit=100000 providers=UVA rep=3/3
+running main classic limit=250000 providers=UVA rep=3/3
+running main classic limit=50000 providers=UVA rep=3/3

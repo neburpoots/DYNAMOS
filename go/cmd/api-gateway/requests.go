@@ -14,14 +14,17 @@ import (
 	"github.com/Jorrit05/DYNAMOS/pkg/lib"
 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"go.opencensus.io/trace/propagation"
 	"go.opencensus.io/trace"
+	"go.opencensus.io/trace/propagation"
 )
 
 func requestHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		logger.Debug("Starting requestApprovalHandler")
-		ctxWithTimeout, cancel := context.WithTimeout(r.Context(), 30*time.Second)
+		ctxWithTimeout, cancel := context.WithTimeout(
+			r.Context(),
+			api.DurationFromEnv("DYNAMOS_HTTP_REQUEST_TIMEOUT", 30*time.Second),
+		)
 		defer cancel()
 
 		// Start a new span with the context that has a timeout

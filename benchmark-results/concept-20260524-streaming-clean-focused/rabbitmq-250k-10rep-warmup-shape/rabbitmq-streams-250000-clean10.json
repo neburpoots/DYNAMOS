@@ -1,0 +1,259 @@
+{
+  "runs": [
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 400, in main\n    with urllib.request.urlopen(request, timeout=args.timeout) as response:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1373, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1348, in do_open\n    r = h.getresponse()\n        ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 1448, in getresponse\n    response.begin()\n  File \"/usr/lib/python3.12/http/client.py\", line 336, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 305, in _read_status\n    raise RemoteDisconnected(\"Remote end closed connection without\"\nhttp.client.RemoteDisconnected: Remote end closed connection without response",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 5.802,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced no output",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 2,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 666, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_ndjson.py\", line 400, in main\n    with urllib.request.urlopen(request, timeout=args.timeout) as response:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1373, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1348, in do_open\n    r = h.getresponse()\n        ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 1448, in getresponse\n    response.begin()\n  File \"/usr/lib/python3.12/http/client.py\", line 336, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 305, in _read_status\n    raise RemoteDisconnected(\"Remote end closed connection without\"\nhttp.client.RemoteDisconnected: Remote end closed connection without response",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.214,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "<urlopen error [Errno 111] Connection refused>",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 3,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.177,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "<urlopen error [Errno 111] Connection refused>",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 4,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.203,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "<urlopen error [Errno 111] Connection refused>",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 5,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.143,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "<urlopen error [Errno 111] Connection refused>",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 6,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.113,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "<urlopen error [Errno 111] Connection refused>",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 7,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.138,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "<urlopen error [Errno 111] Connection refused>",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 8,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.15,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "<urlopen error [Errno 111] Connection refused>",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 9,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.141,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "<urlopen error [Errno 111] Connection refused>",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 10,
+      "responseMode": "batched",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 0.148,
+      "workload": "bulk"
+    }
+  ],
+  "summaries": [
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        "benchmark produced no output",
+        "benchmark produced no output",
+        "<urlopen error [Errno 111] Connection refused>",
+        "<urlopen error [Errno 111] Connection refused>",
+        "<urlopen error [Errno 111] Connection refused>",
+        "<urlopen error [Errno 111] Connection refused>",
+        "<urlopen error [Errno 111] Connection refused>",
+        "<urlopen error [Errno 111] Connection refused>",
+        "<urlopen error [Errno 111] Connection refused>",
+        "<urlopen error [Errno 111] Connection refused>"
+      ],
+      "failedRuns": 10,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 250000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "batched",
+      "runs": 10,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "workload": "bulk"
+    }
+  ]
+}

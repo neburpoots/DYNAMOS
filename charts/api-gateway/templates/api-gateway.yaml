@@ -23,6 +23,8 @@ spec:
         env:
         - name: OC_AGENT_HOST
           value: {{ .Values.tracingEndpoint }}
+        - name: DYNAMOS_HTTP_REQUEST_TIMEOUT
+          value: {{ .Values.httpRequestTimeout | default "30s" | quote }}
         # resources:
         #   requests:
         #     memory: "128Mi"

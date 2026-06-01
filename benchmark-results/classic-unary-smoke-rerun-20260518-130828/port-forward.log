@@ -1,0 +1,12 @@
+Forwarding from 127.0.0.1:18080 -> 8080
+Handling connection for 18080
+Handling connection for 18080
+Handling connection for 18080
+Handling connection for 18080
+Handling connection for 18080
+Handling connection for 18080
+Handling connection for 18080
+Handling connection for 18080
+E0518 13:09:18.400898   25323 portforward.go:404] "Unhandled Error" err="error copying from local connection to remote stream: writeto tcp4 127.0.0.1:18080->127.0.0.1:60432: read tcp4 127.0.0.1:18080->127.0.0.1:60432: read: connection reset by peer"
+Handling connection for 18080
+Handling connection for 18080

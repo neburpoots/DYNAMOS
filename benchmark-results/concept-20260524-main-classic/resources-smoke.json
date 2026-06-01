@@ -1,0 +1,57 @@
+{
+  "benchmarkResult": null,
+  "command": [
+    "python3",
+    "-c",
+    "print('{\\",
+    "ok\\: true}')"
+  ],
+  "endedEpochSeconds": 1779618715.8712015,
+  "excludeContainers": [
+    "POD"
+  ],
+  "namespaces": [
+    "api-gateway"
+  ],
+  "resourceSummary": {
+    "containerMax": [
+      {
+        "container": "api-gateway",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 9437184,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-58d64685f8-w48r7"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-58d64685f8-w48r7"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-58d64685f8-w48r7"
+      }
+    ],
+    "maxTotalCpuMillicores": 3.0,
+    "maxTotalMemoryBytes": 17825792,
+    "namespaceMax": {
+      "api-gateway": {
+        "maxCpuMillicores": 3.0,
+        "maxMemoryBytes": 17825792
+      }
+    },
+    "sampleCount": 2
+  },
+  "returnCode": 1,
+  "samplingErrors": [],
+  "samplingIntervalSeconds": 1.0,
+  "startedEpochSeconds": 1779618714.588246,
+  "stderr": "  File \"<string>\", line 1\n    print('{\\\n          ^\nSyntaxError: unterminated string literal (detected at line 1)\n",
+  "stdout": "",
+  "wallSeconds": 1.283
+}

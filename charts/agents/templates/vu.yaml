@@ -37,6 +37,10 @@ spec:
           value: {{ .Values.imagePullPolicy | default "Always" | quote }}
         - name: SIDECAR_IMAGE_PULL_POLICY
           value: {{ .Values.imagePullPolicy | default "Always" | quote }}
+        - name: DYNAMOS_HTTP_REQUEST_TIMEOUT
+          value: {{ .Values.httpRequestTimeout | default "30s" | quote }}
+        - name: DYNAMOS_QUEUE_DELETE_AFTER_SECONDS
+          value: {{ .Values.queueDeleteAfterSeconds | default "600" | quote }}
       - name: sidecar
         image: {{ .Values.dockerArtifactAccount }}/sidecar:{{ .Values.branchNameTag }}
         imagePullPolicy: {{ .Values.imagePullPolicy | default "Always" }}

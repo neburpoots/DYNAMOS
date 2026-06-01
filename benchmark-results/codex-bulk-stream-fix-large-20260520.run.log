@@ -1,0 +1,9 @@
+running large limit=50000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=1/1
+running large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=1/1
+running large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=classic-unary rep=1/1
+running large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=classic-unary rep=1/1
+running large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=1/1
+running large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=1/1
+running large limit=250000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=1/1
+running large limit=50000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=1/1
+{"json": "benchmark-results/codex-bulk-stream-fix-large-20260520/bulk-uva-large.json", "csv": "benchmark-results/codex-bulk-stream-fix-large-20260520/bulk-uva-large.csv", "markdown": "benchmark-results/codex-bulk-stream-fix-large-20260520/bulk-uva-large.md"}

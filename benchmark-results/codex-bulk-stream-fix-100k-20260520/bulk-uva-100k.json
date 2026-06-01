@@ -1,0 +1,405 @@
+{
+  "runs": [
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c",
+      "dataset": "large",
+      "doneSeconds": 4.947970008000084,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 100000,
+      "finalResultCount": 1,
+      "finalResultHash": "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c",
+      "firstResultSeconds": 2.4238109859998076,
+      "limit": 100000,
+      "observedRows": 100000,
+      "ok": true,
+      "partialResultCount": 19,
+      "providerErrorCount": 0,
+      "providerResultCount": 20,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 100000,
+          "rowsTotal": 100000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 23,
+      "rawResultHash": "1c559039ed371f2ee4ffbee1c61ce3226d2b145b9293cdee5f625b942750a75c",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 100000,
+      "rowsTotal": 100000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "wallSeconds": 6.7,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c",
+      "dataset": "large",
+      "doneSeconds": 4.274465664000672,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 100000,
+      "finalResultCount": 1,
+      "finalResultHash": "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c",
+      "firstResultSeconds": 3.059188656000515,
+      "limit": 100000,
+      "observedRows": 100000,
+      "ok": true,
+      "partialResultCount": 19,
+      "providerErrorCount": 0,
+      "providerResultCount": 20,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 100000,
+          "rowsTotal": 100000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 23,
+      "rawResultHash": "1c559039ed371f2ee4ffbee1c61ce3226d2b145b9293cdee5f625b942750a75c",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 100000,
+      "rowsTotal": 100000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 6.013,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHash": "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c",
+      "dataset": "large",
+      "doneSeconds": 5.281497653999395,
+      "errors": [],
+      "events": [
+        "job",
+        "providerAccepted",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "providerResult",
+        "done"
+      ],
+      "expectedRows": 100000,
+      "finalResultCount": 1,
+      "finalResultHash": "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c",
+      "firstResultSeconds": 3.9875779229996624,
+      "limit": 100000,
+      "observedRows": 100000,
+      "ok": true,
+      "partialResultCount": 19,
+      "providerErrorCount": 0,
+      "providerResultCount": 20,
+      "providerRows": {
+        "SURF": {
+          "rowsProcessed": 100000,
+          "rowsTotal": 100000
+        }
+      },
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 23,
+      "rawResultHash": "1c559039ed371f2ee4ffbee1c61ce3226d2b145b9293cdee5f625b942750a75c",
+      "repetition": 1,
+      "responseMode": "batched",
+      "returnCode": 0,
+      "rowsProcessed": 100000,
+      "rowsTotal": 100000,
+      "sequenceErrors": [],
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "wallSeconds": 7.166,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "{\n    \"jobId\": \"jorrit-stutterheim-246b64f6\",\n    \"providerErrors\": [\n        {\n            \"provider\": \"SURF\",\n            \"error\": \"Post \\\"http://surf.surf.svc.cluster.local:8080/agent/v1/sqlDataRequest/surf\\\": context deadline exceeded\"\n        }\n    ],\n    \"responses\": []\n}",
+      "httpStatus": 502,
+      "limit": 100000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 1800.124,
+      "workload": "bulk"
+    }
+  ],
+  "summaries": [
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 4.274,
+        "median": 4.274,
+        "min": 4.274
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c"
+      ],
+      "firstResultSeconds": {
+        "max": 3.059,
+        "median": 3.059,
+        "min": 3.059
+      },
+      "limit": 100000,
+      "observedRows": {
+        "max": 100000,
+        "median": 100000.0,
+        "min": 100000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "1c559039ed371f2ee4ffbee1c61ce3226d2b145b9293cdee5f625b942750a75c"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        "{\n    \"jobId\": \"jorrit-stutterheim-246b64f6\",\n    \"providerErrors\": [\n        {\n            \"provider\": \"SURF\",\n            \"error\": \"Post \\\"http://surf.surf.svc.cluster.local:8080/agent/v1/sqlDataRequest/surf\\\": context deadline exceeded\"\n        }\n    ],\n    \"responses\": []\n}"
+      ],
+      "failedRuns": 1,
+      "finalResultHashes": [],
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 100000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [],
+      "responseMode": "classic-unary",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "unary",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 5.281,
+        "median": 5.281,
+        "min": 5.281
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c"
+      ],
+      "firstResultSeconds": {
+        "max": 3.988,
+        "median": 3.988,
+        "min": 3.988
+      },
+      "limit": 100000,
+      "observedRows": {
+        "max": 100000,
+        "median": 100000.0,
+        "min": 100000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "1c559039ed371f2ee4ffbee1c61ce3226d2b145b9293cdee5f625b942750a75c"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "streaming",
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c"
+      ],
+      "crossTransportContentMatch": true,
+      "crossTransportRawMatch": true,
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 4.948,
+        "median": 4.948,
+        "min": 4.948
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "615054caccb5aa136676a0789f4e0b766e39ea3910a5311a25ba4ba42fbb110c"
+      ],
+      "firstResultSeconds": {
+        "max": 2.424,
+        "median": 2.424,
+        "min": 2.424
+      },
+      "limit": 100000,
+      "observedRows": {
+        "max": 100000,
+        "median": 100000.0,
+        "min": 100000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rabbitmqChunkRows": "100",
+      "rawResultHashes": [
+        "1c559039ed371f2ee4ffbee1c61ce3226d2b145b9293cdee5f625b942750a75c"
+      ],
+      "responseMode": "batched",
+      "runs": 1,
+      "sqlBatchRows": "5000",
+      "temperature": "warm",
+      "transport": "rabbitmq-streams",
+      "workload": "bulk"
+    }
+  ]
+}

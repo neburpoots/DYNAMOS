@@ -2,6 +2,8 @@ package lib
 
 import (
 	"context"
+	"os"
+	"strconv"
 	"time"
 
 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
@@ -9,6 +11,45 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
+
+const defaultGrpcMaxMessageBytes = 64 * 1024 * 1024
+
+func GrpcMaxMessageBytes() int {
+	rawValue := os.Getenv("DYNAMOS_GRPC_MAX_MESSAGE_BYTES")
+	if rawValue == "" {
+		return defaultGrpcMaxMessageBytes
+	}
+
+	value, err := strconv.Atoi(rawValue)
+	if err != nil || value <= 0 {
+		logger.Sugar().Warnf(
+			"invalid DYNAMOS_GRPC_MAX_MESSAGE_BYTES %q, using %d",
+			rawValue,
+			defaultGrpcMaxMessageBytes,
+		)
+		return defaultGrpcMaxMessageBytes
+	}
+
+	return value
+}
+
+func GrpcServerOptions() []grpc.ServerOption {
+	maxMessageBytes := GrpcMaxMessageBytes()
+	return []grpc.ServerOption{
+		grpc.MaxRecvMsgSize(maxMessageBytes),
+		grpc.MaxSendMsgSize(maxMessageBytes),
+	}
+}
+
+func GrpcClientOptions() []grpc.DialOption {
+	maxMessageBytes := GrpcMaxMessageBytes()
+	return []grpc.DialOption{
+		grpc.WithDefaultCallOptions(
+			grpc.MaxCallRecvMsgSize(maxMessageBytes),
+			grpc.MaxCallSendMsgSize(maxMessageBytes),
+		),
+	}
+}
 
 // GetGrpcConnection establishes a gRPC connection to the specified address.
 // It returns a *grpc.ClientConn if the connection is successfully established,
@@ -21,8 +62,12 @@ import (
 func GetGrpcConnection(grpcAddr string) *grpc.ClientConn {
 	var conn *grpc.ClientConn
 	var err error
-	conn, err = grpc.NewClient(grpcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithStatsHandler(new(ocgrpc.ClientHandler)))
+	dialOptions := []grpc.DialOption{
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithStatsHandler(new(ocgrpc.ClientHandler)),
+	}
+	dialOptions = append(dialOptions, GrpcClientOptions()...)
+	conn, err = grpc.NewClient(grpcAddr, dialOptions...)
 
 	if err != nil {
 		logger.Sugar().Fatalw("could not establish connection with grpc: %v", err)

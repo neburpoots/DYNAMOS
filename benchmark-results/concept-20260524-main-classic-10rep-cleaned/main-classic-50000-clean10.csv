@@ -1,0 +1,2 @@
+dataset,limit,workload,archetype,providers,temperature,transport,responseMode,runs,okRuns,failedRuns,firstMedian,firstMin,firstMax,doneMedian,doneMin,doneMax,rowsMedian,responseBytesMedian
+large,50000,bulk,dataThroughTtp,UVA,warm,unary,classic-unary,10,10,0,12.24,11.663,15.868,12.24,11.663,15.868,50000.0,3197382.0

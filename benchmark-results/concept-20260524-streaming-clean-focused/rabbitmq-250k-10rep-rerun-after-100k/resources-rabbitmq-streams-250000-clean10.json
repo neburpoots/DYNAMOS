@@ -1,0 +1,445 @@
+{
+  "benchmarkResult": {
+    "csv": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/rabbitmq-250k-10rep-rerun-after-100k/rabbitmq-streams-250000-clean10.csv",
+    "json": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/rabbitmq-250k-10rep-rerun-after-100k/rabbitmq-streams-250000-clean10.json",
+    "markdown": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/rabbitmq-250k-10rep-rerun-after-100k/rabbitmq-streams-250000-clean10.md"
+  },
+  "command": [
+    "python3",
+    "/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_matrix.py",
+    "--url",
+    "http://127.0.0.1:18080/api/v1/requestApproval",
+    "--transports",
+    "rabbitmq-streams",
+    "--response-modes",
+    "batched",
+    "--workloads",
+    "bulk",
+    "--datasets",
+    "large",
+    "--large-limits",
+    "250000",
+    "--archetypes",
+    "dataThroughTtp",
+    "--provider-sets",
+    "UVA",
+    "--temperature",
+    "warm",
+    "--repetitions",
+    "10",
+    "--timeout",
+    "120",
+    "--sql-batch-rows",
+    "5000",
+    "--rabbitmq-chunk-rows",
+    "100",
+    "--strict",
+    "--require-partial",
+    "--output-dir",
+    "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/rabbitmq-250k-10rep-rerun-after-100k",
+    "--name",
+    "rabbitmq-streams-250000-clean10"
+  ],
+  "endedEpochSeconds": 1779645651.3107738,
+  "excludeContainers": [
+    "POD"
+  ],
+  "namespaces": [
+    "api-gateway",
+    "core",
+    "orchestrator",
+    "surf",
+    "uva",
+    "vu"
+  ],
+  "resourceSummary": {
+    "containerMax": [
+      {
+        "container": "api-gateway",
+        "maxCpuMillicores": 16.0,
+        "maxMemoryBytes": 29360128,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-77fd9b98db-vs44l"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-77fd9b98db-vs44l"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 8388608,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-77fd9b98db-vs44l"
+      },
+      {
+        "container": "debug",
+        "maxCpuMillicores": 0.0,
+        "maxMemoryBytes": 0,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 18.0,
+        "maxMemoryBytes": 72351744,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 10.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 15.0,
+        "maxMemoryBytes": 33554432,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 17.0,
+        "maxMemoryBytes": 33554432,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "grafana",
+        "maxCpuMillicores": 15.0,
+        "maxMemoryBytes": 282066944,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "loki",
+        "maxCpuMillicores": 8.0,
+        "maxMemoryBytes": 185597952,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "promtail",
+        "maxCpuMillicores": 47.0,
+        "maxMemoryBytes": 102760448,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 31.0,
+        "maxMemoryBytes": 11534336,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-j7bvb"
+      },
+      {
+        "container": "rabbitmq",
+        "maxCpuMillicores": 62.0,
+        "maxMemoryBytes": 813694976,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-j7bvb"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7f58d97c57-vb8j6"
+      },
+      {
+        "container": "orchestrator",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 20971520,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7f58d97c57-vb8j6"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7f58d97c57-vb8j6"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-5c69cb66cf-zthck"
+      },
+      {
+        "container": "policy-enforcer",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 19922944,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-5c69cb66cf-zthck"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-5c69cb66cf-zthck"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 61.0,
+        "maxMemoryBytes": 15728640,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-449dd012surf1-rwcjj"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 41.0,
+        "maxMemoryBytes": 17825792,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-449dd012surf1-rwcjj"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 42.0,
+        "maxMemoryBytes": 19922944,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-449dd012surf1-rwcjj"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 94.0,
+        "maxMemoryBytes": 15728640,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-4f0f98c0surf1-ld796"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 115.0,
+        "maxMemoryBytes": 19922944,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-9bd9bd33surf1-n4mcm"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 83.0,
+        "maxMemoryBytes": 15728640,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-9bd9bd33surf1-n4mcm"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 86.0,
+        "maxMemoryBytes": 18874368,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-9bd9bd33surf1-n4mcm"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 14.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "surf",
+        "pod": "surf-5b7d5f545-c57jb"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 143.0,
+        "maxMemoryBytes": 47185920,
+        "namespace": "surf",
+        "pod": "surf-5b7d5f545-c57jb"
+      },
+      {
+        "container": "surf",
+        "maxCpuMillicores": 87.0,
+        "maxMemoryBytes": 36700160,
+        "namespace": "surf",
+        "pod": "surf-5b7d5f545-c57jb"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 78.0,
+        "maxMemoryBytes": 18874368,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-36937151uva1-2sn8z"
+      },
+      {
+        "container": "sql-query",
+        "maxCpuMillicores": 376.0,
+        "maxMemoryBytes": 159383552,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-36937151uva1-2sn8z"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 71.0,
+        "maxMemoryBytes": 15728640,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-449dd012uva1-t7nvs"
+      },
+      {
+        "container": "sql-query",
+        "maxCpuMillicores": 279.0,
+        "maxMemoryBytes": 153092096,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-449dd012uva1-t7nvs"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 108.0,
+        "maxMemoryBytes": 18874368,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-4f0f98c0uva1-xdzpl"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 130.0,
+        "maxMemoryBytes": 18874368,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-9bd9bd33uva1-c9zgx"
+      },
+      {
+        "container": "sql-query",
+        "maxCpuMillicores": 554.0,
+        "maxMemoryBytes": 204472320,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-9bd9bd33uva1-c9zgx"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 67.0,
+        "maxMemoryBytes": 16777216,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-bfb611f2uva1-j22np"
+      },
+      {
+        "container": "sql-query",
+        "maxCpuMillicores": 300.0,
+        "maxMemoryBytes": 159383552,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-bfb611f2uva1-j22np"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 12.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "uva",
+        "pod": "uva-5d8c84b65c-9zjkj"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 177.0,
+        "maxMemoryBytes": 35651584,
+        "namespace": "uva",
+        "pod": "uva-5d8c84b65c-9zjkj"
+      },
+      {
+        "container": "uva",
+        "maxCpuMillicores": 65.0,
+        "maxMemoryBytes": 36700160,
+        "namespace": "uva",
+        "pod": "uva-5d8c84b65c-9zjkj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "vu",
+        "pod": "vu-d66545886-fch7r"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "vu",
+        "pod": "vu-d66545886-fch7r"
+      },
+      {
+        "container": "vu",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "vu",
+        "pod": "vu-d66545886-fch7r"
+      }
+    ],
+    "maxTotalCpuMillicores": 1687.0,
+    "maxTotalMemoryBytes": 1798307840,
+    "namespaceMax": {
+      "api-gateway": {
+        "maxCpuMillicores": 22.0,
+        "maxMemoryBytes": 41943040
+      },
+      "core": {
+        "maxCpuMillicores": 219.0,
+        "maxMemoryBytes": 1528823808
+      },
+      "orchestrator": {
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 61865984
+      },
+      "surf": {
+        "maxCpuMillicores": 506.0,
+        "maxMemoryBytes": 136314880
+      },
+      "uva": {
+        "maxCpuMillicores": 932.0,
+        "maxMemoryBytes": 287309824
+      },
+      "vu": {
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 19922944
+      }
+    },
+    "sampleCount": 44
+  },
+  "returnCode": 0,
+  "samplingErrors": [],
+  "samplingIntervalSeconds": 5.0,
+  "startedEpochSeconds": 1779645401.2910955,
+  "stderr": "running large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=1/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=2/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=3/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=4/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=5/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=6/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=7/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=8/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=9/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp rabbitmq-streams response-mode=batched rep=10/10\n",
+  "stdout": "{\"json\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/rabbitmq-250k-10rep-rerun-after-100k/rabbitmq-streams-250000-clean10.json\", \"csv\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/rabbitmq-250k-10rep-rerun-after-100k/rabbitmq-streams-250000-clean10.csv\", \"markdown\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/rabbitmq-250k-10rep-rerun-after-100k/rabbitmq-streams-250000-clean10.md\"}\n",
+  "wallSeconds": 226.694
+}

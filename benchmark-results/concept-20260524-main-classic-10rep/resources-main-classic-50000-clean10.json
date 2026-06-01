@@ -1,0 +1,318 @@
+{
+  "benchmarkResult": {
+    "csv": "benchmark-results/concept-20260524-main-classic-10rep/main-classic-50000-clean10.csv",
+    "json": "benchmark-results/concept-20260524-main-classic-10rep/main-classic-50000-clean10.json",
+    "markdown": "benchmark-results/concept-20260524-main-classic-10rep/main-classic-50000-clean10.md"
+  },
+  "command": [
+    "python3",
+    "scripts/benchmark_main_classic_matrix.py",
+    "--url",
+    "http://127.0.0.1:18080/api/v1/requestApproval",
+    "--limits",
+    "50000",
+    "--providers",
+    "UVA",
+    "--repetitions",
+    "10",
+    "--timeout",
+    "120",
+    "--output-dir",
+    "benchmark-results/concept-20260524-main-classic-10rep",
+    "--name",
+    "main-classic-50000-clean10",
+    "--temperature",
+    "warm",
+    "--strict"
+  ],
+  "endedEpochSeconds": 1779650335.4220207,
+  "excludeContainers": [
+    "POD"
+  ],
+  "namespaces": [
+    "api-gateway",
+    "core",
+    "orchestrator",
+    "surf",
+    "uva",
+    "vu"
+  ],
+  "resourceSummary": {
+    "containerMax": [
+      {
+        "container": "api-gateway",
+        "maxCpuMillicores": 6.0,
+        "maxMemoryBytes": 29360128,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-698dc65478-v849z"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-698dc65478-v849z"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-698dc65478-v849z"
+      },
+      {
+        "container": "debug",
+        "maxCpuMillicores": 0.0,
+        "maxMemoryBytes": 1048576,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 19.0,
+        "maxMemoryBytes": 65011712,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 11.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 16.0,
+        "maxMemoryBytes": 26214400,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 16.0,
+        "maxMemoryBytes": 28311552,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 8.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "grafana",
+        "maxCpuMillicores": 8.0,
+        "maxMemoryBytes": 243269632,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "loki",
+        "maxCpuMillicores": 19.0,
+        "maxMemoryBytes": 201326592,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "promtail",
+        "maxCpuMillicores": 44.0,
+        "maxMemoryBytes": 105906176,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "rabbitmq-5c5764bc6c-b88dn"
+      },
+      {
+        "container": "rabbitmq",
+        "maxCpuMillicores": 19.0,
+        "maxMemoryBytes": 179306496,
+        "namespace": "core",
+        "pod": "rabbitmq-5c5764bc6c-b88dn"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7dfd4769f7-lfkhz"
+      },
+      {
+        "container": "orchestrator",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7dfd4769f7-lfkhz"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7dfd4769f7-lfkhz"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-8446b5668c-r6nft"
+      },
+      {
+        "container": "policy-enforcer",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-8446b5668c-r6nft"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-8446b5668c-r6nft"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "surf",
+        "pod": "surf-648c9db4b8-bt4sz"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 33.0,
+        "maxMemoryBytes": 58720256,
+        "namespace": "surf",
+        "pod": "surf-648c9db4b8-bt4sz"
+      },
+      {
+        "container": "surf",
+        "maxCpuMillicores": 34.0,
+        "maxMemoryBytes": 90177536,
+        "namespace": "surf",
+        "pod": "surf-648c9db4b8-bt4sz"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 3.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "uva",
+        "pod": "uva-7f9c8d7c88-92lt8"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 22.0,
+        "maxMemoryBytes": 74448896,
+        "namespace": "uva",
+        "pod": "uva-7f9c8d7c88-92lt8"
+      },
+      {
+        "container": "uva",
+        "maxCpuMillicores": 14.0,
+        "maxMemoryBytes": 52428800,
+        "namespace": "uva",
+        "pod": "uva-7f9c8d7c88-92lt8"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "vu",
+        "pod": "vu-5b8cc6cfdc-qk6xv"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "vu",
+        "pod": "vu-5b8cc6cfdc-qk6xv"
+      },
+      {
+        "container": "vu",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 11534336,
+        "namespace": "vu",
+        "pod": "vu-5b8cc6cfdc-qk6xv"
+      }
+    ],
+    "maxTotalCpuMillicores": 310.0,
+    "maxTotalMemoryBytes": 1258291200,
+    "namespaceMax": {
+      "api-gateway": {
+        "maxCpuMillicores": 9.0,
+        "maxMemoryBytes": 39845888
+      },
+      "core": {
+        "maxCpuMillicores": 177.0,
+        "maxMemoryBytes": 878706688
+      },
+      "orchestrator": {
+        "maxCpuMillicores": 11.0,
+        "maxMemoryBytes": 35651584
+      },
+      "surf": {
+        "maxCpuMillicores": 71.0,
+        "maxMemoryBytes": 153092096
+      },
+      "uva": {
+        "maxCpuMillicores": 39.0,
+        "maxMemoryBytes": 130023424
+      },
+      "vu": {
+        "maxCpuMillicores": 3.0,
+        "maxMemoryBytes": 20971520
+      }
+    },
+    "sampleCount": 4
+  },
+  "returnCode": 1,
+  "samplingErrors": [],
+  "samplingIntervalSeconds": 5.0,
+  "startedEpochSeconds": 1779650316.2711446,
+  "stderr": "running main classic limit=50000 providers=UVA rep=1/10\nrunning main classic limit=50000 providers=UVA rep=2/10\nrunning main classic limit=50000 providers=UVA rep=3/10\nrunning main classic limit=50000 providers=UVA rep=4/10\nrunning main classic limit=50000 providers=UVA rep=5/10\nrunning main classic limit=50000 providers=UVA rep=6/10\nrunning main classic limit=50000 providers=UVA rep=7/10\nrunning main classic limit=50000 providers=UVA rep=8/10\nrunning main classic limit=50000 providers=UVA rep=9/10\nrunning main classic limit=50000 providers=UVA rep=10/10\n",
+  "stdout": "{\"json\": \"benchmark-results/concept-20260524-main-classic-10rep/main-classic-50000-clean10.json\", \"csv\": \"benchmark-results/concept-20260524-main-classic-10rep/main-classic-50000-clean10.csv\", \"markdown\": \"benchmark-results/concept-20260524-main-classic-10rep/main-classic-50000-clean10.md\"}\n",
+  "wallSeconds": 15.819
+}

@@ -1,0 +1,18 @@
+Forwarding from 127.0.0.1:18080 -> 8080
+Handling connection for 18080
+Handling connection for 18080
+E0524 16:24:26.823536   28967 portforward.go:391] "Unhandled Error" err="error copying from remote stream to local connection: readfrom tcp4 127.0.0.1:18080->127.0.0.1:53846: write tcp4 127.0.0.1:18080->127.0.0.1:53846: write: broken pipe"
+Handling connection for 18080
+E0524 16:29:54.467198   28967 portforward.go:391] "Unhandled Error" err="error copying from remote stream to local connection: readfrom tcp4 127.0.0.1:18080->127.0.0.1:39188: write tcp4 127.0.0.1:18080->127.0.0.1:39188: write: broken pipe"
+Handling connection for 18080
+E0524 16:35:22.125651   28967 portforward.go:391] "Unhandled Error" err="error copying from remote stream to local connection: readfrom tcp4 127.0.0.1:18080->127.0.0.1:44010: write tcp4 127.0.0.1:18080->127.0.0.1:44010: write: broken pipe"
+Handling connection for 18080
+Handling connection for 18080
+E0524 16:46:17.412352   28967 portforward.go:391] "Unhandled Error" err="error copying from remote stream to local connection: readfrom tcp4 127.0.0.1:18080->127.0.0.1:51860: write tcp4 127.0.0.1:18080->127.0.0.1:51860: write: broken pipe"
+Handling connection for 18080
+Handling connection for 18080
+Handling connection for 18080
+Handling connection for 18080
+E0524 17:08:07.841633   28967 portforward.go:391] "Unhandled Error" err="error copying from remote stream to local connection: readfrom tcp4 127.0.0.1:18080->127.0.0.1:45912: write tcp4 127.0.0.1:18080->127.0.0.1:45912: write: broken pipe"
+Handling connection for 18080
+E0524 17:13:35.462428   28967 portforward.go:391] "Unhandled Error" err="error copying from remote stream to local connection: readfrom tcp4 127.0.0.1:18080->127.0.0.1:56466: write tcp4 127.0.0.1:18080->127.0.0.1:56466: write: broken pipe"

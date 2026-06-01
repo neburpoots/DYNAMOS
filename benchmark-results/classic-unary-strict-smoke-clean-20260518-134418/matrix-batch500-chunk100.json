@@ -1,0 +1,140 @@
+{
+  "runs": [
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "doneSeconds": 3.521928459999799,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": null,
+      "finalResultCount": 1,
+      "finalResultHash": "496b3ffb39325cdb46870d39d471a9e41d6207594460cd384b4fa52e99885d3a",
+      "firstResultSeconds": 3.521928459999799,
+      "limit": 2000,
+      "observedRows": null,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerRows": {},
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 1,
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "rowsProcessed": null,
+      "rowsTotal": null,
+      "sequenceErrors": [],
+      "sqlBatchRows": "500",
+      "transport": "unary",
+      "wallSeconds": 3.603
+    },
+    {
+      "archetype": "computeToData",
+      "dataset": "large",
+      "doneSeconds": 3.3690958899996986,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": null,
+      "finalResultCount": 2,
+      "finalResultHash": "b418440b0a32fb3a368c8a7522100c9f6b3a1cecc7e5ef98dca34abfe0e10040",
+      "firstResultSeconds": 3.3690958899996986,
+      "limit": 2000,
+      "observedRows": null,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerRows": {},
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "rabbitmqChunkRows": "100",
+      "rawLineCount": 1,
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "rowsProcessed": null,
+      "rowsTotal": null,
+      "sequenceErrors": [],
+      "sqlBatchRows": "500",
+      "transport": "unary",
+      "wallSeconds": 3.455
+    }
+  ],
+  "summaries": [
+    {
+      "archetype": "dataThroughTtp",
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 3.522,
+        "median": 3.522,
+        "min": 3.522
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "496b3ffb39325cdb46870d39d471a9e41d6207594460cd384b4fa52e99885d3a"
+      ],
+      "firstResultSeconds": {
+        "max": 3.522,
+        "median": 3.522,
+        "min": 3.522
+      },
+      "limit": 2000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 1,
+      "rabbitmqChunkRows": "100",
+      "responseMode": "classic-unary",
+      "runs": 1,
+      "sqlBatchRows": "500",
+      "transport": "unary"
+    },
+    {
+      "archetype": "computeToData",
+      "crossTransportResultMatch": true,
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 3.369,
+        "median": 3.369,
+        "min": 3.369
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "finalResultHashes": [
+        "b418440b0a32fb3a368c8a7522100c9f6b3a1cecc7e5ef98dca34abfe0e10040"
+      ],
+      "firstResultSeconds": {
+        "max": 3.369,
+        "median": 3.369,
+        "min": 3.369
+      },
+      "limit": 2000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 1,
+      "rabbitmqChunkRows": "100",
+      "responseMode": "classic-unary",
+      "runs": 1,
+      "sqlBatchRows": "500",
+      "transport": "unary"
+    }
+  ]
+}

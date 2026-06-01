@@ -90,7 +90,7 @@ func NewConfiguration(
 	}
 
 	if conf.FirstService {
-		conf.GrpcServer = grpc.NewServer()
+		conf.GrpcServer = grpc.NewServer(lib.GrpcServerOptions()...)
 		conf.StartGrpcServer()
 		conf.RabbitMsgClientConnection = lib.GetGrpcConnection(grpcAddr + os.Getenv("SIDECAR_PORT"))
 		conf.RabbitMsgClient = pb.NewRabbitMQClient(conf.RabbitMsgClientConnection)
@@ -115,14 +115,14 @@ func NewConfiguration(
 		conf.RabbitMsgClient.InitRabbitForChain(ctx, chainRequest)
 
 	} else if conf.LastService {
-		conf.GrpcServer = grpc.NewServer()
+		conf.GrpcServer = grpc.NewServer(lib.GrpcServerOptions()...)
 		conf.StartGrpcServer()
 		conf.NextClientConnection = lib.GetGrpcConnection(grpcAddr + os.Getenv("SIDECAR_PORT"))
 		conf.NextClient = pb.NewMicroserviceClient(conf.NextClientConnection)
 		conf.RabbitMsgClientConnection = conf.NextClientConnection
 		conf.RabbitMsgClient = pb.NewRabbitMQClient(conf.RabbitMsgClientConnection)
 	} else {
-		conf.GrpcServer = grpc.NewServer()
+		conf.GrpcServer = grpc.NewServer(lib.GrpcServerOptions()...)
 		conf.StartGrpcServer()
 		conf.NextClientConnection = lib.GetGrpcConnection(grpcAddr + strconv.Itoa(int(conf.Port)+1))
 		conf.NextClient = pb.NewMicroserviceClient(conf.NextClientConnection)

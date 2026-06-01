@@ -1,0 +1,564 @@
+{
+  "benchmarkResult": {
+    "csv": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/all-transports-50k-100k-250k-10rep/unary-50000-clean10.csv",
+    "json": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/all-transports-50k-100k-250k-10rep/unary-50000-clean10.json",
+    "markdown": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/all-transports-50k-100k-250k-10rep/unary-50000-clean10.md"
+  },
+  "command": [
+    "python3",
+    "/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_matrix.py",
+    "--url",
+    "http://127.0.0.1:18080/api/v1/requestApproval",
+    "--transports",
+    "unary",
+    "--response-modes",
+    "batched",
+    "--workloads",
+    "bulk",
+    "--datasets",
+    "large",
+    "--large-limits",
+    "50000",
+    "--archetypes",
+    "dataThroughTtp",
+    "--provider-sets",
+    "UVA",
+    "--temperature",
+    "warm",
+    "--repetitions",
+    "10",
+    "--timeout",
+    "300",
+    "--sql-batch-rows",
+    "5000",
+    "--rabbitmq-chunk-rows",
+    "100",
+    "--strict",
+    "--require-partial",
+    "--output-dir",
+    "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/all-transports-50k-100k-250k-10rep",
+    "--name",
+    "unary-50000-clean10"
+  ],
+  "endedEpochSeconds": 1779635620.1515436,
+  "excludeContainers": [
+    "POD"
+  ],
+  "namespaces": [
+    "api-gateway",
+    "core",
+    "orchestrator",
+    "surf",
+    "uva",
+    "vu"
+  ],
+  "resourceSummary": {
+    "containerMax": [
+      {
+        "container": "api-gateway",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7c957b4f45-w7pcz"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7c957b4f45-w7pcz"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7c957b4f45-w7pcz"
+      },
+      {
+        "container": "debug",
+        "maxCpuMillicores": 0.0,
+        "maxMemoryBytes": 1048576,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 34.0,
+        "maxMemoryBytes": 72351744,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 10.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 17.0,
+        "maxMemoryBytes": 25165824,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 19.0,
+        "maxMemoryBytes": 26214400,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 8.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "grafana",
+        "maxCpuMillicores": 15.0,
+        "maxMemoryBytes": 379584512,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "loki",
+        "maxCpuMillicores": 9.0,
+        "maxMemoryBytes": 156237824,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "promtail",
+        "maxCpuMillicores": 36.0,
+        "maxMemoryBytes": 117440512,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-bdxrp"
+      },
+      {
+        "container": "rabbitmq",
+        "maxCpuMillicores": 14.0,
+        "maxMemoryBytes": 176160768,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-bdxrp"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-5c497f4f87-6cdxh"
+      },
+      {
+        "container": "orchestrator",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-5c497f4f87-6cdxh"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-5c497f4f87-6cdxh"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-6775c484d9-mvblb"
+      },
+      {
+        "container": "policy-enforcer",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 8388608,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-6775c484d9-mvblb"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-6775c484d9-mvblb"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-0411348fsurf1-smxxt"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-0411348fsurf1-smxxt"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-0411348fsurf1-smxxt"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-23035c7bsurf1-4kzb9"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-23035c7bsurf1-4kzb9"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-23035c7bsurf1-4kzb9"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-3105ccbesurf1-67gsl"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-3105ccbesurf1-67gsl"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-3105ccbesurf1-67gsl"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-5e98c37csurf1-x8hxp"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-5e98c37csurf1-x8hxp"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-5e98c37csurf1-x8hxp"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-90687516surf1-wptp8"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 9437184,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-90687516surf1-wptp8"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 3.0,
+        "maxMemoryBytes": 9437184,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-90687516surf1-wptp8"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-93e42c65surf1-5ljd6"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-93e42c65surf1-5ljd6"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-93e42c65surf1-5ljd6"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 8388608,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-a42d6187surf1-7fr8h"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 8388608,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-a42d6187surf1-7fr8h"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-a42d6187surf1-7fr8h"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-b12011c4surf1-hmlwh"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-b12011c4surf1-hmlwh"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-b12011c4surf1-hmlwh"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-e3881309surf1-ghl2q"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-e3881309surf1-ghl2q"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-e3881309surf1-ghl2q"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-e991667dsurf1-67clm"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-e991667dsurf1-67clm"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-e991667dsurf1-67clm"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "surf",
+        "pod": "surf-6b9b8fd7c5-mprpk"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "surf",
+        "pod": "surf-6b9b8fd7c5-mprpk"
+      },
+      {
+        "container": "surf",
+        "maxCpuMillicores": 3.0,
+        "maxMemoryBytes": 19922944,
+        "namespace": "surf",
+        "pod": "surf-6b9b8fd7c5-mprpk"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "uva",
+        "pod": "uva-55fc4f664-9jj4p"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "uva",
+        "pod": "uva-55fc4f664-9jj4p"
+      },
+      {
+        "container": "uva",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "uva",
+        "pod": "uva-55fc4f664-9jj4p"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "uva",
+        "pod": "uva-866d64cb5b-24ptc"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 8388608,
+        "namespace": "uva",
+        "pod": "uva-866d64cb5b-24ptc"
+      },
+      {
+        "container": "uva",
+        "maxCpuMillicores": 6.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "uva",
+        "pod": "uva-866d64cb5b-24ptc"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "vu",
+        "pod": "vu-85976c5ccf-vtzh2"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "vu",
+        "pod": "vu-85976c5ccf-vtzh2"
+      },
+      {
+        "container": "vu",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 11534336,
+        "namespace": "vu",
+        "pod": "vu-85976c5ccf-vtzh2"
+      }
+    ],
+    "maxTotalCpuMillicores": 186.0,
+    "maxTotalMemoryBytes": 1123024896,
+    "namespaceMax": {
+      "api-gateway": {
+        "maxCpuMillicores": 3.0,
+        "maxMemoryBytes": 20971520
+      },
+      "core": {
+        "maxCpuMillicores": 158.0,
+        "maxMemoryBytes": 979369984
+      },
+      "orchestrator": {
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 38797312
+      },
+      "surf": {
+        "maxCpuMillicores": 27.0,
+        "maxMemoryBytes": 99614720
+      },
+      "uva": {
+        "maxCpuMillicores": 10.0,
+        "maxMemoryBytes": 29360128
+      },
+      "vu": {
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 20971520
+      }
+    },
+    "sampleCount": 582
+  },
+  "returnCode": 1,
+  "samplingErrors": [],
+  "samplingIntervalSeconds": 5.0,
+  "startedEpochSeconds": 1779632339.188619,
+  "stderr": "running large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=1/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=2/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=3/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=4/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=5/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=6/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=7/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=8/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=9/10\nrunning large limit=50000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=10/10\n",
+  "stdout": "{\"json\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/all-transports-50k-100k-250k-10rep/unary-50000-clean10.json\", \"csv\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/all-transports-50k-100k-250k-10rep/unary-50000-clean10.csv\", \"markdown\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/all-transports-50k-100k-250k-10rep/unary-50000-clean10.md\"}\n",
+  "wallSeconds": 3008.247
+}

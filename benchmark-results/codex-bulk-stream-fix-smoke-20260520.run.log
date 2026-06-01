@@ -1,0 +1,1607 @@
+[controlled-bench] Writing results to /home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/codex-bulk-stream-fix-smoke-20260520
+[controlled-bench] Building local images dynamos-local/*:rmqs-bench
+Building dynamos-local/sidecar:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 ...
+
+#4 [auth] library/alpine:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.8s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.0s done
+#6 DONE 0.0s
+
+#7 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.0s done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 406.31kB 0.0s done
+#8 DONE 0.1s
+
+#9 [builder 3/9] RUN mkdir /app/pkg
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 CACHED
+
+#12 [builder 6/9] COPY go.mod /app
+#12 CACHED
+
+#13 [builder 2/9] WORKDIR /app/cmd/sidecar
+#13 CACHED
+
+#14 [builder 7/9] COPY go.sum /app
+#14 CACHED
+
+#15 [builder 8/9] COPY pkg /app/pkg
+#15 DONE 0.1s
+
+#16 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sidecar .
+#16 0.883 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#16 0.885 go: downloading github.com/google/uuid v1.6.0
+#16 0.885 go: downloading github.com/rabbitmq/amqp091-go v1.10.0
+#16 0.886 go: downloading github.com/rabbitmq/rabbitmq-stream-go-client v1.4.11
+#16 0.893 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#16 0.896 go: downloading go.opencensus.io v0.24.0
+#16 1.313 go: downloading go.uber.org/zap v1.24.0
+#16 1.313 go: downloading google.golang.org/grpc v1.65.0
+#16 1.313 go: downloading google.golang.org/protobuf v1.34.2
+#16 3.014 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#16 3.014 go: downloading github.com/docker/docker v23.0.3+incompatible
+#16 3.168 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#16 3.187 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#16 3.929 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#16 3.936 go: downloading github.com/klauspost/compress v1.17.9
+#16 3.936 go: downloading github.com/golang/snappy v0.0.4
+#16 3.952 go: downloading github.com/pierrec/lz4 v2.6.1+incompatible
+#16 3.953 go: downloading github.com/pkg/errors v0.9.1
+#16 3.959 go: downloading github.com/spaolacci/murmur3 v1.1.0
+#16 4.025 go: downloading go.uber.org/atomic v1.7.0
+#16 4.625 go: downloading go.uber.org/multierr v1.6.0
+#16 4.827 go: downloading golang.org/x/net v0.27.0
+#16 4.829 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#16 4.877 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#16 5.830 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#16 9.064 go: downloading github.com/golang/protobuf v1.5.4
+#16 9.064 go: downloading google.golang.org/api v0.25.0
+#16 9.064 go: downloading github.com/gogo/protobuf v1.3.2
+#16 15.63 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#16 18.71 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#16 18.71 go: downloading github.com/coreos/go-semver v0.3.1
+#16 21.32 go: downloading golang.org/x/sys v0.22.0
+#16 22.03 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#16 27.40 go: downloading github.com/docker/go-units v0.5.0
+#16 27.76 go: downloading github.com/docker/go-connections v0.4.0
+#16 27.76 go: downloading golang.org/x/text v0.16.0
+#16 47.84 go: downloading golang.org/x/sync v0.7.0
+#16 DONE 79.7s
+
+#17 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#17 CACHED
+
+#18 [stage-1 3/4] WORKDIR /app/
+#18 CACHED
+
+#19 [stage-1 4/4] COPY --from=builder /go/bin/sidecar .
+#19 DONE 0.1s
+
+#20 exporting to image
+#20 exporting layers
+#20 exporting layers 1.1s done
+#20 exporting manifest sha256:e01c5592f6ea33e942f634a9fa25a09559404b571bb1d7525de1da6f4774eb96 0.0s done
+#20 exporting config sha256:30288dea566aa539ba5e54abce812974e7882241bdf15e85419f501ecd4ac9e3 0.0s done
+#20 exporting attestation manifest sha256:8ac571168e278457bd98e5f5a78d3836746645d0930f78f62d0a3a7f8856fdf6 0.0s done
+#20 exporting manifest list sha256:5bac449f9d943b34ec321a1c95641bcaac4a78e178ca805f2dbadef9ef7ce6ff 0.0s done
+#20 naming to docker.io/dynamos-local/sidecar:rmqs-bench done
+#20 unpacking to docker.io/dynamos-local/sidecar:rmqs-bench 0.1s done
+#20 naming to docker.io/dynamos-local/sidecar:latest done
+#20 unpacking to docker.io/dynamos-local/sidecar:latest done
+#20 DONE 1.4s
+Building dynamos-local/policy-enforcer:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.0s done
+#6 DONE 0.1s
+
+#7 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.0s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 340.60kB 0.0s done
+#5 DONE 0.1s
+
+#8 [builder 4/9] RUN mkdir /app/etcd
+#8 CACHED
+
+#9 [builder 2/9] WORKDIR /app/cmd/policy-enforcer
+#9 CACHED
+
+#10 [builder 6/9] COPY go.mod /app
+#10 CACHED
+
+#11 [builder 3/9] RUN mkdir /app/pkg
+#11 CACHED
+
+#12 [builder 5/9] COPY *.go ./
+#12 CACHED
+
+#13 [builder 7/9] COPY go.sum /app
+#13 CACHED
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/policy-enforcer .
+#15 0.359 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#15 0.365 go: downloading go.uber.org/zap v1.24.0
+#15 0.368 go: downloading google.golang.org/grpc v1.65.0
+#15 0.368 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 0.368 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#15 0.372 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 0.378 go: downloading github.com/google/uuid v1.6.0
+#15 0.385 go: downloading go.opencensus.io v0.24.0
+#15 3.481 go: downloading google.golang.org/protobuf v1.34.2
+#15 4.172 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 4.356 go: downloading github.com/golang/protobuf v1.5.4
+#15 4.356 go: downloading google.golang.org/api v0.25.0
+#15 4.362 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#15 4.370 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#15 4.511 go: downloading go.uber.org/atomic v1.7.0
+#15 4.511 go: downloading go.uber.org/multierr v1.6.0
+#15 4.539 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 4.540 go: downloading github.com/docker/go-units v0.5.0
+#15 4.541 go: downloading golang.org/x/net v0.27.0
+#15 4.543 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 4.617 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 4.880 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 4.917 go: downloading github.com/gogo/protobuf v1.3.2
+#15 5.293 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 5.293 go: downloading github.com/coreos/go-semver v0.3.1
+#15 10.41 go: downloading github.com/docker/go-connections v0.4.0
+#15 15.46 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#15 17.01 go: downloading golang.org/x/sys v0.22.0
+#15 17.09 go: downloading github.com/pkg/errors v0.9.1
+#15 17.50 go: downloading golang.org/x/text v0.16.0
+#15 19.77 go: downloading golang.org/x/sync v0.7.0
+#15 DONE 37.4s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/policy-enforcer .
+#18 DONE 0.1s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 1.0s done
+#19 exporting manifest sha256:926a68176ccd053210d62956dc1a4ea44c6676dd458c6d61e8f1340a129d025b 0.0s done
+#19 exporting config sha256:dfe25784ff4dc47f94d228c10a4c662de42ac88eb0bf6ef59edd7087943bea65 0.0s done
+#19 exporting attestation manifest sha256:40b5ac6c7449640d574ddcff5083e4726da76ef6cc395d3e167e245c30818145 0.0s done
+#19 exporting manifest list sha256:56f3dda0d2997dbbba291f4e44f27dc286d8e97bfe67fa39db8f0876e59b6a60 0.0s done
+#19 naming to docker.io/dynamos-local/policy-enforcer:rmqs-bench done
+#19 unpacking to docker.io/dynamos-local/policy-enforcer:rmqs-bench 0.1s done
+#19 naming to docker.io/dynamos-local/policy-enforcer:latest done
+#19 unpacking to docker.io/dynamos-local/policy-enforcer:latest done
+#19 DONE 1.3s
+Building dynamos-local/orchestrator:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#6 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#6 DONE 0.1s
+
+#7 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#7 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 365.48kB 0.0s done
+#5 DONE 0.0s
+
+#8 [builder 4/9] RUN mkdir /app/etcd
+#8 CACHED
+
+#9 [builder 2/9] WORKDIR /app/cmd/orchestrator
+#9 CACHED
+
+#10 [builder 3/9] RUN mkdir /app/pkg
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 CACHED
+
+#12 [builder 6/9] COPY go.mod /app
+#12 CACHED
+
+#13 [builder 7/9] COPY go.sum /app
+#13 CACHED
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/orchestrator .
+#15 0.351 go: downloading github.com/google/uuid v1.6.0
+#15 0.351 go: downloading github.com/gorilla/handlers v1.5.1
+#15 0.351 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#15 0.351 go: downloading go.uber.org/zap v1.24.0
+#15 0.351 go: downloading google.golang.org/grpc v1.65.0
+#15 0.352 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#15 0.352 go: downloading go.opencensus.io v0.24.0
+#15 0.891 go: downloading google.golang.org/protobuf v1.34.2
+#15 2.070 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 2.074 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 2.173 go: downloading github.com/felixge/httpsnoop v1.0.1
+#15 2.637 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#15 2.726 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#15 3.426 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 3.426 go: downloading go.uber.org/atomic v1.7.0
+#15 3.426 go: downloading go.uber.org/multierr v1.6.0
+#15 3.426 go: downloading golang.org/x/net v0.27.0
+#15 3.428 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 3.534 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 4.043 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 5.369 go: downloading github.com/golang/protobuf v1.5.4
+#15 5.369 go: downloading google.golang.org/api v0.25.0
+#15 5.370 go: downloading github.com/gogo/protobuf v1.3.2
+#15 5.370 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 5.384 go: downloading github.com/coreos/go-semver v0.3.1
+#15 5.920 go: downloading golang.org/x/sys v0.22.0
+#15 6.764 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#15 9.800 go: downloading github.com/docker/go-units v0.5.0
+#15 9.803 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 13.10 go: downloading github.com/docker/go-connections v0.4.0
+#15 14.24 go: downloading golang.org/x/text v0.16.0
+#15 15.89 go: downloading github.com/pkg/errors v0.9.1
+#15 17.96 go: downloading golang.org/x/sync v0.7.0
+#15 DONE 35.8s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/orchestrator .
+#18 DONE 0.1s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 0.7s done
+#19 exporting manifest sha256:53982707f5c706f34bdc7340cfb732ea737ee69f57b89ede727f595d0f026dea 0.0s done
+#19 exporting config sha256:2931c6459d8fc721334c2070c07471e9f1f1378dd9a30acc871cc57c17d000c3 0.0s done
+#19 exporting attestation manifest sha256:d94a8c1a4b5dfb183f96f3f9325accca60da5256458caca753603c6af24c7ee4 0.0s done
+#19 exporting manifest list sha256:37cceba0c416ced1571125323ed2a3ef9d92f08a4c443f1eecff415797496a8c 0.0s done
+#19 naming to docker.io/dynamos-local/orchestrator:rmqs-bench done
+#19 unpacking to docker.io/dynamos-local/orchestrator:rmqs-bench 0.1s done
+#19 naming to docker.io/dynamos-local/orchestrator:latest done
+#19 unpacking to docker.io/dynamos-local/orchestrator:latest done
+#19 DONE 1.0s
+Building dynamos-local/agent:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#5 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 377.29kB 0.0s done
+#7 DONE 0.0s
+
+#8 [builder 2/9] WORKDIR /app/cmd/agent
+#8 CACHED
+
+#9 [builder 3/9] RUN mkdir /app/pkg
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 DONE 0.0s
+
+#12 [builder 6/9] COPY go.mod /app
+#12 DONE 0.0s
+
+#13 [builder 7/9] COPY go.sum /app
+#13 DONE 0.0s
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/agent .
+#15 0.414 go: downloading github.com/google/uuid v1.6.0
+#15 0.415 go: downloading github.com/gorilla/handlers v1.5.1
+#15 0.415 go: downloading google.golang.org/protobuf v1.34.2
+#15 0.415 go: downloading go.opencensus.io v0.24.0
+#15 0.415 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#15 0.415 go: downloading google.golang.org/grpc v1.65.0
+#15 0.416 go: downloading go.uber.org/zap v1.24.0
+#15 1.602 go: downloading k8s.io/api v0.31.0
+#15 2.364 go: downloading k8s.io/apimachinery v0.31.0
+#15 2.531 go: downloading k8s.io/client-go v0.31.0
+#15 2.795 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#15 2.804 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 3.923 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 4.123 go: downloading github.com/felixge/httpsnoop v1.0.1
+#15 4.538 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#15 6.157 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#15 6.164 go: downloading golang.org/x/net v0.27.0
+#15 6.232 go: downloading go.uber.org/atomic v1.7.0
+#15 6.640 go: downloading go.uber.org/multierr v1.6.0
+#15 6.642 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 6.723 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 7.600 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 7.775 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 9.111 go: downloading github.com/golang/protobuf v1.5.4
+#15 9.111 go: downloading google.golang.org/api v0.25.0
+#15 9.114 go: downloading github.com/gogo/protobuf v1.3.2
+#15 9.114 go: downloading github.com/google/gofuzz v1.2.0
+#15 9.115 go: downloading k8s.io/utils v0.0.0-20240711033017-18e509b52bc8
+#15 13.65 go: downloading github.com/coreos/go-semver v0.3.1
+#15 13.65 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 13.65 go: downloading golang.org/x/sys v0.22.0
+#15 16.89 go: downloading k8s.io/klog/v2 v2.130.1
+#15 17.74 go: downloading github.com/imdario/mergo v0.3.6
+#15 17.74 go: downloading golang.org/x/term v0.22.0
+#15 17.74 go: downloading github.com/spf13/pflag v1.0.5
+#15 18.52 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#15 18.53 go: downloading github.com/docker/go-units v0.5.0
+#15 18.65 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 18.76 go: downloading gopkg.in/inf.v0 v0.9.1
+#15 19.63 go: downloading sigs.k8s.io/structured-merge-diff/v4 v4.4.1
+#15 19.63 go: downloading sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd
+#15 19.64 go: downloading github.com/google/gnostic-models v0.6.8
+#15 19.64 go: downloading golang.org/x/time v0.3.0
+#15 19.90 go: downloading golang.org/x/oauth2 v0.21.0
+#15 20.18 go: downloading github.com/docker/go-connections v0.4.0
+#15 20.18 go: downloading github.com/go-logr/logr v1.4.2
+#15 20.31 go: downloading github.com/fxamacker/cbor/v2 v2.7.0
+#15 20.31 go: downloading golang.org/x/text v0.16.0
+#15 21.25 go: downloading k8s.io/kube-openapi v0.0.0-20240228011516-70dd3763d340
+#15 21.25 go: downloading github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
+#15 22.89 go: downloading sigs.k8s.io/yaml v1.4.0
+#15 25.57 go: downloading github.com/pkg/errors v0.9.1
+#15 26.78 go: downloading github.com/json-iterator/go v1.1.12
+#15 27.36 go: downloading gopkg.in/yaml.v2 v2.4.0
+#15 27.37 go: downloading gopkg.in/yaml.v3 v3.0.1
+#15 27.37 go: downloading github.com/x448/float16 v0.8.4
+#15 27.51 go: downloading github.com/google/go-cmp v0.6.0
+#15 28.01 go: downloading golang.org/x/sync v0.7.0
+#15 28.45 go: downloading github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822
+#15 28.46 go: downloading github.com/go-openapi/swag v0.22.4
+#15 28.46 go: downloading github.com/go-openapi/jsonreference v0.20.2
+#15 28.47 go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+#15 28.52 go: downloading github.com/modern-go/reflect2 v1.0.2
+#15 28.52 go: downloading github.com/emicklei/go-restful/v3 v3.11.0
+#15 28.53 go: downloading github.com/mailru/easyjson v0.7.7
+#15 28.57 go: downloading github.com/go-openapi/jsonpointer v0.19.6
+#15 28.69 go: downloading github.com/josharian/intern v1.0.0
+#15 DONE 64.2s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/agent .
+#18 DONE 0.1s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 2.0s done
+#19 exporting manifest sha256:eb6492f372911d2934daad0a33f39ecb185b0ca76d035d19f6f52e56cbd8c6d1 0.0s done
+#19 exporting config sha256:358aaeb24371f78f3c102e4982cf69bc61959df1a038853a74b82528f56bf613 0.0s done
+#19 exporting attestation manifest sha256:c2f72433b7bcb64013284c6ef6bcceb1528ad9e9d6a138c02f253d55ac1e87eb 0.0s done
+#19 exporting manifest list sha256:3ddafc4f0e3d26bd810924dcb5806c40dfeca65947f9e5f2d844278f0c25d313 0.0s done
+#19 naming to docker.io/dynamos-local/agent:rmqs-bench
+#19 naming to docker.io/dynamos-local/agent:rmqs-bench done
+#19 unpacking to docker.io/dynamos-local/agent:rmqs-bench
+#19 unpacking to docker.io/dynamos-local/agent:rmqs-bench 0.3s done
+#19 naming to docker.io/dynamos-local/agent:latest done
+#19 unpacking to docker.io/dynamos-local/agent:latest done
+#19 DONE 2.4s
+Building dynamos-local/api-gateway:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#5 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 348.82kB 0.0s done
+#7 DONE 0.1s
+
+#8 [builder 2/9] WORKDIR /app/cmd/api-gateway
+#8 CACHED
+
+#9 [builder 3/9] RUN mkdir /app/pkg
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 DONE 0.1s
+
+#12 [builder 6/9] COPY go.mod /app
+#12 DONE 0.1s
+
+#13 [builder 7/9] COPY go.sum /app
+#13 DONE 0.0s
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/api-gateway .
+#15 0.301 go: downloading github.com/googollee/go-socket.io v1.7.0
+#15 0.358 go: downloading github.com/gorilla/handlers v1.5.1
+#15 0.364 go: downloading github.com/gorilla/websocket v1.5.1
+#15 0.366 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#15 0.367 go: downloading go.opencensus.io v0.24.0
+#15 0.380 go: downloading go.uber.org/zap v1.24.0
+#15 0.902 go: downloading google.golang.org/grpc v1.65.0
+#15 0.994 go: downloading google.golang.org/protobuf v1.34.2
+#15 2.299 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 2.299 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 2.300 go: downloading github.com/google/uuid v1.6.0
+#15 2.776 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#15 2.777 go: downloading github.com/felixge/httpsnoop v1.0.1
+#15 2.860 go: downloading golang.org/x/net v0.27.0
+#15 2.879 go: downloading github.com/gofrs/uuid v4.0.0+incompatible
+#15 2.882 go: downloading github.com/gomodule/redigo v1.8.4
+#15 2.888 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#15 3.744 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#15 3.744 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 3.744 go: downloading go.uber.org/atomic v1.7.0
+#15 3.744 go: downloading go.uber.org/multierr v1.6.0
+#15 4.674 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 4.948 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 5.080 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 5.475 go: downloading github.com/golang/protobuf v1.5.4
+#15 5.476 go: downloading google.golang.org/api v0.25.0
+#15 5.485 go: downloading github.com/gogo/protobuf v1.3.2
+#15 5.485 go: downloading github.com/coreos/go-semver v0.3.1
+#15 5.485 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 6.036 go: downloading golang.org/x/sys v0.22.0
+#15 6.522 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#15 9.682 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 14.43 go: downloading github.com/docker/go-units v0.5.0
+#15 14.88 go: downloading github.com/docker/go-connections v0.4.0
+#15 15.30 go: downloading golang.org/x/sync v0.7.0
+#15 15.48 go: downloading golang.org/x/text v0.16.0
+#15 15.96 go: downloading github.com/pkg/errors v0.9.1
+#15 DONE 35.5s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/api-gateway .
+#18 DONE 0.1s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 0.8s done
+#19 exporting manifest sha256:c5100f84f1987f2fc40131b5c8a42b5bbdc0c65e0065fc2329f3841539d3951d 0.0s done
+#19 exporting config sha256:d4bb0372f90540eb34c8ddb81a4d786c6a5838ee3d27ec81d687714863f70185 0.0s done
+#19 exporting attestation manifest sha256:0e478b77f7c638e08eff9d9b65b88358a8321da5cf825962186195d31ea9affb 0.0s done
+#19 exporting manifest list sha256:5670d145733bb1d86386c32951aa73b5f8e11c659b4d5da576dc865fc4b092ce 0.0s done
+#19 naming to docker.io/dynamos-local/api-gateway:rmqs-bench
+#19 naming to docker.io/dynamos-local/api-gateway:rmqs-bench done
+#19 unpacking to docker.io/dynamos-local/api-gateway:rmqs-bench 0.1s done
+#19 naming to docker.io/dynamos-local/api-gateway:latest done
+#19 unpacking to docker.io/dynamos-local/api-gateway:latest done
+#19 DONE 1.1s
+Building dynamos-local/sql-algorithm:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#5 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.0s done
+#6 DONE 0.1s
+
+#7 [internal] load build context
+#7 transferring context: 345.10kB 0.0s done
+#7 DONE 0.0s
+
+#8 [builder 3/9] RUN mkdir /app/pkg
+#8 CACHED
+
+#9 [builder 2/9] WORKDIR /app/cmd/sql-algorithm
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 DONE 0.1s
+
+#12 [builder 6/9] COPY go.mod /app
+#12 DONE 0.0s
+
+#13 [builder 7/9] COPY go.sum /app
+#13 DONE 0.1s
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.0s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sql-algorithm .
+#15 0.311 go: downloading go.opencensus.io v0.24.0
+#15 0.314 go: downloading github.com/gogo/protobuf v1.3.2
+#15 0.378 go: downloading go.uber.org/zap v1.24.0
+#15 0.378 go: downloading google.golang.org/protobuf v1.34.2
+#15 0.405 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 0.408 go: downloading google.golang.org/grpc v1.65.0
+#15 0.426 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 1.432 go: downloading github.com/google/uuid v1.6.0
+#15 4.894 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 4.983 go: downloading github.com/golang/protobuf v1.5.4
+#15 5.781 go: downloading google.golang.org/api v0.25.0
+#15 5.796 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 5.799 go: downloading go.uber.org/atomic v1.7.0
+#15 5.799 go: downloading go.uber.org/multierr v1.6.0
+#15 5.810 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 5.811 go: downloading golang.org/x/net v0.27.0
+#15 5.816 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 5.894 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 6.365 go: downloading golang.org/x/sys v0.22.0
+#15 9.165 go: downloading github.com/docker/go-units v0.5.0
+#15 9.174 go: downloading github.com/docker/go-connections v0.4.0
+#15 9.180 go: downloading golang.org/x/text v0.16.0
+#15 16.93 go: downloading github.com/pkg/errors v0.9.1
+#15 16.93 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 18.50 go: downloading golang.org/x/sync v0.7.0
+#15 DONE 33.2s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/sql-algorithm .
+#18 DONE 0.1s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 0.6s done
+#19 exporting manifest sha256:fd21c8ab0a384a62bfe94acf1a4c52b998bc44d995ec46b248db8eba8e419736 0.0s done
+#19 exporting config sha256:76fce309d4b710e598c40deebba409298a9ae101388e449950e21e290be77483 0.0s done
+#19 exporting attestation manifest sha256:c8caa8d6aab5a7def174c51a94b43de077f4b00fb6016e47a932621126c964ce 0.0s done
+#19 exporting manifest list sha256:09c2232a1a3db439fca8b41340733432fb8d054013d06d700657f088f58c819d 0.0s done
+#19 naming to docker.io/dynamos-local/sql-algorithm:rmqs-bench done
+#19 unpacking to docker.io/dynamos-local/sql-algorithm:rmqs-bench 0.1s done
+#19 naming to docker.io/dynamos-local/sql-algorithm:latest done
+#19 unpacking to docker.io/dynamos-local/sql-algorithm:latest 0.0s done
+#19 DONE 0.8s
+Building dynamos-local/sql-anonymize:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [auth] library/alpine:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/alpine:3.18.2
+#4 DONE 0.6s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#6 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.0s done
+#6 DONE 0.0s
+
+#7 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#7 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.0s done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 331.27kB 0.0s done
+#8 DONE 0.0s
+
+#9 [builder 4/9] RUN mkdir /app/etcd
+#9 CACHED
+
+#10 [builder 5/9] COPY *.go ./
+#10 CACHED
+
+#11 [builder 6/9] COPY go.mod /app
+#11 CACHED
+
+#12 [builder 2/9] WORKDIR /app/cmd/sql-anonymize
+#12 CACHED
+
+#13 [builder 3/9] RUN mkdir /app/pkg
+#13 CACHED
+
+#14 [builder 7/9] COPY go.sum /app
+#14 CACHED
+
+#15 [builder 8/9] COPY pkg /app/pkg
+#15 DONE 0.0s
+
+#16 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sql-anonymize .
+#16 0.325 go: downloading go.uber.org/zap v1.24.0
+#16 0.326 go: downloading github.com/gogo/protobuf v1.3.2
+#16 0.326 go: downloading google.golang.org/protobuf v1.34.2
+#16 0.326 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#16 0.326 go: downloading github.com/docker/docker v23.0.3+incompatible
+#16 0.326 go: downloading go.opencensus.io v0.24.0
+#16 0.326 go: downloading github.com/google/uuid v1.6.0
+#16 2.889 go: downloading google.golang.org/grpc v1.65.0
+#16 3.586 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#16 5.027 go: downloading github.com/golang/protobuf v1.5.4
+#16 5.027 go: downloading google.golang.org/api v0.25.0
+#16 5.239 go: downloading go.uber.org/atomic v1.7.0
+#16 5.240 go: downloading go.uber.org/multierr v1.6.0
+#16 5.243 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#16 5.256 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#16 5.259 go: downloading golang.org/x/net v0.27.0
+#16 5.987 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#16 5.994 go: downloading golang.org/x/sys v0.22.0
+#16 6.428 go: downloading github.com/docker/go-units v0.5.0
+#16 6.428 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#16 6.708 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#16 7.820 go: downloading github.com/docker/go-connections v0.4.0
+#16 7.824 go: downloading github.com/pkg/errors v0.9.1
+#16 8.185 go: downloading golang.org/x/text v0.16.0
+#16 19.90 go: downloading golang.org/x/sync v0.7.0
+#16 DONE 33.0s
+
+#17 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#17 CACHED
+
+#18 [stage-1 3/4] WORKDIR /app/
+#18 CACHED
+
+#19 [stage-1 4/4] COPY --from=builder /go/bin/sql-anonymize .
+#19 DONE 0.1s
+
+#20 exporting to image
+#20 exporting layers
+#20 exporting layers 0.6s done
+#20 exporting manifest sha256:720388d6863f10cdbdaed2dd48271e9294306f9b5a6e80a2fceb04ac0899ec52 0.0s done
+#20 exporting config sha256:d2cfbde2e333e82c1de668f9fa839e37d6f6a63a5c2e52d3fca93c0135548af9 0.0s done
+#20 exporting attestation manifest sha256:4a9de3f2dfa145ae9db0f3cf229dd4d9fd377bcf4634b08fb54fc253042fd351 0.0s done
+#20 exporting manifest list sha256:1defb2831bcb83ff1e246eaedf5b69146f13b8cbd7742e75e9bbaf007209c696 0.0s done
+#20 naming to docker.io/dynamos-local/sql-anonymize:rmqs-bench done
+#20 unpacking to docker.io/dynamos-local/sql-anonymize:rmqs-bench 0.1s done
+#20 naming to docker.io/dynamos-local/sql-anonymize:latest done
+#20 unpacking to docker.io/dynamos-local/sql-anonymize:latest done
+#20 DONE 0.9s
+Building dynamos-local/sql-aggregate:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#5 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.0s done
+#6 DONE 0.1s
+
+#7 [internal] load build context
+#7 transferring context: 349.48kB 0.0s done
+#7 DONE 0.1s
+
+#8 [builder 2/9] WORKDIR /app/cmd/sql-aggregate
+#8 CACHED
+
+#9 [builder 3/9] RUN mkdir /app/pkg
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 DONE 0.1s
+
+#12 [builder 6/9] COPY go.mod /app
+#12 DONE 0.0s
+
+#13 [builder 7/9] COPY go.sum /app
+#13 DONE 0.1s
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sql-aggregate .
+#15 0.317 go: downloading google.golang.org/protobuf v1.34.2
+#15 0.319 go: downloading go.opencensus.io v0.24.0
+#15 0.319 go: downloading go.uber.org/zap v1.24.0
+#15 0.396 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 0.398 go: downloading google.golang.org/grpc v1.65.0
+#15 1.843 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 1.843 go: downloading github.com/google/uuid v1.6.0
+#15 1.892 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 2.710 go: downloading github.com/golang/protobuf v1.5.4
+#15 3.272 go: downloading google.golang.org/api v0.25.0
+#15 3.274 go: downloading go.uber.org/multierr v1.6.0
+#15 3.275 go: downloading go.uber.org/atomic v1.7.0
+#15 3.279 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 3.293 go: downloading golang.org/x/net v0.27.0
+#15 3.296 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 3.640 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 3.739 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 4.499 go: downloading golang.org/x/sys v0.22.0
+#15 8.225 go: downloading golang.org/x/text v0.16.0
+#15 14.40 go: downloading github.com/docker/go-units v0.5.0
+#15 16.28 go: downloading github.com/docker/go-connections v0.4.0
+#15 17.58 go: downloading github.com/gogo/protobuf v1.3.2
+#15 18.94 go: downloading github.com/pkg/errors v0.9.1
+#15 18.94 go: downloading golang.org/x/sync v0.7.0
+#15 18.94 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 DONE 34.2s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/sql-aggregate .
+#18 DONE 0.0s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 0.6s done
+#19 exporting manifest sha256:07b705a79cf54cbb7c762872161600c297bea1a01cf391051abe1444746b7758 0.0s done
+#19 exporting config sha256:613a07e8a2c74a80c9d4821e9b7c7ce6208d86bc8f27306ff7d203fc28d99b8a 0.0s done
+#19 exporting attestation manifest sha256:43f8a03647a1be87eaa031c42d7e51614665a9654b1996480e78e8238b004dd4 0.0s done
+#19 exporting manifest list sha256:ac22525bb3d00d49dff03f4e29571bd3d53cf52a49bccc0dfb3f036bac2658fd 0.0s done
+#19 naming to docker.io/dynamos-local/sql-aggregate:rmqs-bench done
+#19 unpacking to docker.io/dynamos-local/sql-aggregate:rmqs-bench
+#19 unpacking to docker.io/dynamos-local/sql-aggregate:rmqs-bench 0.1s done
+#19 naming to docker.io/dynamos-local/sql-aggregate:latest done
+#19 unpacking to docker.io/dynamos-local/sql-aggregate:latest done
+#19 DONE 0.9s
+Building dynamos-local/sql-test:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#5 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.0s done
+#5 DONE 0.1s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#6 DONE 0.1s
+
+#7 [internal] load build context
+#7 transferring context: 332.65kB 0.0s done
+#7 DONE 0.0s
+
+#8 [builder 6/9] COPY go.mod /app
+#8 CACHED
+
+#9 [builder 2/9] WORKDIR /app/cmd/sql-test
+#9 CACHED
+
+#10 [builder 3/9] RUN mkdir /app/pkg
+#10 CACHED
+
+#11 [builder 4/9] RUN mkdir /app/etcd
+#11 CACHED
+
+#12 [builder 5/9] COPY *.go ./
+#12 CACHED
+
+#13 [builder 7/9] COPY go.sum /app
+#13 CACHED
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sql-test .
+#15 0.399 go: downloading go.uber.org/zap v1.24.0
+#15 0.407 go: downloading google.golang.org/protobuf v1.34.2
+#15 0.407 go: downloading google.golang.org/grpc v1.65.0
+#15 0.407 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#15 0.421 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 0.422 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 0.425 go: downloading github.com/google/uuid v1.6.0
+#15 0.430 go: downloading go.opencensus.io v0.24.0
+#15 7.499 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#15 7.521 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 8.121 go: downloading github.com/golang/protobuf v1.5.4
+#15 8.415 go: downloading google.golang.org/api v0.25.0
+#15 8.420 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#15 8.486 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#15 8.556 go: downloading go.uber.org/atomic v1.7.0
+#15 8.556 go: downloading go.uber.org/multierr v1.6.0
+#15 8.559 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 8.572 go: downloading golang.org/x/net v0.27.0
+#15 8.624 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 8.625 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 9.490 go: downloading github.com/gogo/protobuf v1.3.2
+#15 9.514 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 9.649 go: downloading github.com/coreos/go-semver v0.3.1
+#15 9.658 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 11.56 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#15 12.26 go: downloading golang.org/x/sys v0.22.0
+#15 17.55 go: downloading github.com/docker/go-units v0.5.0
+#15 18.10 go: downloading github.com/docker/go-connections v0.4.0
+#15 18.45 go: downloading golang.org/x/text v0.16.0
+#15 18.94 go: downloading golang.org/x/sync v0.7.0
+#15 19.16 go: downloading github.com/pkg/errors v0.9.1
+#15 DONE 36.8s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/sql-test .
+#18 DONE 2.9s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 0.7s done
+#19 exporting manifest sha256:898c93ae308de147d2850eaa8b2c638142aaca870dc7d28b8cd793025f7e747a 0.0s done
+#19 exporting config sha256:d2281d63ba7ffbf1ea299decedfd1920d08b0f13d1ece4741fbb71fb3edcabbf 0.0s done
+#19 exporting attestation manifest sha256:6a89c04341355a010bf75470080fcc12baef9be007d11d56d2b809da283c9027 0.0s done
+#19 exporting manifest list sha256:6f8ec58832fd61f2f19cbaf69d4d05586908c308778a053b12ecfb727de24dc2 0.0s done
+#19 naming to docker.io/dynamos-local/sql-test:rmqs-bench done
+#19 unpacking to docker.io/dynamos-local/sql-test:rmqs-bench
+#19 unpacking to docker.io/dynamos-local/sql-test:rmqs-bench 0.1s done
+#19 naming to docker.io/dynamos-local/sql-test:latest done
+#19 unpacking to docker.io/dynamos-local/sql-test:latest done
+#19 DONE 1.0s
+Generating sql-query benchmark tables (250000 rows per provider: UVA,VU)
+Generated benchmark SQL tables for UVA, VU with 250000 rows per provider in /tmp/tmp.E8z0VsueHf/sql-query
+Building Python wheel for sql-query
+  WARNING: The script wheel is installed in '/tmp/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+[notice] A new release of pip is available: 25.0.1 -> 26.1.1
+[notice] To update, run: pip install --upgrade pip
+running bdist_wheel
+running build
+running build_py
+creating build/lib/dynamos
+copying dynamos/rabbit_client.py -> build/lib/dynamos
+copying dynamos/signal_flow.py -> build/lib/dynamos
+copying dynamos/logger.py -> build/lib/dynamos
+copying dynamos/grpc_server.py -> build/lib/dynamos
+copying dynamos/__init__.py -> build/lib/dynamos
+copying dynamos/ms_init.py -> build/lib/dynamos
+copying dynamos/base_client.py -> build/lib/dynamos
+copying dynamos/grpc_client.py -> build/lib/dynamos
+copying dynamos/tracer.py -> build/lib/dynamos
+running egg_info
+creating dynamos.egg-info
+writing dynamos.egg-info/PKG-INFO
+writing dependency_links to dynamos.egg-info/dependency_links.txt
+writing requirements to dynamos.egg-info/requires.txt
+writing top-level names to dynamos.egg-info/top_level.txt
+writing manifest file 'dynamos.egg-info/SOURCES.txt'
+reading manifest file 'dynamos.egg-info/SOURCES.txt'
+writing manifest file 'dynamos.egg-info/SOURCES.txt'
+/tmp/.local/lib/python3.12/site-packages/setuptools/_distutils/cmd.py:90: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/dynamos
+copying build/lib/dynamos/rabbit_client.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/signal_flow.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/logger.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/grpc_server.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/__init__.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/ms_init.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/base_client.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/grpc_client.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/tracer.py -> build/bdist.linux-x86_64/wheel/./dynamos
+running install_egg_info
+Copying dynamos.egg-info to build/bdist.linux-x86_64/wheel/./dynamos-0.1-py3.12.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/dynamos-0.1.dist-info/WHEEL
+creating '/dist/dynamos-0.1-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'dynamos/__init__.py'
+adding 'dynamos/base_client.py'
+adding 'dynamos/grpc_client.py'
+adding 'dynamos/grpc_server.py'
+adding 'dynamos/logger.py'
+adding 'dynamos/ms_init.py'
+adding 'dynamos/rabbit_client.py'
+adding 'dynamos/signal_flow.py'
+adding 'dynamos/tracer.py'
+adding 'dynamos-0.1.dist-info/METADATA'
+adding 'dynamos-0.1.dist-info/WHEEL'
+adding 'dynamos-0.1.dist-info/top_level.txt'
+adding 'dynamos-0.1.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Building dynamos-local/sql-query:rmqs-bench
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 595B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [ 1/13] FROM docker.io/library/python:3.12-slim@sha256:ec948fa5f90f4f8907e89f4800cfd2d2e91e391a4bce4a6afa77ba265bc3a2fe
+#5 resolve docker.io/library/python:3.12-slim@sha256:ec948fa5f90f4f8907e89f4800cfd2d2e91e391a4bce4a6afa77ba265bc3a2fe 0.0s done
+#5 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 62.85MB 0.6s done
+#4 DONE 0.6s
+
+#6 [ 4/13] RUN mkdir datasets
+#6 CACHED
+
+#7 [ 5/13] RUN mkdir protofiles
+#7 CACHED
+
+#8 [ 2/13] WORKDIR /app
+#8 CACHED
+
+#9 [ 3/13] RUN mkdir sql-query
+#9 CACHED
+
+#10 [ 6/13] COPY requirements.txt .
+#10 CACHED
+
+#11 [ 7/13] COPY ./*.py /app/sql-query
+#11 DONE 0.1s
+
+#12 [ 8/13] COPY ./protofiles/*.py /app/protofiles
+#12 DONE 0.4s
+
+#13 [ 9/13] COPY ./*.csv /app/datasets
+#13 DONE 0.1s
+
+#14 [10/13] COPY dynamos-0.1-py3-none-any.whl /tmp/
+#14 DONE 0.0s
+
+#15 [11/13] RUN pip install /tmp/dynamos-0.1-py3-none-any.whl
+#15 1.614 Processing /tmp/dynamos-0.1-py3-none-any.whl
+#15 2.512 Collecting grpcio==1.59.3 (from dynamos==0.1)
+#15 2.556   Downloading grpcio-1.59.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.0 kB)
+#15 2.588 Collecting google>=3.0.0 (from dynamos==0.1)
+#15 2.597   Downloading google-3.0.0-py2.py3-none-any.whl.metadata (627 bytes)
+#15 3.415 Collecting grpcio-tools>=1.59.3 (from dynamos==0.1)
+#15 3.428   Downloading grpcio_tools-1.80.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.3 kB)
+#15 3.459 Collecting retrying>=1.3.4 (from dynamos==0.1)
+#15 3.474   Downloading retrying-1.4.2-py3-none-any.whl.metadata (5.5 kB)
+#15 3.511 Collecting grpclib>=0.4.5 (from dynamos==0.1)
+#15 3.524   Downloading grpclib-0.4.9-py3-none-any.whl.metadata (6.1 kB)
+#15 3.778 Collecting protobuf==4.25.3 (from dynamos==0.1)
+#15 3.793   Downloading protobuf-4.25.3-cp37-abi3-manylinux2014_x86_64.whl.metadata (541 bytes)
+#15 3.993 Collecting setuptools<81 (from dynamos==0.1)
+#15 4.005   Downloading setuptools-80.10.2-py3-none-any.whl.metadata (6.6 kB)
+#15 4.063 Collecting opentelemetry-api==1.19.0 (from dynamos==0.1)
+#15 4.074   Downloading opentelemetry_api-1.19.0-py3-none-any.whl.metadata (1.4 kB)
+#15 4.123 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 4.135   Downloading opentelemetry_instrumentation-0.63b0-py3-none-any.whl.metadata (7.2 kB)
+#15 4.196 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 4.211   Downloading opentelemetry_instrumentation_grpc-0.63b0-py3-none-any.whl.metadata (1.9 kB)
+#15 4.260 Collecting opentelemetry-semantic-conventions==0.40b0 (from dynamos==0.1)
+#15 4.269   Downloading opentelemetry_semantic_conventions-0.40b0-py3-none-any.whl.metadata (2.3 kB)
+#15 4.321 Collecting opentelemetry-exporter-otlp==1.19.0 (from dynamos==0.1)
+#15 4.334   Downloading opentelemetry_exporter_otlp-1.19.0-py3-none-any.whl.metadata (2.3 kB)
+#15 4.381 Collecting opentelemetry-exporter-otlp-proto-common==1.19.0 (from dynamos==0.1)
+#15 4.391   Downloading opentelemetry_exporter_otlp_proto_common-1.19.0-py3-none-any.whl.metadata (1.7 kB)
+#15 4.439 Collecting opentelemetry-exporter-otlp-proto-grpc==1.19.0 (from dynamos==0.1)
+#15 4.532   Downloading opentelemetry_exporter_otlp_proto_grpc-1.19.0-py3-none-any.whl.metadata (2.4 kB)
+#15 4.579 Collecting opentelemetry-sdk==1.19.0 (from dynamos==0.1)
+#15 4.589   Downloading opentelemetry_sdk-1.19.0-py3-none-any.whl.metadata (1.5 kB)
+#15 4.628 Collecting deprecated>=1.2.6 (from opentelemetry-api==1.19.0->dynamos==0.1)
+#15 4.643   Downloading deprecated-1.3.1-py2.py3-none-any.whl.metadata (5.9 kB)
+#15 4.702 Collecting importlib-metadata~=6.0 (from opentelemetry-api==1.19.0->dynamos==0.1)
+#15 4.711   Downloading importlib_metadata-6.11.0-py3-none-any.whl.metadata (4.9 kB)
+#15 4.757 Collecting opentelemetry-exporter-otlp-proto-http==1.19.0 (from opentelemetry-exporter-otlp==1.19.0->dynamos==0.1)
+#15 4.774   Downloading opentelemetry_exporter_otlp_proto_http-1.19.0-py3-none-any.whl.metadata (2.4 kB)
+#15 4.820 Collecting opentelemetry-proto==1.19.0 (from opentelemetry-exporter-otlp-proto-common==1.19.0->dynamos==0.1)
+#15 4.834   Downloading opentelemetry_proto-1.19.0-py3-none-any.whl.metadata (2.3 kB)
+#15 4.867 Collecting backoff<3.0.0,>=1.10.0 (from opentelemetry-exporter-otlp-proto-grpc==1.19.0->dynamos==0.1)
+#15 4.877   Downloading backoff-2.2.1-py3-none-any.whl.metadata (14 kB)
+#15 4.927 Collecting googleapis-common-protos~=1.52 (from opentelemetry-exporter-otlp-proto-grpc==1.19.0->dynamos==0.1)
+#15 4.938   Downloading googleapis_common_protos-1.75.0-py3-none-any.whl.metadata (8.6 kB)
+#15 5.001 Collecting typing-extensions>=3.7.4 (from opentelemetry-sdk==1.19.0->dynamos==0.1)
+#15 5.011   Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+#15 5.077 Collecting requests~=2.7 (from opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos==0.1)
+#15 5.093   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#15 5.147 Collecting beautifulsoup4 (from google>=3.0.0->dynamos==0.1)
+#15 5.162   Downloading beautifulsoup4-4.14.3-py3-none-any.whl.metadata (3.8 kB)
+#15 5.185 INFO: pip is looking at multiple versions of grpcio-tools to determine which version is compatible with other requirements. This could take a while.
+#15 5.185 Collecting grpcio-tools>=1.59.3 (from dynamos==0.1)
+#15 5.196   Downloading grpcio_tools-1.78.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.3 kB)
+#15 5.214   Downloading grpcio_tools-1.76.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.3 kB)
+#15 5.234   Downloading grpcio_tools-1.75.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.3 kB)
+#15 5.261   Downloading grpcio_tools-1.75.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.3 kB)
+#15 5.284   Downloading grpcio_tools-1.74.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.308   Downloading grpcio_tools-1.73.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.364   Downloading grpcio_tools-1.73.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.387 INFO: pip is still looking at multiple versions of grpcio-tools to determine which version is compatible with other requirements. This could take a while.
+#15 5.406   Downloading grpcio_tools-1.72.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.436   Downloading grpcio_tools-1.72.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.460   Downloading grpcio_tools-1.71.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.512   Downloading grpcio_tools-1.71.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.536   Downloading grpcio_tools-1.70.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.552 INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+#15 5.565   Downloading grpcio_tools-1.69.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.589   Downloading grpcio_tools-1.68.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.607   Downloading grpcio_tools-1.68.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.623   Downloading grpcio_tools-1.67.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.642   Downloading grpcio_tools-1.67.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.661   Downloading grpcio_tools-1.66.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.685   Downloading grpcio_tools-1.66.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.705   Downloading grpcio_tools-1.66.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.722   Downloading grpcio_tools-1.65.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.742   Downloading grpcio_tools-1.65.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.758   Downloading grpcio_tools-1.65.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.776   Downloading grpcio_tools-1.65.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.797   Downloading grpcio_tools-1.64.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.816   Downloading grpcio_tools-1.64.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.837   Downloading grpcio_tools-1.64.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.854   Downloading grpcio_tools-1.63.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.871   Downloading grpcio_tools-1.63.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+#15 5.890   Downloading grpcio_tools-1.62.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.024   Downloading grpcio_tools-1.62.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.072   Downloading grpcio_tools-1.62.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.135   Downloading grpcio_tools-1.62.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.294   Downloading grpcio_tools-1.61.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.323   Downloading grpcio_tools-1.60.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.359   Downloading grpcio_tools-1.60.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.399   Downloading grpcio_tools-1.60.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.453   Downloading grpcio_tools-1.59.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.589   Downloading grpcio_tools-1.59.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+#15 6.666 Collecting h2<5,>=3.1.0 (from grpclib>=0.4.5->dynamos==0.1)
+#15 6.680   Downloading h2-4.3.0-py3-none-any.whl.metadata (5.1 kB)
+#15 7.075 Collecting multidict (from grpclib>=0.4.5->dynamos==0.1)
+#15 7.089   Downloading multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+#15 7.123 INFO: pip is looking at multiple versions of opentelemetry-instrumentation to determine which version is compatible with other requirements. This could take a while.
+#15 7.124 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 7.136   Downloading opentelemetry_instrumentation-0.62b1-py3-none-any.whl.metadata (7.2 kB)
+#15 7.176   Downloading opentelemetry_instrumentation-0.62b0-py3-none-any.whl.metadata (7.2 kB)
+#15 7.201   Downloading opentelemetry_instrumentation-0.61b0-py3-none-any.whl.metadata (7.2 kB)
+#15 7.222   Downloading opentelemetry_instrumentation-0.60b1-py3-none-any.whl.metadata (7.2 kB)
+#15 7.249   Downloading opentelemetry_instrumentation-0.60b0-py3-none-any.whl.metadata (7.2 kB)
+#15 7.272   Downloading opentelemetry_instrumentation-0.59b0-py3-none-any.whl.metadata (7.1 kB)
+#15 7.295   Downloading opentelemetry_instrumentation-0.58b0-py3-none-any.whl.metadata (7.1 kB)
+#15 7.306 INFO: pip is still looking at multiple versions of opentelemetry-instrumentation to determine which version is compatible with other requirements. This could take a while.
+#15 7.320   Downloading opentelemetry_instrumentation-0.57b0-py3-none-any.whl.metadata (6.7 kB)
+#15 7.344   Downloading opentelemetry_instrumentation-0.56b0-py3-none-any.whl.metadata (6.7 kB)
+#15 7.366   Downloading opentelemetry_instrumentation-0.55b1-py3-none-any.whl.metadata (6.7 kB)
+#15 7.393   Downloading opentelemetry_instrumentation-0.55b0-py3-none-any.whl.metadata (6.7 kB)
+#15 7.412   Downloading opentelemetry_instrumentation-0.54b1-py3-none-any.whl.metadata (6.8 kB)
+#15 7.424 INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+#15 7.434   Downloading opentelemetry_instrumentation-0.54b0-py3-none-any.whl.metadata (6.8 kB)
+#15 7.466   Downloading opentelemetry_instrumentation-0.53b1-py3-none-any.whl.metadata (6.8 kB)
+#15 7.488   Downloading opentelemetry_instrumentation-0.53b0-py3-none-any.whl.metadata (6.8 kB)
+#15 7.522   Downloading opentelemetry_instrumentation-0.52b1-py3-none-any.whl.metadata (6.8 kB)
+#15 7.542   Downloading opentelemetry_instrumentation-0.52b0-py3-none-any.whl.metadata (6.8 kB)
+#15 7.569   Downloading opentelemetry_instrumentation-0.51b0-py3-none-any.whl.metadata (6.3 kB)
+#15 7.591   Downloading opentelemetry_instrumentation-0.50b0-py3-none-any.whl.metadata (6.1 kB)
+#15 7.619   Downloading opentelemetry_instrumentation-0.49b2-py3-none-any.whl.metadata (6.1 kB)
+#15 7.641   Downloading opentelemetry_instrumentation-0.49b1-py3-none-any.whl.metadata (6.2 kB)
+#15 7.669   Downloading opentelemetry_instrumentation-0.49b0-py3-none-any.whl.metadata (6.2 kB)
+#15 7.697   Downloading opentelemetry_instrumentation-0.48b0-py3-none-any.whl.metadata (6.1 kB)
+#15 8.063 Collecting wrapt<2.0.0,>=1.0.0 (from opentelemetry-instrumentation>=0.40b0->dynamos==0.1)
+#15 8.076   Downloading wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.4 kB)
+#15 8.110 INFO: pip is looking at multiple versions of opentelemetry-instrumentation-grpc to determine which version is compatible with other requirements. This could take a while.
+#15 8.112 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 8.124   Downloading opentelemetry_instrumentation_grpc-0.62b1-py3-none-any.whl.metadata (2.0 kB)
+#15 8.146   Downloading opentelemetry_instrumentation_grpc-0.62b0-py3-none-any.whl.metadata (2.0 kB)
+#15 8.197   Downloading opentelemetry_instrumentation_grpc-0.61b0-py3-none-any.whl.metadata (2.0 kB)
+#15 8.221   Downloading opentelemetry_instrumentation_grpc-0.60b1-py3-none-any.whl.metadata (1.9 kB)
+#15 8.242   Downloading opentelemetry_instrumentation_grpc-0.60b0-py3-none-any.whl.metadata (1.9 kB)
+#15 8.361   Downloading opentelemetry_instrumentation_grpc-0.59b0-py3-none-any.whl.metadata (1.9 kB)
+#15 8.390   Downloading opentelemetry_instrumentation_grpc-0.58b0-py3-none-any.whl.metadata (1.9 kB)
+#15 8.403 INFO: pip is still looking at multiple versions of opentelemetry-instrumentation-grpc to determine which version is compatible with other requirements. This could take a while.
+#15 8.504   Downloading opentelemetry_instrumentation_grpc-0.57b0-py3-none-any.whl.metadata (1.9 kB)
+#15 8.619   Downloading opentelemetry_instrumentation_grpc-0.56b0-py3-none-any.whl.metadata (1.9 kB)
+#15 8.642   Downloading opentelemetry_instrumentation_grpc-0.55b1-py3-none-any.whl.metadata (1.9 kB)
+#15 8.666   Downloading opentelemetry_instrumentation_grpc-0.55b0-py3-none-any.whl.metadata (1.9 kB)
+#15 8.690   Downloading opentelemetry_instrumentation_grpc-0.54b1-py3-none-any.whl.metadata (2.0 kB)
+#15 8.726 INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+#15 8.735   Downloading opentelemetry_instrumentation_grpc-0.54b0-py3-none-any.whl.metadata (2.0 kB)
+#15 8.842   Downloading opentelemetry_instrumentation_grpc-0.53b1-py3-none-any.whl.metadata (2.0 kB)
+#15 8.876   Downloading opentelemetry_instrumentation_grpc-0.53b0-py3-none-any.whl.metadata (2.0 kB)
+#15 8.911   Downloading opentelemetry_instrumentation_grpc-0.52b1-py3-none-any.whl.metadata (2.0 kB)
+#15 8.937   Downloading opentelemetry_instrumentation_grpc-0.52b0-py3-none-any.whl.metadata (2.0 kB)
+#15 8.967   Downloading opentelemetry_instrumentation_grpc-0.51b0-py3-none-any.whl.metadata (2.0 kB)
+#15 8.989   Downloading opentelemetry_instrumentation_grpc-0.50b0-py3-none-any.whl.metadata (1.8 kB)
+#15 9.011   Downloading opentelemetry_instrumentation_grpc-0.49b2-py3-none-any.whl.metadata (1.8 kB)
+#15 9.119   Downloading opentelemetry_instrumentation_grpc-0.49b1-py3-none-any.whl.metadata (1.8 kB)
+#15 9.146   Downloading opentelemetry_instrumentation_grpc-0.49b0-py3-none-any.whl.metadata (1.8 kB)
+#15 9.168   Downloading opentelemetry_instrumentation_grpc-0.48b0-py3-none-any.whl.metadata (1.8 kB)
+#15 9.204   Downloading opentelemetry_instrumentation_grpc-0.47b0-py3-none-any.whl.metadata (1.8 kB)
+#15 9.220 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 9.231   Downloading opentelemetry_instrumentation-0.47b0-py3-none-any.whl.metadata (6.1 kB)
+#15 9.244 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 9.332   Downloading opentelemetry_instrumentation_grpc-0.46b0-py3-none-any.whl.metadata (1.8 kB)
+#15 9.343 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 9.352   Downloading opentelemetry_instrumentation-0.46b0-py3-none-any.whl.metadata (6.1 kB)
+#15 9.363 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 9.372   Downloading opentelemetry_instrumentation_grpc-0.45b0-py3-none-any.whl.metadata (1.8 kB)
+#15 9.385 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 9.395   Downloading opentelemetry_instrumentation-0.45b0-py3-none-any.whl.metadata (6.1 kB)
+#15 9.416 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 9.425   Downloading opentelemetry_instrumentation_grpc-0.44b0-py3-none-any.whl.metadata (2.1 kB)
+#15 9.457 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 9.470   Downloading opentelemetry_instrumentation-0.44b0-py3-none-any.whl.metadata (6.1 kB)
+#15 9.487 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 9.582   Downloading opentelemetry_instrumentation_grpc-0.43b0-py3-none-any.whl.metadata (2.2 kB)
+#15 9.603 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 9.617   Downloading opentelemetry_instrumentation-0.43b0-py3-none-any.whl.metadata (5.9 kB)
+#15 9.628 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 9.638   Downloading opentelemetry_instrumentation_grpc-0.42b0-py3-none-any.whl.metadata (2.2 kB)
+#15 9.652 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 9.662   Downloading opentelemetry_instrumentation-0.42b0-py3-none-any.whl.metadata (5.9 kB)
+#15 9.678 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 9.691   Downloading opentelemetry_instrumentation_grpc-0.41b0-py3-none-any.whl.metadata (2.2 kB)
+#15 9.727 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 9.816   Downloading opentelemetry_instrumentation-0.41b0-py3-none-any.whl.metadata (5.9 kB)
+#15 9.837 Collecting opentelemetry-instrumentation-grpc>=0.40b0 (from dynamos==0.1)
+#15 9.848   Downloading opentelemetry_instrumentation_grpc-0.40b0-py3-none-any.whl.metadata (2.2 kB)
+#15 9.861 Collecting opentelemetry-instrumentation>=0.40b0 (from dynamos==0.1)
+#15 9.870   Downloading opentelemetry_instrumentation-0.40b0-py3-none-any.whl.metadata (5.9 kB)
+#15 9.913 INFO: pip is looking at multiple versions of googleapis-common-protos to determine which version is compatible with other requirements. This could take a while.
+#15 9.915 Collecting googleapis-common-protos~=1.52 (from opentelemetry-exporter-otlp-proto-grpc==1.19.0->dynamos==0.1)
+#15 9.925   Downloading googleapis_common_protos-1.74.0-py3-none-any.whl.metadata (9.2 kB)
+#15 9.982   Downloading googleapis_common_protos-1.73.1-py3-none-any.whl.metadata (9.2 kB)
+#15 10.01   Downloading googleapis_common_protos-1.73.0-py3-none-any.whl.metadata (9.4 kB)
+#15 10.05 Collecting hyperframe<7,>=6.1 (from h2<5,>=3.1.0->grpclib>=0.4.5->dynamos==0.1)
+#15 10.06   Downloading hyperframe-6.1.0-py3-none-any.whl.metadata (4.3 kB)
+#15 10.09 Collecting hpack<5,>=4.1 (from h2<5,>=3.1.0->grpclib>=0.4.5->dynamos==0.1)
+#15 10.10   Downloading hpack-4.1.0-py3-none-any.whl.metadata (4.6 kB)
+#15 10.14 Collecting zipp>=0.5 (from importlib-metadata~=6.0->opentelemetry-api==1.19.0->dynamos==0.1)
+#15 10.15   Downloading zipp-4.1.0-py3-none-any.whl.metadata (3.6 kB)
+#15 10.24 Collecting soupsieve>=1.6.1 (from beautifulsoup4->google>=3.0.0->dynamos==0.1)
+#15 10.25   Downloading soupsieve-2.8.3-py3-none-any.whl.metadata (4.6 kB)
+#15 10.41 Collecting charset_normalizer<4,>=2 (from requests~=2.7->opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos==0.1)
+#15 10.42   Downloading charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+#15 10.50 Collecting idna<4,>=2.5 (from requests~=2.7->opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos==0.1)
+#15 10.51   Downloading idna-3.15-py3-none-any.whl.metadata (7.7 kB)
+#15 10.63 Collecting urllib3<3,>=1.26 (from requests~=2.7->opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos==0.1)
+#15 10.64   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#15 10.75 Collecting certifi>=2023.5.7 (from requests~=2.7->opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos==0.1)
+#15 10.77   Downloading certifi-2026.5.20-py3-none-any.whl.metadata (2.5 kB)
+#15 10.97 Downloading grpcio-1.59.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.3 MB)
+#15 12.57    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.3/5.3 MB 3.3 MB/s eta 0:00:00
+#15 12.58 Downloading opentelemetry_api-1.19.0-py3-none-any.whl (57 kB)
+#15 12.71 Downloading opentelemetry_exporter_otlp-1.19.0-py3-none-any.whl (7.0 kB)
+#15 12.80 Downloading opentelemetry_exporter_otlp_proto_common-1.19.0-py3-none-any.whl (17 kB)
+#15 12.83 Downloading opentelemetry_exporter_otlp_proto_grpc-1.19.0-py3-none-any.whl (18 kB)
+#15 12.85 Downloading opentelemetry_sdk-1.19.0-py3-none-any.whl (103 kB)
+#15 12.91 Downloading opentelemetry_semantic_conventions-0.40b0-py3-none-any.whl (26 kB)
+#15 12.93 Downloading protobuf-4.25.3-cp37-abi3-manylinux2014_x86_64.whl (294 kB)
+#15 13.03 Downloading opentelemetry_exporter_otlp_proto_http-1.19.0-py3-none-any.whl (17 kB)
+#15 13.05 Downloading opentelemetry_proto-1.19.0-py3-none-any.whl (50 kB)
+#15 13.09 Downloading google-3.0.0-py2.py3-none-any.whl (45 kB)
+#15 13.12 Downloading grpcio_tools-1.59.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.7 MB)
+#15 13.95    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.7/2.7 MB 3.2 MB/s eta 0:00:00
+#15 13.96 Downloading grpclib-0.4.9-py3-none-any.whl (77 kB)
+#15 14.00 Downloading opentelemetry_instrumentation_grpc-0.40b0-py3-none-any.whl (26 kB)
+#15 14.03 Downloading opentelemetry_instrumentation-0.40b0-py3-none-any.whl (25 kB)
+#15 14.06 Downloading retrying-1.4.2-py3-none-any.whl (10 kB)
+#15 14.08 Downloading setuptools-80.10.2-py3-none-any.whl (1.1 MB)
+#15 14.42    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 3.1 MB/s eta 0:00:00
+#15 14.43 Downloading backoff-2.2.1-py3-none-any.whl (15 kB)
+#15 14.45 Downloading deprecated-1.3.1-py2.py3-none-any.whl (11 kB)
+#15 14.47 Downloading googleapis_common_protos-1.73.0-py3-none-any.whl (297 kB)
+#15 14.57 Downloading h2-4.3.0-py3-none-any.whl (61 kB)
+#15 14.62 Downloading importlib_metadata-6.11.0-py3-none-any.whl (23 kB)
+#15 14.64 Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+#15 14.66 Downloading wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (88 kB)
+#15 14.71 Downloading beautifulsoup4-4.14.3-py3-none-any.whl (107 kB)
+#15 14.76 Downloading multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (256 kB)
+#15 14.86 Downloading hpack-4.1.0-py3-none-any.whl (34 kB)
+#15 14.89 Downloading hyperframe-6.1.0-py3-none-any.whl (13 kB)
+#15 14.91 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#15 14.95 Downloading soupsieve-2.8.3-py3-none-any.whl (37 kB)
+#15 14.98 Downloading zipp-4.1.0-py3-none-any.whl (10 kB)
+#15 15.00 Downloading certifi-2026.5.20-py3-none-any.whl (134 kB)
+#15 15.06 Downloading charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (216 kB)
+#15 15.14 Downloading idna-3.15-py3-none-any.whl (72 kB)
+#15 15.19 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#15 15.34 Installing collected packages: zipp, wrapt, urllib3, typing-extensions, soupsieve, setuptools, retrying, protobuf, opentelemetry-semantic-conventions, multidict, idna, hyperframe, hpack, grpcio, charset_normalizer, certifi, backoff, requests, opentelemetry-proto, importlib-metadata, h2, grpcio-tools, googleapis-common-protos, deprecated, beautifulsoup4, opentelemetry-exporter-otlp-proto-common, opentelemetry-api, grpclib, google, opentelemetry-sdk, opentelemetry-instrumentation, opentelemetry-instrumentation-grpc, opentelemetry-exporter-otlp-proto-http, opentelemetry-exporter-otlp-proto-grpc, opentelemetry-exporter-otlp, dynamos
+#15 17.16 Successfully installed backoff-2.2.1 beautifulsoup4-4.14.3 certifi-2026.5.20 charset_normalizer-3.4.7 deprecated-1.3.1 dynamos-0.1 google-3.0.0 googleapis-common-protos-1.73.0 grpcio-1.59.3 grpcio-tools-1.59.3 grpclib-0.4.9 h2-4.3.0 hpack-4.1.0 hyperframe-6.1.0 idna-3.15 importlib-metadata-6.11.0 multidict-6.7.1 opentelemetry-api-1.19.0 opentelemetry-exporter-otlp-1.19.0 opentelemetry-exporter-otlp-proto-common-1.19.0 opentelemetry-exporter-otlp-proto-grpc-1.19.0 opentelemetry-exporter-otlp-proto-http-1.19.0 opentelemetry-instrumentation-0.40b0 opentelemetry-instrumentation-grpc-0.40b0 opentelemetry-proto-1.19.0 opentelemetry-sdk-1.19.0 opentelemetry-semantic-conventions-0.40b0 protobuf-4.25.3 requests-2.34.2 retrying-1.4.2 setuptools-80.10.2 soupsieve-2.8.3 typing-extensions-4.15.0 urllib3-2.7.0 wrapt-1.17.3 zipp-4.1.0
+#15 17.16 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#15 17.28 
+#15 17.28 [notice] A new release of pip is available: 25.0.1 -> 26.1.1
+#15 17.28 [notice] To update, run: pip install --upgrade pip
+#15 DONE 17.5s
+
+#16 [12/13] RUN pip install --no-cache-dir -r requirements.txt
+#16 0.852 Collecting pandas>=2.2.2 (from -r requirements.txt (line 1))
+#16 0.891   Downloading pandas-3.0.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+#16 0.963 Requirement already satisfied: dynamos>=0.1 in /usr/local/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (0.1)
+#16 1.060 Collecting pandasql>=0.7.3 (from -r requirements.txt (line 3))
+#16 1.073   Downloading pandasql-0.7.3.tar.gz (26 kB)
+#16 1.087   Installing build dependencies: started
+#16 5.145   Installing build dependencies: finished with status 'done'
+#16 5.147   Getting requirements to build wheel: started
+#16 5.367   Getting requirements to build wheel: finished with status 'done'
+#16 5.369   Preparing metadata (pyproject.toml): started
+#16 5.550   Preparing metadata (pyproject.toml): finished with status 'done'
+#16 5.554 Requirement already satisfied: opentelemetry-api>=1.19.0 in /usr/local/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (1.19.0)
+#16 5.554 Requirement already satisfied: opentelemetry-instrumentation>=0.40b0 in /usr/local/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (0.40b0)
+#16 5.833 Collecting numpy>=1.26.0 (from pandas>=2.2.2->-r requirements.txt (line 1))
+#16 5.842   Downloading numpy-2.4.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+#16 5.861 Collecting python-dateutil>=2.8.2 (from pandas>=2.2.2->-r requirements.txt (line 1))
+#16 5.871   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#16 5.879 Requirement already satisfied: grpcio==1.59.3 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (1.59.3)
+#16 5.879 Requirement already satisfied: google>=3.0.0 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (3.0.0)
+#16 5.880 Requirement already satisfied: grpcio-tools>=1.59.3 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (1.59.3)
+#16 5.880 Requirement already satisfied: retrying>=1.3.4 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (1.4.2)
+#16 5.881 Requirement already satisfied: grpclib>=0.4.5 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (0.4.9)
+#16 5.882 Requirement already satisfied: protobuf==4.25.3 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (4.25.3)
+#16 5.882 Requirement already satisfied: setuptools<81 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (80.10.2)
+#16 5.884 Requirement already satisfied: opentelemetry-instrumentation-grpc>=0.40b0 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (0.40b0)
+#16 5.887 Requirement already satisfied: opentelemetry-semantic-conventions==0.40b0 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (0.40b0)
+#16 5.887 Requirement already satisfied: opentelemetry-exporter-otlp==1.19.0 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (1.19.0)
+#16 5.887 Requirement already satisfied: opentelemetry-exporter-otlp-proto-common==1.19.0 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (1.19.0)
+#16 5.887 Requirement already satisfied: opentelemetry-exporter-otlp-proto-grpc==1.19.0 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (1.19.0)
+#16 5.887 Requirement already satisfied: opentelemetry-sdk==1.19.0 in /usr/local/lib/python3.12/site-packages (from dynamos>=0.1->-r requirements.txt (line 2)) (1.19.0)
+#16 5.887 Requirement already satisfied: deprecated>=1.2.6 in /usr/local/lib/python3.12/site-packages (from opentelemetry-api>=1.19.0->-r requirements.txt (line 4)) (1.3.1)
+#16 5.887 Requirement already satisfied: importlib-metadata~=6.0 in /usr/local/lib/python3.12/site-packages (from opentelemetry-api>=1.19.0->-r requirements.txt (line 4)) (6.11.0)
+#16 5.889 Requirement already satisfied: opentelemetry-exporter-otlp-proto-http==1.19.0 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (1.19.0)
+#16 5.891 Requirement already satisfied: opentelemetry-proto==1.19.0 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-common==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (1.19.0)
+#16 5.894 Requirement already satisfied: backoff<3.0.0,>=1.10.0 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-grpc==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (2.2.1)
+#16 5.894 Requirement already satisfied: googleapis-common-protos~=1.52 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-grpc==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (1.73.0)
+#16 5.897 Requirement already satisfied: typing-extensions>=3.7.4 in /usr/local/lib/python3.12/site-packages (from opentelemetry-sdk==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (4.15.0)
+#16 5.902 Requirement already satisfied: requests~=2.7 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (2.34.2)
+#16 6.262 Collecting sqlalchemy (from pandasql>=0.7.3->-r requirements.txt (line 3))
+#16 6.273   Downloading sqlalchemy-2.0.49-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+#16 6.283 Requirement already satisfied: wrapt<2.0.0,>=1.0.0 in /usr/local/lib/python3.12/site-packages (from opentelemetry-instrumentation>=0.40b0->-r requirements.txt (line 5)) (1.17.3)
+#16 6.286 Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.12/site-packages (from google>=3.0.0->dynamos>=0.1->-r requirements.txt (line 2)) (4.14.3)
+#16 6.290 Requirement already satisfied: h2<5,>=3.1.0 in /usr/local/lib/python3.12/site-packages (from grpclib>=0.4.5->dynamos>=0.1->-r requirements.txt (line 2)) (4.3.0)
+#16 6.291 Requirement already satisfied: multidict in /usr/local/lib/python3.12/site-packages (from grpclib>=0.4.5->dynamos>=0.1->-r requirements.txt (line 2)) (6.7.1)
+#16 6.293 Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.12/site-packages (from importlib-metadata~=6.0->opentelemetry-api>=1.19.0->-r requirements.txt (line 4)) (4.1.0)
+#16 6.312 Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas>=2.2.2->-r requirements.txt (line 1))
+#16 6.321   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#16 6.509 Collecting greenlet>=1 (from sqlalchemy->pandasql>=0.7.3->-r requirements.txt (line 3))
+#16 6.521   Downloading greenlet-3.5.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.7 kB)
+#16 6.529 Requirement already satisfied: hyperframe<7,>=6.1 in /usr/local/lib/python3.12/site-packages (from h2<5,>=3.1.0->grpclib>=0.4.5->dynamos>=0.1->-r requirements.txt (line 2)) (6.1.0)
+#16 6.530 Requirement already satisfied: hpack<5,>=4.1 in /usr/local/lib/python3.12/site-packages (from h2<5,>=3.1.0->grpclib>=0.4.5->dynamos>=0.1->-r requirements.txt (line 2)) (4.1.0)
+#16 6.535 Requirement already satisfied: soupsieve>=1.6.1 in /usr/local/lib/python3.12/site-packages (from beautifulsoup4->google>=3.0.0->dynamos>=0.1->-r requirements.txt (line 2)) (2.8.3)
+#16 6.543 Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.12/site-packages (from requests~=2.7->opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (3.4.7)
+#16 6.543 Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.12/site-packages (from requests~=2.7->opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (3.15)
+#16 6.543 Requirement already satisfied: urllib3<3,>=1.26 in /usr/local/lib/python3.12/site-packages (from requests~=2.7->opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (2.7.0)
+#16 6.543 Requirement already satisfied: certifi>=2023.5.7 in /usr/local/lib/python3.12/site-packages (from requests~=2.7->opentelemetry-exporter-otlp-proto-http==1.19.0->opentelemetry-exporter-otlp==1.19.0->dynamos>=0.1->-r requirements.txt (line 2)) (2026.5.20)
+#16 6.566 Downloading pandas-3.0.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (10.9 MB)
+#16 10.11    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.9/10.9 MB 3.1 MB/s eta 0:00:00
+#16 10.11 Downloading numpy-2.4.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+#16 15.44    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.6/16.6 MB 3.1 MB/s eta 0:00:00
+#16 15.45 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#16 15.53 Downloading sqlalchemy-2.0.49-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.4 MB)
+#16 16.51    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 3.4 MB/s eta 0:00:00
+#16 16.52 Downloading greenlet-3.5.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (611 kB)
+#16 16.71    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 611.4/611.4 kB 3.4 MB/s eta 0:00:00
+#16 16.73 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#16 16.82 Building wheels for collected packages: pandasql
+#16 16.82   Building wheel for pandasql (pyproject.toml): started
+#16 17.10   Building wheel for pandasql (pyproject.toml): finished with status 'done'
+#16 17.10   Created wheel for pandasql: filename=pandasql-0.7.3-py3-none-any.whl size=26867 sha256=2b21f0dfc3d88a90a5a3396fbfc4e367b043195f548b74324b017bca47b55b17
+#16 17.10   Stored in directory: /tmp/pip-ephem-wheel-cache-_x2ivl02/wheels/15/a1/e7/6f92f295b5272ae5c02365e6b8fa19cb93f16a537090a1cf27
+#16 17.10 Successfully built pandasql
+#16 17.17 Installing collected packages: six, numpy, greenlet, sqlalchemy, python-dateutil, pandas, pandasql
+#16 25.08 Successfully installed greenlet-3.5.0 numpy-2.4.6 pandas-3.0.3 pandasql-0.7.3 python-dateutil-2.9.0.post0 six-1.17.0 sqlalchemy-2.0.49
+#16 25.08 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#16 25.17 
+#16 25.17 [notice] A new release of pip is available: 25.0.1 -> 26.1.1
+#16 25.17 [notice] To update, run: pip install --upgrade pip
+#16 DONE 25.4s
+
+#17 [13/13] RUN pip install --upgrade numpy pandas
+#17 0.700 Requirement already satisfied: numpy in /usr/local/lib/python3.12/site-packages (2.4.6)
+#17 1.053 Requirement already satisfied: pandas in /usr/local/lib/python3.12/site-packages (3.0.3)
+#17 1.240 Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
+#17 1.242 Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas) (1.17.0)
+#17 1.286 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#17 1.297 
+#17 1.297 [notice] A new release of pip is available: 25.0.1 -> 26.1.1
+#17 1.297 [notice] To update, run: pip install --upgrade pip
+#17 DONE 1.4s
+
+#18 exporting to image
+#18 exporting layers
+#18 exporting layers 5.7s done
+#18 exporting manifest sha256:4058f6aa228e659510e11b53fb085427c03206f4071abf67ef4278e85aa4fa45 0.0s done
+#18 exporting config sha256:5d45bd4398e7725ca6441161c3dcd0fa42ef704aea217b3013e2365ee8a80194 0.0s done
+#18 exporting attestation manifest sha256:a3aba1fe98e1fa43363c1cb07fc1f587997c43b7d0f28f5d27ba2952b71fe5ea 0.0s done
+#18 exporting manifest list sha256:d25785295553e9d46fd29ecb735d307bff081c0f094b358c394f3e9b16cf4e11 0.0s done
+#18 naming to docker.io/dynamos-local/sql-query:rmqs-bench done
+#18 unpacking to docker.io/dynamos-local/sql-query:rmqs-bench
+#18 unpacking to docker.io/dynamos-local/sql-query:rmqs-bench 5.4s done
+#18 naming to docker.io/dynamos-local/sql-query:latest done
+#18 unpacking to docker.io/dynamos-local/sql-query:latest 0.0s done
+#18 DONE 11.3s
+Built local DYNAMOS images with repository dynamos-local and tag rmqs-bench
+[controlled-bench] Loading dynamos-local/sidecar:rmqs-bench into kind
+Image: "dynamos-local/sidecar:rmqs-bench" with ID "sha256:5bac449f9d943b34ec321a1c95641bcaac4a78e178ca805f2dbadef9ef7ce6ff" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/policy-enforcer:rmqs-bench into kind
+Image: "dynamos-local/policy-enforcer:rmqs-bench" with ID "sha256:56f3dda0d2997dbbba291f4e44f27dc286d8e97bfe67fa39db8f0876e59b6a60" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/orchestrator:rmqs-bench into kind
+Image: "dynamos-local/orchestrator:rmqs-bench" with ID "sha256:37cceba0c416ced1571125323ed2a3ef9d92f08a4c443f1eecff415797496a8c" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/agent:rmqs-bench into kind
+Image: "dynamos-local/agent:rmqs-bench" with ID "sha256:3ddafc4f0e3d26bd810924dcb5806c40dfeca65947f9e5f2d844278f0c25d313" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/api-gateway:rmqs-bench into kind
+Image: "dynamos-local/api-gateway:rmqs-bench" with ID "sha256:5670d145733bb1d86386c32951aa73b5f8e11c659b4d5da576dc865fc4b092ce" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/sql-algorithm:rmqs-bench into kind
+Image: "dynamos-local/sql-algorithm:rmqs-bench" with ID "sha256:09c2232a1a3db439fca8b41340733432fb8d054013d06d700657f088f58c819d" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/sql-anonymize:rmqs-bench into kind
+Image: "dynamos-local/sql-anonymize:rmqs-bench" with ID "sha256:1defb2831bcb83ff1e246eaedf5b69146f13b8cbd7742e75e9bbaf007209c696" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/sql-aggregate:rmqs-bench into kind
+Image: "dynamos-local/sql-aggregate:rmqs-bench" with ID "sha256:ac22525bb3d00d49dff03f4e29571bd3d53cf52a49bccc0dfb3f036bac2658fd" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/sql-test:rmqs-bench into kind
+Image: "dynamos-local/sql-test:rmqs-bench" with ID "sha256:6f8ec58832fd61f2f19cbaf69d4d05586908c308778a053b12ecfb727de24dc2" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Loading dynamos-local/sql-query:rmqs-bench into kind
+Image: "dynamos-local/sql-query:rmqs-bench" with ID "sha256:d25785295553e9d46fd29ecb735d307bff081c0f094b358c394f3e9b16cf4e11" not yet present on node "dynamos-rmqs-bench-control-plane", loading...
+[controlled-bench] Installing namespaces and local etcd seed files
+Release "dynamos-namespaces" has been upgraded. Happy Helming!
+NAME: dynamos-namespaces
+LAST DEPLOYED: Wed May 20 14:09:01 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+namespace/linkerd-jaeger unchanged
+[controlled-bench] Seeding etcd launch files from this checkout
+configmap/etcd-launch-files unchanged
+job.batch/init-etcd-pvc-local created
+job.batch/init-etcd-pvc-local condition met
+[controlled-bench] Seeding RabbitMQ config files from this checkout
+configmap/rabbitmq-config-files unchanged
+job.batch/init-rabbit-pvc-local created
+job.batch/init-rabbit-pvc-local condition met
+[controlled-bench] Deploying core services
+Release "dynamos-core" has been upgraded. Happy Helming!
+NAME: dynamos-core
+LAST DEPLOYED: Wed May 20 14:09:13 2026
+NAMESPACE: core
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+partitioned roll out complete: 3 new pods have been updated...
+deployment "rabbitmq" successfully rolled out
+[controlled-bench] Deploying application batch=5000 rmq_chunk=100
+Release "dynamos-orchestrator" has been upgraded. Happy Helming!
+NAME: dynamos-orchestrator
+LAST DEPLOYED: Wed May 20 14:09:14 2026
+NAMESPACE: orchestrator
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+Release "dynamos-api-gateway" has been upgraded. Happy Helming!
+NAME: dynamos-api-gateway
+LAST DEPLOYED: Wed May 20 14:09:15 2026
+NAMESPACE: api-gateway
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+Release "dynamos-agents" has been upgraded. Happy Helming!
+NAME: dynamos-agents
+LAST DEPLOYED: Wed May 20 14:09:17 2026
+NAMESPACE: uva
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+Release "dynamos-thirdparty" has been upgraded. Happy Helming!
+NAME: dynamos-thirdparty
+LAST DEPLOYED: Wed May 20 14:09:20 2026
+NAMESPACE: surf
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+deployment "orchestrator" successfully rolled out
+deployment "policy-enforcer" successfully rolled out
+deployment "api-gateway" successfully rolled out
+deployment "uva" successfully rolled out
+deployment "vu" successfully rolled out
+deployment "surf" successfully rolled out
+[controlled-bench] Starting api-gateway port-forward on 127.0.0.1:18080
+[controlled-bench] Warming endpoint with one small unary request
+Traceback (most recent call last):
+  File "/home/nebur/src/DYNAMOS-clean-20260511/scripts/benchmark_ndjson.py", line 666, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/nebur/src/DYNAMOS-clean-20260511/scripts/benchmark_ndjson.py", line 400, in main
+    with urllib.request.urlopen(request, timeout=args.timeout) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 1373, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 1348, in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 1448, in getresponse
+    response.begin()
+  File "/usr/lib/python3.12/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 305, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response

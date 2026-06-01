@@ -14,6 +14,7 @@ Author: Jorrit Stutterheim
 """
 
 import grpc
+import os
 from .base_client import BaseClient
 from concurrent import futures
 import threading
@@ -28,6 +29,24 @@ import microserviceCommunication_pb2 as msCommTypes
 
 
 CallbackType = Callable[[grpc.ServicerContext, msCommTypes.MicroserviceCommunication], Empty]
+
+DEFAULT_GRPC_MAX_MESSAGE_BYTES = 64 * 1024 * 1024
+
+
+def grpc_message_size_options():
+    raw_limit = os.getenv("DYNAMOS_GRPC_MAX_MESSAGE_BYTES")
+    try:
+        max_message_bytes = int(raw_limit) if raw_limit else DEFAULT_GRPC_MAX_MESSAGE_BYTES
+    except ValueError:
+        max_message_bytes = DEFAULT_GRPC_MAX_MESSAGE_BYTES
+
+    if max_message_bytes <= 0:
+        max_message_bytes = DEFAULT_GRPC_MAX_MESSAGE_BYTES
+
+    return (
+        ("grpc.max_send_message_length", max_message_bytes),
+        ("grpc.max_receive_message_length", max_message_bytes),
+    )
 
 class HealthServicer(healthServer.HealthServicer):
     """
@@ -145,7 +164,10 @@ class GRPCServer(BaseClient):
         super().__init__(None, None)
         self.callback: CallbackType = msCommHandler
 
-        self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+        self.server = grpc.server(
+            futures.ThreadPoolExecutor(max_workers=10),
+            options=grpc_message_size_options(),
+        )
         healthServer.add_HealthServicer_to_server(HealthServicer(self.logger), self.server)
         msCommServer.add_MicroserviceServicer_to_server(MicroserviceServicer(msCommHandler, self.logger), self.server)
 

@@ -1,0 +1,375 @@
+{
+  "benchmarkResult": {
+    "csv": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/streaming-250000-clean10.csv",
+    "json": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/streaming-250000-clean10.json",
+    "markdown": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/streaming-250000-clean10.md"
+  },
+  "command": [
+    "python3",
+    "/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_matrix.py",
+    "--url",
+    "http://127.0.0.1:18080/api/v1/requestApproval",
+    "--transports",
+    "streaming",
+    "--response-modes",
+    "batched",
+    "--workloads",
+    "bulk",
+    "--datasets",
+    "large",
+    "--large-limits",
+    "250000",
+    "--archetypes",
+    "dataThroughTtp",
+    "--provider-sets",
+    "UVA",
+    "--temperature",
+    "warm",
+    "--repetitions",
+    "10",
+    "--timeout",
+    "600",
+    "--sql-batch-rows",
+    "5000",
+    "--rabbitmq-chunk-rows",
+    "100",
+    "--strict",
+    "--require-partial",
+    "--output-dir",
+    "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep",
+    "--name",
+    "streaming-250000-clean10"
+  ],
+  "endedEpochSeconds": 1779637287.0246522,
+  "excludeContainers": [
+    "POD"
+  ],
+  "namespaces": [
+    "api-gateway",
+    "core",
+    "orchestrator",
+    "surf",
+    "uva",
+    "vu"
+  ],
+  "resourceSummary": {
+    "containerMax": [
+      {
+        "container": "api-gateway",
+        "maxCpuMillicores": 17.0,
+        "maxMemoryBytes": 28311552,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7cb66584f4-pmdsz"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7cb66584f4-pmdsz"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-7cb66584f4-pmdsz"
+      },
+      {
+        "container": "debug",
+        "maxCpuMillicores": 0.0,
+        "maxMemoryBytes": 0,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 22.0,
+        "maxMemoryBytes": 78643200,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 10.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 15.0,
+        "maxMemoryBytes": 37748736,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 15.0,
+        "maxMemoryBytes": 35651584,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "grafana",
+        "maxCpuMillicores": 10.0,
+        "maxMemoryBytes": 326107136,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "loki",
+        "maxCpuMillicores": 11.0,
+        "maxMemoryBytes": 191889408,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "promtail",
+        "maxCpuMillicores": 42.0,
+        "maxMemoryBytes": 110100480,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 18.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-bdxrp"
+      },
+      {
+        "container": "rabbitmq",
+        "maxCpuMillicores": 30.0,
+        "maxMemoryBytes": 243269632,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-bdxrp"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-6ff7c4cf5c-ffxgq"
+      },
+      {
+        "container": "orchestrator",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 22020096,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-6ff7c4cf5c-ffxgq"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 8388608,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-6ff7c4cf5c-ffxgq"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-9c5c546c-cdm4g"
+      },
+      {
+        "container": "policy-enforcer",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 18874368,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-9c5c546c-cdm4g"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-9c5c546c-cdm4g"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 101.0,
+        "maxMemoryBytes": 15728640,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-43492116surf1-mts5l"
+      },
+      {
+        "container": "sql-aggregate",
+        "maxCpuMillicores": 75.0,
+        "maxMemoryBytes": 15728640,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-43492116surf1-mts5l"
+      },
+      {
+        "container": "sql-algorithm",
+        "maxCpuMillicores": 75.0,
+        "maxMemoryBytes": 15728640,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-43492116surf1-mts5l"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 82.0,
+        "maxMemoryBytes": 14680064,
+        "namespace": "surf",
+        "pod": "jorrit-stutterheim-a857a772surf1-mfm79"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 13.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "surf",
+        "pod": "surf-78ff675548-grmr8"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 134.0,
+        "maxMemoryBytes": 52428800,
+        "namespace": "surf",
+        "pod": "surf-78ff675548-grmr8"
+      },
+      {
+        "container": "surf",
+        "maxCpuMillicores": 92.0,
+        "maxMemoryBytes": 37748736,
+        "namespace": "surf",
+        "pod": "surf-78ff675548-grmr8"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 88.0,
+        "maxMemoryBytes": 13631488,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-43492116uva1-8swwh"
+      },
+      {
+        "container": "sql-query",
+        "maxCpuMillicores": 537.0,
+        "maxMemoryBytes": 189792256,
+        "namespace": "uva",
+        "pod": "jorrit-stutterheim-43492116uva1-8swwh"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "uva",
+        "pod": "uva-6fcdccf77-mf4sh"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 127.0,
+        "maxMemoryBytes": 53477376,
+        "namespace": "uva",
+        "pod": "uva-6fcdccf77-mf4sh"
+      },
+      {
+        "container": "uva",
+        "maxCpuMillicores": 66.0,
+        "maxMemoryBytes": 32505856,
+        "namespace": "uva",
+        "pod": "uva-6fcdccf77-mf4sh"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "vu",
+        "pod": "vu-5bbb75bfd9-w4p5h"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "vu",
+        "pod": "vu-5bbb75bfd9-w4p5h"
+      },
+      {
+        "container": "vu",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "vu",
+        "pod": "vu-5bbb75bfd9-w4p5h"
+      }
+    ],
+    "maxTotalCpuMillicores": 1418.0,
+    "maxTotalMemoryBytes": 1567621120,
+    "namespaceMax": {
+      "api-gateway": {
+        "maxCpuMillicores": 23.0,
+        "maxMemoryBytes": 39845888
+      },
+      "core": {
+        "maxCpuMillicores": 178.0,
+        "maxMemoryBytes": 1042284544
+      },
+      "orchestrator": {
+        "maxCpuMillicores": 7.0,
+        "maxMemoryBytes": 61865984
+      },
+      "surf": {
+        "maxCpuMillicores": 446.0,
+        "maxMemoryBytes": 142606336
+      },
+      "uva": {
+        "maxCpuMillicores": 796.0,
+        "maxMemoryBytes": 289406976
+      },
+      "vu": {
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 19922944
+      }
+    },
+    "sampleCount": 40
+  },
+  "returnCode": 0,
+  "samplingErrors": [],
+  "samplingIntervalSeconds": 5.0,
+  "startedEpochSeconds": 1779637061.5031447,
+  "stderr": "running large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=1/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=2/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=3/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=4/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=5/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=6/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=7/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=8/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=9/10\nrunning large limit=250000 workload=bulk providers=UVA warm dataThroughTtp streaming response-mode=batched rep=10/10\n",
+  "stdout": "{\"json\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/streaming-250000-clean10.json\", \"csv\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/streaming-250000-clean10.csv\", \"markdown\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/direct-transports-50k-100k-250k-10rep/streaming-250000-clean10.md\"}\n",
+  "wallSeconds": 206.429
+}

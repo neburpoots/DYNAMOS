@@ -1,0 +1,321 @@
+{
+  "runs": [
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 100000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": \"83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183\",\n  \"dataset\": \"large\",\n  \"doneSeconds\": 16.496386,\n  \"elapsedSeconds\": 16.496386,\n  \"errors\": [],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 100000,\n  \"finalResultCount\": 1,\n  \"finalResultHash\": \"83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183\",\n  \"firstResultSeconds\": 16.496386,\n  \"jobId\": \"jorrit-stutterheim-d540c892\",\n  \"limit\": 100000,\n  \"observedRows\": 100000,\n  \"ok\": true,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 0,\n  \"providerResultCount\": 1,\n  \"providerResults\": [\n    {\n      \"bytes\": 5194510,\n      \"columns\": [\n        \"Unieknr\",\n        \"Functcat\",\n        \"Gebdat\",\n        \"Ingdatdv\",\n        \"Geslacht\",\n        \"Salschal\"\n      ],\n      \"empty\": false,\n      \"jsonType\": \"list\",\n      \"observedRows\": 100000,\n      \"sha256\": \"0f00144cfa0aebfff39771a22f27d5102ef9605ad6b65a059c35c52f9f061818\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"b14628a38eb517ba98fc4865cbb34acbe50329acd42977737dc12e9fa3b858b9\",\n  \"requestBytes\": 434,\n  \"responseBytes\": 6394605,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"653dbe462a8dceafec59fbabacefc0bdc0ab789190c67013fcd9e1a0ca2580cf\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 17.718,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 1,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": null,\n  \"dataset\": \"large\",\n  \"doneSeconds\": 0.071861,\n  \"elapsedSeconds\": 0.071861,\n  \"errors\": [\n    \"provider response missing final body\",\n    \"rows mismatch: observed 0, expected 250000\"\n  ],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 250000,\n  \"finalResultCount\": 0,\n  \"finalResultHash\": null,\n  \"firstResultSeconds\": 0.071861,\n  \"jobId\": \"jorrit-stutterheim-49afa39a\",\n  \"limit\": 250000,\n  \"observedRows\": 0,\n  \"ok\": false,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 1,\n  \"providerResultCount\": 0,\n  \"providerResults\": [\n    {\n      \"bytes\": 0,\n      \"empty\": true,\n      \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"055539df4a0b804c58caf46c0cd2941af10d64c1395ddd8e50b5f55d945841e6\",\n  \"requestBytes\": 434,\n  \"responseBytes\": 83,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"1940aaf2a15ab526be23154ac8cc710cf90b6168eb7169b19718488296b9ed7f\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 0.364,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 1,
+      "responseMode": "classic-unary",
+      "returnCode": 1,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": null,\n  \"dataset\": \"large\",\n  \"doneSeconds\": 0.078978,\n  \"elapsedSeconds\": 0.078978,\n  \"errors\": [\n    \"provider response missing final body\",\n    \"rows mismatch: observed 0, expected 50000\"\n  ],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 50000,\n  \"finalResultCount\": 0,\n  \"finalResultHash\": null,\n  \"firstResultSeconds\": 0.078978,\n  \"jobId\": \"jorrit-stutterheim-ec0ff76a\",\n  \"limit\": 50000,\n  \"observedRows\": 0,\n  \"ok\": false,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 1,\n  \"providerResultCount\": 0,\n  \"providerResults\": [\n    {\n      \"bytes\": 0,\n      \"empty\": true,\n      \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"055539df4a0b804c58caf46c0cd2941af10d64c1395ddd8e50b5f55d945841e6\",\n  \"requestBytes\": 433,\n  \"responseBytes\": 83,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"1cec6c2614deb28d14a40c186c0c2d01b45f6235255d5bae90958cdb0548f815\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 0.327,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 100000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 2,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": \"83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183\",\n  \"dataset\": \"large\",\n  \"doneSeconds\": 17.026471,\n  \"elapsedSeconds\": 17.026471,\n  \"errors\": [],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 100000,\n  \"finalResultCount\": 1,\n  \"finalResultHash\": \"83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183\",\n  \"firstResultSeconds\": 17.026471,\n  \"jobId\": \"jorrit-stutterheim-adcb1e04\",\n  \"limit\": 100000,\n  \"observedRows\": 100000,\n  \"ok\": true,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 0,\n  \"providerResultCount\": 1,\n  \"providerResults\": [\n    {\n      \"bytes\": 5194510,\n      \"columns\": [\n        \"Salschal\",\n        \"Unieknr\",\n        \"Functcat\",\n        \"Gebdat\",\n        \"Ingdatdv\",\n        \"Geslacht\"\n      ],\n      \"empty\": false,\n      \"jsonType\": \"list\",\n      \"observedRows\": 100000,\n      \"sha256\": \"5ee3c747f24f6ee0fa0488ceb505407edf95f86b1b36559e0149be82699ab337\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"7e78892da3dc20eabb752d2d58cf4f4765b4e4925b62d120c72aeedfddda1f06\",\n  \"requestBytes\": 434,\n  \"responseBytes\": 6394605,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"78429e48f54f7501b6ed40c4ac11270e915b460f8f591010fe8470e5013a00fb\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 18.308,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 2,
+      "responseMode": "classic-unary",
+      "returnCode": 1,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": null,\n  \"dataset\": \"large\",\n  \"doneSeconds\": 0.10037,\n  \"elapsedSeconds\": 0.10037,\n  \"errors\": [\n    \"provider response missing final body\",\n    \"rows mismatch: observed 0, expected 250000\"\n  ],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 250000,\n  \"finalResultCount\": 0,\n  \"finalResultHash\": null,\n  \"firstResultSeconds\": 0.10037,\n  \"jobId\": \"jorrit-stutterheim-76e187e9\",\n  \"limit\": 250000,\n  \"observedRows\": 0,\n  \"ok\": false,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 1,\n  \"providerResultCount\": 0,\n  \"providerResults\": [\n    {\n      \"bytes\": 0,\n      \"empty\": true,\n      \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"055539df4a0b804c58caf46c0cd2941af10d64c1395ddd8e50b5f55d945841e6\",\n  \"requestBytes\": 434,\n  \"responseBytes\": 83,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"580dc39d7ec361b34d4285a880e25f484f5dc9cdeb06b2558e0657d5bd8ae3ab\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 0.523,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 2,
+      "responseMode": "classic-unary",
+      "returnCode": 1,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": null,\n  \"dataset\": \"large\",\n  \"doneSeconds\": 0.144745,\n  \"elapsedSeconds\": 0.144745,\n  \"errors\": [\n    \"provider response missing final body\",\n    \"rows mismatch: observed 0, expected 50000\"\n  ],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 50000,\n  \"finalResultCount\": 0,\n  \"finalResultHash\": null,\n  \"firstResultSeconds\": 0.144745,\n  \"jobId\": \"jorrit-stutterheim-71741891\",\n  \"limit\": 50000,\n  \"observedRows\": 0,\n  \"ok\": false,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 1,\n  \"providerResultCount\": 0,\n  \"providerResults\": [\n    {\n      \"bytes\": 0,\n      \"empty\": true,\n      \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"055539df4a0b804c58caf46c0cd2941af10d64c1395ddd8e50b5f55d945841e6\",\n  \"requestBytes\": 433,\n  \"responseBytes\": 83,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"99d5eb8d36e42b5235e232d61792505a965a7ea23aadcc86b81fc57e8c3381a8\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 0.709,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 100000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 3,
+      "responseMode": "classic-unary",
+      "returnCode": 0,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": \"83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183\",\n  \"dataset\": \"large\",\n  \"doneSeconds\": 16.213284,\n  \"elapsedSeconds\": 16.213284,\n  \"errors\": [],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 100000,\n  \"finalResultCount\": 1,\n  \"finalResultHash\": \"83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183\",\n  \"firstResultSeconds\": 16.213284,\n  \"jobId\": \"jorrit-stutterheim-b7530276\",\n  \"limit\": 100000,\n  \"observedRows\": 100000,\n  \"ok\": true,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 0,\n  \"providerResultCount\": 1,\n  \"providerResults\": [\n    {\n      \"bytes\": 5194510,\n      \"columns\": [\n        \"Unieknr\",\n        \"Functcat\",\n        \"Gebdat\",\n        \"Ingdatdv\",\n        \"Geslacht\",\n        \"Salschal\"\n      ],\n      \"empty\": false,\n      \"jsonType\": \"list\",\n      \"observedRows\": 100000,\n      \"sha256\": \"0f00144cfa0aebfff39771a22f27d5102ef9605ad6b65a059c35c52f9f061818\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"b14628a38eb517ba98fc4865cbb34acbe50329acd42977737dc12e9fa3b858b9\",\n  \"requestBytes\": 434,\n  \"responseBytes\": 6394605,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"09aee9bf30eec1fc8b65cb87813598d6031dc91eff90798862db47308a22a08d\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 17.851,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 250000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 3,
+      "responseMode": "classic-unary",
+      "returnCode": 1,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": null,\n  \"dataset\": \"large\",\n  \"doneSeconds\": 0.077803,\n  \"elapsedSeconds\": 0.077803,\n  \"errors\": [\n    \"provider response missing final body\",\n    \"rows mismatch: observed 0, expected 250000\"\n  ],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 250000,\n  \"finalResultCount\": 0,\n  \"finalResultHash\": null,\n  \"firstResultSeconds\": 0.077803,\n  \"jobId\": \"jorrit-stutterheim-551ae404\",\n  \"limit\": 250000,\n  \"observedRows\": 0,\n  \"ok\": false,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 1,\n  \"providerResultCount\": 0,\n  \"providerResults\": [\n    {\n      \"bytes\": 0,\n      \"empty\": true,\n      \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"055539df4a0b804c58caf46c0cd2941af10d64c1395ddd8e50b5f55d945841e6\",\n  \"requestBytes\": 434,\n  \"responseBytes\": 83,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"4127caf1c658bab8542335fa382b6c91c356718b667e08baaea66d3080c79fea\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 0.389,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "dataset": "large",
+      "error": "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+      "limit": 50000,
+      "ok": false,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "repetition": 3,
+      "responseMode": "classic-unary",
+      "returnCode": 1,
+      "stdout": "{\n  \"archetype\": \"dataThroughTtp\",\n  \"clientTimeoutSeconds\": 1800.0,\n  \"contentResultHash\": null,\n  \"dataset\": \"large\",\n  \"doneSeconds\": 0.072888,\n  \"elapsedSeconds\": 0.072888,\n  \"errors\": [\n    \"provider response missing final body\",\n    \"rows mismatch: observed 0, expected 50000\"\n  ],\n  \"events\": [\n    \"response\",\n    \"done\"\n  ],\n  \"expectedRows\": 50000,\n  \"finalResultCount\": 0,\n  \"finalResultHash\": null,\n  \"firstResultSeconds\": 0.072888,\n  \"jobId\": \"jorrit-stutterheim-329d1d1d\",\n  \"limit\": 50000,\n  \"observedRows\": 0,\n  \"ok\": false,\n  \"partialResultCount\": 0,\n  \"providerErrorCount\": 1,\n  \"providerResultCount\": 0,\n  \"providerResults\": [\n    {\n      \"bytes\": 0,\n      \"empty\": true,\n      \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n    }\n  ],\n  \"providers\": [\n    \"UVA\"\n  ],\n  \"rawLineCount\": 1,\n  \"rawResultHash\": \"055539df4a0b804c58caf46c0cd2941af10d64c1395ddd8e50b5f55d945841e6\",\n  \"requestBytes\": 433,\n  \"responseBytes\": 83,\n  \"responseMode\": \"classic-unary\",\n  \"responseSha256\": \"d58e9a230c0ffdf34eb48c46cbeb6e29c177f13643e3a52d6a425b1c3458021b\",\n  \"status\": 200,\n  \"transport\": \"unary\",\n  \"url\": \"http://127.0.0.1:18080/api/v1/requestApproval\",\n  \"workload\": \"bulk\"\n}\n",
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": 0.379,
+      "workload": "bulk"
+    }
+  ],
+  "summaries": [
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "failedRuns": 3,
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 50000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rawResultHashes": [],
+      "responseBytes": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "responseMode": "classic-unary",
+      "runs": 3,
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "failedRuns": 3,
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 100000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rawResultHashes": [],
+      "responseBytes": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "responseMode": "classic-unary",
+      "runs": 3,
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "workload": "bulk"
+    },
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [],
+      "dataset": "large",
+      "doneSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "errors": [
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)",
+        "benchmark produced invalid JSON: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "failedRuns": 3,
+      "firstResultSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "limit": 250000,
+      "observedRows": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "okRuns": 0,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "rawResultHashes": [],
+      "responseBytes": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "responseMode": "classic-unary",
+      "runs": 3,
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": {
+        "max": null,
+        "median": null,
+        "min": null
+      },
+      "workload": "bulk"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import (
 	"io"
 	"maps"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -261,4 +262,20 @@ func PostRequest(url string, body string, extra_headers map[string]string) ([]by
 	}
 
 	return respBody, nil
+}
+
+// DurationFromEnv keeps production defaults in code while allowing experiments to wait longer.
+func DurationFromEnv(envName string, fallback time.Duration) time.Duration {
+	rawValue := strings.TrimSpace(os.Getenv(envName))
+	if rawValue == "" {
+		return fallback
+	}
+
+	duration, err := time.ParseDuration(rawValue)
+	if err != nil || duration <= 0 {
+		logger.Sugar().Warnf("Ignoring invalid duration %s=%q", envName, rawValue)
+		return fallback
+	}
+
+	return duration
 }

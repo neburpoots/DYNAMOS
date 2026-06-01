@@ -13,6 +13,7 @@ Author: Jorrit Stutterheim
 """
 
 import grpc
+import os
 import time
 from .base_client import BaseClient
 from .rabbit_client import RabbitClient
@@ -21,6 +22,24 @@ from opentelemetry.instrumentation.grpc import GrpcInstrumentorClient
 import health_pb2_grpc as healthServer
 import health_pb2 as healthTypes
 import microserviceCommunication_pb2_grpc as msCommServer
+
+DEFAULT_GRPC_MAX_MESSAGE_BYTES = 64 * 1024 * 1024
+
+
+def grpc_message_size_options():
+    raw_limit = os.getenv("DYNAMOS_GRPC_MAX_MESSAGE_BYTES")
+    try:
+        max_message_bytes = int(raw_limit) if raw_limit else DEFAULT_GRPC_MAX_MESSAGE_BYTES
+    except ValueError:
+        max_message_bytes = DEFAULT_GRPC_MAX_MESSAGE_BYTES
+
+    if max_message_bytes <= 0:
+        max_message_bytes = DEFAULT_GRPC_MAX_MESSAGE_BYTES
+
+    return (
+        ("grpc.max_send_message_length", max_message_bytes),
+        ("grpc.max_receive_message_length", max_message_bytes),
+    )
 
 
 class GRPCClient(BaseClient):
@@ -65,7 +84,7 @@ class GRPCClient(BaseClient):
             Exception: If unable to connect to the gRPC server after 7 retries.
 
         """
-        channel = grpc.insecure_channel(grpc_addr)
+        channel = grpc.insecure_channel(grpc_addr, options=grpc_message_size_options())
         grpc_server_instrumentor = GrpcInstrumentorClient()
         grpc_server_instrumentor.instrument(channel=channel)
 

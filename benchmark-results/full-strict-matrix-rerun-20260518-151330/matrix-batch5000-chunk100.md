@@ -1,0 +1,26 @@
+| dataset | limit | archetype | transport | response mode | batch | chunk | ok/runs | first median (min-max) | done median (min-max) | rows | result match |
+| --- | ---: | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| large | 50000 | dataThroughTtp | unary | batched | 5000 | 100 | 3/3 | 4.167 (3.128-4.413) | 5.82 (4.968-6.039) | 100000.0 | yes |
+| large | 50000 | dataThroughTtp | unary | classic-unary | 5000 | 100 | 3/3 | 9.476 (9.177-10.47) | 9.476 (9.177-10.47) | None | yes |
+| large | 50000 | dataThroughTtp | streaming | batched | 5000 | 100 | 3/3 | 4.206 (3.218-4.578) | 5.322 (4.977-5.772) | 100000.0 | yes |
+| large | 50000 | dataThroughTtp | rabbitmq-streams | batched | 5000 | 100 | 3/3 | 4.829 (4.824-5.083) | 7.226 (6.169-7.285) | 100000.0 | yes |
+| large | 50000 | computeToData | unary | batched | 5000 | 100 | 3/3 | 3.207 (3.065-3.296) | 5.584 (4.971-5.755) | 100000.0 | yes |
+| large | 50000 | computeToData | unary | classic-unary | 5000 | 100 | 3/3 | 8.751 (8.378-9.371) | 8.751 (8.378-9.371) | None | yes |
+| large | 50000 | computeToData | streaming | batched | 5000 | 100 | 3/3 | 3.316 (2.429-3.42) | 4.895 (4.086-5.235) | 100000.0 | yes |
+| large | 50000 | computeToData | rabbitmq-streams | batched | 5000 | 100 | 3/3 | 3.18 (3.175-3.36) | 5.371 (4.824-6.713) | 100000.0 | yes |
+| large | 250000 | dataThroughTtp | unary | batched | 5000 | 100 | 3/3 | 4.39 (4.319-4.43) | 13.444 (13.049-13.887) | 500000.0 | yes |
+| large | 250000 | dataThroughTtp | unary | classic-unary | 5000 | 100 | 0/3 | None (None-None) | None (None-None) | None | yes |
+| large | 250000 | dataThroughTtp | streaming | batched | 5000 | 100 | 3/3 | 4.386 (3.304-5.309) | 12.928 (11.73-13.771) | 500000.0 | yes |
+| large | 250000 | dataThroughTtp | rabbitmq-streams | batched | 5000 | 100 | 3/3 | 4.881 (3.421-5.01) | 14.883 (14.22-15.703) | 500000.0 | yes |
+| large | 250000 | computeToData | unary | batched | 5000 | 100 | 3/3 | 3.073 (2.785-3.28) | 10.913 (10.267-11.641) | 500000.0 | yes |
+| large | 250000 | computeToData | unary | classic-unary | 5000 | 100 | 3/3 | 11.324 (10.046-11.342) | 11.324 (10.046-11.342) | None | yes |
+| large | 250000 | computeToData | streaming | batched | 5000 | 100 | 3/3 | 3.496 (3.194-3.498) | 10.876 (10.131-11.35) | 500000.0 | yes |
+| large | 250000 | computeToData | rabbitmq-streams | batched | 5000 | 100 | 3/3 | 3.221 (3.221-3.289) | 13.14 (11.768-13.174) | 500000.0 | yes |
+| original | 1000000 | dataThroughTtp | unary | batched | 5000 | 100 | 3/3 | 3.759 (3.541-4.631) | 3.865 (3.669-4.772) | 35265.0 | yes |
+| original | 1000000 | dataThroughTtp | unary | classic-unary | 5000 | 100 | 3/3 | 5.51 (4.927-6.535) | 5.51 (4.927-6.535) | None | yes |
+| original | 1000000 | dataThroughTtp | streaming | batched | 5000 | 100 | 3/3 | 3.773 (3.274-3.777) | 3.823 (3.318-3.828) | 35265.0 | yes |
+| original | 1000000 | dataThroughTtp | rabbitmq-streams | batched | 5000 | 100 | 3/3 | 3.742 (3.669-4.319) | 4.198 (4.123-4.77) | 35265.0 | yes |
+| original | 1000000 | computeToData | unary | batched | 5000 | 100 | 3/3 | 3.154 (2.175-3.507) | 4.405 (4.031-4.448) | 35265.0 | yes |
+| original | 1000000 | computeToData | unary | classic-unary | 5000 | 100 | 3/3 | 4.459 (3.477-4.773) | 4.459 (3.477-4.773) | None | yes |
+| original | 1000000 | computeToData | streaming | batched | 5000 | 100 | 3/3 | 3.143 (3.038-3.256) | 4.162 (3.307-4.401) | 35265.0 | yes |
+| original | 1000000 | computeToData | rabbitmq-streams | batched | 5000 | 100 | 3/3 | 3.489 (3.198-3.525) | 4.831 (4.005-4.871) | 35265.0 | yes |

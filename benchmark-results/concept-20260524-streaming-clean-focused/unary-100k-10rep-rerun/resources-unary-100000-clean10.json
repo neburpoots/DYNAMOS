@@ -1,0 +1,333 @@
+{
+  "benchmarkResult": {
+    "csv": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/unary-100k-10rep-rerun/unary-100000-clean10.csv",
+    "json": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/unary-100k-10rep-rerun/unary-100000-clean10.json",
+    "markdown": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/unary-100k-10rep-rerun/unary-100000-clean10.md"
+  },
+  "command": [
+    "python3",
+    "/home/nebur/src/DYNAMOS-streaming-concept-20260524/scripts/benchmark_matrix.py",
+    "--url",
+    "http://127.0.0.1:18080/api/v1/requestApproval",
+    "--transports",
+    "unary",
+    "--response-modes",
+    "batched",
+    "--workloads",
+    "bulk",
+    "--datasets",
+    "large",
+    "--large-limits",
+    "100000",
+    "--archetypes",
+    "dataThroughTtp",
+    "--provider-sets",
+    "UVA",
+    "--temperature",
+    "warm",
+    "--repetitions",
+    "10",
+    "--timeout",
+    "120",
+    "--sql-batch-rows",
+    "5000",
+    "--rabbitmq-chunk-rows",
+    "100",
+    "--strict",
+    "--require-partial",
+    "--output-dir",
+    "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/unary-100k-10rep-rerun",
+    "--name",
+    "unary-100000-clean10"
+  ],
+  "endedEpochSeconds": 1779645850.1063309,
+  "excludeContainers": [
+    "POD"
+  ],
+  "namespaces": [
+    "api-gateway",
+    "core",
+    "orchestrator",
+    "surf",
+    "uva",
+    "vu"
+  ],
+  "resourceSummary": {
+    "containerMax": [
+      {
+        "container": "api-gateway",
+        "maxCpuMillicores": 13.0,
+        "maxMemoryBytes": 29360128,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-77fd9b98db-vs44l"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-77fd9b98db-vs44l"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 8388608,
+        "namespace": "api-gateway",
+        "pod": "api-gateway-77fd9b98db-vs44l"
+      },
+      {
+        "container": "debug",
+        "maxCpuMillicores": 0.0,
+        "maxMemoryBytes": 0,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "debug"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 19.0,
+        "maxMemoryBytes": 69206016,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 10.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "core",
+        "pod": "etcd-0"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 15.0,
+        "maxMemoryBytes": 31457280,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 8.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-1"
+      },
+      {
+        "container": "etcd",
+        "maxCpuMillicores": 16.0,
+        "maxMemoryBytes": 32505856,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 8.0,
+        "maxMemoryBytes": 5242880,
+        "namespace": "core",
+        "pod": "etcd-2"
+      },
+      {
+        "container": "grafana",
+        "maxCpuMillicores": 9.0,
+        "maxMemoryBytes": 260046848,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 2097152,
+        "namespace": "core",
+        "pod": "grafana-95f764694-lspcj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "loki",
+        "maxCpuMillicores": 6.0,
+        "maxMemoryBytes": 187695104,
+        "namespace": "core",
+        "pod": "loki-5b84946766-l5klc"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "promtail",
+        "maxCpuMillicores": 38.0,
+        "maxMemoryBytes": 96468992,
+        "namespace": "core",
+        "pod": "promtail-97kmv"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 12.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-j7bvb"
+      },
+      {
+        "container": "rabbitmq",
+        "maxCpuMillicores": 24.0,
+        "maxMemoryBytes": 819986432,
+        "namespace": "core",
+        "pod": "rabbitmq-54c9766bf7-j7bvb"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7f58d97c57-vb8j6"
+      },
+      {
+        "container": "orchestrator",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 20971520,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7f58d97c57-vb8j6"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "orchestrator",
+        "pod": "orchestrator-7f58d97c57-vb8j6"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-5c69cb66cf-zthck"
+      },
+      {
+        "container": "policy-enforcer",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 19922944,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-5c69cb66cf-zthck"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 7340032,
+        "namespace": "orchestrator",
+        "pod": "policy-enforcer-5c69cb66cf-zthck"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 8.0,
+        "maxMemoryBytes": 9437184,
+        "namespace": "surf",
+        "pod": "surf-5b7d5f545-c57jb"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 97.0,
+        "maxMemoryBytes": 47185920,
+        "namespace": "surf",
+        "pod": "surf-5b7d5f545-c57jb"
+      },
+      {
+        "container": "surf",
+        "maxCpuMillicores": 62.0,
+        "maxMemoryBytes": 33554432,
+        "namespace": "surf",
+        "pod": "surf-5b7d5f545-c57jb"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 5.0,
+        "maxMemoryBytes": 4194304,
+        "namespace": "uva",
+        "pod": "uva-5d8c84b65c-9zjkj"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 89.0,
+        "maxMemoryBytes": 38797312,
+        "namespace": "uva",
+        "pod": "uva-5d8c84b65c-9zjkj"
+      },
+      {
+        "container": "uva",
+        "maxCpuMillicores": 46.0,
+        "maxMemoryBytes": 33554432,
+        "namespace": "uva",
+        "pod": "uva-5d8c84b65c-9zjkj"
+      },
+      {
+        "container": "linkerd-proxy",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 3145728,
+        "namespace": "vu",
+        "pod": "vu-d66545886-fch7r"
+      },
+      {
+        "container": "sidecar",
+        "maxCpuMillicores": 1.0,
+        "maxMemoryBytes": 6291456,
+        "namespace": "vu",
+        "pod": "vu-d66545886-fch7r"
+      },
+      {
+        "container": "vu",
+        "maxCpuMillicores": 2.0,
+        "maxMemoryBytes": 10485760,
+        "namespace": "vu",
+        "pod": "vu-d66545886-fch7r"
+      }
+    ],
+    "maxTotalCpuMillicores": 469.0,
+    "maxTotalMemoryBytes": 1806696448,
+    "namespaceMax": {
+      "api-gateway": {
+        "maxCpuMillicores": 18.0,
+        "maxMemoryBytes": 41943040
+      },
+      "core": {
+        "maxCpuMillicores": 161.0,
+        "maxMemoryBytes": 1528823808
+      },
+      "orchestrator": {
+        "maxCpuMillicores": 6.0,
+        "maxMemoryBytes": 61865984
+      },
+      "surf": {
+        "maxCpuMillicores": 166.0,
+        "maxMemoryBytes": 84934656
+      },
+      "uva": {
+        "maxCpuMillicores": 140.0,
+        "maxMemoryBytes": 75497472
+      },
+      "vu": {
+        "maxCpuMillicores": 4.0,
+        "maxMemoryBytes": 19922944
+      }
+    },
+    "sampleCount": 20
+  },
+  "returnCode": 0,
+  "samplingErrors": [],
+  "samplingIntervalSeconds": 5.0,
+  "startedEpochSeconds": 1779645739.1627321,
+  "stderr": "running large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=1/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=2/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=3/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=4/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=5/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=6/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=7/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=8/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=9/10\nrunning large limit=100000 workload=bulk providers=UVA warm dataThroughTtp unary response-mode=batched rep=10/10\n",
+  "stdout": "{\"json\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/unary-100k-10rep-rerun/unary-100000-clean10.json\", \"csv\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/unary-100k-10rep-rerun/unary-100000-clean10.csv\", \"markdown\": \"/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/concept-20260524-streaming-clean-focused/unary-100k-10rep-rerun/unary-100000-clean10.md\"}\n",
+  "wallSeconds": 100.949
+}
