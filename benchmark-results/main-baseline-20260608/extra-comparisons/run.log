@@ -1,0 +1,25 @@
+[2026-06-08T18:00:29+02:00] starting main baseline extra comparisons
+[2026-06-08T18:00:31+02:00] port-forward ready
+running main classic limit=100000 archetype=computeToData query-shape=default providers=UVA rep=1/3
+running main classic limit=250000 archetype=computeToData query-shape=default providers=UVA rep=1/3
+running main classic limit=50000 archetype=computeToData query-shape=default providers=UVA rep=1/3
+running main classic limit=100000 archetype=computeToData query-shape=default providers=UVA rep=2/3
+running main classic limit=250000 archetype=computeToData query-shape=default providers=UVA rep=2/3
+running main classic limit=50000 archetype=computeToData query-shape=default providers=UVA rep=2/3
+running main classic limit=100000 archetype=computeToData query-shape=default providers=UVA rep=3/3
+running main classic limit=250000 archetype=computeToData query-shape=default providers=UVA rep=3/3
+running main classic limit=50000 archetype=computeToData query-shape=default providers=UVA rep=3/3
+{"json": "benchmark-results/main-baseline-20260608/extra-comparisons/computeToData/main-classic-computeToData.json", "csv": "benchmark-results/main-baseline-20260608/extra-comparisons/computeToData/main-classic-computeToData.csv", "markdown": "benchmark-results/main-baseline-20260608/extra-comparisons/computeToData/main-classic-computeToData.md"}
+[2026-06-08T18:08:07+02:00] computeToData matrix exited rc=1
+running main classic limit=100000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=1/3
+running main classic limit=250000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=1/3
+running main classic limit=50000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=1/3
+running main classic limit=100000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=2/3
+running main classic limit=250000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=2/3
+running main classic limit=50000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=2/3
+running main classic limit=100000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=3/3
+running main classic limit=250000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=3/3
+running main classic limit=50000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=3/3
+{"json": "benchmark-results/main-baseline-20260608/extra-comparisons/multi-provider/main-classic-multi-provider.json", "csv": "benchmark-results/main-baseline-20260608/extra-comparisons/multi-provider/main-classic-multi-provider.csv", "markdown": "benchmark-results/main-baseline-20260608/extra-comparisons/multi-provider/main-classic-multi-provider.md"}
+[2026-06-08T18:18:06+02:00] multi-provider matrix exited rc=1
+[2026-06-08T18:18:06+02:00] finished main baseline extra comparisons

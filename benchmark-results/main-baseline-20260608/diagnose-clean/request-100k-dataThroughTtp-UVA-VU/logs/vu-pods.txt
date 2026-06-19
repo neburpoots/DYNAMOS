@@ -1,0 +1,3 @@
+NAME                                   READY   STATUS     RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+jorrit-stutterheim-49cbb9e8vu1-58rb8   1/2     NotReady   0          36s     10.244.0.29   dynamos-main-diagnose-control-plane   <none>           <none>
+vu-655bfbd598-vvvrf                    2/2     Running    0          7m28s   10.244.0.22   dynamos-main-diagnose-control-plane   <none>           <none>

@@ -1,0 +1,2 @@
+NAME                           READY   STATUS    RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+api-gateway-866b4cd946-7vd2z   2/2     Running   0          3m31s   10.244.0.30   dynamos-main-diagnose-control-plane   <none>           <none>

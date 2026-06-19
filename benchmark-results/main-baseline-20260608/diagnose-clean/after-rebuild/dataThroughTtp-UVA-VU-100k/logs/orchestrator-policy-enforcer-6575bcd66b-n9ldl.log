@@ -1,0 +1,35 @@
+2026-06-08T18:24:49.204521284Z 1.780943089204354e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:38	Serving on 50051
+2026-06-08T18:24:50.005944390Z 1.7809430900056586e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:47	Received:	{"Servicename": "policyEnforcer-in", "RoutingKey": "policyEnforcer-in"}
+2026-06-08T18:24:50.006075487Z 1.780943090005987e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_setup_functions.go:38	Start getConnectionToRabbitMq
+2026-06-08T18:24:50.064800029Z 1.7809430900646627e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:110	Started consuming from policyEnforcer-in
+2026-06-08T18:27:51.076107719Z 1.780943271075478e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "requestApproval", "Port:": 50051}
+2026-06-08T18:27:51.076304198Z 1.7809432710762005e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:90	sidecar/responses: handleRequestApprovalResponse
+2026-06-08T18:27:51.076542479Z 1.7809432710764785e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:27:51.076621256Z 1.780943271076566e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:27:51.076660285Z 1.7809432710766356e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:27:51.090622421Z 1.780943271090275e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "orchestrator-in"}
+2026-06-08T18:27:56.136860861Z 1.7809432761304595e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: orchestrator-in
+2026-06-08T18:27:56.137209347Z 1.7809432761371372e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!
+2026-06-08T18:28:27.461015210Z 1.7809433074608405e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "requestApproval", "Port:": 50051}
+2026-06-08T18:28:27.461206931Z 1.7809433074610913e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:90	sidecar/responses: handleRequestApprovalResponse
+2026-06-08T18:28:27.463004843Z 1.7809433074613008e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:28:27.463029257Z 1.7809433074626124e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:28:27.463031206Z 1.780943307462894e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:28:27.553547707Z 1.7809433075532446e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "orchestrator-in"}
+2026-06-08T18:28:32.555333628Z 1.7809433125540495e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: orchestrator-in
+2026-06-08T18:28:32.555763660Z 1.7809433125554419e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!
+2026-06-08T18:24:46.962477457Z 1.7809430869590204e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:24:46.968101914Z 1.78094308695914e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:24:47.992164962Z 1.780943087987515e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:24:47.992194995Z 1.7809430879881501e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:24:48.991688291Z 1.780943088991417e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:24:48.991720271Z 1.780943088991471e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:24:50.002374946Z 1.780943090002156e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:96	returning conn GetGrpcConnection
+2026-06-08T18:24:50.005152273Z 1.7809430900024703e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:105	Initializing sidecar messaging with: service_name:"policyEnforcer-in"  routing_key:"policyEnforcer-in"
+2026-06-08T18:24:50.061032761Z 1.7809430900608385e+09	[35mDEBUG[0m	/app/cmd/policy-enforcer/main.go:36	In main, starting startConsumingWithRetry
+2026-06-08T18:27:51.078233042Z 1.7809432710780895e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "policyEnforcer"}
+2026-06-08T18:27:51.079841336Z 1.7809432710792365e+09	[34mINFO[0m	/app/cmd/policy-enforcer/consume.go:25	User name: jorrit.stutterheim@cloudnation.nl
+2026-06-08T18:27:51.080020868Z 1.7809432710799341e+09	[35mDEBUG[0m	/app/cmd/policy-enforcer/generate_validation_response.go:18	Starting checkRequestApproval
+2026-06-08T18:28:27.466708067Z 1.7809433074633672e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "policyEnforcer"}
+2026-06-08T18:28:27.466735661Z 1.7809433074634378e+09	[34mINFO[0m	/app/cmd/policy-enforcer/consume.go:25	User name: jorrit.stutterheim@cloudnation.nl
+2026-06-08T18:28:27.468069093Z 1.7809433074657285e+09	[35mDEBUG[0m	/app/cmd/policy-enforcer/generate_validation_response.go:18	Starting checkRequestApproval

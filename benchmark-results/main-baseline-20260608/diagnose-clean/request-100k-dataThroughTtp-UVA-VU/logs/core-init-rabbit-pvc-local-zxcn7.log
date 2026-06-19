@@ -1,0 +1,5 @@
+2026-06-08T18:05:50.795739494Z total 16
+2026-06-08T18:05:50.795769962Z drwxrwxrwx    2 root     root          4096 Jun  8 18:05 .
+2026-06-08T18:05:50.795773630Z drwxr-xr-x    1 root     root          4096 Jun  8 18:05 ..
+2026-06-08T18:05:50.795775261Z -rw-r--r--    1 root     root          2538 Jun  8 18:05 definitions.json
+2026-06-08T18:05:50.795776178Z -rw-r--r--    1 root     root           543 Jun  8 18:05 rabbitmq.conf

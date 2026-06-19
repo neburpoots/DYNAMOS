@@ -1,0 +1,2 @@
+NAME                    READY   STATUS    RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+surf-58f445c588-6th4h   2/2     Running   0          3m34s   10.244.0.35   dynamos-main-diagnose-control-plane   <none>           <none>

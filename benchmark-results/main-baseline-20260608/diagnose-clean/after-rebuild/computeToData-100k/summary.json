@@ -1,0 +1,55 @@
+{
+  "archetype": "computeToData",
+  "clientTimeoutSeconds": 420.0,
+  "contentResultHash": "83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183",
+  "dataset": "large",
+  "doneSeconds": 23.971449,
+  "elapsedSeconds": 23.971449,
+  "errors": [],
+  "events": [
+    "response",
+    "done"
+  ],
+  "expectedRows": 100000,
+  "finalResultCount": 1,
+  "finalResultHash": "83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183",
+  "firstResultSeconds": 23.971449,
+  "jobId": "jorrit-stutterheim-8d913881",
+  "limit": 100000,
+  "observedRows": 100000,
+  "ok": true,
+  "partialResultCount": 0,
+  "providerErrorCount": 0,
+  "providerResultCount": 1,
+  "providerResults": [
+    {
+      "bytes": 5194510,
+      "columns": [
+        "Functcat",
+        "Gebdat",
+        "Ingdatdv",
+        "Geslacht",
+        "Salschal",
+        "Unieknr"
+      ],
+      "empty": false,
+      "jsonType": "list",
+      "observedRows": 100000,
+      "sha256": "118fde0c92ea4ff7fbd4dac4c461a8ea64ec535337bbcc7601319210efa7ae3a"
+    }
+  ],
+  "providers": [
+    "UVA"
+  ],
+  "queryShape": "default",
+  "rawLineCount": 1,
+  "rawResultHash": "2b0bb4abf0c218420c39db43500980e99a9605ff468304f2e69d0489c802ab6f",
+  "requestBytes": 435,
+  "responseBytes": 6394605,
+  "responseMode": "classic-unary",
+  "responseSha256": "c5a4d25c1c37352c9595b5eea3ac600c71e539acc849d1cf1c2c67ec99cf13bc",
+  "status": 200,
+  "transport": "unary",
+  "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+  "workload": "bulk"
+}

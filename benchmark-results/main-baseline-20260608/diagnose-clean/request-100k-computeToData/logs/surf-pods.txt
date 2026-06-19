@@ -1,0 +1,2 @@
+NAME                    READY   STATUS    RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+surf-75f8bd5d6b-6qvpn   2/2     Running   0          4m16s   10.244.0.23   dynamos-main-diagnose-control-plane   <none>           <none>

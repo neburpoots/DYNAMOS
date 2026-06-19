@@ -1,0 +1,76 @@
+[2026-06-08T20:03:13+02:00] Starting clean main diagnostic deployment
+[2026-06-08T20:03:13+02:00] Repo: a2d9531 branch main
+[2026-06-08T20:03:13+02:00] Checking image dynamos-local/sidecar:main
+[2026-06-08T20:03:13+02:00] Checking image dynamos-local/policy-enforcer:main
+[2026-06-08T20:03:14+02:00] Checking image dynamos-local/orchestrator:main
+[2026-06-08T20:03:14+02:00] Checking image dynamos-local/agent:main
+[2026-06-08T20:03:14+02:00] Checking image dynamos-local/api-gateway:main
+[2026-06-08T20:03:15+02:00] Checking image dynamos-local/sql-algorithm:main
+[2026-06-08T20:03:15+02:00] Checking image dynamos-local/sql-anonymize:main
+[2026-06-08T20:03:15+02:00] Checking image dynamos-local/sql-aggregate:main
+[2026-06-08T20:03:15+02:00] Checking image dynamos-local/sql-test:main
+[2026-06-08T20:03:15+02:00] Checking image dynamos-local/sql-query:main
+[2026-06-08T20:03:16+02:00] Recreating kind cluster dynamos-main-diagnose
+Deleting cluster "dynamos-main-diagnose" ...
+Deleted nodes: ["dynamos-main-diagnose-control-plane"]
+Creating cluster "dynamos-main-diagnose" ...
+ • Ensuring node image (kindest/node:v1.33.1) 🖼  ...
+ ✓ Ensuring node image (kindest/node:v1.33.1) 🖼
+ • Preparing nodes 📦   ...
+ ✓ Preparing nodes 📦 
+ • Writing configuration 📜  ...
+ ✓ Writing configuration 📜
+ • Starting control-plane 🕹️  ...
+ ✓ Starting control-plane 🕹️
+ • Installing CNI 🔌  ...
+ ✓ Installing CNI 🔌
+ • Installing StorageClass 💾  ...
+ ✓ Installing StorageClass 💾
+ • Waiting ≤ 3m0s for control-plane = Ready ⏳  ...
+ ✓ Waiting ≤ 3m0s for control-plane = Ready ⏳
+ • Ready after 18s 💚
+Set kubectl context to "kind-dynamos-main-diagnose"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-dynamos-main-diagnose
+
+Have a nice day! 👋
+Switched to context "kind-dynamos-main-diagnose".
+[2026-06-08T20:04:09+02:00] Loading local images into kind
+Image: "dynamos-local/sidecar:main" with ID "sha256:a14cb1be10eb9ea7d42143582cecc6b4bd0473baeadea999c39860a0a1b7661c" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/policy-enforcer:main" with ID "sha256:0dc3313a54a0a33b9417d17afb5e6ca523433d0893a3ec0c597bbb2a0d3b89f5" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/orchestrator:main" with ID "sha256:3d0665f16a49de1d647d7fb87e72ac6f7487dd5bc50ed3c35281498857fad6f0" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/agent:main" with ID "sha256:1ad4c917955abcef32d019a64df874002ed796baba68ec2474d57ce8a2592001" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/api-gateway:main" with ID "sha256:f744535f7221af46fde4598ae2d41b48e36233e18668a07ed13fd9e3739124d9" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-algorithm:main" with ID "sha256:72e4a85d6872a59dd3475634585568c2c98d62cb9b030bce19b2404d670825b8" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-anonymize:main" with ID "sha256:a29296c63cf88740f1c143bf3cac2d6daa00c745033f53f675ce94097329222f" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-aggregate:main" with ID "sha256:c5a9521fcafb02246f0bd9950cc8b6485ea912651177b1b410c07fd885089209" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-test:main" with ID "sha256:c4cf3e26f6198f51c98d2933a327b690480f44994a8a6f5bc26bc6d6ace86986" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-query:main" with ID "sha256:25f72589376c51e8f2a7a48f6817a7932aa39bbdd5a0c2fd3a30241f16d74b8b" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+[2026-06-08T20:05:33+02:00] Installing namespaces and secrets
+Release "dynamos-namespaces" does not exist. Installing it now.
+NAME: dynamos-namespaces
+LAST DEPLOYED: Mon Jun  8 20:05:33 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+[2026-06-08T20:05:34+02:00] Seeding etcd launch files from local repo
+job.batch "init-etcd-pvc" deleted
+configmap/etcd-launch-files created
+job.batch/init-etcd-pvc-local created
+job.batch/init-etcd-pvc-local condition met
+[2026-06-08T20:05:44+02:00] Seeding RabbitMQ configuration from local repo
+configmap/rabbitmq-config-files created
+job.batch/init-rabbit-pvc-local created
+job.batch/init-rabbit-pvc-local condition met
+[2026-06-08T20:05:53+02:00] Preparing minimal core chart
+[2026-06-08T20:05:53+02:00] Installing minimal core services
+Release "dynamos-core" does not exist. Installing it now.
+NAME: dynamos-core
+LAST DEPLOYED: Mon Jun  8 20:05:53 2026
+NAMESPACE: core
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+Error from server (NotFound): deployments.apps "etcd" not found

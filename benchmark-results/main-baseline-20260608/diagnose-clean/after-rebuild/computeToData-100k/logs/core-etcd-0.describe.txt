@@ -1,0 +1,73 @@
+Name:             etcd-0
+Namespace:        core
+Priority:         0
+Service Account:  default
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:05:58 +0200
+Labels:           app=etcd
+                  apps.kubernetes.io/pod-index=0
+                  controller-revision-hash=etcd-54f887b7f7
+                  statefulset.kubernetes.io/pod-name=etcd-0
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.12
+IPs:
+  IP:           10.244.0.12
+Controlled By:  StatefulSet/etcd
+Containers:
+  etcd:
+    Container ID:  containerd://1c7a1b601f1831ba017e73fbef8d6aa8ffb1cdf8211190c14fdc045d5c015a67
+    Image:         quay.io/coreos/etcd:v3.5.1
+    Image ID:      quay.io/coreos/etcd@sha256:56aa454c329505b221216a60647ab315bf87c5bafe1ffe81c0af9014b496788a
+    Ports:         2379/TCP, 2380/TCP
+    Host Ports:    0/TCP, 0/TCP
+    Command:
+      /usr/local/bin/etcd
+      --data-dir=/etcd-data
+      --name=$(POD_NAME)
+      --initial-advertise-peer-urls=http://$(POD_NAME).etcd-headless.core.svc.cluster.local:2380
+      --listen-peer-urls=http://0.0.0.0:2380
+      --listen-client-urls=http://0.0.0.0:2379
+      --advertise-client-urls=http://$(POD_NAME).etcd-headless.core.svc.cluster.local:2379
+      --initial-cluster-token=my-etcd-token
+      --initial-cluster=etcd-0=http://etcd-0.etcd-headless.core.svc.cluster.local:2380,etcd-1=http://etcd-1.etcd-headless.core.svc.cluster.local:2380,etcd-2=http://etcd-2.etcd-headless.core.svc.cluster.local:2380
+      --initial-cluster-state=new
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:06:30 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      POD_NAME:  etcd-0 (v1:metadata.name)
+    Mounts:
+      /etcd-data from etcd-data (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5lc2d (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  etcd-data:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  etcd-data-etcd-0
+    ReadOnly:   false
+  kube-api-access-5lc2d:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  22m   default-scheduler  Successfully assigned core/etcd-0 to dynamos-main-diagnose-control-plane
+  Normal  Pulling    22m   kubelet            Pulling image "quay.io/coreos/etcd:v3.5.1"
+  Normal  Pulled     21m   kubelet            Successfully pulled image "quay.io/coreos/etcd:v3.5.1" in 31.134s (31.134s including waiting). Image size: 74433542 bytes.
+  Normal  Created    21m   kubelet            Created container: etcd
+  Normal  Started    21m   kubelet            Started container etcd

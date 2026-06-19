@@ -1,0 +1,381 @@
+NAMESPACE            LAST SEEN   TYPE      REASON                    OBJECT                                                            MESSAGE
+default              25m         Normal    Starting                  node/dynamos-main-diagnose-control-plane                          
+default              25m         Normal    Starting                  node/dynamos-main-diagnose-control-plane                          Starting kubelet.
+default              25m         Normal    NodeHasSufficientMemory   node/dynamos-main-diagnose-control-plane                          Node dynamos-main-diagnose-control-plane status is now: NodeHasSufficientMemory
+default              25m         Normal    NodeHasNoDiskPressure     node/dynamos-main-diagnose-control-plane                          Node dynamos-main-diagnose-control-plane status is now: NodeHasNoDiskPressure
+default              25m         Normal    NodeHasSufficientPID      node/dynamos-main-diagnose-control-plane                          Node dynamos-main-diagnose-control-plane status is now: NodeHasSufficientPID
+default              25m         Normal    NodeAllocatableEnforced   node/dynamos-main-diagnose-control-plane                          Updated Node Allocatable limit across pods
+kube-system          25m         Normal    Pulled                    pod/etcd-dynamos-main-diagnose-control-plane                      Container image "registry.k8s.io/etcd:3.5.21-0" already present on machine
+kube-system          25m         Normal    Pulled                    pod/kube-apiserver-dynamos-main-diagnose-control-plane            Container image "registry.k8s.io/kube-apiserver:v1.33.1" already present on machine
+kube-system          25m         Normal    Pulled                    pod/kube-controller-manager-dynamos-main-diagnose-control-plane   Container image "registry.k8s.io/kube-controller-manager:v1.33.1" already present on machine
+kube-system          25m         Normal    Pulled                    pod/kube-scheduler-dynamos-main-diagnose-control-plane            Container image "registry.k8s.io/kube-scheduler:v1.33.1" already present on machine
+kube-system          25m         Normal    Created                   pod/kube-scheduler-dynamos-main-diagnose-control-plane            Created container: kube-scheduler
+kube-system          25m         Normal    Started                   pod/kube-scheduler-dynamos-main-diagnose-control-plane            Started container kube-scheduler
+kube-system          25m         Normal    Started                   pod/kube-controller-manager-dynamos-main-diagnose-control-plane   Started container kube-controller-manager
+kube-system          25m         Normal    Created                   pod/kube-controller-manager-dynamos-main-diagnose-control-plane   Created container: kube-controller-manager
+kube-system          25m         Normal    Started                   pod/kube-apiserver-dynamos-main-diagnose-control-plane            Started container kube-apiserver
+kube-system          25m         Normal    Created                   pod/kube-apiserver-dynamos-main-diagnose-control-plane            Created container: kube-apiserver
+kube-system          25m         Normal    Started                   pod/etcd-dynamos-main-diagnose-control-plane                      Started container etcd
+kube-system          25m         Normal    Created                   pod/etcd-dynamos-main-diagnose-control-plane                      Created container: etcd
+kube-system          25m         Normal    LeaderElection            lease/kube-controller-manager                                     dynamos-main-diagnose-control-plane_1dc5fef3-80dd-4e3a-97d2-15e19ed3d787 became leader
+default              25m         Normal    NodeHasSufficientMemory   node/dynamos-main-diagnose-control-plane                          Node dynamos-main-diagnose-control-plane status is now: NodeHasSufficientMemory
+default              25m         Normal    NodeHasSufficientPID      node/dynamos-main-diagnose-control-plane                          Node dynamos-main-diagnose-control-plane status is now: NodeHasSufficientPID
+default              25m         Normal    NodeHasNoDiskPressure     node/dynamos-main-diagnose-control-plane                          Node dynamos-main-diagnose-control-plane status is now: NodeHasNoDiskPressure
+default              25m         Normal    NodeAllocatableEnforced   node/dynamos-main-diagnose-control-plane                          Updated Node Allocatable limit across pods
+default              25m         Normal    Starting                  node/dynamos-main-diagnose-control-plane                          Starting kubelet.
+kube-system          25m         Normal    LeaderElection            lease/kube-scheduler                                              dynamos-main-diagnose-control-plane_c244bb4b-61c0-4281-be3b-426606d147ef became leader
+default              25m         Normal    RegisteredNode            node/dynamos-main-diagnose-control-plane                          Node dynamos-main-diagnose-control-plane event: Registered Node dynamos-main-diagnose-control-plane in Controller
+kube-system          25m         Normal    SuccessfulCreate          replicaset/coredns-674b8bbfcf                                     Created pod: coredns-674b8bbfcf-f8zfd
+kube-system          25m         Normal    SuccessfulCreate          replicaset/coredns-674b8bbfcf                                     Created pod: coredns-674b8bbfcf-stgrl
+kube-system          25m         Warning   FailedScheduling          pod/coredns-674b8bbfcf-stgrl                                      0/1 nodes are available: 1 node(s) had untolerated taint {node.kubernetes.io/not-ready: }. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+kube-system          25m         Normal    SuccessfulCreate          daemonset/kube-proxy                                              Created pod: kube-proxy-pt7nv
+local-path-storage   25m         Normal    ScalingReplicaSet         deployment/local-path-provisioner                                 Scaled up replica set local-path-provisioner-7dc846544d from 0 to 1
+local-path-storage   25m         Normal    SuccessfulCreate          replicaset/local-path-provisioner-7dc846544d                      Created pod: local-path-provisioner-7dc846544d-m57bg
+kube-system          25m         Warning   FailedScheduling          pod/coredns-674b8bbfcf-f8zfd                                      0/1 nodes are available: 1 node(s) had untolerated taint {node.kubernetes.io/not-ready: }. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+kube-system          25m         Normal    ScalingReplicaSet         deployment/coredns                                                Scaled up replica set coredns-674b8bbfcf from 0 to 2
+kube-system          25m         Normal    SuccessfulCreate          daemonset/kindnet                                                 Created pod: kindnet-sn492
+local-path-storage   25m         Warning   FailedScheduling          pod/local-path-provisioner-7dc846544d-m57bg                       0/1 nodes are available: 1 node(s) had untolerated taint {node.kubernetes.io/not-ready: }. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+kube-system          25m         Normal    Scheduled                 pod/kube-proxy-pt7nv                                              Successfully assigned kube-system/kube-proxy-pt7nv to dynamos-main-diagnose-control-plane
+kube-system          25m         Normal    Scheduled                 pod/kindnet-sn492                                                 Successfully assigned kube-system/kindnet-sn492 to dynamos-main-diagnose-control-plane
+kube-system          25m         Normal    Pulled                    pod/kindnet-sn492                                                 Container image "docker.io/kindest/kindnetd:v20250512-df8de77b" already present on machine
+kube-system          25m         Normal    Pulled                    pod/kube-proxy-pt7nv                                              Container image "registry.k8s.io/kube-proxy:v1.33.1" already present on machine
+kube-system          25m         Normal    Created                   pod/kube-proxy-pt7nv                                              Created container: kube-proxy
+kube-system          25m         Normal    Started                   pod/kube-proxy-pt7nv                                              Started container kube-proxy
+kube-system          25m         Normal    Created                   pod/kindnet-sn492                                                 Created container: kindnet-cni
+kube-system          25m         Normal    Started                   pod/kindnet-sn492                                                 Started container kindnet-cni
+default              24m         Normal    NodeReady                 node/dynamos-main-diagnose-control-plane                          Node dynamos-main-diagnose-control-plane status is now: NodeReady
+local-path-storage   24m         Normal    Scheduled                 pod/local-path-provisioner-7dc846544d-m57bg                       Successfully assigned local-path-storage/local-path-provisioner-7dc846544d-m57bg to dynamos-main-diagnose-control-plane
+kube-system          24m         Normal    Scheduled                 pod/coredns-674b8bbfcf-f8zfd                                      Successfully assigned kube-system/coredns-674b8bbfcf-f8zfd to dynamos-main-diagnose-control-plane
+kube-system          24m         Normal    Scheduled                 pod/coredns-674b8bbfcf-stgrl                                      Successfully assigned kube-system/coredns-674b8bbfcf-stgrl to dynamos-main-diagnose-control-plane
+kube-system          24m         Normal    Pulled                    pod/coredns-674b8bbfcf-stgrl                                      Container image "registry.k8s.io/coredns/coredns:v1.12.0" already present on machine
+local-path-storage   24m         Normal    Pulled                    pod/local-path-provisioner-7dc846544d-m57bg                       Container image "docker.io/kindest/local-path-provisioner:v20250214-acbabc1a" already present on machine
+kube-system          24m         Normal    Pulled                    pod/coredns-674b8bbfcf-f8zfd                                      Container image "registry.k8s.io/coredns/coredns:v1.12.0" already present on machine
+kube-system          24m         Normal    Created                   pod/coredns-674b8bbfcf-f8zfd                                      Created container: coredns
+kube-system          24m         Normal    Created                   pod/coredns-674b8bbfcf-stgrl                                      Created container: coredns
+kube-system          24m         Normal    Started                   pod/coredns-674b8bbfcf-stgrl                                      Started container coredns
+kube-system          24m         Normal    Started                   pod/coredns-674b8bbfcf-f8zfd                                      Started container coredns
+local-path-storage   24m         Normal    Created                   pod/local-path-provisioner-7dc846544d-m57bg                       Created container: local-path-provisioner
+local-path-storage   24m         Normal    Started                   pod/local-path-provisioner-7dc846544d-m57bg                       Started container local-path-provisioner
+orchestrator         23m         Normal    Provisioning              persistentvolumeclaim/etcd-pvc                                    External provisioner is provisioning volume for claim "orchestrator/etcd-pvc"
+orchestrator         23m         Normal    SuccessfulCreate          job/init-etcd-pvc                                                 Created pod: init-etcd-pvc-9stx2
+orchestrator         23m         Normal    SuccessfulCreate          job/init-etcd-pvc-local                                           Created pod: init-etcd-pvc-local-k8d97
+core                 23m         Normal    WaitForFirstConsumer      persistentvolumeclaim/rabbit-pvc                                  waiting for first consumer to be created before binding
+orchestrator         23m         Normal    WaitForFirstConsumer      persistentvolumeclaim/etcd-pvc                                    waiting for first consumer to be created before binding
+orchestrator         23m         Normal    ExternalProvisioning      persistentvolumeclaim/etcd-pvc                                    Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+local-path-storage   23m         Normal    Created                   pod/helper-pod-create-pvc-4535b73f-2ffc-4c7e-aad1-f5928ee67143    Created container: helper-pod
+orchestrator         23m         Warning   FailedScheduling          pod/init-etcd-pvc-9stx2                                           running PreBind plugin "VolumeBinding": binding volumes: pod does not exist any more: pod "init-etcd-pvc-9stx2" not found
+local-path-storage   23m         Normal    Started                   pod/helper-pod-create-pvc-4535b73f-2ffc-4c7e-aad1-f5928ee67143    Started container helper-pod
+local-path-storage   23m         Normal    Pulled                    pod/helper-pod-create-pvc-4535b73f-2ffc-4c7e-aad1-f5928ee67143    Container image "docker.io/kindest/local-path-helper:v20241212-8ac705d0" already present on machine
+orchestrator         23m         Normal    ProvisioningSucceeded     persistentvolumeclaim/etcd-pvc                                    Successfully provisioned volume pvc-4535b73f-2ffc-4c7e-aad1-f5928ee67143
+orchestrator         23m         Normal    Pulling                   pod/init-etcd-pvc-local-k8d97                                     Pulling image "busybox:1.36"
+orchestrator         23m         Normal    Scheduled                 pod/init-etcd-pvc-local-k8d97                                     Successfully assigned orchestrator/init-etcd-pvc-local-k8d97 to dynamos-main-diagnose-control-plane
+orchestrator         23m         Normal    Pulled                    pod/init-etcd-pvc-local-k8d97                                     Successfully pulled image "busybox:1.36" in 3.727s (3.727s including waiting). Image size: 2217006 bytes.
+orchestrator         23m         Normal    Created                   pod/init-etcd-pvc-local-k8d97                                     Created container: seed
+orchestrator         23m         Normal    Started                   pod/init-etcd-pvc-local-k8d97                                     Started container seed
+orchestrator         23m         Normal    Completed                 job/init-etcd-pvc-local                                           Job completed
+core                 23m         Normal    SuccessfulCreate          job/init-rabbit-pvc-local                                         Created pod: init-rabbit-pvc-local-zxcn7
+core                 23m         Normal    Provisioning              persistentvolumeclaim/rabbit-pvc                                  External provisioner is provisioning volume for claim "core/rabbit-pvc"
+local-path-storage   23m         Normal    Pulled                    pod/helper-pod-create-pvc-a48a106e-0512-4248-9a0d-5da0a9c3b1af    Container image "docker.io/kindest/local-path-helper:v20241212-8ac705d0" already present on machine
+local-path-storage   23m         Normal    Started                   pod/helper-pod-create-pvc-a48a106e-0512-4248-9a0d-5da0a9c3b1af    Started container helper-pod
+local-path-storage   23m         Normal    Created                   pod/helper-pod-create-pvc-a48a106e-0512-4248-9a0d-5da0a9c3b1af    Created container: helper-pod
+core                 23m         Normal    ExternalProvisioning      persistentvolumeclaim/rabbit-pvc                                  Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+core                 23m         Normal    Scheduled                 pod/init-rabbit-pvc-local-zxcn7                                   Successfully assigned core/init-rabbit-pvc-local-zxcn7 to dynamos-main-diagnose-control-plane
+core                 23m         Normal    ProvisioningSucceeded     persistentvolumeclaim/rabbit-pvc                                  Successfully provisioned volume pvc-a48a106e-0512-4248-9a0d-5da0a9c3b1af
+core                 23m         Normal    Pulled                    pod/init-rabbit-pvc-local-zxcn7                                   Container image "busybox:1.36" already present on machine
+core                 23m         Normal    Created                   pod/init-rabbit-pvc-local-zxcn7                                   Created container: seed
+core                 23m         Normal    Started                   pod/init-rabbit-pvc-local-zxcn7                                   Started container seed
+core                 23m         Normal    Completed                 job/init-rabbit-pvc-local                                         Job completed
+core                 23m         Normal    SuccessfulCreate          statefulset/etcd                                                  create Claim etcd-data-etcd-0 Pod etcd-0 in StatefulSet etcd success
+core                 23m         Normal    Provisioning              persistentvolumeclaim/etcd-data-etcd-0                            External provisioner is provisioning volume for claim "core/etcd-data-etcd-0"
+core                 23m         Normal    Provisioning              persistentvolumeclaim/rabbitmq-log-pvc                            External provisioner is provisioning volume for claim "core/rabbitmq-log-pvc"
+core                 23m         Normal    WaitForFirstConsumer      persistentvolumeclaim/etcd-data-etcd-0                            waiting for first consumer to be created before binding
+core                 23m         Normal    ExternalProvisioning      persistentvolumeclaim/etcd-data-etcd-0                            Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+core                 23m         Normal    ScalingReplicaSet         deployment/rabbitmq                                               Scaled up replica set rabbitmq-7d5f6c9784 from 0 to 1
+core                 23m         Normal    Provisioning              persistentvolumeclaim/rabbitmq-data-pvc                           External provisioner is provisioning volume for claim "core/rabbitmq-data-pvc"
+core                 23m         Normal    ExternalProvisioning      persistentvolumeclaim/rabbitmq-log-pvc                            Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+core                 23m         Normal    WaitForFirstConsumer      persistentvolumeclaim/rabbitmq-log-pvc                            waiting for first consumer to be created before binding
+core                 23m         Normal    ExternalProvisioning      persistentvolumeclaim/rabbitmq-data-pvc                           Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+core                 23m         Normal    WaitForFirstConsumer      persistentvolumeclaim/rabbitmq-data-pvc                           waiting for first consumer to be created before binding
+core                 23m         Normal    SuccessfulCreate          statefulset/etcd                                                  create Pod etcd-0 in StatefulSet etcd successful
+core                 23m         Normal    SuccessfulCreate          replicaset/rabbitmq-7d5f6c9784                                    Created pod: rabbitmq-7d5f6c9784-jq9q7
+local-path-storage   23m         Normal    Started                   pod/helper-pod-create-pvc-634cc4c8-8bf1-46fb-9de7-3d3604a8d85d    Started container helper-pod
+local-path-storage   23m         Normal    Created                   pod/helper-pod-create-pvc-a7af24dd-757b-4bbd-9f06-4baccfac4434    Created container: helper-pod
+local-path-storage   23m         Normal    Started                   pod/helper-pod-create-pvc-a7af24dd-757b-4bbd-9f06-4baccfac4434    Started container helper-pod
+local-path-storage   23m         Normal    Pulled                    pod/helper-pod-create-pvc-634cc4c8-8bf1-46fb-9de7-3d3604a8d85d    Container image "docker.io/kindest/local-path-helper:v20241212-8ac705d0" already present on machine
+local-path-storage   23m         Normal    Pulled                    pod/helper-pod-create-pvc-a7af24dd-757b-4bbd-9f06-4baccfac4434    Container image "docker.io/kindest/local-path-helper:v20241212-8ac705d0" already present on machine
+local-path-storage   23m         Normal    Created                   pod/helper-pod-create-pvc-634cc4c8-8bf1-46fb-9de7-3d3604a8d85d    Created container: helper-pod
+local-path-storage   23m         Normal    Started                   pod/helper-pod-create-pvc-f752afca-5b08-4f36-ae8e-b3ddde8b4477    Started container helper-pod
+local-path-storage   23m         Normal    Pulled                    pod/helper-pod-create-pvc-f752afca-5b08-4f36-ae8e-b3ddde8b4477    Container image "docker.io/kindest/local-path-helper:v20241212-8ac705d0" already present on machine
+local-path-storage   23m         Normal    Created                   pod/helper-pod-create-pvc-f752afca-5b08-4f36-ae8e-b3ddde8b4477    Created container: helper-pod
+core                 23m         Normal    ProvisioningSucceeded     persistentvolumeclaim/etcd-data-etcd-0                            Successfully provisioned volume pvc-f752afca-5b08-4f36-ae8e-b3ddde8b4477
+core                 23m         Normal    Scheduled                 pod/etcd-0                                                        Successfully assigned core/etcd-0 to dynamos-main-diagnose-control-plane
+core                 23m         Normal    ProvisioningSucceeded     persistentvolumeclaim/rabbitmq-data-pvc                           Successfully provisioned volume pvc-a7af24dd-757b-4bbd-9f06-4baccfac4434
+core                 23m         Normal    ProvisioningSucceeded     persistentvolumeclaim/rabbitmq-log-pvc                            Successfully provisioned volume pvc-634cc4c8-8bf1-46fb-9de7-3d3604a8d85d
+core                 23m         Normal    Scheduled                 pod/rabbitmq-7d5f6c9784-jq9q7                                     Successfully assigned core/rabbitmq-7d5f6c9784-jq9q7 to dynamos-main-diagnose-control-plane
+core                 23m         Normal    Pulling                   pod/etcd-0                                                        Pulling image "quay.io/coreos/etcd:v3.5.1"
+core                 23m         Normal    Pulling                   pod/rabbitmq-7d5f6c9784-jq9q7                                     Pulling image "rabbitmq:3-management"
+core                 22m         Normal    Pulled                    pod/etcd-0                                                        Successfully pulled image "quay.io/coreos/etcd:v3.5.1" in 31.134s (31.134s including waiting). Image size: 74433542 bytes.
+core                 22m         Normal    Created                   pod/etcd-0                                                        Created container: etcd
+core                 22m         Normal    Started                   pod/etcd-0                                                        Started container etcd
+local-path-storage   22m         Normal    Pulled                    pod/helper-pod-create-pvc-e468f72a-671b-40ca-ae2e-e500d3d80e94    Container image "docker.io/kindest/local-path-helper:v20241212-8ac705d0" already present on machine
+core                 22m         Normal    WaitForFirstConsumer      persistentvolumeclaim/etcd-data-etcd-1                            waiting for first consumer to be created before binding
+core                 22m         Normal    SuccessfulCreate          statefulset/etcd                                                  create Pod etcd-1 in StatefulSet etcd successful
+core                 22m         Normal    SuccessfulCreate          statefulset/etcd                                                  create Claim etcd-data-etcd-1 Pod etcd-1 in StatefulSet etcd success
+local-path-storage   22m         Normal    Started                   pod/helper-pod-create-pvc-e468f72a-671b-40ca-ae2e-e500d3d80e94    Started container helper-pod
+local-path-storage   22m         Normal    Created                   pod/helper-pod-create-pvc-e468f72a-671b-40ca-ae2e-e500d3d80e94    Created container: helper-pod
+core                 22m         Normal    Provisioning              persistentvolumeclaim/etcd-data-etcd-1                            External provisioner is provisioning volume for claim "core/etcd-data-etcd-1"
+core                 22m         Normal    ExternalProvisioning      persistentvolumeclaim/etcd-data-etcd-1                            Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+core                 22m         Normal    ProvisioningSucceeded     persistentvolumeclaim/etcd-data-etcd-1                            Successfully provisioned volume pvc-e468f72a-671b-40ca-ae2e-e500d3d80e94
+core                 22m         Normal    Scheduled                 pod/etcd-1                                                        Successfully assigned core/etcd-1 to dynamos-main-diagnose-control-plane
+core                 22m         Normal    Pulled                    pod/etcd-1                                                        Container image "quay.io/coreos/etcd:v3.5.1" already present on machine
+core                 22m         Normal    Created                   pod/etcd-1                                                        Created container: etcd
+core                 22m         Normal    Started                   pod/etcd-1                                                        Started container etcd
+core                 22m         Normal    SuccessfulCreate          statefulset/etcd                                                  create Pod etcd-2 in StatefulSet etcd successful
+core                 22m         Normal    WaitForFirstConsumer      persistentvolumeclaim/etcd-data-etcd-2                            waiting for first consumer to be created before binding
+core                 22m         Normal    ExternalProvisioning      persistentvolumeclaim/etcd-data-etcd-2                            Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+core                 22m         Normal    Provisioning              persistentvolumeclaim/etcd-data-etcd-2                            External provisioner is provisioning volume for claim "core/etcd-data-etcd-2"
+core                 22m         Normal    SuccessfulCreate          statefulset/etcd                                                  create Claim etcd-data-etcd-2 Pod etcd-2 in StatefulSet etcd success
+local-path-storage   22m         Normal    Started                   pod/helper-pod-create-pvc-2ca45efc-0da2-4e0c-a977-12ee3309614a    Started container helper-pod
+local-path-storage   22m         Normal    Created                   pod/helper-pod-create-pvc-2ca45efc-0da2-4e0c-a977-12ee3309614a    Created container: helper-pod
+local-path-storage   22m         Normal    Pulled                    pod/helper-pod-create-pvc-2ca45efc-0da2-4e0c-a977-12ee3309614a    Container image "docker.io/kindest/local-path-helper:v20241212-8ac705d0" already present on machine
+core                 22m         Normal    ProvisioningSucceeded     persistentvolumeclaim/etcd-data-etcd-2                            Successfully provisioned volume pvc-2ca45efc-0da2-4e0c-a977-12ee3309614a
+core                 22m         Normal    Scheduled                 pod/etcd-2                                                        Successfully assigned core/etcd-2 to dynamos-main-diagnose-control-plane
+core                 22m         Normal    Created                   pod/etcd-2                                                        Created container: etcd
+core                 22m         Normal    Pulled                    pod/etcd-2                                                        Container image "quay.io/coreos/etcd:v3.5.1" already present on machine
+core                 22m         Normal    Started                   pod/etcd-2                                                        Started container etcd
+core                 21m         Normal    Pulled                    pod/rabbitmq-7d5f6c9784-jq9q7                                     Successfully pulled image "rabbitmq:3-management" in 49.369s (1m19.703s including waiting). Image size: 114479602 bytes.
+core                 21m         Normal    Started                   pod/rabbitmq-7d5f6c9784-jq9q7                                     Started container rabbitmq
+core                 21m         Normal    Created                   pod/rabbitmq-7d5f6c9784-jq9q7                                     Created container: rabbitmq
+orchestrator         20m         Normal    ScalingReplicaSet         deployment/orchestrator                                           Scaled up replica set orchestrator-7bfd698fcd from 0 to 1
+orchestrator         20m         Normal    SuccessfulCreate          replicaset/orchestrator-7bfd698fcd                                Created pod: orchestrator-7bfd698fcd-7p796
+orchestrator         20m         Normal    ScalingReplicaSet         deployment/policy-enforcer                                        Scaled up replica set policy-enforcer-5fb7c4b5fb from 0 to 1
+orchestrator         20m         Normal    Scheduled                 pod/policy-enforcer-5fb7c4b5fb-dghvq                              Successfully assigned orchestrator/policy-enforcer-5fb7c4b5fb-dghvq to dynamos-main-diagnose-control-plane
+orchestrator         20m         Normal    SuccessfulCreate          replicaset/policy-enforcer-5fb7c4b5fb                             Created pod: policy-enforcer-5fb7c4b5fb-dghvq
+orchestrator         20m         Normal    Scheduled                 pod/orchestrator-7bfd698fcd-7p796                                 Successfully assigned orchestrator/orchestrator-7bfd698fcd-7p796 to dynamos-main-diagnose-control-plane
+orchestrator         20m         Normal    Started                   pod/policy-enforcer-5fb7c4b5fb-dghvq                              Started container sidecar
+orchestrator         20m         Normal    Started                   pod/orchestrator-7bfd698fcd-7p796                                 Started container sidecar
+orchestrator         20m         Normal    Created                   pod/orchestrator-7bfd698fcd-7p796                                 Created container: sidecar
+orchestrator         20m         Normal    Pulled                    pod/orchestrator-7bfd698fcd-7p796                                 Container image "dynamos-local/sidecar:main" already present on machine
+orchestrator         20m         Normal    Pulled                    pod/policy-enforcer-5fb7c4b5fb-dghvq                              Container image "dynamos-local/sidecar:main" already present on machine
+orchestrator         20m         Normal    Created                   pod/policy-enforcer-5fb7c4b5fb-dghvq                              Created container: sidecar
+orchestrator         20m         Normal    Pulled                    pod/policy-enforcer-5fb7c4b5fb-dghvq                              Container image "dynamos-local/policy-enforcer:main" already present on machine
+orchestrator         20m         Normal    Started                   pod/policy-enforcer-5fb7c4b5fb-dghvq                              Started container policy-enforcer
+orchestrator         20m         Normal    Created                   pod/policy-enforcer-5fb7c4b5fb-dghvq                              Created container: policy-enforcer
+api-gateway          20m         Normal    SuccessfulCreate          replicaset/api-gateway-58bd8676b8                                 Created pod: api-gateway-58bd8676b8-wlfwd
+api-gateway          20m         Normal    Scheduled                 pod/api-gateway-58bd8676b8-wlfwd                                  Successfully assigned api-gateway/api-gateway-58bd8676b8-wlfwd to dynamos-main-diagnose-control-plane
+api-gateway          20m         Normal    ScalingReplicaSet         deployment/api-gateway                                            Scaled up replica set api-gateway-58bd8676b8 from 0 to 1
+api-gateway          20m         Normal    Created                   pod/api-gateway-58bd8676b8-wlfwd                                  Created container: api-gateway
+api-gateway          20m         Normal    Created                   pod/api-gateway-58bd8676b8-wlfwd                                  Created container: sidecar
+api-gateway          20m         Normal    Pulled                    pod/api-gateway-58bd8676b8-wlfwd                                  Container image "dynamos-local/sidecar:main" already present on machine
+api-gateway          20m         Normal    Pulled                    pod/api-gateway-58bd8676b8-wlfwd                                  Container image "dynamos-local/api-gateway:main" already present on machine
+api-gateway          20m         Normal    Started                   pod/api-gateway-58bd8676b8-wlfwd                                  Started container api-gateway
+api-gateway          20m         Normal    Started                   pod/api-gateway-58bd8676b8-wlfwd                                  Started container sidecar
+uva                  20m         Normal    SuccessfulCreate          replicaset/uva-5f9f6b5766                                         Created pod: uva-5f9f6b5766-m2vrj
+uva                  20m         Normal    ScalingReplicaSet         deployment/uva                                                    Scaled up replica set uva-5f9f6b5766 from 0 to 1
+vu                   20m         Normal    Scheduled                 pod/vu-655bfbd598-vvvrf                                           Successfully assigned vu/vu-655bfbd598-vvvrf to dynamos-main-diagnose-control-plane
+uva                  20m         Normal    Scheduled                 pod/uva-5f9f6b5766-m2vrj                                          Successfully assigned uva/uva-5f9f6b5766-m2vrj to dynamos-main-diagnose-control-plane
+vu                   20m         Normal    SuccessfulCreate          replicaset/vu-655bfbd598                                          Created pod: vu-655bfbd598-vvvrf
+vu                   20m         Normal    ScalingReplicaSet         deployment/vu                                                     Scaled up replica set vu-655bfbd598 from 0 to 1
+vu                   19m         Normal    Created                   pod/vu-655bfbd598-vvvrf                                           Created container: sidecar
+uva                  19m         Normal    Pulled                    pod/uva-5f9f6b5766-m2vrj                                          Container image "dynamos-local/sidecar:main" already present on machine
+uva                  19m         Normal    Created                   pod/uva-5f9f6b5766-m2vrj                                          Created container: uva
+uva                  19m         Normal    Started                   pod/uva-5f9f6b5766-m2vrj                                          Started container uva
+uva                  19m         Normal    Created                   pod/uva-5f9f6b5766-m2vrj                                          Created container: sidecar
+vu                   19m         Normal    Pulled                    pod/vu-655bfbd598-vvvrf                                           Container image "dynamos-local/sidecar:main" already present on machine
+vu                   19m         Normal    Pulled                    pod/vu-655bfbd598-vvvrf                                           Container image "dynamos-local/agent:main" already present on machine
+uva                  19m         Normal    Pulled                    pod/uva-5f9f6b5766-m2vrj                                          Container image "dynamos-local/agent:main" already present on machine
+vu                   19m         Normal    Created                   pod/vu-655bfbd598-vvvrf                                           Created container: vu
+vu                   19m         Normal    Started                   pod/vu-655bfbd598-vvvrf                                           Started container vu
+vu                   19m         Normal    Started                   pod/vu-655bfbd598-vvvrf                                           Started container sidecar
+uva                  19m         Normal    Started                   pod/uva-5f9f6b5766-m2vrj                                          Started container sidecar
+surf                 19m         Normal    Scheduled                 pod/surf-75f8bd5d6b-6qvpn                                         Successfully assigned surf/surf-75f8bd5d6b-6qvpn to dynamos-main-diagnose-control-plane
+surf                 19m         Normal    ScalingReplicaSet         deployment/surf                                                   Scaled up replica set surf-75f8bd5d6b from 0 to 1
+surf                 19m         Normal    SuccessfulCreate          replicaset/surf-75f8bd5d6b                                        Created pod: surf-75f8bd5d6b-6qvpn
+surf                 19m         Normal    Pulled                    pod/surf-75f8bd5d6b-6qvpn                                         Container image "dynamos-local/sidecar:main" already present on machine
+surf                 19m         Normal    Pulled                    pod/surf-75f8bd5d6b-6qvpn                                         Container image "dynamos-local/agent:main" already present on machine
+surf                 19m         Normal    Created                   pod/surf-75f8bd5d6b-6qvpn                                         Created container: surf
+surf                 19m         Normal    Started                   pod/surf-75f8bd5d6b-6qvpn                                         Started container surf
+surf                 19m         Normal    Created                   pod/surf-75f8bd5d6b-6qvpn                                         Created container: sidecar
+surf                 19m         Normal    Started                   pod/surf-75f8bd5d6b-6qvpn                                         Started container sidecar
+orchestrator         18m         Normal    Created                   pod/orchestrator-7bfd698fcd-7p796                                 Created container: orchestrator
+orchestrator         18m         Normal    Pulled                    pod/orchestrator-7bfd698fcd-7p796                                 Container image "dynamos-local/orchestrator:main" already present on machine
+orchestrator         18m         Normal    Started                   pod/orchestrator-7bfd698fcd-7p796                                 Started container orchestrator
+orchestrator         17m         Normal    Scheduled                 pod/reseed-etcd-pvc-tpqfc                                         Successfully assigned orchestrator/reseed-etcd-pvc-tpqfc to dynamos-main-diagnose-control-plane
+orchestrator         17m         Normal    SuccessfulCreate          job/reseed-etcd-pvc                                               Created pod: reseed-etcd-pvc-tpqfc
+orchestrator         17m         Normal    Pulled                    pod/reseed-etcd-pvc-tpqfc                                         Container image "busybox:1.36" already present on machine
+orchestrator         17m         Normal    Created                   pod/reseed-etcd-pvc-tpqfc                                         Created container: seed
+orchestrator         17m         Normal    Started                   pod/reseed-etcd-pvc-tpqfc                                         Started container seed
+orchestrator         17m         Normal    Completed                 job/reseed-etcd-pvc                                               Job completed
+orchestrator         17m         Normal    ScalingReplicaSet         deployment/orchestrator                                           Scaled up replica set orchestrator-6f685b788b from 0 to 1
+orchestrator         17m         Normal    SuccessfulCreate          replicaset/orchestrator-6f685b788b                                Created pod: orchestrator-6f685b788b-782bl
+orchestrator         17m         Normal    Scheduled                 pod/orchestrator-6f685b788b-782bl                                 Successfully assigned orchestrator/orchestrator-6f685b788b-782bl to dynamos-main-diagnose-control-plane
+orchestrator         17m         Normal    Started                   pod/orchestrator-6f685b788b-782bl                                 Started container orchestrator
+orchestrator         17m         Normal    Pulled                    pod/orchestrator-6f685b788b-782bl                                 Container image "dynamos-local/orchestrator:main" already present on machine
+orchestrator         17m         Normal    Created                   pod/orchestrator-6f685b788b-782bl                                 Created container: sidecar
+orchestrator         17m         Normal    Started                   pod/orchestrator-6f685b788b-782bl                                 Started container sidecar
+orchestrator         17m         Normal    Pulled                    pod/orchestrator-6f685b788b-782bl                                 Container image "dynamos-local/sidecar:main" already present on machine
+orchestrator         17m         Warning   BackOff                   pod/orchestrator-7bfd698fcd-7p796                                 Back-off restarting failed container orchestrator in pod orchestrator-7bfd698fcd-7p796_orchestrator(8248c9ec-ffa3-43dd-adf9-fefff10537b7)
+orchestrator         17m         Normal    Created                   pod/orchestrator-6f685b788b-782bl                                 Created container: orchestrator
+orchestrator         17m         Normal    SuccessfulDelete          replicaset/orchestrator-7bfd698fcd                                Deleted pod: orchestrator-7bfd698fcd-7p796
+orchestrator         17m         Normal    Killing                   pod/orchestrator-7bfd698fcd-7p796                                 Stopping container sidecar
+orchestrator         17m         Normal    ScalingReplicaSet         deployment/orchestrator                                           Scaled down replica set orchestrator-7bfd698fcd from 1 to 0
+uva                  16m         Normal    Scheduled                 pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Successfully assigned uva/jorrit-stutterheim-8d421645uva1-j8vdv to dynamos-main-diagnose-control-plane
+uva                  16m         Normal    SuccessfulCreate          job/jorrit-stutterheim-8d421645uva1                               Created pod: jorrit-stutterheim-8d421645uva1-j8vdv
+uva                  16m         Normal    Pulled                    pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Container image "dynamos-local/sql-query:main" already present on machine
+uva                  16m         Normal    Created                   pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Created container: sql-algorithm
+uva                  16m         Normal    Created                   pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Created container: sql-query
+uva                  16m         Normal    Started                   pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Started container sql-query
+uva                  16m         Normal    Pulled                    pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva                  16m         Normal    Started                   pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Started container sql-algorithm
+uva                  16m         Normal    Pulled                    pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Container image "dynamos-local/sidecar:main" already present on machine
+uva                  16m         Normal    Created                   pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Created container: sidecar
+uva                  16m         Normal    Started                   pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Started container sidecar
+uva                  14m         Normal    Killing                   pod/jorrit-stutterheim-8d421645uva1-j8vdv                         Stopping container sql-query
+surf                 13m         Normal    Scheduled                 pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Successfully assigned surf/jorrit-stutterheim-49cbb9e8surf1-l5st9 to dynamos-main-diagnose-control-plane
+surf                 13m         Normal    Pulled                    pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf                 13m         Normal    SuccessfulCreate          job/jorrit-stutterheim-49cbb9e8surf1                              Created pod: jorrit-stutterheim-49cbb9e8surf1-l5st9
+vu                   13m         Normal    Scheduled                 pod/jorrit-stutterheim-49cbb9e8vu1-58rb8                          Successfully assigned vu/jorrit-stutterheim-49cbb9e8vu1-58rb8 to dynamos-main-diagnose-control-plane
+uva                  13m         Normal    Scheduled                 pod/jorrit-stutterheim-49cbb9e8uva1-fqk98                         Successfully assigned uva/jorrit-stutterheim-49cbb9e8uva1-fqk98 to dynamos-main-diagnose-control-plane
+vu                   13m         Normal    SuccessfulCreate          job/jorrit-stutterheim-49cbb9e8vu1                                Created pod: jorrit-stutterheim-49cbb9e8vu1-58rb8
+uva                  13m         Normal    Pulled                    pod/jorrit-stutterheim-49cbb9e8uva1-fqk98                         Container image "dynamos-local/sql-query:main" already present on machine
+uva                  13m         Normal    SuccessfulCreate          job/jorrit-stutterheim-49cbb9e8uva1                               Created pod: jorrit-stutterheim-49cbb9e8uva1-fqk98
+surf                 13m         Normal    Created                   pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Created container: sql-algorithm
+surf                 13m         Normal    Pulled                    pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva                  13m         Normal    Started                   pod/jorrit-stutterheim-49cbb9e8uva1-fqk98                         Started container sql-query
+uva                  13m         Normal    Pulled                    pod/jorrit-stutterheim-49cbb9e8uva1-fqk98                         Container image "dynamos-local/sidecar:main" already present on machine
+uva                  13m         Normal    Created                   pod/jorrit-stutterheim-49cbb9e8uva1-fqk98                         Created container: sidecar
+uva                  13m         Normal    Created                   pod/jorrit-stutterheim-49cbb9e8uva1-fqk98                         Created container: sql-query
+surf                 13m         Normal    Started                   pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Started container sql-aggregate
+surf                 13m         Normal    Created                   pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Created container: sql-aggregate
+vu                   13m         Normal    Pulled                    pod/jorrit-stutterheim-49cbb9e8vu1-58rb8                          Container image "dynamos-local/sql-query:main" already present on machine
+vu                   13m         Normal    Created                   pod/jorrit-stutterheim-49cbb9e8vu1-58rb8                          Created container: sql-query
+vu                   13m         Normal    Pulled                    pod/jorrit-stutterheim-49cbb9e8vu1-58rb8                          Container image "dynamos-local/sidecar:main" already present on machine
+vu                   13m         Normal    Started                   pod/jorrit-stutterheim-49cbb9e8vu1-58rb8                          Started container sql-query
+vu                   13m         Normal    Created                   pod/jorrit-stutterheim-49cbb9e8vu1-58rb8                          Created container: sidecar
+uva                  13m         Normal    Started                   pod/jorrit-stutterheim-49cbb9e8uva1-fqk98                         Started container sidecar
+vu                   13m         Normal    Started                   pod/jorrit-stutterheim-49cbb9e8vu1-58rb8                          Started container sidecar
+surf                 13m         Normal    Created                   pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Created container: sidecar
+surf                 13m         Normal    Pulled                    pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Container image "dynamos-local/sidecar:main" already present on machine
+surf                 13m         Normal    Started                   pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Started container sql-algorithm
+surf                 13m         Normal    Started                   pod/jorrit-stutterheim-49cbb9e8surf1-l5st9                        Started container sidecar
+surf                 12m         Normal    Completed                 job/jorrit-stutterheim-49cbb9e8surf1                              Job completed
+vu                   10m         Normal    Killing                   pod/jorrit-stutterheim-49cbb9e8vu1-58rb8                          Stopping container sql-query
+uva                  10m         Normal    Killing                   pod/jorrit-stutterheim-49cbb9e8uva1-fqk98                         Stopping container sql-query
+uva                  4m19s       Normal    ScalingReplicaSet         deployment/uva                                                    Scaled up replica set uva-776c7b95cc from 0 to 1
+api-gateway          4m19s       Normal    SuccessfulCreate          replicaset/api-gateway-866b4cd946                                 Created pod: api-gateway-866b4cd946-7vd2z
+orchestrator         4m19s       Normal    ScalingReplicaSet         deployment/orchestrator                                           Scaled up replica set orchestrator-bf6f6c8c8 from 0 to 1
+uva                  4m19s       Normal    SuccessfulCreate          replicaset/uva-776c7b95cc                                         Created pod: uva-776c7b95cc-bm64r
+orchestrator         4m19s       Normal    SuccessfulCreate          replicaset/orchestrator-bf6f6c8c8                                 Created pod: orchestrator-bf6f6c8c8-gx8d5
+uva                  4m19s       Normal    Scheduled                 pod/uva-776c7b95cc-bm64r                                          Successfully assigned uva/uva-776c7b95cc-bm64r to dynamos-main-diagnose-control-plane
+orchestrator         4m19s       Normal    Scheduled                 pod/policy-enforcer-6575bcd66b-n9ldl                              Successfully assigned orchestrator/policy-enforcer-6575bcd66b-n9ldl to dynamos-main-diagnose-control-plane
+api-gateway          4m19s       Normal    Scheduled                 pod/api-gateway-866b4cd946-7vd2z                                  Successfully assigned api-gateway/api-gateway-866b4cd946-7vd2z to dynamos-main-diagnose-control-plane
+orchestrator         4m19s       Normal    SuccessfulCreate          replicaset/policy-enforcer-6575bcd66b                             Created pod: policy-enforcer-6575bcd66b-n9ldl
+api-gateway          4m19s       Normal    ScalingReplicaSet         deployment/api-gateway                                            Scaled up replica set api-gateway-866b4cd946 from 0 to 1
+orchestrator         4m19s       Normal    ScalingReplicaSet         deployment/policy-enforcer                                        Scaled up replica set policy-enforcer-6575bcd66b from 0 to 1
+orchestrator         4m19s       Normal    Scheduled                 pod/orchestrator-bf6f6c8c8-gx8d5                                  Successfully assigned orchestrator/orchestrator-bf6f6c8c8-gx8d5 to dynamos-main-diagnose-control-plane
+orchestrator         4m18s       Normal    Pulled                    pod/policy-enforcer-6575bcd66b-n9ldl                              Container image "dynamos-local/policy-enforcer:main" already present on machine
+api-gateway          4m18s       Normal    Started                   pod/api-gateway-866b4cd946-7vd2z                                  Started container api-gateway
+surf                 4m18s       Normal    ScalingReplicaSet         deployment/surf                                                   Scaled up replica set surf-58f445c588 from 0 to 1
+api-gateway          4m18s       Normal    Pulled                    pod/api-gateway-866b4cd946-7vd2z                                  Container image "dynamos-local/api-gateway:main" already present on machine
+vu                   4m18s       Normal    SuccessfulCreate          replicaset/vu-65f4b4b6c7                                          Created pod: vu-65f4b4b6c7-fkh59
+surf                 4m18s       Normal    SuccessfulCreate          replicaset/surf-58f445c588                                        Created pod: surf-58f445c588-6th4h
+api-gateway          4m18s       Normal    Pulled                    pod/api-gateway-866b4cd946-7vd2z                                  Container image "dynamos-local/sidecar:main" already present on machine
+vu                   4m18s       Normal    Scheduled                 pod/vu-65f4b4b6c7-fkh59                                           Successfully assigned vu/vu-65f4b4b6c7-fkh59 to dynamos-main-diagnose-control-plane
+uva                  4m18s       Normal    Pulled                    pod/uva-776c7b95cc-bm64r                                          Container image "dynamos-local/agent:main" already present on machine
+surf                 4m18s       Normal    Scheduled                 pod/surf-58f445c588-6th4h                                         Successfully assigned surf/surf-58f445c588-6th4h to dynamos-main-diagnose-control-plane
+api-gateway          4m18s       Normal    Created                   pod/api-gateway-866b4cd946-7vd2z                                  Created container: api-gateway
+vu                   4m18s       Normal    ScalingReplicaSet         deployment/vu                                                     Scaled up replica set vu-65f4b4b6c7 from 0 to 1
+uva                  4m17s       Normal    Created                   pod/uva-776c7b95cc-bm64r                                          Created container: uva
+orchestrator         4m17s       Normal    Started                   pod/policy-enforcer-6575bcd66b-n9ldl                              Started container policy-enforcer
+orchestrator         4m17s       Normal    Pulled                    pod/policy-enforcer-6575bcd66b-n9ldl                              Container image "dynamos-local/sidecar:main" already present on machine
+orchestrator         4m17s       Normal    Created                   pod/policy-enforcer-6575bcd66b-n9ldl                              Created container: policy-enforcer
+orchestrator         4m17s       Normal    Created                   pod/orchestrator-bf6f6c8c8-gx8d5                                  Created container: orchestrator
+orchestrator         4m17s       Normal    Pulled                    pod/orchestrator-bf6f6c8c8-gx8d5                                  Container image "dynamos-local/orchestrator:main" already present on machine
+api-gateway          4m17s       Normal    Created                   pod/api-gateway-866b4cd946-7vd2z                                  Created container: sidecar
+vu                   4m17s       Normal    Pulled                    pod/vu-65f4b4b6c7-fkh59                                           Container image "dynamos-local/agent:main" already present on machine
+surf                 4m16s       Normal    Created                   pod/surf-58f445c588-6th4h                                         Created container: surf
+api-gateway          4m16s       Normal    Started                   pod/api-gateway-866b4cd946-7vd2z                                  Started container sidecar
+vu                   4m16s       Normal    Created                   pod/vu-65f4b4b6c7-fkh59                                           Created container: vu
+surf                 4m16s       Normal    Pulled                    pod/surf-58f445c588-6th4h                                         Container image "dynamos-local/agent:main" already present on machine
+uva                  4m16s       Normal    Created                   pod/uva-776c7b95cc-bm64r                                          Created container: sidecar
+uva                  4m16s       Normal    Started                   pod/uva-776c7b95cc-bm64r                                          Started container uva
+orchestrator         4m16s       Normal    Created                   pod/policy-enforcer-6575bcd66b-n9ldl                              Created container: sidecar
+uva                  4m16s       Normal    Pulled                    pod/uva-776c7b95cc-bm64r                                          Container image "dynamos-local/sidecar:main" already present on machine
+api-gateway          4m15s       Normal    Killing                   pod/api-gateway-58bd8676b8-wlfwd                                  Stopping container api-gateway
+api-gateway          4m15s       Normal    ScalingReplicaSet         deployment/api-gateway                                            Scaled down replica set api-gateway-58bd8676b8 from 1 to 0
+orchestrator         4m15s       Normal    Created                   pod/orchestrator-bf6f6c8c8-gx8d5                                  Created container: sidecar
+orchestrator         4m15s       Normal    Pulled                    pod/orchestrator-bf6f6c8c8-gx8d5                                  Container image "dynamos-local/sidecar:main" already present on machine
+orchestrator         4m15s       Normal    Started                   pod/policy-enforcer-6575bcd66b-n9ldl                              Started container sidecar
+orchestrator         4m15s       Normal    Started                   pod/orchestrator-bf6f6c8c8-gx8d5                                  Started container orchestrator
+surf                 4m15s       Normal    Created                   pod/surf-58f445c588-6th4h                                         Created container: sidecar
+surf                 4m15s       Normal    Pulled                    pod/surf-58f445c588-6th4h                                         Container image "dynamos-local/sidecar:main" already present on machine
+surf                 4m15s       Normal    Started                   pod/surf-58f445c588-6th4h                                         Started container surf
+api-gateway          4m15s       Normal    Killing                   pod/api-gateway-58bd8676b8-wlfwd                                  Stopping container sidecar
+api-gateway          4m15s       Normal    SuccessfulDelete          replicaset/api-gateway-58bd8676b8                                 Deleted pod: api-gateway-58bd8676b8-wlfwd
+uva                  4m14s       Normal    Killing                   pod/uva-5f9f6b5766-m2vrj                                          Stopping container sidecar
+vu                   4m14s       Normal    Pulled                    pod/vu-65f4b4b6c7-fkh59                                           Container image "dynamos-local/sidecar:main" already present on machine
+surf                 4m14s       Normal    Started                   pod/surf-58f445c588-6th4h                                         Started container sidecar
+orchestrator         4m14s       Normal    Started                   pod/orchestrator-bf6f6c8c8-gx8d5                                  Started container sidecar
+orchestrator         4m14s       Normal    ScalingReplicaSet         deployment/orchestrator                                           Scaled down replica set orchestrator-6f685b788b from 1 to 0
+orchestrator         4m14s       Normal    Killing                   pod/policy-enforcer-5fb7c4b5fb-dghvq                              Stopping container policy-enforcer
+orchestrator         4m14s       Normal    Killing                   pod/policy-enforcer-5fb7c4b5fb-dghvq                              Stopping container sidecar
+orchestrator         4m14s       Normal    SuccessfulDelete          replicaset/policy-enforcer-5fb7c4b5fb                             Deleted pod: policy-enforcer-5fb7c4b5fb-dghvq
+orchestrator         4m14s       Normal    SuccessfulDelete          replicaset/orchestrator-6f685b788b                                Deleted pod: orchestrator-6f685b788b-782bl
+orchestrator         4m14s       Normal    Killing                   pod/orchestrator-6f685b788b-782bl                                 Stopping container orchestrator
+orchestrator         4m14s       Normal    Killing                   pod/orchestrator-6f685b788b-782bl                                 Stopping container sidecar
+orchestrator         4m14s       Normal    ScalingReplicaSet         deployment/policy-enforcer                                        Scaled down replica set policy-enforcer-5fb7c4b5fb from 1 to 0
+surf                 4m14s       Normal    ScalingReplicaSet         deployment/surf                                                   Scaled down replica set surf-75f8bd5d6b from 1 to 0
+uva                  4m14s       Normal    Killing                   pod/uva-5f9f6b5766-m2vrj                                          Stopping container uva
+uva                  4m14s       Normal    ScalingReplicaSet         deployment/uva                                                    Scaled down replica set uva-5f9f6b5766 from 1 to 0
+uva                  4m14s       Normal    Started                   pod/uva-776c7b95cc-bm64r                                          Started container sidecar
+uva                  4m14s       Normal    SuccessfulDelete          replicaset/uva-5f9f6b5766                                         Deleted pod: uva-5f9f6b5766-m2vrj
+vu                   4m14s       Normal    Started                   pod/vu-65f4b4b6c7-fkh59                                           Started container sidecar
+vu                   4m14s       Normal    Started                   pod/vu-65f4b4b6c7-fkh59                                           Started container vu
+vu                   4m14s       Normal    Created                   pod/vu-65f4b4b6c7-fkh59                                           Created container: sidecar
+surf                 4m13s       Normal    Killing                   pod/surf-75f8bd5d6b-6qvpn                                         Stopping container surf
+vu                   4m13s       Normal    SuccessfulDelete          replicaset/vu-655bfbd598                                          Deleted pod: vu-655bfbd598-vvvrf
+vu                   4m13s       Normal    ScalingReplicaSet         deployment/vu                                                     Scaled down replica set vu-655bfbd598 from 1 to 0
+surf                 4m13s       Normal    SuccessfulDelete          replicaset/surf-75f8bd5d6b                                        Deleted pod: surf-75f8bd5d6b-6qvpn
+vu                   4m13s       Normal    Killing                   pod/vu-655bfbd598-vvvrf                                           Stopping container vu
+vu                   4m13s       Normal    Killing                   pod/vu-655bfbd598-vvvrf                                           Stopping container sidecar
+surf                 4m13s       Normal    Killing                   pod/surf-75f8bd5d6b-6qvpn                                         Stopping container sidecar
+uva                  72s         Normal    Scheduled                 pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Successfully assigned uva/jorrit-stutterheim-8d913881uva1-m8wrj to dynamos-main-diagnose-control-plane
+uva                  72s         Normal    Pulled                    pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Container image "dynamos-local/sql-query:main" already present on machine
+uva                  72s         Normal    Created                   pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Created container: sql-query
+uva                  72s         Normal    SuccessfulCreate          job/jorrit-stutterheim-8d913881uva1                               Created pod: jorrit-stutterheim-8d913881uva1-m8wrj
+uva                  71s         Normal    Created                   pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Created container: sql-algorithm
+uva                  71s         Normal    Started                   pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Started container sql-algorithm
+uva                  71s         Normal    Pulled                    pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva                  71s         Normal    Pulled                    pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Container image "dynamos-local/sidecar:main" already present on machine
+uva                  71s         Normal    Started                   pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Started container sql-query
+uva                  71s         Normal    Started                   pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Started container sidecar
+uva                  71s         Normal    Created                   pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Created container: sidecar
+uva                  42s         Normal    Killing                   pod/jorrit-stutterheim-8d913881uva1-m8wrj                         Stopping container sql-query
+vu                   36s         Normal    Scheduled                 pod/jorrit-stutterheim-7b429ed5vu1-bzj8j                          Successfully assigned vu/jorrit-stutterheim-7b429ed5vu1-bzj8j to dynamos-main-diagnose-control-plane
+uva                  36s         Normal    SuccessfulCreate          job/jorrit-stutterheim-7b429ed5uva1                               Created pod: jorrit-stutterheim-7b429ed5uva1-nwtzj
+surf                 36s         Normal    SuccessfulCreate          job/jorrit-stutterheim-7b429ed5surf1                              Created pod: jorrit-stutterheim-7b429ed5surf1-hwwsn
+uva                  36s         Normal    Scheduled                 pod/jorrit-stutterheim-7b429ed5uva1-nwtzj                         Successfully assigned uva/jorrit-stutterheim-7b429ed5uva1-nwtzj to dynamos-main-diagnose-control-plane
+surf                 36s         Normal    Scheduled                 pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Successfully assigned surf/jorrit-stutterheim-7b429ed5surf1-hwwsn to dynamos-main-diagnose-control-plane
+vu                   36s         Normal    SuccessfulCreate          job/jorrit-stutterheim-7b429ed5vu1                                Created pod: jorrit-stutterheim-7b429ed5vu1-bzj8j
+vu                   35s         Normal    Pulled                    pod/jorrit-stutterheim-7b429ed5vu1-bzj8j                          Container image "dynamos-local/sql-query:main" already present on machine
+vu                   35s         Normal    Created                   pod/jorrit-stutterheim-7b429ed5vu1-bzj8j                          Created container: sql-query
+uva                  35s         Normal    Pulled                    pod/jorrit-stutterheim-7b429ed5uva1-nwtzj                         Container image "dynamos-local/sql-query:main" already present on machine
+surf                 35s         Normal    Pulled                    pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf                 35s         Normal    Created                   pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Created container: sql-aggregate
+uva                  35s         Normal    Created                   pod/jorrit-stutterheim-7b429ed5uva1-nwtzj                         Created container: sql-query
+uva                  35s         Normal    Started                   pod/jorrit-stutterheim-7b429ed5uva1-nwtzj                         Started container sql-query
+uva                  35s         Normal    Pulled                    pod/jorrit-stutterheim-7b429ed5uva1-nwtzj                         Container image "dynamos-local/sidecar:main" already present on machine
+surf                 34s         Normal    Created                   pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Created container: sql-algorithm
+surf                 34s         Normal    Pulled                    pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf                 34s         Normal    Created                   pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Created container: sidecar
+surf                 34s         Normal    Started                   pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Started container sql-algorithm
+uva                  34s         Normal    Started                   pod/jorrit-stutterheim-7b429ed5uva1-nwtzj                         Started container sidecar
+uva                  34s         Normal    Created                   pod/jorrit-stutterheim-7b429ed5uva1-nwtzj                         Created container: sidecar
+vu                   34s         Normal    Started                   pod/jorrit-stutterheim-7b429ed5vu1-bzj8j                          Started container sql-query
+surf                 34s         Normal    Pulled                    pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Container image "dynamos-local/sidecar:main" already present on machine
+surf                 34s         Normal    Started                   pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Started container sql-aggregate
+vu                   34s         Normal    Started                   pod/jorrit-stutterheim-7b429ed5vu1-bzj8j                          Started container sidecar
+vu                   34s         Normal    Created                   pod/jorrit-stutterheim-7b429ed5vu1-bzj8j                          Created container: sidecar
+vu                   34s         Normal    Pulled                    pod/jorrit-stutterheim-7b429ed5vu1-bzj8j                          Container image "dynamos-local/sidecar:main" already present on machine
+surf                 33s         Normal    Started                   pod/jorrit-stutterheim-7b429ed5surf1-hwwsn                        Started container sidecar
+surf                 2s          Normal    Completed                 job/jorrit-stutterheim-7b429ed5surf1                              Job completed

@@ -1,0 +1,74 @@
+Name:             api-gateway-58bd8676b8-wlfwd
+Namespace:        api-gateway
+Priority:         0
+Service Account:  default
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:08:59 +0200
+Labels:           app=api-gateway
+                  pod-template-hash=58bd8676b8
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.20
+IPs:
+  IP:           10.244.0.20
+Controlled By:  ReplicaSet/api-gateway-58bd8676b8
+Containers:
+  api-gateway:
+    Container ID:   containerd://6ff8a9b54a943d5302ca828727764a12154bcbc50e2509dcbdf514d951a1ef16
+    Image:          dynamos-local/api-gateway:main
+    Image ID:       sha256:fd7af0f49cbdf83fd176d57e58d8ea28a4c4f668f9c18443cd28a8c68416d94a
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:09:00 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      OC_AGENT_HOST:                 collector.linkerd-jaeger:55678
+      DYNAMOS_HTTP_REQUEST_TIMEOUT:  300s
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-vhqwq (ro)
+  sidecar:
+    Container ID:   containerd://96c4600abfc6c8c380dd7b13e51aa4a5a8c4c52d144334fa7bf204e9d297efb3
+    Image:          dynamos-local/sidecar:main
+    Image ID:       sha256:1287425d4417fe4ce9b6340b45edd16fbf1daf3c581f3a2d63db1461084f5185
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:09:00 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      AMQ_PASSWORD:   <set to the key 'password' in secret 'rabbit'>  Optional: false
+      AMQ_USER:       normal_user
+      OC_AGENT_HOST:  collector.linkerd-jaeger:55678
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-vhqwq (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-vhqwq:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  4m24s  default-scheduler  Successfully assigned api-gateway/api-gateway-58bd8676b8-wlfwd to dynamos-main-diagnose-control-plane
+  Normal  Pulled     4m23s  kubelet            Container image "dynamos-local/api-gateway:main" already present on machine
+  Normal  Created    4m23s  kubelet            Created container: api-gateway
+  Normal  Started    4m23s  kubelet            Started container api-gateway
+  Normal  Pulled     4m23s  kubelet            Container image "dynamos-local/sidecar:main" already present on machine
+  Normal  Created    4m23s  kubelet            Created container: sidecar
+  Normal  Started    4m23s  kubelet            Started container sidecar

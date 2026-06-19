@@ -1,0 +1,82 @@
+Name:             surf-75f8bd5d6b-6qvpn
+Namespace:        surf
+Priority:         0
+Service Account:  job-creator-surf
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:09:10 +0200
+Labels:           app=surf
+                  pod-template-hash=75f8bd5d6b
+Annotations:      linkerd.io/inject: enabled
+Status:           Running
+IP:               10.244.0.23
+IPs:
+  IP:           10.244.0.23
+Controlled By:  ReplicaSet/surf-75f8bd5d6b
+Containers:
+  surf:
+    Container ID:   containerd://b70ac106b3140e0cffa2624e94d19bbca751615ea222042a689a5c36e75eec2d
+    Image:          dynamos-local/agent:main
+    Image ID:       sha256:e42fa8e8485dfd4de82a7edc77dab2eadcc53a4a50f27487973c21995e4afbd8
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:09:11 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      DATA_STEWARD_NAME:                   SURF
+      OC_AGENT_HOST:                       collector.linkerd-jaeger:55678
+      MICROSERVICE_REPOSITORY_NAME:        dynamos-local
+      SIDECAR_REPOSITORY_NAME:             dynamos-local
+      MICROSERVICE_TAG:                    main
+      SIDECAR_TAG:                         main
+      MICROSERVICE_IMAGE_PULL_POLICY:      IfNotPresent
+      SIDECAR_IMAGE_PULL_POLICY:           IfNotPresent
+      DYNAMOS_HTTP_REQUEST_TIMEOUT:        300s
+      DYNAMOS_QUEUE_DELETE_AFTER_SECONDS:  600
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-646hf (ro)
+  sidecar:
+    Container ID:   containerd://4265102435200a15154ce37678e0171ba82bc4e72d3049f6c9cf3ff9552f9af6
+    Image:          dynamos-local/sidecar:main
+    Image ID:       sha256:1287425d4417fe4ce9b6340b45edd16fbf1daf3c581f3a2d63db1461084f5185
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:09:12 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      AMQ_PASSWORD:   <set to the key 'password' in secret 'rabbit'>  Optional: false
+      AMQ_USER:       normal_user
+      OC_AGENT_HOST:  collector.linkerd-jaeger:55678
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-646hf (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-646hf:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  4m17s  default-scheduler  Successfully assigned surf/surf-75f8bd5d6b-6qvpn to dynamos-main-diagnose-control-plane
+  Normal  Pulled     4m16s  kubelet            Container image "dynamos-local/agent:main" already present on machine
+  Normal  Created    4m16s  kubelet            Created container: surf
+  Normal  Started    4m16s  kubelet            Started container surf
+  Normal  Pulled     4m16s  kubelet            Container image "dynamos-local/sidecar:main" already present on machine
+  Normal  Created    4m15s  kubelet            Created container: sidecar
+  Normal  Started    4m15s  kubelet            Started container sidecar

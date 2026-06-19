@@ -1,0 +1,44 @@
+[2026-06-08T20:27:49+02:00] Running computeToData-100k
+[2026-06-08T20:28:15+02:00] computeToData-100k exited rc=0 elapsed=25s
+job.batch "jorrit-stutterheim-8d913881uva1" deleted
+{
+  "ok": true,
+  "status": 200,
+  "elapsedSeconds": 23.971449,
+  "archetype": "computeToData",
+  "providers": [
+    "UVA"
+  ],
+  "limit": 100000,
+  "expectedRows": 100000,
+  "observedRows": 100000,
+  "providerErrorCount": 0,
+  "errors": [],
+  "jobId": "jorrit-stutterheim-8d913881",
+  "responseBytes": 6394605
+}
+[2026-06-08T20:28:26+02:00] Running dataThroughTtp-UVA-VU-100k
+[2026-06-08T20:29:03+02:00] dataThroughTtp-UVA-VU-100k exited rc=1 elapsed=36s
+job.batch "jorrit-stutterheim-7b429ed5surf1" deleted
+job.batch "jorrit-stutterheim-7b429ed5uva1" deleted
+job.batch "jorrit-stutterheim-7b429ed5vu1" deleted
+{
+  "ok": false,
+  "status": 200,
+  "elapsedSeconds": 33.638451,
+  "archetype": "dataThroughTtp",
+  "providers": [
+    "UVA",
+    "VU"
+  ],
+  "limit": 100000,
+  "expectedRows": 200000,
+  "observedRows": 300000,
+  "providerErrorCount": 0,
+  "errors": [
+    "rows mismatch: observed 300000, expected 200000"
+  ],
+  "jobId": "jorrit-stutterheim-7b429ed5",
+  "responseBytes": 19183493
+}
+[2026-06-08T20:29:17+02:00] after-rebuild diagnostics complete

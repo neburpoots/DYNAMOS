@@ -1,0 +1,9 @@
+2026-06-08T18:05:41.757757857Z total 8
+2026-06-08T18:05:41.757804702Z drwxrwxrwx    2 root     root          4096 Jun  8 18:05 .
+2026-06-08T18:05:41.757808165Z drwxr-xr-x    1 root     root          4096 Jun  8 18:05 ..
+2026-06-08T18:05:41.757809692Z lrwxrwxrwx    1 root     root            22 Jun  8 18:05 agreements.json -> ..data/agreements.json
+2026-06-08T18:05:41.757812035Z lrwxrwxrwx    1 root     root            21 Jun  8 18:05 archetype.json -> ..data/archetype.json
+2026-06-08T18:05:41.757812951Z lrwxrwxrwx    1 root     root            20 Jun  8 18:05 datasets.json -> ..data/datasets.json
+2026-06-08T18:05:41.757813766Z lrwxrwxrwx    1 root     root            25 Jun  8 18:05 microservices.json -> ..data/microservices.json
+2026-06-08T18:05:41.757814581Z lrwxrwxrwx    1 root     root            34 Jun  8 18:05 optional_microservices.json -> ..data/optional_microservices.json
+2026-06-08T18:05:41.757815497Z lrwxrwxrwx    1 root     root            23 Jun  8 18:05 requestType.json -> ..data/requestType.json

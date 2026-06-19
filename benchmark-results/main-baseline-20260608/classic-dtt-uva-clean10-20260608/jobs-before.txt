@@ -1,0 +1,4 @@
+NAMESPACE      NAME                    STATUS     COMPLETIONS   DURATION   AGE
+core           init-rabbit-pvc-local   Complete   1/1           9s         40m
+orchestrator   init-etcd-pvc-local     Complete   1/1           10s        40m
+orchestrator   reseed-etcd-pvc         Complete   1/1           5s         35m

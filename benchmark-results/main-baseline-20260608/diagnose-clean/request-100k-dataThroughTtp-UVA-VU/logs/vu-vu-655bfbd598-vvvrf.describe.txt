@@ -1,0 +1,82 @@
+Name:             vu-655bfbd598-vvvrf
+Namespace:        vu
+Priority:         0
+Service Account:  job-creator-vu
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:09:03 +0200
+Labels:           app=vu
+                  pod-template-hash=655bfbd598
+Annotations:      linkerd.io/inject: enabled
+Status:           Running
+IP:               10.244.0.22
+IPs:
+  IP:           10.244.0.22
+Controlled By:  ReplicaSet/vu-655bfbd598
+Containers:
+  vu:
+    Container ID:   containerd://ec155cbda4d81d5c07d70f3f2fcb146a03310838aeb5ca16a5100a80af923ec1
+    Image:          dynamos-local/agent:main
+    Image ID:       sha256:e42fa8e8485dfd4de82a7edc77dab2eadcc53a4a50f27487973c21995e4afbd8
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:09:04 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      DATA_STEWARD_NAME:                   VU
+      OC_AGENT_HOST:                       collector.linkerd-jaeger:55678
+      MICROSERVICE_REPOSITORY_NAME:        dynamos-local
+      SIDECAR_REPOSITORY_NAME:             dynamos-local
+      MICROSERVICE_TAG:                    main
+      SIDECAR_TAG:                         main
+      MICROSERVICE_IMAGE_PULL_POLICY:      IfNotPresent
+      SIDECAR_IMAGE_PULL_POLICY:           IfNotPresent
+      DYNAMOS_HTTP_REQUEST_TIMEOUT:        300s
+      DYNAMOS_QUEUE_DELETE_AFTER_SECONDS:  600
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-zr6c9 (ro)
+  sidecar:
+    Container ID:   containerd://bc15f8c0bc4e7b869ac2993b93f28b46df77c5767ba1d8dd86c8a440891b987f
+    Image:          dynamos-local/sidecar:main
+    Image ID:       sha256:1287425d4417fe4ce9b6340b45edd16fbf1daf3c581f3a2d63db1461084f5185
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:09:05 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      AMQ_PASSWORD:   <set to the key 'password' in secret 'rabbit'>  Optional: false
+      AMQ_USER:       normal_user
+      OC_AGENT_HOST:  collector.linkerd-jaeger:55678
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-zr6c9 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-zr6c9:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  7m28s  default-scheduler  Successfully assigned vu/vu-655bfbd598-vvvrf to dynamos-main-diagnose-control-plane
+  Normal  Pulled     7m27s  kubelet            Container image "dynamos-local/agent:main" already present on machine
+  Normal  Created    7m27s  kubelet            Created container: vu
+  Normal  Started    7m27s  kubelet            Started container vu
+  Normal  Pulled     7m27s  kubelet            Container image "dynamos-local/sidecar:main" already present on machine
+  Normal  Created    7m27s  kubelet            Created container: sidecar
+  Normal  Started    7m26s  kubelet            Started container sidecar

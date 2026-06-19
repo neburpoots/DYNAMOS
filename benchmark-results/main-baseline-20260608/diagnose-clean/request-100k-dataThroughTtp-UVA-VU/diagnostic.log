@@ -1,0 +1,4 @@
+[2026-06-08T20:15:54+02:00] Starting retained 100k dataThroughTtp UVA,VU diagnostic
+[2026-06-08T20:15:54+02:00] Port-forward ready
+[2026-06-08T20:16:28+02:00] Request exited rc=1 elapsed=34s
+[2026-06-08T20:16:34+02:00] Diagnostic capture complete: /home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/main-baseline-20260608/diagnose-clean/request-100k-dataThroughTtp-UVA-VU

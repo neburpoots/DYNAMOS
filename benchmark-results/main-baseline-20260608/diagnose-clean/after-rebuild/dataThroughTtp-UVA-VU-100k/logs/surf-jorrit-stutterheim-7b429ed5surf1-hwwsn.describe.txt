@@ -1,0 +1,120 @@
+Name:             jorrit-stutterheim-7b429ed5surf1-hwwsn
+Namespace:        surf
+Priority:         0
+Service Account:  default
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:28:27 +0200
+Labels:           app=surf
+                  batch.kubernetes.io/controller-uid=543aa6c4-6b93-4043-8ee5-02741b90ed98
+                  batch.kubernetes.io/job-name=jorrit-stutterheim-7b429ed5surf1
+                  controller-uid=543aa6c4-6b93-4043-8ee5-02741b90ed98
+                  job-name=jorrit-stutterheim-7b429ed5surf1
+Annotations:      <none>
+Status:           Succeeded
+IP:               10.244.0.39
+IPs:
+  IP:           10.244.0.39
+Controlled By:  Job/jorrit-stutterheim-7b429ed5surf1
+Containers:
+  sql-aggregate:
+    Container ID:   containerd://7788445f87e742e61b13cba38541e97b870076408bf9fc093f09b5a58a911c33
+    Image:          dynamos-local/sql-aggregate:main
+    Image ID:       sha256:2e16d8bbc44a03168fe4e8a8e727afcb57ecdc14a264206b0a9f0b23b14f75da
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Mon, 08 Jun 2026 20:28:29 +0200
+      Finished:     Mon, 08 Jun 2026 20:28:56 +0200
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      DATA_STEWARD_NAME:     SURF
+      DESIGNATED_GRPC_PORT:  50053
+      FIRST:                 1
+      LAST:                  0
+      JOB_NAME:              jorrit-stutterheim-7b429ed5surf1
+      SIDECAR_PORT:          50051
+      OC_AGENT_HOST:         collector.linkerd-jaeger:55678
+      NR_OF_DATA_PROVIDERS:  2
+      AGENT_ROLE:            computeProvider
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jc5qb (ro)
+  sql-algorithm:
+    Container ID:   containerd://5aa3dd412e7d55fc87e0ee7c93dcacaee5f9d77a6d5b014a39f82d03c99695c8
+    Image:          dynamos-local/sql-algorithm:main
+    Image ID:       sha256:363483dfb814c60b30780c1443f651de06f4475cbe51d89e28032867702efabd
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Mon, 08 Jun 2026 20:28:29 +0200
+      Finished:     Mon, 08 Jun 2026 20:28:56 +0200
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      DATA_STEWARD_NAME:     SURF
+      DESIGNATED_GRPC_PORT:  50054
+      FIRST:                 0
+      LAST:                  1
+      JOB_NAME:              jorrit-stutterheim-7b429ed5surf1
+      SIDECAR_PORT:          50051
+      OC_AGENT_HOST:         collector.linkerd-jaeger:55678
+      NR_OF_DATA_PROVIDERS:  2
+      AGENT_ROLE:            computeProvider
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jc5qb (ro)
+  sidecar:
+    Container ID:   containerd://c740ef87b8ab27410f3d6cf6ccb302d19a72d67d4b29f84f24e262d7df0b3ea8
+    Image:          dynamos-local/sidecar:main
+    Image ID:       sha256:1287425d4417fe4ce9b6340b45edd16fbf1daf3c581f3a2d63db1461084f5185
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Mon, 08 Jun 2026 20:28:29 +0200
+      Finished:     Mon, 08 Jun 2026 20:28:58 +0200
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      DESIGNATED_GRPC_PORT:  50051
+      TEMPORARY_JOB:         true
+      AMQ_USER:              normal_user
+      OC_AGENT_HOST:         collector.linkerd-jaeger:55678
+      AMQ_PASSWORD:          <set to the key 'password' in secret 'rabbit'>  Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jc5qb (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-jc5qb:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  41s   default-scheduler  Successfully assigned surf/jorrit-stutterheim-7b429ed5surf1-hwwsn to dynamos-main-diagnose-control-plane
+  Normal  Pulled     40s   kubelet            Container image "dynamos-local/sql-aggregate:main" already present on machine
+  Normal  Created    40s   kubelet            Created container: sql-aggregate
+  Normal  Started    39s   kubelet            Started container sql-aggregate
+  Normal  Pulled     39s   kubelet            Container image "dynamos-local/sql-algorithm:main" already present on machine
+  Normal  Created    39s   kubelet            Created container: sql-algorithm
+  Normal  Started    39s   kubelet            Started container sql-algorithm
+  Normal  Pulled     39s   kubelet            Container image "dynamos-local/sidecar:main" already present on machine
+  Normal  Created    39s   kubelet            Created container: sidecar
+  Normal  Started    38s   kubelet            Started container sidecar

@@ -1,0 +1,78 @@
+Name:             orchestrator-6f685b788b-782bl
+Namespace:        orchestrator
+Priority:         0
+Service Account:  default
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:11:27 +0200
+Labels:           app=orchestrator
+                  pod-template-hash=6f685b788b
+Annotations:      kubectl.kubernetes.io/restartedAt: 2026-06-08T20:11:26+02:00
+Status:           Running
+IP:               10.244.0.25
+IPs:
+  IP:           10.244.0.25
+Controlled By:  ReplicaSet/orchestrator-6f685b788b
+Containers:
+  orchestrator:
+    Container ID:   containerd://391d9e3a3e875c591b5588a63c10ad175837861007ac4e8c799ac9dcd3760387
+    Image:          dynamos-local/orchestrator:main
+    Image ID:       sha256:96f4d22035ddb730a2112e083f112732f90695b20acce10160a8b3fac616d2ca
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:11:28 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      OC_AGENT_HOST:  collector.linkerd-jaeger:55678
+    Mounts:
+      /app/etcd from etcd-startup (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wlzrr (ro)
+  sidecar:
+    Container ID:   containerd://5b8369ae88bcc2e47f0211a3df8d5e0f7390f759aafa811658b19ea8722e114f
+    Image:          dynamos-local/sidecar:main
+    Image ID:       sha256:1287425d4417fe4ce9b6340b45edd16fbf1daf3c581f3a2d63db1461084f5185
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:11:28 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      AMQ_PASSWORD:   <set to the key 'password' in secret 'rabbit'>  Optional: false
+      AMQ_USER:       normal_user
+      OC_AGENT_HOST:  collector.linkerd-jaeger:55678
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wlzrr (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  etcd-startup:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  etcd-pvc
+    ReadOnly:   false
+  kube-api-access-wlzrr:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  5m2s  default-scheduler  Successfully assigned orchestrator/orchestrator-6f685b788b-782bl to dynamos-main-diagnose-control-plane
+  Normal  Pulled     5m1s  kubelet            Container image "dynamos-local/orchestrator:main" already present on machine
+  Normal  Created    5m1s  kubelet            Created container: sidecar
+  Normal  Created    5m1s  kubelet            Created container: orchestrator
+  Normal  Started    5m1s  kubelet            Started container orchestrator
+  Normal  Pulled     5m1s  kubelet            Container image "dynamos-local/sidecar:main" already present on machine
+  Normal  Started    5m1s  kubelet            Started container sidecar

@@ -1,0 +1,6 @@
+NAME                          READY   STATUS      RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+etcd-0                        1/1     Running     0          7m33s   10.244.0.12   dynamos-main-diagnose-control-plane   <none>           <none>
+etcd-1                        1/1     Running     0          6m56s   10.244.0.15   dynamos-main-diagnose-control-plane   <none>           <none>
+etcd-2                        1/1     Running     0          6m51s   10.244.0.17   dynamos-main-diagnose-control-plane   <none>           <none>
+init-rabbit-pvc-local-zxcn7   0/1     Completed   0          7m43s   10.244.0.8    dynamos-main-diagnose-control-plane   <none>           <none>
+rabbitmq-7d5f6c9784-jq9q7     1/1     Running     0          7m33s   10.244.0.13   dynamos-main-diagnose-control-plane   <none>           <none>

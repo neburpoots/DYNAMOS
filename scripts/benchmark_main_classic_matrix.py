@@ -20,6 +20,56 @@ def parse_int_csv(value: str) -> list[int]:
     return [int(item) for item in parse_csv(value)]
 
 
+def cleanup_generated_jobs(namespaces: list[str], timeout_seconds: float = 120.0) -> list[str]:
+    errors: list[str] = []
+    for namespace in namespaces:
+        completed = subprocess.run(
+            ["kubectl", "-n", namespace, "get", "jobs", "-o", "name"],
+            text=True,
+            capture_output=True,
+        )
+        if completed.returncode != 0:
+            errors.append(completed.stderr.strip() or completed.stdout.strip())
+            continue
+        jobs = [
+            line.strip()
+            for line in completed.stdout.splitlines()
+            if line.strip().startswith("job.batch/jorrit-stutterheim-")
+        ]
+        if not jobs:
+            continue
+        delete = subprocess.run(
+            ["kubectl", "-n", namespace, "delete", *jobs],
+            text=True,
+            capture_output=True,
+        )
+        if delete.returncode != 0:
+            errors.append(delete.stderr.strip() or delete.stdout.strip())
+
+    deadline = time.monotonic() + timeout_seconds
+    while time.monotonic() < deadline:
+        remaining = 0
+        for namespace in namespaces:
+            completed = subprocess.run(
+                ["kubectl", "-n", namespace, "get", "pods", "-o", "name"],
+                text=True,
+                capture_output=True,
+            )
+            if completed.returncode != 0:
+                continue
+            remaining += sum(
+                1
+                for line in completed.stdout.splitlines()
+                if line.strip().startswith("pod/jorrit-stutterheim-")
+            )
+        if remaining == 0:
+            return errors
+        time.sleep(2)
+
+    errors.append("generated job pod cleanup timed out")
+    return errors
+
+
 def rounded(value: float | None) -> float | None:
     if value is None:
         return None
@@ -59,6 +109,8 @@ def run_once(
     timeout: int,
     limit: int,
     providers: list[str],
+    archetype: str,
+    query_shape: str,
     strict: bool,
 ) -> dict[str, Any]:
     command = [
@@ -70,6 +122,10 @@ def run_once(
         str(limit),
         "--providers",
         ",".join(providers),
+        "--archetype",
+        archetype,
+        "--query-shape",
+        query_shape,
         "--timeout",
         str(timeout),
         "--expected-rows",
@@ -135,6 +191,7 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
         "limit",
         "workload",
         "archetype",
+        "queryShape",
         "providers",
         "temperature",
         "transport",
@@ -164,6 +221,7 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
                     "limit": summary["limit"],
                     "workload": summary["workload"],
                     "archetype": summary["archetype"],
+                    "queryShape": summary.get("queryShape") or "default",
                     "providers": summary["providersLabel"],
                     "temperature": summary["temperature"],
                     "transport": summary["transport"],
@@ -186,20 +244,21 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
 def write_markdown(path: Path, summaries: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        "| dataset | limit | workload | archetype | providers | temperature | transport | response mode | ok/runs | first median (min-max) | done median (min-max) | rows | response bytes |",
-        "| --- | ---: | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |",
+        "| dataset | limit | workload | archetype | query shape | providers | temperature | transport | response mode | ok/runs | first median (min-max) | done median (min-max) | rows | response bytes |",
+        "| --- | ---: | --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |",
     ]
     for summary in summaries:
         first = summary["firstResultSeconds"]
         done = summary["doneSeconds"]
         response_bytes = summary["responseBytes"]
         lines.append(
-            "| {dataset} | {limit} | {workload} | {archetype} | {providers} | {temperature} | {transport} | {response_mode} | {ok}/{runs} | "
+            "| {dataset} | {limit} | {workload} | {archetype} | {query_shape} | {providers} | {temperature} | {transport} | {response_mode} | {ok}/{runs} | "
             "{first_median} ({first_min}-{first_max}) | {done_median} ({done_min}-{done_max}) | {rows_median} | {response_bytes} |".format(
                 dataset=summary["dataset"],
                 limit=summary["limit"],
                 workload=summary["workload"],
                 archetype=summary["archetype"],
+                query_shape=summary.get("queryShape") or "default",
                 providers=summary["providersLabel"],
                 temperature=summary["temperature"],
                 transport=summary["transport"],
@@ -225,6 +284,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--benchmark-script", type=Path)
     parser.add_argument("--limits", default="50000,100000,250000")
     parser.add_argument("--providers", default="UVA")
+    parser.add_argument("--archetypes", default="dataThroughTtp")
+    parser.add_argument("--query-shapes", default="default")
     parser.add_argument("--repetitions", type=int, default=3)
     parser.add_argument("--timeout", type=int, default=1800)
     parser.add_argument("--output-dir", type=Path, default=Path("benchmark-results"))
@@ -233,6 +294,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--shuffle-seed", type=int, default=0)
     parser.add_argument("--cooldown-seconds", type=float, default=0.0)
     parser.add_argument("--strict", action="store_true")
+    parser.add_argument("--cleanup-generated-jobs", action="store_true")
+    parser.add_argument("--cleanup-namespaces", default="surf,uva,vu")
     return parser.parse_args()
 
 
@@ -242,11 +305,20 @@ def main() -> int:
     benchmark_script = args.benchmark_script or root / "scripts" / "benchmark_main_classic.py"
     providers = parse_csv(args.providers)
     limits = parse_int_csv(args.limits)
+    archetypes = parse_csv(args.archetypes)
+    query_shapes = parse_csv(args.query_shapes)
+    cleanup_namespaces = parse_csv(args.cleanup_namespaces)
     if not providers:
         print(json.dumps({"error": "no providers selected"}))
         return 2
     if not limits:
         print(json.dumps({"error": "no limits selected"}))
+        return 2
+    if not archetypes:
+        print(json.dumps({"error": "no archetypes selected"}))
+        return 2
+    if not query_shapes:
+        print(json.dumps({"error": "no query shapes selected"}))
         return 2
 
     groups = [
@@ -254,7 +326,8 @@ def main() -> int:
             "dataset": "large",
             "limit": limit,
             "workload": "bulk",
-            "archetype": "dataThroughTtp",
+            "archetype": archetype,
+            "queryShape": query_shape,
             "providers": providers,
             "providersLabel": ",".join(providers),
             "temperature": args.temperature,
@@ -262,16 +335,29 @@ def main() -> int:
             "responseMode": "classic-unary",
         }
         for limit in limits
+        for archetype in archetypes
+        for query_shape in query_shapes
     ]
 
     all_runs = []
-    runs_by_limit: dict[int, list[dict[str, Any]]] = {limit: [] for limit in limits}
+    runs_by_group: dict[tuple[int, str, str], list[dict[str, Any]]] = {
+        (group["limit"], group["archetype"], group["queryShape"]): []
+        for group in groups
+    }
     for repetition in range(1, args.repetitions + 1):
         repetition_groups = list(groups)
         random.Random(args.shuffle_seed + repetition).shuffle(repetition_groups)
         for group in repetition_groups:
+            cleanup_before_errors: list[str] = []
+            if args.cleanup_generated_jobs:
+                cleanup_before_errors = cleanup_generated_jobs(cleanup_namespaces)
+                for error in cleanup_before_errors:
+                    print(f"cleanup before warning: {error}", file=sys.stderr, flush=True)
             print(
-                f"running main classic limit={group['limit']} providers={group['providersLabel']} rep={repetition}/{args.repetitions}",
+                "running main classic "
+                f"limit={group['limit']} archetype={group['archetype']} "
+                f"query-shape={group['queryShape']} providers={group['providersLabel']} "
+                f"rep={repetition}/{args.repetitions}",
                 file=sys.stderr,
                 flush=True,
             )
@@ -281,18 +367,32 @@ def main() -> int:
                 args.timeout,
                 group["limit"],
                 group["providers"],
+                group["archetype"],
+                group["queryShape"],
                 args.strict,
             )
             run.update(group)
             run["repetition"] = repetition
-            runs_by_limit[group["limit"]].append(run)
+            if cleanup_before_errors:
+                run["cleanupBeforeErrors"] = cleanup_before_errors
+            cleanup_after_errors: list[str] = []
+            if args.cleanup_generated_jobs:
+                cleanup_after_errors = cleanup_generated_jobs(cleanup_namespaces)
+                for error in cleanup_after_errors:
+                    print(f"cleanup after warning: {error}", file=sys.stderr, flush=True)
+            if cleanup_after_errors:
+                run["cleanupAfterErrors"] = cleanup_after_errors
+            runs_by_group[(group["limit"], group["archetype"], group["queryShape"])].append(run)
             all_runs.append(run)
             if args.cooldown_seconds > 0 and not (
                 repetition == args.repetitions and group == repetition_groups[-1]
             ):
                 time.sleep(args.cooldown_seconds)
 
-    summaries = [aggregate_group(group, runs_by_limit[group["limit"]]) for group in groups]
+    summaries = [
+        aggregate_group(group, runs_by_group[(group["limit"], group["archetype"], group["queryShape"])])
+        for group in groups
+    ]
 
     output_dir = args.output_dir
     json_path = output_dir / f"{args.name}.json"

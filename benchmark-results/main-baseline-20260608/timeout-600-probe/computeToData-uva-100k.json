@@ -1,0 +1,48 @@
+{
+  "archetype": "computeToData",
+  "clientTimeoutSeconds": 900.0,
+  "contentResultHash": null,
+  "dataset": "large",
+  "doneSeconds": 30.115511,
+  "elapsedSeconds": 30.115511,
+  "errors": [
+    "provider response missing final body",
+    "rows mismatch: observed 0, expected 100000"
+  ],
+  "events": [
+    "response",
+    "done"
+  ],
+  "expectedRows": 100000,
+  "finalResultCount": 0,
+  "finalResultHash": null,
+  "firstResultSeconds": 30.115511,
+  "jobId": "jorrit-stutterheim-8c09ec93",
+  "limit": 100000,
+  "observedRows": 0,
+  "ok": false,
+  "partialResultCount": 0,
+  "providerErrorCount": 1,
+  "providerResultCount": 0,
+  "providerResults": [
+    {
+      "bytes": 0,
+      "empty": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "providers": [
+    "UVA"
+  ],
+  "queryShape": "default",
+  "rawLineCount": 1,
+  "rawResultHash": "055539df4a0b804c58caf46c0cd2941af10d64c1395ddd8e50b5f55d945841e6",
+  "requestBytes": 435,
+  "responseBytes": 83,
+  "responseMode": "classic-unary",
+  "responseSha256": "dc326a0da6a230b1c85d1126a3a15f6cd69cdd1e69610ea9484b5a52768c5ef7",
+  "status": 200,
+  "transport": "unary",
+  "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+  "workload": "bulk"
+}

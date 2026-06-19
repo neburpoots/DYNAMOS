@@ -1,0 +1,30 @@
+{
+  "archetype": "computeToData",
+  "clientTimeoutSeconds": 900.0,
+  "dataset": "large",
+  "doneSeconds": null,
+  "elapsedSeconds": 3.638432,
+  "error": "RemoteDisconnected: Remote end closed connection without response",
+  "errors": [
+    "RemoteDisconnected: Remote end closed connection without response",
+    "HTTP status None",
+    "rows mismatch: observed None, expected 250000"
+  ],
+  "events": [],
+  "expectedRows": 250000,
+  "firstResultSeconds": null,
+  "limit": 250000,
+  "ok": false,
+  "partialResultCount": 0,
+  "providers": [
+    "UVA"
+  ],
+  "queryShape": "default",
+  "rawLineCount": 0,
+  "requestBytes": 435,
+  "responseMode": "classic-unary",
+  "status": null,
+  "transport": "unary",
+  "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+  "workload": "bulk"
+}

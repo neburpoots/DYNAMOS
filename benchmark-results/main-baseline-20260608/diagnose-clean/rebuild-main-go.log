@@ -1,0 +1,921 @@
+[2026-06-08T20:20:08+02:00] Rebuilding Go images from a2d9531 on branch main
+Building dynamos-local/sidecar:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.2s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.18.2
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#3 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.18.2
+#2 ...
+
+#4 [auth] library/alpine:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.18.2
+#2 DONE 1.2s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.1s
+
+#6 [internal] load build context
+#6 DONE 0.0s
+
+#7 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#7 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#7 DONE 0.1s
+
+#8 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#8 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#8 DONE 0.1s
+
+#6 [internal] load build context
+#6 transferring context: 335.02kB 0.4s done
+#6 DONE 0.4s
+
+#9 [builder 2/9] WORKDIR /app/cmd/sidecar
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 CACHED
+
+#12 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sidecar .
+#12 CACHED
+
+#13 [builder 8/9] COPY pkg /app/pkg
+#13 CACHED
+
+#14 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#14 CACHED
+
+#15 [stage-1 3/4] WORKDIR /app/
+#15 CACHED
+
+#16 [builder 3/9] RUN mkdir /app/pkg
+#16 CACHED
+
+#17 [builder 6/9] COPY go.mod /app
+#17 CACHED
+
+#18 [builder 7/9] COPY go.sum /app
+#18 CACHED
+
+#19 [stage-1 4/4] COPY --from=builder /go/bin/sidecar .
+#19 CACHED
+
+#20 exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:6350041474656bc8a50a4a513e5d208f457a9ddcabb7a4409a583fc78301a797 done
+#20 exporting config sha256:1287425d4417fe4ce9b6340b45edd16fbf1daf3c581f3a2d63db1461084f5185 done
+#20 exporting attestation manifest sha256:f94fa27a9041c6a6fac70682fbe37de10ff519fb02195d2c3a4b5d9aa40a94eb
+#20 exporting attestation manifest sha256:f94fa27a9041c6a6fac70682fbe37de10ff519fb02195d2c3a4b5d9aa40a94eb 0.1s done
+#20 exporting manifest list sha256:c551db10594f46c3d5adcb9edb70f68e26f5b2f54f3d447f95744e6caaa7a1ca 0.0s done
+#20 naming to docker.io/dynamos-local/sidecar:main
+#20 naming to docker.io/dynamos-local/sidecar:main done
+#20 unpacking to docker.io/dynamos-local/sidecar:main 0.1s done
+#20 naming to docker.io/dynamos-local/sidecar:latest done
+#20 unpacking to docker.io/dynamos-local/sidecar:latest
+#20 unpacking to docker.io/dynamos-local/sidecar:latest 0.0s done
+#20 DONE 0.4s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/kucqg0ecw28sbbgmce5v90gtl
+Building dynamos-local/policy-enforcer:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 30B 0.0s
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.2s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.1s
+
+#5 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#5 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#5 DONE 0.1s
+
+#6 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#6 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#6 DONE 0.1s
+
+#7 [internal] load build context
+#7 transferring context: 310.19kB 0.4s done
+#7 DONE 0.4s
+
+#8 [builder 2/9] WORKDIR /app/cmd/policy-enforcer
+#8 CACHED
+
+#9 [builder 3/9] RUN mkdir /app/pkg
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 DONE 0.1s
+
+#12 [builder 6/9] COPY go.mod /app
+#12 DONE 0.1s
+
+#13 [builder 7/9] COPY go.sum /app
+#13 DONE 0.1s
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/policy-enforcer .
+#15 0.387 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#15 0.389 go: downloading google.golang.org/grpc v1.65.0
+#15 0.391 go: downloading go.uber.org/zap v1.24.0
+#15 0.401 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 0.421 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 0.429 go: downloading github.com/google/uuid v1.6.0
+#15 0.434 go: downloading go.opencensus.io v0.24.0
+#15 2.667 go: downloading google.golang.org/protobuf v1.34.2
+#15 2.700 go: downloading github.com/golang/protobuf v1.5.4
+#15 2.735 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#15 5.720 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 6.750 go: downloading google.golang.org/api v0.25.0
+#15 6.752 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#15 6.897 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#15 6.913 go: downloading go.uber.org/atomic v1.7.0
+#15 7.023 go: downloading go.uber.org/multierr v1.6.0
+#15 7.068 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 7.154 go: downloading golang.org/x/net v0.27.0
+#15 7.156 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 7.265 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 7.358 go: downloading github.com/gogo/protobuf v1.3.2
+#15 7.358 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 7.480 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 8.501 go: downloading github.com/coreos/go-semver v0.3.1
+#15 10.37 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#15 11.71 go: downloading golang.org/x/sys v0.22.0
+#15 14.75 go: downloading github.com/docker/go-units v0.5.0
+#15 15.58 go: downloading github.com/docker/go-connections v0.4.0
+#15 17.11 go: downloading golang.org/x/text v0.16.0
+#15 18.77 go: downloading github.com/pkg/errors v0.9.1
+#15 22.44 go: downloading golang.org/x/sync v0.7.0
+#15 DONE 46.0s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/policy-enforcer .
+#18 CACHED
+
+#19 exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:a5009c17074a0360b93b983ddf64c6a697bb6fe9f4e57cafcb150b8c81e98269 done
+#19 exporting config sha256:f33d9c6f3496419b863043a324a16ce9e8bd657d61da50e4a931e2676deed438 done
+#19 exporting attestation manifest sha256:492a28638b1d45d46c66667b2a690df5cf31604e92d69f20c0925eae79fea4f4
+#19 exporting attestation manifest sha256:492a28638b1d45d46c66667b2a690df5cf31604e92d69f20c0925eae79fea4f4 0.1s done
+#19 exporting manifest list sha256:199fcea259e03ad73da8c13ab10f1283e30eaebf31f2b1e01d4862a7dfe77209 0.0s done
+#19 naming to docker.io/dynamos-local/policy-enforcer:main
+#19 naming to docker.io/dynamos-local/policy-enforcer:main done
+#19 unpacking to docker.io/dynamos-local/policy-enforcer:main 0.0s done
+#19 naming to docker.io/dynamos-local/policy-enforcer:latest done
+#19 unpacking to docker.io/dynamos-local/policy-enforcer:latest done
+#19 DONE 0.3s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/pd0feelavx980igz74t8exef2
+Building dynamos-local/orchestrator:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.18.2
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#3 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.18.2
+#2 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#6 DONE 0.1s
+
+#7 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 334.55kB 0.3s done
+#5 DONE 0.4s
+
+#8 [builder 2/9] WORKDIR /app/cmd/orchestrator
+#8 CACHED
+
+#9 [builder 3/9] RUN mkdir /app/pkg
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 DONE 0.1s
+
+#12 [builder 6/9] COPY go.mod /app
+#12 DONE 0.1s
+
+#13 [builder 7/9] COPY go.sum /app
+#13 DONE 0.1s
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/orchestrator .
+#15 0.434 go: downloading github.com/gorilla/handlers v1.5.1
+#15 0.451 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#15 0.452 go: downloading go.opencensus.io v0.24.0
+#15 0.471 go: downloading github.com/google/uuid v1.6.0
+#15 0.471 go: downloading go.uber.org/zap v1.24.0
+#15 0.473 go: downloading google.golang.org/grpc v1.65.0
+#15 0.532 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#15 1.118 go: downloading github.com/golang/protobuf v1.5.4
+#15 1.656 go: downloading google.golang.org/protobuf v1.34.2
+#15 2.099 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 2.099 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 2.364 go: downloading github.com/felixge/httpsnoop v1.0.1
+#15 2.397 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#15 3.038 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#15 3.603 go: downloading go.uber.org/atomic v1.7.0
+#15 3.604 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 3.604 go: downloading go.uber.org/multierr v1.6.0
+#15 3.604 go: downloading golang.org/x/net v0.27.0
+#15 3.609 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 4.159 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 4.250 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 5.741 go: downloading google.golang.org/api v0.25.0
+#15 5.744 go: downloading github.com/gogo/protobuf v1.3.2
+#15 5.744 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 5.746 go: downloading github.com/coreos/go-semver v0.3.1
+#15 5.749 go: downloading golang.org/x/sys v0.22.0
+#15 6.421 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#15 6.434 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 13.42 go: downloading github.com/docker/go-units v0.5.0
+#15 14.22 go: downloading github.com/docker/go-connections v0.4.0
+#15 14.65 go: downloading golang.org/x/text v0.16.0
+#15 15.60 go: downloading github.com/pkg/errors v0.9.1
+#15 16.50 go: downloading golang.org/x/sync v0.7.0
+#15 DONE 50.7s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/orchestrator .
+#18 CACHED
+
+#19 exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:5671ea67f45666f5457e39bdbd11a3823b3e065cf2ef21712ceb49479399eee7 done
+#19 exporting config sha256:7afb333bb485e9899a2f24ef9b71a66f9cc829a35ec4401ab2cda5e1f2cee5d5 done
+#19 exporting attestation manifest sha256:a7640e7fb41aa67895513ff5912097349d15677a057afd150af2078bccc8da23
+#19 exporting attestation manifest sha256:a7640e7fb41aa67895513ff5912097349d15677a057afd150af2078bccc8da23 0.1s done
+#19 exporting manifest list sha256:8068f67062005d3ed45d2cec0fccf6a23843335506ab3e13e22f074597101881 0.0s done
+#19 naming to docker.io/dynamos-local/orchestrator:main done
+#19 unpacking to docker.io/dynamos-local/orchestrator:main
+#19 unpacking to docker.io/dynamos-local/orchestrator:main 0.0s done
+#19 naming to docker.io/dynamos-local/orchestrator:latest done
+#19 unpacking to docker.io/dynamos-local/orchestrator:latest 0.0s done
+#19 DONE 0.3s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/k90ccj7ewg7ak5821l88jbkg3
+Building dynamos-local/agent:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#6 DONE 0.1s
+
+#7 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 342.02kB 0.4s done
+#5 DONE 0.5s
+
+#8 [builder 4/9] RUN mkdir /app/etcd
+#8 CACHED
+
+#9 [builder 5/9] COPY *.go ./
+#9 CACHED
+
+#10 [builder 7/9] COPY go.sum /app
+#10 CACHED
+
+#11 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#11 CACHED
+
+#12 [builder 2/9] WORKDIR /app/cmd/agent
+#12 CACHED
+
+#13 [builder 3/9] RUN mkdir /app/pkg
+#13 CACHED
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 CACHED
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/agent .
+#15 CACHED
+
+#16 [builder 6/9] COPY go.mod /app
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/agent .
+#18 CACHED
+
+#19 exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:73cd92762830259fcaa0a5c0e247a7cfa94f038f0743d59b2c15a1162bc331c3 0.0s done
+#19 exporting config sha256:e42fa8e8485dfd4de82a7edc77dab2eadcc53a4a50f27487973c21995e4afbd8 0.0s done
+#19 exporting attestation manifest sha256:0ef87023ebfe53983b93775932196903408c596398a6207d6f96ab0b0c7cd3ea
+#19 exporting attestation manifest sha256:0ef87023ebfe53983b93775932196903408c596398a6207d6f96ab0b0c7cd3ea 0.1s done
+#19 exporting manifest list sha256:424677a8a7c61a8179bcab32aa83bb1c4b92d9f1021888feca72d0265e3a6f33 0.1s done
+#19 naming to docker.io/dynamos-local/agent:main
+#19 naming to docker.io/dynamos-local/agent:main done
+#19 unpacking to docker.io/dynamos-local/agent:main 0.0s done
+#19 naming to docker.io/dynamos-local/agent:latest done
+#19 unpacking to docker.io/dynamos-local/agent:latest 0.0s done
+#19 DONE 0.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/qkcfebbqofopb70x94zaiotbj
+Building dynamos-local/api-gateway:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 30B 0.0s
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#6 DONE 0.1s
+
+#7 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 311.88kB 0.3s done
+#5 DONE 0.4s
+
+#8 [builder 4/9] RUN mkdir /app/etcd
+#8 CACHED
+
+#9 [builder 5/9] COPY *.go ./
+#9 CACHED
+
+#10 [builder 8/9] COPY pkg /app/pkg
+#10 CACHED
+
+#11 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#11 CACHED
+
+#12 [stage-1 3/4] WORKDIR /app/
+#12 CACHED
+
+#13 [builder 7/9] COPY go.sum /app
+#13 CACHED
+
+#14 [builder 2/9] WORKDIR /app/cmd/api-gateway
+#14 CACHED
+
+#15 [builder 3/9] RUN mkdir /app/pkg
+#15 CACHED
+
+#16 [builder 6/9] COPY go.mod /app
+#16 CACHED
+
+#17 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/api-gateway .
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/api-gateway .
+#18 CACHED
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers done
+#19 exporting manifest sha256:091a17c763a733a5fd1751a29e7af9b51168bfdee03825fe9ca68173cefcae53 done
+#19 exporting config sha256:fd7af0f49cbdf83fd176d57e58d8ea28a4c4f668f9c18443cd28a8c68416d94a done
+#19 exporting attestation manifest sha256:52de0b8c457c373739b88b3f7ccfb8e8a243a8ae7aeb495d9a512f848ba7358c 0.1s done
+#19 exporting manifest list sha256:2011f93c79b89e42792b2a8a08d52c9efa6f93db0c6ef94e7c95069eb39dea0a
+#19 exporting manifest list sha256:2011f93c79b89e42792b2a8a08d52c9efa6f93db0c6ef94e7c95069eb39dea0a 0.0s done
+#19 naming to docker.io/dynamos-local/api-gateway:main done
+#19 unpacking to docker.io/dynamos-local/api-gateway:main 0.0s done
+#19 naming to docker.io/dynamos-local/api-gateway:latest done
+#19 unpacking to docker.io/dynamos-local/api-gateway:latest 0.0s done
+#19 DONE 0.3s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/vh2093ni7ttd1vk14stnwovpo
+Building dynamos-local/sql-algorithm:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#5 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#5 DONE 0.1s
+
+#6 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#6 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#6 DONE 0.1s
+
+#7 [internal] load build context
+#7 transferring context: 305.24kB 0.2s done
+#7 DONE 0.3s
+
+#8 [builder 3/9] RUN mkdir /app/pkg
+#8 CACHED
+
+#9 [builder 5/9] COPY *.go ./
+#9 CACHED
+
+#10 [builder 7/9] COPY go.sum /app
+#10 CACHED
+
+#11 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sql-algorithm .
+#11 CACHED
+
+#12 [stage-1 3/4] WORKDIR /app/
+#12 CACHED
+
+#13 [builder 4/9] RUN mkdir /app/etcd
+#13 CACHED
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 CACHED
+
+#15 [builder 6/9] COPY go.mod /app
+#15 CACHED
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [builder 2/9] WORKDIR /app/cmd/sql-algorithm
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/sql-algorithm .
+#18 CACHED
+
+#19 exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:dd5f8c95346387576edd1cd04da7a9e1d94bb9a4ecf6fda20c0ae6d50911be9b done
+#19 exporting config sha256:363483dfb814c60b30780c1443f651de06f4475cbe51d89e28032867702efabd done
+#19 exporting attestation manifest sha256:6ee83d936ba0a99a9f75836652034da20e8544b8627c9824f9cb1f700b7b7438
+#19 exporting attestation manifest sha256:6ee83d936ba0a99a9f75836652034da20e8544b8627c9824f9cb1f700b7b7438 0.1s done
+#19 exporting manifest list sha256:640418351ae25cbb6254819cd2e264e21b8a681b038619abe2eb0e075accc4d7 0.1s done
+#19 naming to docker.io/dynamos-local/sql-algorithm:main
+#19 naming to docker.io/dynamos-local/sql-algorithm:main done
+#19 unpacking to docker.io/dynamos-local/sql-algorithm:main 0.1s done
+#19 naming to docker.io/dynamos-local/sql-algorithm:latest done
+#19 unpacking to docker.io/dynamos-local/sql-algorithm:latest 0.0s done
+#19 DONE 0.4s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/84fwi4ey48oh787750n2paf7r
+Building dynamos-local/sql-anonymize:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.18.2
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#3 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.18.2
+#2 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#6 DONE 0.1s
+
+#7 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 300.47kB 0.3s done
+#5 DONE 0.4s
+
+#8 [builder 3/9] RUN mkdir /app/pkg
+#8 CACHED
+
+#9 [builder 2/9] WORKDIR /app/cmd/sql-anonymize
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 DONE 0.1s
+
+#12 [builder 6/9] COPY go.mod /app
+#12 DONE 0.1s
+
+#13 [builder 7/9] COPY go.sum /app
+#13 DONE 0.1s
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.1s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sql-anonymize .
+#15 0.632 go: downloading go.uber.org/zap v1.24.0
+#15 0.632 go: downloading github.com/gogo/protobuf v1.3.2
+#15 0.640 go: downloading go.opencensus.io v0.24.0
+#15 0.640 go: downloading google.golang.org/protobuf v1.34.2
+#15 0.640 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 0.642 go: downloading google.golang.org/grpc v1.65.0
+#15 0.668 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 1.257 go: downloading github.com/google/uuid v1.6.0
+#15 3.161 go: downloading github.com/golang/protobuf v1.5.4
+#15 5.084 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 5.324 go: downloading google.golang.org/api v0.25.0
+#15 5.503 go: downloading go.uber.org/atomic v1.7.0
+#15 5.503 go: downloading go.uber.org/multierr v1.6.0
+#15 5.520 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 5.522 go: downloading golang.org/x/net v0.27.0
+#15 5.522 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 5.555 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 5.590 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 6.136 go: downloading golang.org/x/sys v0.22.0
+#15 7.371 go: downloading github.com/docker/go-units v0.5.0
+#15 7.381 go: downloading github.com/docker/go-connections v0.4.0
+#15 7.383 go: downloading golang.org/x/text v0.16.0
+#15 9.727 go: downloading github.com/pkg/errors v0.9.1
+#15 16.11 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 23.17 go: downloading golang.org/x/sync v0.7.0
+#15 DONE 54.1s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/sql-anonymize .
+#18 DONE 0.1s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 1.7s done
+#19 exporting manifest sha256:0e10e7301a7f56415aeb4d743aa1cada154b5857549c613f7e505d74fc0893d0 0.0s done
+#19 exporting config sha256:9369dd5afe6c14090eb517642555df0b03c514fd6259fb3d8731a29da506f228 0.1s done
+#19 exporting attestation manifest sha256:576e70058faea668fa4bd23abae4f124f1a54a77e4ecf4c135b0762ea0e7ea31 0.1s done
+#19 exporting manifest list sha256:3d48343b264da8b08189aa9737c284f3267f02bc61ab6293719c3a77451e50d3
+#19 exporting manifest list sha256:3d48343b264da8b08189aa9737c284f3267f02bc61ab6293719c3a77451e50d3 0.0s done
+#19 naming to docker.io/dynamos-local/sql-anonymize:main done
+#19 unpacking to docker.io/dynamos-local/sql-anonymize:main
+#19 unpacking to docker.io/dynamos-local/sql-anonymize:main 0.4s done
+#19 naming to docker.io/dynamos-local/sql-anonymize:latest done
+#19 unpacking to docker.io/dynamos-local/sql-anonymize:latest 0.0s done
+#19 DONE 2.6s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/z06slvd45qe9h3c3vrt4eottf
+Building dynamos-local/sql-aggregate:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#6 DONE 0.1s
+
+#7 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 303.27kB 0.3s done
+#5 DONE 0.4s
+
+#8 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#8 CACHED
+
+#9 [builder 8/9] COPY pkg /app/pkg
+#9 CACHED
+
+#10 [builder 2/9] WORKDIR /app/cmd/sql-aggregate
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 CACHED
+
+#12 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sql-aggregate .
+#12 CACHED
+
+#13 [builder 6/9] COPY go.mod /app
+#13 CACHED
+
+#14 [builder 7/9] COPY go.sum /app
+#14 CACHED
+
+#15 [stage-1 3/4] WORKDIR /app/
+#15 CACHED
+
+#16 [builder 3/9] RUN mkdir /app/pkg
+#16 CACHED
+
+#17 [builder 4/9] RUN mkdir /app/etcd
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/sql-aggregate .
+#18 CACHED
+
+#19 exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:5793a16410213e9fbbb4cdf9ec4dd6e01d6103f783da6eb180b70dfac7664f5b done
+#19 exporting config sha256:2e16d8bbc44a03168fe4e8a8e727afcb57ecdc14a264206b0a9f0b23b14f75da done
+#19 exporting attestation manifest sha256:ab868ba256597d038527eff8ffe29e6b22f7e88e4b33e70da83d7e24c4850997
+#19 exporting attestation manifest sha256:ab868ba256597d038527eff8ffe29e6b22f7e88e4b33e70da83d7e24c4850997 0.2s done
+#19 exporting manifest list sha256:87866094756df86c4bf675e86ebfc0f1def740388624af1c31fafdc2cd0739c7
+#19 exporting manifest list sha256:87866094756df86c4bf675e86ebfc0f1def740388624af1c31fafdc2cd0739c7 0.1s done
+#19 naming to docker.io/dynamos-local/sql-aggregate:main done
+#19 unpacking to docker.io/dynamos-local/sql-aggregate:main 0.0s done
+#19 naming to docker.io/dynamos-local/sql-aggregate:latest done
+#19 unpacking to docker.io/dynamos-local/sql-aggregate:latest 0.0s done
+#19 DONE 0.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/nj14i6wabadi9phqrimb6uq1i
+Building dynamos-local/sql-test:main
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 782B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/golang:1.22.1-bullseye
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.18.2
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+#6 resolve docker.io/library/alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 0.1s done
+#6 DONE 0.1s
+
+#7 [builder 1/9] FROM docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910
+#7 resolve docker.io/library/golang:1.22.1-bullseye@sha256:dcff0d950cb4648fec14ee51baa76bf27db3bb1e70a49f75421a8828db7b9910 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 302.39kB 0.4s done
+#5 DONE 0.5s
+
+#8 [builder 2/9] WORKDIR /app/cmd/sql-test
+#8 CACHED
+
+#9 [builder 3/9] RUN mkdir /app/pkg
+#9 CACHED
+
+#10 [builder 4/9] RUN mkdir /app/etcd
+#10 CACHED
+
+#11 [builder 5/9] COPY *.go ./
+#11 DONE 0.2s
+
+#12 [builder 6/9] COPY go.mod /app
+#12 DONE 0.1s
+
+#13 [builder 7/9] COPY go.sum /app
+#13 DONE 0.2s
+
+#14 [builder 8/9] COPY pkg /app/pkg
+#14 DONE 0.2s
+
+#15 [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/sql-test .
+#15 0.974 go: downloading go.uber.org/zap v1.24.0
+#15 0.974 go: downloading google.golang.org/grpc v1.65.0
+#15 0.974 go: downloading go.etcd.io/etcd/client/v3 v3.5.12
+#15 0.974 go: downloading google.golang.org/protobuf v1.34.2
+#15 0.994 go: downloading github.com/golang/protobuf v1.5.4
+#15 2.799 go: downloading github.com/cenkalti/backoff/v4 v4.2.1
+#15 2.548 go: downloading contrib.go.opencensus.io/exporter/ocagent v0.7.0
+#15 2.680 go: downloading github.com/docker/docker v23.0.3+incompatible
+#15 2.694 go: downloading github.com/google/uuid v1.6.0
+#15 3.289 go: downloading go.opencensus.io v0.24.0
+#15 4.059 go: downloading go.etcd.io/etcd/api/v3 v3.5.12
+#15 5.298 go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.12
+#15 5.304 go: downloading go.uber.org/atomic v1.7.0
+#15 5.312 go: downloading go.uber.org/multierr v1.6.0
+#15 5.366 go: downloading github.com/census-instrumentation/opencensus-proto v0.4.1
+#15 5.596 go: downloading google.golang.org/api v0.25.0
+#15 5.689 go: downloading golang.org/x/net v0.27.0
+#15 5.691 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f
+#15 5.723 go: downloading github.com/gogo/protobuf v1.3.2
+#15 5.723 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157
+#15 5.723 go: downloading github.com/coreos/go-semver v0.3.1
+#15 5.750 go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+#15 5.753 go: downloading google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17
+#15 6.986 go: downloading github.com/coreos/go-systemd/v22 v22.5.0
+#15 7.554 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+#15 8.216 go: downloading golang.org/x/sys v0.22.0
+#15 11.42 go: downloading github.com/docker/go-units v0.5.0
+#15 13.94 go: downloading github.com/docker/go-connections v0.4.0
+#15 14.55 go: downloading golang.org/x/text v0.16.0
+#15 21.22 go: downloading github.com/pkg/errors v0.9.1
+#15 22.82 go: downloading golang.org/x/sync v0.7.0
+#15 DONE 59.6s
+
+#16 [stage-1 2/4] RUN apk --no-cache add ca-certificates
+#16 CACHED
+
+#17 [stage-1 3/4] WORKDIR /app/
+#17 CACHED
+
+#18 [stage-1 4/4] COPY --from=builder /go/bin/sql-test .
+#18 DONE 0.1s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 1.3s done
+#19 exporting manifest sha256:92a40d28a7752122663912f4c87a1d9f345679936b845d4a70f0fce84a0a5e4d 0.1s done
+#19 exporting config sha256:83ed179025382e58066290b222818d618792c6f005e6f9551898be4b23a98ee9 0.0s done
+#19 exporting attestation manifest sha256:47322aa1466e093def846c29e573a0d98ac1986cd87ef78d59a606bd8890858e 0.1s done
+#19 exporting manifest list sha256:aece7a2c9fac586dc1572a6e51d542b0805f21d8b0d537939d8a57a422d31a44
+#19 exporting manifest list sha256:aece7a2c9fac586dc1572a6e51d542b0805f21d8b0d537939d8a57a422d31a44 0.0s done
+#19 naming to docker.io/dynamos-local/sql-test:main done
+#19 unpacking to docker.io/dynamos-local/sql-test:main
+#19 unpacking to docker.io/dynamos-local/sql-test:main done
+#19 naming to docker.io/dynamos-local/sql-test:latest done
+#19 unpacking to docker.io/dynamos-local/sql-test:latest 0.0s done
+#19 DONE 1.2s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/u49fl8fv55zsch3w7yefj70u4
+Built local DYNAMOS images with repository dynamos-local and tag main
+[2026-06-08T20:24:10+02:00] Loading rebuilt Go images into kind-dynamos-main-diagnose
+Image: "dynamos-local/sidecar:main" with ID "sha256:c551db10594f46c3d5adcb9edb70f68e26f5b2f54f3d447f95744e6caaa7a1ca" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/policy-enforcer:main" with ID "sha256:199fcea259e03ad73da8c13ab10f1283e30eaebf31f2b1e01d4862a7dfe77209" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/orchestrator:main" with ID "sha256:8068f67062005d3ed45d2cec0fccf6a23843335506ab3e13e22f074597101881" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/agent:main" with ID "sha256:424677a8a7c61a8179bcab32aa83bb1c4b92d9f1021888feca72d0265e3a6f33" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/api-gateway:main" with ID "sha256:2011f93c79b89e42792b2a8a08d52c9efa6f93db0c6ef94e7c95069eb39dea0a" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-algorithm:main" with ID "sha256:640418351ae25cbb6254819cd2e264e21b8a681b038619abe2eb0e075accc4d7" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-anonymize:main" with ID "sha256:3d48343b264da8b08189aa9737c284f3267f02bc61ab6293719c3a77451e50d3" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-aggregate:main" with ID "sha256:87866094756df86c4bf675e86ebfc0f1def740388624af1c31fafdc2cd0739c7" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+Image: "dynamos-local/sql-test:main" with ID "sha256:aece7a2c9fac586dc1572a6e51d542b0805f21d8b0d537939d8a57a422d31a44" not yet present on node "dynamos-main-diagnose-control-plane", loading...
+[2026-06-08T20:24:44+02:00] Restarting main deployments
+Switched to context "kind-dynamos-main-diagnose".
+deployment.apps/api-gateway restarted
+deployment.apps/orchestrator restarted
+deployment.apps/policy-enforcer restarted
+deployment.apps/uva restarted
+deployment.apps/vu restarted
+deployment.apps/surf restarted
+Waiting for deployment "api-gateway" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api-gateway" rollout to finish: 1 old replicas are pending termination...
+deployment "api-gateway" successfully rolled out
+Waiting for deployment "orchestrator" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "orchestrator" rollout to finish: 1 old replicas are pending termination...
+deployment "orchestrator" successfully rolled out
+deployment "policy-enforcer" successfully rolled out
+deployment "uva" successfully rolled out
+Waiting for deployment "vu" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "vu" rollout to finish: 1 old replicas are pending termination...
+deployment "vu" successfully rolled out
+deployment "surf" successfully rolled out
+NAMESPACE            NAME                                                          READY   STATUS        RESTARTS   AGE
+api-gateway          api-gateway-58bd8676b8-wlfwd                                  2/2     Terminating   0          15m
+api-gateway          api-gateway-866b4cd946-7vd2z                                  2/2     Running       0          7s
+core                 etcd-0                                                        1/1     Running       0          18m
+core                 etcd-1                                                        1/1     Running       0          18m
+core                 etcd-2                                                        1/1     Running       0          18m
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed     0          19m
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running       0          18m
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running       0          21m
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running       0          21m
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running       0          21m
+kube-system          kindnet-sn492                                                 1/1     Running       0          21m
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running       0          21m
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running       0          21m
+kube-system          kube-proxy-pt7nv                                              1/1     Running       0          21m
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running       0          21m
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running       0          21m
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed     0          19m
+orchestrator         orchestrator-6f685b788b-782bl                                 2/2     Terminating   0          13m
+orchestrator         orchestrator-bf6f6c8c8-gx8d5                                  2/2     Running       0          7s
+orchestrator         policy-enforcer-5fb7c4b5fb-dghvq                              2/2     Terminating   0          15m
+orchestrator         policy-enforcer-6575bcd66b-n9ldl                              2/2     Running       0          7s
+orchestrator         reseed-etcd-pvc-tpqfc                                         0/1     Completed     0          13m
+surf                 surf-58f445c588-6th4h                                         2/2     Running       0          6s
+surf                 surf-75f8bd5d6b-6qvpn                                         2/2     Terminating   0          15m
+uva                  uva-5f9f6b5766-m2vrj                                          2/2     Terminating   0          15m
+uva                  uva-776c7b95cc-bm64r                                          2/2     Running       0          7s
+vu                   vu-655bfbd598-vvvrf                                           2/2     Terminating   0          15m
+vu                   vu-65f4b4b6c7-fkh59                                           2/2     Running       0          6s
+[2026-06-08T20:24:51+02:00] Rebuild/reload complete

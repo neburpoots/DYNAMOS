@@ -1,0 +1,61 @@
+Switched to context "kind-dynamos-main-diagnose".
+[2026-06-08T20:08:52+02:00] Verifying core state
+partitioned roll out complete: 3 new pods have been updated...
+deployment "rabbitmq" successfully rolled out
+[2026-06-08T20:08:52+02:00] Normalizing RabbitMQ normal_user password
+Changing password for user "normal_user" ...
+[2026-06-08T20:08:53+02:00] Installing orchestrator
+Release "dynamos-orchestrator" does not exist. Installing it now.
+NAME: dynamos-orchestrator
+LAST DEPLOYED: Mon Jun  8 20:08:54 2026
+NAMESPACE: orchestrator
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+[2026-06-08T20:08:58+02:00] Installing api-gateway
+Release "dynamos-api-gateway" does not exist. Installing it now.
+NAME: dynamos-api-gateway
+LAST DEPLOYED: Mon Jun  8 20:08:58 2026
+NAMESPACE: api-gateway
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+[2026-06-08T20:09:02+02:00] Installing agents
+Release "dynamos-agents" does not exist. Installing it now.
+NAME: dynamos-agents
+LAST DEPLOYED: Mon Jun  8 20:09:02 2026
+NAMESPACE: uva
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+[2026-06-08T20:09:07+02:00] Installing thirdparty/SURF
+Release "dynamos-thirdparty" does not exist. Installing it now.
+NAME: dynamos-thirdparty
+LAST DEPLOYED: Mon Jun  8 20:09:08 2026
+NAMESPACE: surf
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+[2026-06-08T20:09:14+02:00] Final pod state
+NAMESPACE            NAME                                                          READY   STATUS      RESTARTS      AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+api-gateway          api-gateway-58bd8676b8-wlfwd                                  2/2     Running     0             15s     10.244.0.20   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-0                                                        1/1     Running     0             3m20s   10.244.0.12   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-1                                                        1/1     Running     0             2m43s   10.244.0.15   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-2                                                        1/1     Running     0             2m38s   10.244.0.17   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed   0             3m30s   10.244.0.8    dynamos-main-diagnose-control-plane   <none>           <none>
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running     0             3m20s   10.244.0.13   dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running     0             5m23s   10.244.0.4    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running     0             5m23s   10.244.0.3    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running     0             5m30s   172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kindnet-sn492                                                 1/1     Running     0             5m23s   172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running     0             5m28s   172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running     0             5m28s   172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-proxy-pt7nv                                              1/1     Running     0             5m23s   172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running     0             5m28s   172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running     0             5m23s   10.244.0.2    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed   0             3m40s   10.244.0.6    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         orchestrator-7bfd698fcd-7p796                                 1/2     NotReady    2 (15s ago)   20s     10.244.0.18   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         policy-enforcer-5fb7c4b5fb-dghvq                              2/2     Running     0             20s     10.244.0.19   dynamos-main-diagnose-control-plane   <none>           <none>
+surf                 surf-75f8bd5d6b-6qvpn                                         2/2     Running     0             4s      10.244.0.23   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  uva-5f9f6b5766-m2vrj                                          2/2     Running     0             11s     10.244.0.21   dynamos-main-diagnose-control-plane   <none>           <none>
+vu                   vu-655bfbd598-vvvrf                                           2/2     Running     0             11s     10.244.0.22   dynamos-main-diagnose-control-plane   <none>           <none>

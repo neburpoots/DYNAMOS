@@ -1,0 +1,1 @@
+Error from server (BadRequest): previous terminated container "surf" in pod "surf-75f8bd5d6b-6qvpn" not found

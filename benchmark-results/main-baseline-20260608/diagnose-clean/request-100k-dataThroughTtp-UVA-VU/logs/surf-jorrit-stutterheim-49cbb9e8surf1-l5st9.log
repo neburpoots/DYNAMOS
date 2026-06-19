@@ -1,0 +1,50 @@
+2026-06-08T18:15:57.204874311Z 1.780942557204473e+09	[35mDEBUG[0m	/app/cmd/sql-algorithm/main.go:18	Starting algorithmService service
+2026-06-08T18:15:57.210226320Z 1.780942557210053e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:75	NewConfiguration algorithmService, firstServer: %!s(int=0), port: %!s(int=50054). lastservice: %!s(int=1)
+2026-06-08T18:15:57.211643471Z 1.7809425572113194e+09	[34mINFO[0m	/app/pkg/msinit/main.go:149	Start listening on port: 50054
+2026-06-08T18:15:57.226548851Z 1.7809425572263355e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:15:57.226691865Z 1.780942557226468e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:15:58.227528948Z 1.7809425582266843e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:15:58.227552357Z 1.7809425582267194e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:15:59.229980578Z 1.780942559229751e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:96	returning conn GetGrpcConnection
+2026-06-08T18:16:19.033683692Z 1.7809425790303888e+09	[35mDEBUG[0m	/app/pkg/lib/grpc_server.go:47	Starting (to next MS) lib.SendData: jorrit-stutterheim-49cbb9e8surf1
+2026-06-08T18:16:19.033718276Z 1.7809425790309463e+09	[34mINFO[0m	/app/cmd/sql-algorithm/application_logic.go:38	Start handleSqlDataRequest
+2026-06-08T18:16:19.033720527Z 1.7809425790309696e+09	[35mDEBUG[0m	/app/cmd/sql-algorithm/application_logic.go:68	Length metadata: 6
+2026-06-08T18:16:20.985615077Z 1.7809425809827056e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:166	Start SafeExit
+2026-06-08T18:16:20.987107363Z 1.7809425809868839e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:172	Send StopReceivingRabbit	{"service": "algorithmService"}
+2026-06-08T18:16:20.988650676Z 1.7809425809885507e+09	[34mINFO[0m	/app/pkg/msinit/main.go:180	Wait 2 seconds before ending algorithmService
+2026-06-08T18:16:22.328771633Z 1.7809425823281507e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:184	Start closing gRPC connections NextClientConnection and RabbitConnection
+2026-06-08T18:16:22.330410254Z 1.7809425823294175e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:189	Close own gRPC server
+2026-06-08T18:16:22.330432546Z 1.7809425823295186e+09	[34mINFO[0m	/app/pkg/msinit/main.go:195	Stopping StopGrpcServer
+2026-06-08T18:16:22.330586346Z 1.7809425823300214e+09	[34mINFO[0m	/app/pkg/msinit/main.go:209	Finished graceful stop
+2026-06-08T18:15:57.578691675Z 1.7809425575783396e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:38	Serving on 50051
+2026-06-08T18:15:59.038605464Z 1.7809425590384169e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:60	InitRabbitForChain Received:	{"Servicename": "aggregateService", "RoutingKey": "jorrit-stutterheim-49cbb9e8surf1", "Port": 50053}
+2026-06-08T18:15:59.038646048Z 1.7809425590385137e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_setup_functions.go:38	Start getConnectionToRabbitMq
+2026-06-08T18:15:59.069026204Z 1.7809425590688229e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:96	returning conn GetGrpcConnection
+2026-06-08T18:15:59.069265003Z 1.7809425590691476e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:108	Start ChainConsume	{"queueName:": "jorrit-stutterheim-49cbb9e8surf1"}
+2026-06-08T18:15:59.070540265Z 1.7809425590703561e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:123	Started consuming	{"queue": "jorrit-stutterheim-49cbb9e8surf1"}
+2026-06-08T18:16:12.677877264Z 1.780942572677655e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:129	switchin:	{"msg,Type": "microserviceCommunication"}
+2026-06-08T18:16:13.082717349Z 1.7809425730825038e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:141	Send Mscomm to main container
+2026-06-08T18:16:13.083069028Z 1.7809425730825884e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:143	msg.Headers != nil
+2026-06-08T18:16:13.083075372Z 1.7809425730825987e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:148	Adding jsonTraces
+2026-06-08T18:16:13.083076906Z 1.7809425730826027e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:155	Adding binaryTrace
+2026-06-08T18:16:14.486534329Z 1.7809425744864216e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:167	SendData response: 
+2026-06-08T18:16:14.486552440Z 1.780942574486474e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:129	switchin:	{"msg,Type": "microserviceCommunication"}
+2026-06-08T18:16:14.679013859Z 1.7809425746788094e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:141	Send Mscomm to main container
+2026-06-08T18:16:14.679041793Z 1.7809425746788647e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:143	msg.Headers != nil
+2026-06-08T18:16:14.679043942Z 1.7809425746788735e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:148	Adding jsonTraces
+2026-06-08T18:16:14.679045374Z 1.7809425746788776e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:155	Adding binaryTrace
+2026-06-08T18:16:20.614818050Z 1.7809425806134446e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:174	Starting (to AMQ) lib.SendData: jorrit-stutterheim-49cbb9e8surf1
+2026-06-08T18:16:20.614845456Z 1.7809425806140597e+09	[35mDEBUG[0m	/app/cmd/sidecar/ms_communication_handlers.go:43	Starting lib.SendDataThroughAMQ
+2026-06-08T18:16:20.980977467Z 1.780942580980733e+09	[35mDEBUG[0m	/app/cmd/sidecar/ms_communication_handlers.go:84	Ending lib.SendDataThroughAMQ
+2026-06-08T18:16:20.981016428Z 1.7809425809808295e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:187	Returning from SendData (to Microservice)
+2026-06-08T18:16:20.985391536Z 1.7809425809853115e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:167	SendData response: 
+2026-06-08T18:16:20.988075462Z 1.7809425809878187e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:37	StopReceivingRabbit Received stop request
+2026-06-08T18:16:20.988699659Z 1.7809425809882746e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:175	Received stop signal, exiting ChainConsume
+2026-06-08T18:16:20.988789853Z 1.7809425809887383e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:66	Stopping sidecar wait for a few 4 seconds before initating stop
+2026-06-08T18:16:24.327040428Z 1.7809425843268576e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:98	Exiting sidecar server
+2026-06-08T18:16:20.984618346Z 1.7809425809833617e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:166	Start SafeExit
+2026-06-08T18:16:20.984812129Z 1.7809425809847083e+09	[34mINFO[0m	/app/pkg/msinit/main.go:180	Wait 2 seconds before ending aggregateService
+2026-06-08T18:16:22.323132485Z 1.780942582322647e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:184	Start closing gRPC connections NextClientConnection and RabbitConnection
+2026-06-08T18:16:22.323643071Z 1.7809425823235073e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:189	Close own gRPC server
+2026-06-08T18:16:22.323807608Z 1.780942582323691e+09	[34mINFO[0m	/app/pkg/msinit/main.go:195	Stopping StopGrpcServer
+2026-06-08T18:16:22.327001506Z 1.7809425823267953e+09	[34mINFO[0m	/app/pkg/msinit/main.go:209	Finished graceful stop

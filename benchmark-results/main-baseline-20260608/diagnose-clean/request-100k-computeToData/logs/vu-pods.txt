@@ -1,0 +1,2 @@
+NAME                  READY   STATUS    RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+vu-655bfbd598-vvvrf   2/2     Running   0          4m23s   10.244.0.22   dynamos-main-diagnose-control-plane   <none>           <none>

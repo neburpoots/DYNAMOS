@@ -1,0 +1,73 @@
+Name:             policy-enforcer-6575bcd66b-n9ldl
+Namespace:        orchestrator
+Priority:         0
+Service Account:  default
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:24:44 +0200
+Labels:           app=policy-enforcer
+                  pod-template-hash=6575bcd66b
+Annotations:      kubectl.kubernetes.io/restartedAt: 2026-06-08T20:24:44+02:00
+Status:           Running
+IP:               10.244.0.31
+IPs:
+  IP:           10.244.0.31
+Controlled By:  ReplicaSet/policy-enforcer-6575bcd66b
+Containers:
+  policy-enforcer:
+    Container ID:   containerd://3b81783e6b60627a4d3fa5532df1c183778dec59fb4a2232c26118e177f90dd8
+    Image:          dynamos-local/policy-enforcer:main
+    Image ID:       sha256:f33d9c6f3496419b863043a324a16ce9e8bd657d61da50e4a931e2676deed438
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:24:46 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      OC_AGENT_HOST:  collector.linkerd-jaeger:55678
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bks66 (ro)
+  sidecar:
+    Container ID:   containerd://edd2563237def68ef740fc55b76d5d596d7c73f4714a4af7f2311816fa20ab6e
+    Image:          dynamos-local/sidecar:main
+    Image ID:       sha256:1287425d4417fe4ce9b6340b45edd16fbf1daf3c581f3a2d63db1461084f5185
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:24:48 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      AMQ_PASSWORD:   <set to the key 'password' in secret 'rabbit'>  Optional: false
+      AMQ_USER:       normal_user
+      OC_AGENT_HOST:  collector.linkerd-jaeger:55678
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bks66 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-bks66:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  3m33s  default-scheduler  Successfully assigned orchestrator/policy-enforcer-6575bcd66b-n9ldl to dynamos-main-diagnose-control-plane
+  Normal  Pulled     3m32s  kubelet            Container image "dynamos-local/policy-enforcer:main" already present on machine
+  Normal  Created    3m31s  kubelet            Created container: policy-enforcer
+  Normal  Started    3m31s  kubelet            Started container policy-enforcer
+  Normal  Pulled     3m31s  kubelet            Container image "dynamos-local/sidecar:main" already present on machine
+  Normal  Created    3m30s  kubelet            Created container: sidecar
+  Normal  Started    3m29s  kubelet            Started container sidecar

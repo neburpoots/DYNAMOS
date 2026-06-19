@@ -1,0 +1,153 @@
+=== 2026-06-08T20:27:50+02:00 pods ===
+NAMESPACE            NAME                                                          READY   STATUS      RESTARTS   AGE    IP            NODE                                  NOMINATED NODE   READINESS GATES
+api-gateway          api-gateway-866b4cd946-7vd2z                                  2/2     Running     0          3m6s   10.244.0.30   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-0                                                        1/1     Running     0          21m    10.244.0.12   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-1                                                        1/1     Running     0          21m    10.244.0.15   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-2                                                        1/1     Running     0          21m    10.244.0.17   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed   0          22m    10.244.0.8    dynamos-main-diagnose-control-plane   <none>           <none>
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running     0          21m    10.244.0.13   dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running     0          23m    10.244.0.4    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running     0          23m    10.244.0.3    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running     0          24m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kindnet-sn492                                                 1/1     Running     0          23m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running     0          24m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running     0          24m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-proxy-pt7nv                                              1/1     Running     0          23m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running     0          24m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running     0          23m    10.244.0.2    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed   0          22m    10.244.0.6    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         orchestrator-bf6f6c8c8-gx8d5                                  2/2     Running     0          3m6s   10.244.0.33   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         policy-enforcer-6575bcd66b-n9ldl                              2/2     Running     0          3m6s   10.244.0.31   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         reseed-etcd-pvc-tpqfc                                         0/1     Completed   0          16m    10.244.0.24   dynamos-main-diagnose-control-plane   <none>           <none>
+surf                 surf-58f445c588-6th4h                                         2/2     Running     0          3m5s   10.244.0.35   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  uva-776c7b95cc-bm64r                                          2/2     Running     0          3m6s   10.244.0.32   dynamos-main-diagnose-control-plane   <none>           <none>
+vu                   vu-65f4b4b6c7-fkh59                                           2/2     Running     0          3m5s   10.244.0.34   dynamos-main-diagnose-control-plane   <none>           <none>
+=== 2026-06-08T20:27:50+02:00 jobs ===
+NAMESPACE      NAME                    STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES         SELECTOR
+core           init-rabbit-pvc-local   Complete   1/1           9s         22m   seed         busybox:1.36   batch.kubernetes.io/controller-uid=d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+orchestrator   init-etcd-pvc-local     Complete   1/1           10s        22m   seed         busybox:1.36   batch.kubernetes.io/controller-uid=baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+orchestrator   reseed-etcd-pvc         Complete   1/1           5s         16m   seed         busybox:1.36   batch.kubernetes.io/controller-uid=9e8527b9-c118-46d6-8f06-849d4850649d
+=== 2026-06-08T20:27:56+02:00 pods ===
+NAMESPACE            NAME                                                          READY   STATUS      RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+api-gateway          api-gateway-866b4cd946-7vd2z                                  2/2     Running     0          3m12s   10.244.0.30   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-0                                                        1/1     Running     0          22m     10.244.0.12   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-1                                                        1/1     Running     0          21m     10.244.0.15   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-2                                                        1/1     Running     0          21m     10.244.0.17   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed   0          22m     10.244.0.8    dynamos-main-diagnose-control-plane   <none>           <none>
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running     0          22m     10.244.0.13   dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running     0          24m     10.244.0.4    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running     0          24m     10.244.0.3    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kindnet-sn492                                                 1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-proxy-pt7nv                                              1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running     0          24m     10.244.0.2    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed   0          22m     10.244.0.6    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         orchestrator-bf6f6c8c8-gx8d5                                  2/2     Running     0          3m12s   10.244.0.33   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         policy-enforcer-6575bcd66b-n9ldl                              2/2     Running     0          3m12s   10.244.0.31   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         reseed-etcd-pvc-tpqfc                                         0/1     Completed   0          16m     10.244.0.24   dynamos-main-diagnose-control-plane   <none>           <none>
+surf                 surf-58f445c588-6th4h                                         2/2     Running     0          3m11s   10.244.0.35   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  jorrit-stutterheim-8d913881uva1-m8wrj                         3/3     Running     0          5s      10.244.0.36   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  uva-776c7b95cc-bm64r                                          2/2     Running     0          3m12s   10.244.0.32   dynamos-main-diagnose-control-plane   <none>           <none>
+vu                   vu-65f4b4b6c7-fkh59                                           2/2     Running     0          3m11s   10.244.0.34   dynamos-main-diagnose-control-plane   <none>           <none>
+=== 2026-06-08T20:27:56+02:00 jobs ===
+NAMESPACE      NAME                              STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS                        IMAGES                                                                                     SELECTOR
+core           init-rabbit-pvc-local             Complete   1/1           9s         22m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+orchestrator   init-etcd-pvc-local               Complete   1/1           10s        22m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+orchestrator   reseed-etcd-pvc                   Complete   1/1           5s         16m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=9e8527b9-c118-46d6-8f06-849d4850649d
+uva            jorrit-stutterheim-8d913881uva1   Running    0/1           5s         5s    sql-query,sql-algorithm,sidecar   dynamos-local/sql-query:main,dynamos-local/sql-algorithm:main,dynamos-local/sidecar:main   batch.kubernetes.io/controller-uid=7584f9b3-2236-4af5-a89a-5028dec6c081
+=== 2026-06-08T20:28:01+02:00 pods ===
+NAMESPACE            NAME                                                          READY   STATUS      RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+api-gateway          api-gateway-866b4cd946-7vd2z                                  2/2     Running     0          3m17s   10.244.0.30   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-0                                                        1/1     Running     0          22m     10.244.0.12   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-1                                                        1/1     Running     0          21m     10.244.0.15   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-2                                                        1/1     Running     0          21m     10.244.0.17   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed   0          22m     10.244.0.8    dynamos-main-diagnose-control-plane   <none>           <none>
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running     0          22m     10.244.0.13   dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running     0          24m     10.244.0.4    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running     0          24m     10.244.0.3    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kindnet-sn492                                                 1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-proxy-pt7nv                                              1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running     0          24m     10.244.0.2    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed   0          22m     10.244.0.6    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         orchestrator-bf6f6c8c8-gx8d5                                  2/2     Running     0          3m17s   10.244.0.33   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         policy-enforcer-6575bcd66b-n9ldl                              2/2     Running     0          3m17s   10.244.0.31   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         reseed-etcd-pvc-tpqfc                                         0/1     Completed   0          16m     10.244.0.24   dynamos-main-diagnose-control-plane   <none>           <none>
+surf                 surf-58f445c588-6th4h                                         2/2     Running     0          3m16s   10.244.0.35   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  jorrit-stutterheim-8d913881uva1-m8wrj                         3/3     Running     0          10s     10.244.0.36   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  uva-776c7b95cc-bm64r                                          2/2     Running     0          3m17s   10.244.0.32   dynamos-main-diagnose-control-plane   <none>           <none>
+vu                   vu-65f4b4b6c7-fkh59                                           2/2     Running     0          3m16s   10.244.0.34   dynamos-main-diagnose-control-plane   <none>           <none>
+=== 2026-06-08T20:28:01+02:00 jobs ===
+NAMESPACE      NAME                              STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS                        IMAGES                                                                                     SELECTOR
+core           init-rabbit-pvc-local             Complete   1/1           9s         22m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+orchestrator   init-etcd-pvc-local               Complete   1/1           10s        22m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+orchestrator   reseed-etcd-pvc                   Complete   1/1           5s         16m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=9e8527b9-c118-46d6-8f06-849d4850649d
+uva            jorrit-stutterheim-8d913881uva1   Running    0/1           10s        10s   sql-query,sql-algorithm,sidecar   dynamos-local/sql-query:main,dynamos-local/sql-algorithm:main,dynamos-local/sidecar:main   batch.kubernetes.io/controller-uid=7584f9b3-2236-4af5-a89a-5028dec6c081
+=== 2026-06-08T20:28:06+02:00 pods ===
+NAMESPACE            NAME                                                          READY   STATUS      RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+api-gateway          api-gateway-866b4cd946-7vd2z                                  2/2     Running     0          3m22s   10.244.0.30   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-0                                                        1/1     Running     0          22m     10.244.0.12   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-1                                                        1/1     Running     0          21m     10.244.0.15   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-2                                                        1/1     Running     0          21m     10.244.0.17   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed   0          22m     10.244.0.8    dynamos-main-diagnose-control-plane   <none>           <none>
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running     0          22m     10.244.0.13   dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running     0          24m     10.244.0.4    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running     0          24m     10.244.0.3    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kindnet-sn492                                                 1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-proxy-pt7nv                                              1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running     0          24m     10.244.0.2    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed   0          22m     10.244.0.6    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         orchestrator-bf6f6c8c8-gx8d5                                  2/2     Running     0          3m22s   10.244.0.33   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         policy-enforcer-6575bcd66b-n9ldl                              2/2     Running     0          3m22s   10.244.0.31   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         reseed-etcd-pvc-tpqfc                                         0/1     Completed   0          16m     10.244.0.24   dynamos-main-diagnose-control-plane   <none>           <none>
+surf                 surf-58f445c588-6th4h                                         2/2     Running     0          3m21s   10.244.0.35   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  jorrit-stutterheim-8d913881uva1-m8wrj                         3/3     Running     0          15s     10.244.0.36   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  uva-776c7b95cc-bm64r                                          2/2     Running     0          3m22s   10.244.0.32   dynamos-main-diagnose-control-plane   <none>           <none>
+vu                   vu-65f4b4b6c7-fkh59                                           2/2     Running     0          3m21s   10.244.0.34   dynamos-main-diagnose-control-plane   <none>           <none>
+=== 2026-06-08T20:28:06+02:00 jobs ===
+NAMESPACE      NAME                              STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS                        IMAGES                                                                                     SELECTOR
+core           init-rabbit-pvc-local             Complete   1/1           9s         22m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+orchestrator   init-etcd-pvc-local               Complete   1/1           10s        22m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+orchestrator   reseed-etcd-pvc                   Complete   1/1           5s         16m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=9e8527b9-c118-46d6-8f06-849d4850649d
+uva            jorrit-stutterheim-8d913881uva1   Running    0/1           15s        15s   sql-query,sql-algorithm,sidecar   dynamos-local/sql-query:main,dynamos-local/sql-algorithm:main,dynamos-local/sidecar:main   batch.kubernetes.io/controller-uid=7584f9b3-2236-4af5-a89a-5028dec6c081
+=== 2026-06-08T20:28:11+02:00 pods ===
+NAMESPACE            NAME                                                          READY   STATUS      RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+api-gateway          api-gateway-866b4cd946-7vd2z                                  2/2     Running     0          3m27s   10.244.0.30   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-0                                                        1/1     Running     0          22m     10.244.0.12   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-1                                                        1/1     Running     0          21m     10.244.0.15   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-2                                                        1/1     Running     0          21m     10.244.0.17   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed   0          22m     10.244.0.8    dynamos-main-diagnose-control-plane   <none>           <none>
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running     0          22m     10.244.0.13   dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running     0          24m     10.244.0.4    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running     0          24m     10.244.0.3    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kindnet-sn492                                                 1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-proxy-pt7nv                                              1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running     0          24m     172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running     0          24m     10.244.0.2    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed   0          22m     10.244.0.6    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         orchestrator-bf6f6c8c8-gx8d5                                  2/2     Running     0          3m27s   10.244.0.33   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         policy-enforcer-6575bcd66b-n9ldl                              2/2     Running     0          3m27s   10.244.0.31   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         reseed-etcd-pvc-tpqfc                                         0/1     Completed   0          16m     10.244.0.24   dynamos-main-diagnose-control-plane   <none>           <none>
+surf                 surf-58f445c588-6th4h                                         2/2     Running     0          3m26s   10.244.0.35   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  jorrit-stutterheim-8d913881uva1-m8wrj                         3/3     Running     0          20s     10.244.0.36   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  uva-776c7b95cc-bm64r                                          2/2     Running     0          3m27s   10.244.0.32   dynamos-main-diagnose-control-plane   <none>           <none>
+vu                   vu-65f4b4b6c7-fkh59                                           2/2     Running     0          3m26s   10.244.0.34   dynamos-main-diagnose-control-plane   <none>           <none>
+=== 2026-06-08T20:28:11+02:00 jobs ===
+NAMESPACE      NAME                              STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS                        IMAGES                                                                                     SELECTOR
+core           init-rabbit-pvc-local             Complete   1/1           9s         22m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+orchestrator   init-etcd-pvc-local               Complete   1/1           10s        22m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+orchestrator   reseed-etcd-pvc                   Complete   1/1           5s         16m   seed                              busybox:1.36                                                                               batch.kubernetes.io/controller-uid=9e8527b9-c118-46d6-8f06-849d4850649d
+uva            jorrit-stutterheim-8d913881uva1   Running    0/1           20s        20s   sql-query,sql-algorithm,sidecar   dynamos-local/sql-query:main,dynamos-local/sql-algorithm:main,dynamos-local/sidecar:main   batch.kubernetes.io/controller-uid=7584f9b3-2236-4af5-a89a-5028dec6c081

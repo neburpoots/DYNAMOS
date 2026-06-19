@@ -1,0 +1,7 @@
+2026-06-08T18:24:49.344028779Z 1.7809430893438926e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:96	returning conn GetGrpcConnection
+2026-06-08T18:24:49.344536664Z 1.780943089344338e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:105	Initializing sidecar messaging with: service_name:"SURF-in"  routing_key:"SURF-in"
+2026-06-08T18:24:49.378778887Z 1.7809430893784125e+09	[34mINFO[0m	/app/cmd/agent/main.go:99	Starting http server on: 	{"port": ":8080"}
+2026-06-08T18:24:49.302537073Z 1.7809430893023224e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:38	Serving on 50051
+2026-06-08T18:24:49.346251994Z 1.7809430893459938e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:47	Received:	{"Servicename": "SURF-in", "RoutingKey": "SURF-in"}
+2026-06-08T18:24:49.346273314Z 1.780943089346171e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_setup_functions.go:38	Start getConnectionToRabbitMq
+2026-06-08T18:24:49.407689699Z 1.7809430894042406e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:110	Started consuming from SURF-in

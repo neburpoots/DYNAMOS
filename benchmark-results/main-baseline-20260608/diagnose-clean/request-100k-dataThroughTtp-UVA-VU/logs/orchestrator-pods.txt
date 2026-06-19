@@ -1,0 +1,5 @@
+NAME                               READY   STATUS      RESTARTS   AGE     IP            NODE                                  NOMINATED NODE   READINESS GATES
+init-etcd-pvc-local-k8d97          0/1     Completed   0          10m     10.244.0.6    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator-6f685b788b-782bl      2/2     Running     0          5m3s    10.244.0.25   dynamos-main-diagnose-control-plane   <none>           <none>
+policy-enforcer-5fb7c4b5fb-dghvq   2/2     Running     0          7m35s   10.244.0.19   dynamos-main-diagnose-control-plane   <none>           <none>
+reseed-etcd-pvc-tpqfc              0/1     Completed   0          5m9s    10.244.0.24   dynamos-main-diagnose-control-plane   <none>           <none>

@@ -1,0 +1,807 @@
+NAMESPACE      LAST SEEN   TYPE      REASON              OBJECT                                       MESSAGE
+uva            52m         Normal    Scheduled           pod/uva-776c7b95cc-bm64r                     Successfully assigned uva/uva-776c7b95cc-bm64r to dynamos-main-diagnose-control-plane
+uva            52m         Normal    ScalingReplicaSet   deployment/uva                               Scaled up replica set uva-776c7b95cc from 0 to 1
+uva            52m         Normal    SuccessfulCreate    replicaset/uva-776c7b95cc                    Created pod: uva-776c7b95cc-bm64r
+api-gateway    52m         Normal    Scheduled           pod/api-gateway-866b4cd946-7vd2z             Successfully assigned api-gateway/api-gateway-866b4cd946-7vd2z to dynamos-main-diagnose-control-plane
+orchestrator   52m         Normal    ScalingReplicaSet   deployment/orchestrator                      Scaled up replica set orchestrator-bf6f6c8c8 from 0 to 1
+orchestrator   52m         Normal    Scheduled           pod/policy-enforcer-6575bcd66b-n9ldl         Successfully assigned orchestrator/policy-enforcer-6575bcd66b-n9ldl to dynamos-main-diagnose-control-plane
+orchestrator   52m         Normal    Scheduled           pod/orchestrator-bf6f6c8c8-gx8d5             Successfully assigned orchestrator/orchestrator-bf6f6c8c8-gx8d5 to dynamos-main-diagnose-control-plane
+orchestrator   52m         Normal    SuccessfulCreate    replicaset/policy-enforcer-6575bcd66b        Created pod: policy-enforcer-6575bcd66b-n9ldl
+orchestrator   52m         Normal    ScalingReplicaSet   deployment/policy-enforcer                   Scaled up replica set policy-enforcer-6575bcd66b from 0 to 1
+orchestrator   52m         Normal    SuccessfulCreate    replicaset/orchestrator-bf6f6c8c8            Created pod: orchestrator-bf6f6c8c8-gx8d5
+api-gateway    52m         Normal    SuccessfulCreate    replicaset/api-gateway-866b4cd946            Created pod: api-gateway-866b4cd946-7vd2z
+api-gateway    52m         Normal    ScalingReplicaSet   deployment/api-gateway                       Scaled up replica set api-gateway-866b4cd946 from 0 to 1
+vu             52m         Normal    Scheduled           pod/vu-65f4b4b6c7-fkh59                      Successfully assigned vu/vu-65f4b4b6c7-fkh59 to dynamos-main-diagnose-control-plane
+api-gateway    52m         Normal    Started             pod/api-gateway-866b4cd946-7vd2z             Started container api-gateway
+api-gateway    52m         Normal    Pulled              pod/api-gateway-866b4cd946-7vd2z             Container image "dynamos-local/api-gateway:main" already present on machine
+surf           52m         Normal    ScalingReplicaSet   deployment/surf                              Scaled up replica set surf-58f445c588 from 0 to 1
+api-gateway    52m         Normal    Pulled              pod/api-gateway-866b4cd946-7vd2z             Container image "dynamos-local/sidecar:main" already present on machine
+surf           52m         Normal    SuccessfulCreate    replicaset/surf-58f445c588                   Created pod: surf-58f445c588-6th4h
+uva            52m         Normal    Pulled              pod/uva-776c7b95cc-bm64r                     Container image "dynamos-local/agent:main" already present on machine
+api-gateway    52m         Normal    Created             pod/api-gateway-866b4cd946-7vd2z             Created container: api-gateway
+orchestrator   52m         Normal    Pulled              pod/policy-enforcer-6575bcd66b-n9ldl         Container image "dynamos-local/policy-enforcer:main" already present on machine
+vu             52m         Normal    ScalingReplicaSet   deployment/vu                                Scaled up replica set vu-65f4b4b6c7 from 0 to 1
+vu             52m         Normal    SuccessfulCreate    replicaset/vu-65f4b4b6c7                     Created pod: vu-65f4b4b6c7-fkh59
+surf           52m         Normal    Scheduled           pod/surf-58f445c588-6th4h                    Successfully assigned surf/surf-58f445c588-6th4h to dynamos-main-diagnose-control-plane
+orchestrator   52m         Normal    Pulled              pod/orchestrator-bf6f6c8c8-gx8d5             Container image "dynamos-local/orchestrator:main" already present on machine
+orchestrator   52m         Normal    Started             pod/policy-enforcer-6575bcd66b-n9ldl         Started container policy-enforcer
+orchestrator   52m         Normal    Created             pod/orchestrator-bf6f6c8c8-gx8d5             Created container: orchestrator
+vu             52m         Normal    Pulled              pod/vu-65f4b4b6c7-fkh59                      Container image "dynamos-local/agent:main" already present on machine
+api-gateway    52m         Normal    Created             pod/api-gateway-866b4cd946-7vd2z             Created container: sidecar
+uva            52m         Normal    Created             pod/uva-776c7b95cc-bm64r                     Created container: uva
+orchestrator   52m         Normal    Created             pod/policy-enforcer-6575bcd66b-n9ldl         Created container: policy-enforcer
+orchestrator   52m         Normal    Pulled              pod/policy-enforcer-6575bcd66b-n9ldl         Container image "dynamos-local/sidecar:main" already present on machine
+uva            52m         Normal    Created             pod/uva-776c7b95cc-bm64r                     Created container: sidecar
+orchestrator   52m         Normal    Created             pod/policy-enforcer-6575bcd66b-n9ldl         Created container: sidecar
+vu             52m         Normal    Created             pod/vu-65f4b4b6c7-fkh59                      Created container: vu
+surf           52m         Normal    Pulled              pod/surf-58f445c588-6th4h                    Container image "dynamos-local/agent:main" already present on machine
+surf           52m         Normal    Created             pod/surf-58f445c588-6th4h                    Created container: surf
+api-gateway    52m         Normal    Started             pod/api-gateway-866b4cd946-7vd2z             Started container sidecar
+uva            52m         Normal    Pulled              pod/uva-776c7b95cc-bm64r                     Container image "dynamos-local/sidecar:main" already present on machine
+uva            52m         Normal    Started             pod/uva-776c7b95cc-bm64r                     Started container uva
+orchestrator   52m         Normal    Created             pod/orchestrator-bf6f6c8c8-gx8d5             Created container: sidecar
+api-gateway    52m         Normal    Killing             pod/api-gateway-58bd8676b8-wlfwd             Stopping container api-gateway
+api-gateway    52m         Normal    Killing             pod/api-gateway-58bd8676b8-wlfwd             Stopping container sidecar
+api-gateway    52m         Normal    SuccessfulDelete    replicaset/api-gateway-58bd8676b8            Deleted pod: api-gateway-58bd8676b8-wlfwd
+api-gateway    52m         Normal    ScalingReplicaSet   deployment/api-gateway                       Scaled down replica set api-gateway-58bd8676b8 from 1 to 0
+surf           52m         Normal    Created             pod/surf-58f445c588-6th4h                    Created container: sidecar
+surf           52m         Normal    Pulled              pod/surf-58f445c588-6th4h                    Container image "dynamos-local/sidecar:main" already present on machine
+orchestrator   52m         Normal    Pulled              pod/orchestrator-bf6f6c8c8-gx8d5             Container image "dynamos-local/sidecar:main" already present on machine
+orchestrator   52m         Normal    Started             pod/orchestrator-bf6f6c8c8-gx8d5             Started container orchestrator
+surf           52m         Normal    Started             pod/surf-58f445c588-6th4h                    Started container surf
+orchestrator   52m         Normal    Started             pod/policy-enforcer-6575bcd66b-n9ldl         Started container sidecar
+vu             52m         Normal    Created             pod/vu-65f4b4b6c7-fkh59                      Created container: sidecar
+orchestrator   52m         Normal    Killing             pod/policy-enforcer-5fb7c4b5fb-dghvq         Stopping container sidecar
+orchestrator   52m         Normal    Killing             pod/orchestrator-6f685b788b-782bl            Stopping container orchestrator
+uva            52m         Normal    ScalingReplicaSet   deployment/uva                               Scaled down replica set uva-5f9f6b5766 from 1 to 0
+orchestrator   52m         Normal    ScalingReplicaSet   deployment/orchestrator                      Scaled down replica set orchestrator-6f685b788b from 1 to 0
+orchestrator   52m         Normal    ScalingReplicaSet   deployment/policy-enforcer                   Scaled down replica set policy-enforcer-5fb7c4b5fb from 1 to 0
+uva            52m         Normal    Started             pod/uva-776c7b95cc-bm64r                     Started container sidecar
+orchestrator   52m         Normal    Killing             pod/policy-enforcer-5fb7c4b5fb-dghvq         Stopping container policy-enforcer
+surf           52m         Normal    ScalingReplicaSet   deployment/surf                              Scaled down replica set surf-75f8bd5d6b from 1 to 0
+vu             52m         Normal    Started             pod/vu-65f4b4b6c7-fkh59                      Started container sidecar
+orchestrator   52m         Normal    Started             pod/orchestrator-bf6f6c8c8-gx8d5             Started container sidecar
+vu             52m         Normal    Pulled              pod/vu-65f4b4b6c7-fkh59                      Container image "dynamos-local/sidecar:main" already present on machine
+vu             52m         Normal    Started             pod/vu-65f4b4b6c7-fkh59                      Started container vu
+surf           52m         Normal    Started             pod/surf-58f445c588-6th4h                    Started container sidecar
+orchestrator   52m         Normal    SuccessfulDelete    replicaset/orchestrator-6f685b788b           Deleted pod: orchestrator-6f685b788b-782bl
+orchestrator   52m         Normal    SuccessfulDelete    replicaset/policy-enforcer-5fb7c4b5fb        Deleted pod: policy-enforcer-5fb7c4b5fb-dghvq
+orchestrator   52m         Normal    Killing             pod/orchestrator-6f685b788b-782bl            Stopping container sidecar
+uva            52m         Normal    SuccessfulDelete    replicaset/uva-5f9f6b5766                    Deleted pod: uva-5f9f6b5766-m2vrj
+uva            52m         Normal    Killing             pod/uva-5f9f6b5766-m2vrj                     Stopping container sidecar
+uva            52m         Normal    Killing             pod/uva-5f9f6b5766-m2vrj                     Stopping container uva
+vu             52m         Normal    Killing             pod/vu-655bfbd598-vvvrf                      Stopping container vu
+vu             52m         Normal    Killing             pod/vu-655bfbd598-vvvrf                      Stopping container sidecar
+vu             52m         Normal    SuccessfulDelete    replicaset/vu-655bfbd598                     Deleted pod: vu-655bfbd598-vvvrf
+surf           52m         Normal    SuccessfulDelete    replicaset/surf-75f8bd5d6b                   Deleted pod: surf-75f8bd5d6b-6qvpn
+surf           52m         Normal    Killing             pod/surf-75f8bd5d6b-6qvpn                    Stopping container sidecar
+vu             52m         Normal    ScalingReplicaSet   deployment/vu                                Scaled down replica set vu-655bfbd598 from 1 to 0
+surf           52m         Normal    Killing             pod/surf-75f8bd5d6b-6qvpn                    Stopping container surf
+uva            49m         Normal    Scheduled           pod/jorrit-stutterheim-8d913881uva1-m8wrj    Successfully assigned uva/jorrit-stutterheim-8d913881uva1-m8wrj to dynamos-main-diagnose-control-plane
+uva            49m         Normal    Pulled              pod/jorrit-stutterheim-8d913881uva1-m8wrj    Container image "dynamos-local/sql-query:main" already present on machine
+uva            49m         Normal    Created             pod/jorrit-stutterheim-8d913881uva1-m8wrj    Created container: sql-query
+uva            49m         Normal    SuccessfulCreate    job/jorrit-stutterheim-8d913881uva1          Created pod: jorrit-stutterheim-8d913881uva1-m8wrj
+uva            49m         Normal    Pulled              pod/jorrit-stutterheim-8d913881uva1-m8wrj    Container image "dynamos-local/sidecar:main" already present on machine
+uva            49m         Normal    Started             pod/jorrit-stutterheim-8d913881uva1-m8wrj    Started container sql-query
+uva            49m         Normal    Started             pod/jorrit-stutterheim-8d913881uva1-m8wrj    Started container sidecar
+uva            49m         Normal    Created             pod/jorrit-stutterheim-8d913881uva1-m8wrj    Created container: sidecar
+uva            49m         Normal    Started             pod/jorrit-stutterheim-8d913881uva1-m8wrj    Started container sql-algorithm
+uva            49m         Normal    Created             pod/jorrit-stutterheim-8d913881uva1-m8wrj    Created container: sql-algorithm
+uva            49m         Normal    Pulled              pod/jorrit-stutterheim-8d913881uva1-m8wrj    Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            49m         Normal    Killing             pod/jorrit-stutterheim-8d913881uva1-m8wrj    Stopping container sql-query
+uva            48m         Normal    SuccessfulCreate    job/jorrit-stutterheim-7b429ed5uva1          Created pod: jorrit-stutterheim-7b429ed5uva1-nwtzj
+vu             48m         Normal    SuccessfulCreate    job/jorrit-stutterheim-7b429ed5vu1           Created pod: jorrit-stutterheim-7b429ed5vu1-bzj8j
+surf           48m         Normal    SuccessfulCreate    job/jorrit-stutterheim-7b429ed5surf1         Created pod: jorrit-stutterheim-7b429ed5surf1-hwwsn
+surf           48m         Normal    Scheduled           pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Successfully assigned surf/jorrit-stutterheim-7b429ed5surf1-hwwsn to dynamos-main-diagnose-control-plane
+uva            48m         Normal    Scheduled           pod/jorrit-stutterheim-7b429ed5uva1-nwtzj    Successfully assigned uva/jorrit-stutterheim-7b429ed5uva1-nwtzj to dynamos-main-diagnose-control-plane
+vu             48m         Normal    Scheduled           pod/jorrit-stutterheim-7b429ed5vu1-bzj8j     Successfully assigned vu/jorrit-stutterheim-7b429ed5vu1-bzj8j to dynamos-main-diagnose-control-plane
+vu             48m         Normal    Created             pod/jorrit-stutterheim-7b429ed5vu1-bzj8j     Created container: sql-query
+uva            48m         Normal    Pulled              pod/jorrit-stutterheim-7b429ed5uva1-nwtzj    Container image "dynamos-local/sidecar:main" already present on machine
+uva            48m         Normal    Created             pod/jorrit-stutterheim-7b429ed5uva1-nwtzj    Created container: sql-query
+uva            48m         Normal    Pulled              pod/jorrit-stutterheim-7b429ed5uva1-nwtzj    Container image "dynamos-local/sql-query:main" already present on machine
+surf           48m         Normal    Created             pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Created container: sql-aggregate
+surf           48m         Normal    Pulled              pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Container image "dynamos-local/sql-aggregate:main" already present on machine
+vu             48m         Normal    Pulled              pod/jorrit-stutterheim-7b429ed5vu1-bzj8j     Container image "dynamos-local/sql-query:main" already present on machine
+uva            48m         Normal    Started             pod/jorrit-stutterheim-7b429ed5uva1-nwtzj    Started container sql-query
+surf           48m         Normal    Pulled              pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            48m         Normal    Created             pod/jorrit-stutterheim-7b429ed5uva1-nwtzj    Created container: sidecar
+vu             48m         Normal    Started             pod/jorrit-stutterheim-7b429ed5vu1-bzj8j     Started container sidecar
+vu             48m         Normal    Created             pod/jorrit-stutterheim-7b429ed5vu1-bzj8j     Created container: sidecar
+vu             48m         Normal    Pulled              pod/jorrit-stutterheim-7b429ed5vu1-bzj8j     Container image "dynamos-local/sidecar:main" already present on machine
+vu             48m         Normal    Started             pod/jorrit-stutterheim-7b429ed5vu1-bzj8j     Started container sql-query
+surf           48m         Normal    Created             pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Created container: sql-algorithm
+surf           48m         Normal    Started             pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Started container sql-aggregate
+uva            48m         Normal    Started             pod/jorrit-stutterheim-7b429ed5uva1-nwtzj    Started container sidecar
+surf           48m         Normal    Started             pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Started container sql-algorithm
+surf           48m         Normal    Created             pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Created container: sidecar
+surf           48m         Normal    Pulled              pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Container image "dynamos-local/sidecar:main" already present on machine
+surf           48m         Normal    Started             pod/jorrit-stutterheim-7b429ed5surf1-hwwsn   Started container sidecar
+surf           48m         Normal    Completed           job/jorrit-stutterheim-7b429ed5surf1         Job completed
+uva            48m         Normal    Killing             pod/jorrit-stutterheim-7b429ed5uva1-nwtzj    Stopping container sql-query
+vu             48m         Normal    Killing             pod/jorrit-stutterheim-7b429ed5vu1-bzj8j     Stopping container sql-query
+uva            45m         Normal    SuccessfulCreate    job/jorrit-stutterheim-9caf4b2fuva1          Created pod: jorrit-stutterheim-9caf4b2fuva1-sxkp9
+uva            45m         Normal    Pulled              pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            45m         Normal    Started             pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Started container sql-query
+uva            45m         Normal    Created             pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Created container: sql-query
+uva            45m         Normal    Pulled              pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Container image "dynamos-local/sql-query:main" already present on machine
+uva            45m         Normal    Scheduled           pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Successfully assigned uva/jorrit-stutterheim-9caf4b2fuva1-sxkp9 to dynamos-main-diagnose-control-plane
+uva            45m         Normal    Started             pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Started container sql-algorithm
+uva            45m         Normal    Created             pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Created container: sql-algorithm
+uva            45m         Normal    Pulled              pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Container image "dynamos-local/sidecar:main" already present on machine
+uva            45m         Normal    Created             pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Created container: sidecar
+uva            45m         Normal    Started             pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Started container sidecar
+uva            45m         Normal    Killing             pod/jorrit-stutterheim-9caf4b2fuva1-sxkp9    Stopping container sql-query
+kube-system    32m         Normal    ScalingReplicaSet   deployment/metrics-server                    Scaled up replica set metrics-server-549d6d4fb8 from 0 to 1
+kube-system    32m         Normal    ScalingReplicaSet   deployment/metrics-server                    Scaled up replica set metrics-server-64fc5f7866 from 0 to 1
+kube-system    32m         Normal    SuccessfulCreate    replicaset/metrics-server-549d6d4fb8         Created pod: metrics-server-549d6d4fb8-vvdt7
+kube-system    32m         Normal    SuccessfulCreate    replicaset/metrics-server-64fc5f7866         Created pod: metrics-server-64fc5f7866-84cl4
+kube-system    32m         Normal    Scheduled           pod/metrics-server-64fc5f7866-84cl4          Successfully assigned kube-system/metrics-server-64fc5f7866-84cl4 to dynamos-main-diagnose-control-plane
+kube-system    32m         Normal    Scheduled           pod/metrics-server-549d6d4fb8-vvdt7          Successfully assigned kube-system/metrics-server-549d6d4fb8-vvdt7 to dynamos-main-diagnose-control-plane
+kube-system    32m         Normal    Pulling             pod/metrics-server-549d6d4fb8-vvdt7          Pulling image "registry.k8s.io/metrics-server/metrics-server:v0.8.1"
+kube-system    32m         Normal    Pulling             pod/metrics-server-64fc5f7866-84cl4          Pulling image "registry.k8s.io/metrics-server/metrics-server:v0.8.1"
+kube-system    32m         Normal    Created             pod/metrics-server-549d6d4fb8-vvdt7          Created container: metrics-server
+kube-system    32m         Normal    Pulled              pod/metrics-server-549d6d4fb8-vvdt7          Successfully pulled image "registry.k8s.io/metrics-server/metrics-server:v0.8.1" in 510ms (14.936s including waiting). Image size: 22550016 bytes.
+kube-system    32m         Normal    Pulled              pod/metrics-server-64fc5f7866-84cl4          Successfully pulled image "registry.k8s.io/metrics-server/metrics-server:v0.8.1" in 14.593s (14.593s including waiting). Image size: 22550016 bytes.
+kube-system    32m         Normal    Created             pod/metrics-server-64fc5f7866-84cl4          Created container: metrics-server
+kube-system    32m         Normal    Started             pod/metrics-server-64fc5f7866-84cl4          Started container metrics-server
+kube-system    32m         Normal    Started             pod/metrics-server-549d6d4fb8-vvdt7          Started container metrics-server
+kube-system    32m         Normal    Killing             pod/metrics-server-64fc5f7866-84cl4          Stopping container metrics-server
+kube-system    32m         Normal    ScalingReplicaSet   deployment/metrics-server                    Scaled down replica set metrics-server-64fc5f7866 from 1 to 0
+kube-system    32m         Normal    SuccessfulDelete    replicaset/metrics-server-64fc5f7866         Deleted pod: metrics-server-64fc5f7866-84cl4
+kube-system    32m         Warning   Unhealthy           pod/metrics-server-64fc5f7866-84cl4          Readiness probe failed: HTTP probe failed with statuscode: 500
+surf           30m         Normal    SuccessfulCreate    job/jorrit-stutterheim-474463absurf1         Created pod: jorrit-stutterheim-474463absurf1-fnbtk
+uva            30m         Normal    Pulled              pod/jorrit-stutterheim-474463abuva1-7vlgg    Container image "dynamos-local/sql-query:main" already present on machine
+surf           30m         Normal    Created             pod/jorrit-stutterheim-474463absurf1-fnbtk   Created container: sql-aggregate
+surf           30m         Normal    Pulled              pod/jorrit-stutterheim-474463absurf1-fnbtk   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           30m         Normal    Scheduled           pod/jorrit-stutterheim-474463absurf1-fnbtk   Successfully assigned surf/jorrit-stutterheim-474463absurf1-fnbtk to dynamos-main-diagnose-control-plane
+uva            30m         Normal    Scheduled           pod/jorrit-stutterheim-474463abuva1-7vlgg    Successfully assigned uva/jorrit-stutterheim-474463abuva1-7vlgg to dynamos-main-diagnose-control-plane
+uva            30m         Normal    SuccessfulCreate    job/jorrit-stutterheim-474463abuva1          Created pod: jorrit-stutterheim-474463abuva1-7vlgg
+uva            30m         Normal    Created             pod/jorrit-stutterheim-474463abuva1-7vlgg    Created container: sql-query
+uva            30m         Normal    Started             pod/jorrit-stutterheim-474463abuva1-7vlgg    Started container sql-query
+surf           30m         Normal    Pulled              pod/jorrit-stutterheim-474463absurf1-fnbtk   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           30m         Normal    Started             pod/jorrit-stutterheim-474463absurf1-fnbtk   Started container sidecar
+uva            30m         Normal    Created             pod/jorrit-stutterheim-474463abuva1-7vlgg    Created container: sidecar
+uva            30m         Normal    Started             pod/jorrit-stutterheim-474463abuva1-7vlgg    Started container sidecar
+surf           30m         Normal    Created             pod/jorrit-stutterheim-474463absurf1-fnbtk   Created container: sidecar
+surf           30m         Normal    Started             pod/jorrit-stutterheim-474463absurf1-fnbtk   Started container sql-aggregate
+uva            30m         Normal    Pulled              pod/jorrit-stutterheim-474463abuva1-7vlgg    Container image "dynamos-local/sidecar:main" already present on machine
+surf           30m         Normal    Created             pod/jorrit-stutterheim-474463absurf1-fnbtk   Created container: sql-algorithm
+surf           30m         Normal    Started             pod/jorrit-stutterheim-474463absurf1-fnbtk   Started container sql-algorithm
+surf           30m         Normal    Pulled              pod/jorrit-stutterheim-474463absurf1-fnbtk   Container image "dynamos-local/sidecar:main" already present on machine
+surf           30m         Normal    Completed           job/jorrit-stutterheim-474463absurf1         Job completed
+uva            30m         Normal    Killing             pod/jorrit-stutterheim-474463abuva1-7vlgg    Stopping container sql-query
+surf           29m         Normal    SuccessfulCreate    job/jorrit-stutterheim-b90cdfcbsurf1         Created pod: jorrit-stutterheim-b90cdfcbsurf1-vsb6w
+uva            29m         Normal    SuccessfulCreate    job/jorrit-stutterheim-b90cdfcbuva1          Created pod: jorrit-stutterheim-b90cdfcbuva1-cwczw
+uva            29m         Normal    Pulled              pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Container image "dynamos-local/sql-query:main" already present on machine
+uva            29m         Normal    Scheduled           pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Successfully assigned uva/jorrit-stutterheim-b90cdfcbuva1-cwczw to dynamos-main-diagnose-control-plane
+surf           29m         Normal    Scheduled           pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Successfully assigned surf/jorrit-stutterheim-b90cdfcbsurf1-vsb6w to dynamos-main-diagnose-control-plane
+surf           29m         Normal    Created             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Created container: sql-aggregate
+uva            29m         Normal    Created             pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Created container: sidecar
+uva            29m         Normal    Pulled              pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Container image "dynamos-local/sidecar:main" already present on machine
+surf           29m         Normal    Pulled              pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            29m         Normal    Started             pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Started container sql-query
+uva            29m         Normal    Created             pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Created container: sql-query
+surf           29m         Normal    Created             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Created container: sql-algorithm
+surf           29m         Normal    Started             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Started container sidecar
+surf           29m         Normal    Created             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Created container: sidecar
+surf           29m         Normal    Pulled              pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Container image "dynamos-local/sidecar:main" already present on machine
+surf           29m         Normal    Started             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Started container sql-algorithm
+surf           29m         Normal    Pulled              pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           29m         Normal    Started             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Started container sql-aggregate
+uva            29m         Normal    Started             pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Started container sidecar
+surf           29m         Normal    Killing             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Stopping container sql-algorithm
+uva            29m         Normal    Killing             pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Stopping container sql-query
+uva            29m         Normal    Killing             pod/jorrit-stutterheim-b90cdfcbuva1-cwczw    Stopping container sidecar
+surf           29m         Normal    Killing             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Stopping container sql-aggregate
+surf           29m         Normal    Killing             pod/jorrit-stutterheim-b90cdfcbsurf1-vsb6w   Stopping container sidecar
+surf           28m         Normal    Scheduled           pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Successfully assigned surf/jorrit-stutterheim-0d3caf7bsurf1-bl9fd to dynamos-main-diagnose-control-plane
+uva            28m         Normal    Scheduled           pod/jorrit-stutterheim-0d3caf7buva1-nx2np    Successfully assigned uva/jorrit-stutterheim-0d3caf7buva1-nx2np to dynamos-main-diagnose-control-plane
+surf           28m         Normal    SuccessfulCreate    job/jorrit-stutterheim-0d3caf7bsurf1         Created pod: jorrit-stutterheim-0d3caf7bsurf1-bl9fd
+uva            28m         Normal    SuccessfulCreate    job/jorrit-stutterheim-0d3caf7buva1          Created pod: jorrit-stutterheim-0d3caf7buva1-nx2np
+uva            28m         Normal    Created             pod/jorrit-stutterheim-0d3caf7buva1-nx2np    Created container: sidecar
+uva            28m         Normal    Pulled              pod/jorrit-stutterheim-0d3caf7buva1-nx2np    Container image "dynamos-local/sql-query:main" already present on machine
+surf           28m         Normal    Created             pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Created container: sql-algorithm
+surf           28m         Normal    Started             pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Started container sql-algorithm
+surf           28m         Normal    Started             pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Started container sql-aggregate
+surf           28m         Normal    Pulled              pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Container image "dynamos-local/sidecar:main" already present on machine
+uva            28m         Normal    Started             pod/jorrit-stutterheim-0d3caf7buva1-nx2np    Started container sidecar
+surf           28m         Normal    Pulled              pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            28m         Normal    Pulled              pod/jorrit-stutterheim-0d3caf7buva1-nx2np    Container image "dynamos-local/sidecar:main" already present on machine
+uva            28m         Normal    Started             pod/jorrit-stutterheim-0d3caf7buva1-nx2np    Started container sql-query
+surf           28m         Normal    Pulled              pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            28m         Normal    Created             pod/jorrit-stutterheim-0d3caf7buva1-nx2np    Created container: sql-query
+surf           28m         Normal    Created             pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Created container: sql-aggregate
+surf           28m         Normal    Started             pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Started container sidecar
+surf           28m         Normal    Created             pod/jorrit-stutterheim-0d3caf7bsurf1-bl9fd   Created container: sidecar
+uva            28m         Normal    Killing             pod/jorrit-stutterheim-0d3caf7buva1-nx2np    Stopping container sql-query
+surf           27m         Normal    SuccessfulCreate    job/jorrit-stutterheim-4f3915b9surf1         Created pod: jorrit-stutterheim-4f3915b9surf1-59ht9
+uva            27m         Normal    SuccessfulCreate    job/jorrit-stutterheim-4f3915b9uva1          Created pod: jorrit-stutterheim-4f3915b9uva1-7zkdp
+uva            27m         Normal    Scheduled           pod/jorrit-stutterheim-4f3915b9uva1-7zkdp    Successfully assigned uva/jorrit-stutterheim-4f3915b9uva1-7zkdp to dynamos-main-diagnose-control-plane
+surf           27m         Normal    Scheduled           pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Successfully assigned surf/jorrit-stutterheim-4f3915b9surf1-59ht9 to dynamos-main-diagnose-control-plane
+uva            27m         Normal    Created             pod/jorrit-stutterheim-4f3915b9uva1-7zkdp    Created container: sql-query
+surf           27m         Normal    Created             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Created container: sql-aggregate
+surf           27m         Normal    Pulled              pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            27m         Normal    Started             pod/jorrit-stutterheim-4f3915b9uva1-7zkdp    Started container sql-query
+uva            27m         Normal    Pulled              pod/jorrit-stutterheim-4f3915b9uva1-7zkdp    Container image "dynamos-local/sql-query:main" already present on machine
+surf           27m         Normal    Created             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Created container: sql-algorithm
+surf           27m         Normal    Started             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Started container sql-aggregate
+uva            27m         Normal    Pulled              pod/jorrit-stutterheim-4f3915b9uva1-7zkdp    Container image "dynamos-local/sidecar:main" already present on machine
+uva            27m         Normal    Started             pod/jorrit-stutterheim-4f3915b9uva1-7zkdp    Started container sidecar
+surf           27m         Normal    Created             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Created container: sidecar
+surf           27m         Normal    Pulled              pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Container image "dynamos-local/sidecar:main" already present on machine
+surf           27m         Normal    Started             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Started container sql-algorithm
+surf           27m         Normal    Pulled              pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           27m         Normal    Started             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Started container sidecar
+uva            27m         Normal    Created             pod/jorrit-stutterheim-4f3915b9uva1-7zkdp    Created container: sidecar
+uva            27m         Normal    Killing             pod/jorrit-stutterheim-4f3915b9uva1-7zkdp    Stopping container sql-query
+surf           27m         Normal    Killing             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Stopping container sql-aggregate
+surf           27m         Normal    Killing             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Stopping container sidecar
+surf           27m         Normal    Killing             pod/jorrit-stutterheim-4f3915b9surf1-59ht9   Stopping container sql-algorithm
+uva            26m         Normal    Scheduled           pod/jorrit-stutterheim-ae167a04uva1-lwmph    Successfully assigned uva/jorrit-stutterheim-ae167a04uva1-lwmph to dynamos-main-diagnose-control-plane
+surf           26m         Normal    SuccessfulCreate    job/jorrit-stutterheim-ae167a04surf1         Created pod: jorrit-stutterheim-ae167a04surf1-t4vvv
+uva            26m         Normal    SuccessfulCreate    job/jorrit-stutterheim-ae167a04uva1          Created pod: jorrit-stutterheim-ae167a04uva1-lwmph
+surf           26m         Normal    Scheduled           pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Successfully assigned surf/jorrit-stutterheim-ae167a04surf1-t4vvv to dynamos-main-diagnose-control-plane
+surf           26m         Normal    Pulled              pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           26m         Normal    Started             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Started container sql-algorithm
+surf           26m         Normal    Started             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Started container sql-aggregate
+surf           26m         Normal    Created             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Created container: sidecar
+surf           26m         Normal    Pulled              pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Container image "dynamos-local/sidecar:main" already present on machine
+uva            26m         Normal    Pulled              pod/jorrit-stutterheim-ae167a04uva1-lwmph    Container image "dynamos-local/sql-query:main" already present on machine
+surf           26m         Normal    Created             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Created container: sql-algorithm
+surf           26m         Normal    Pulled              pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           26m         Normal    Started             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Started container sidecar
+surf           26m         Normal    Created             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Created container: sql-aggregate
+uva            26m         Normal    Pulled              pod/jorrit-stutterheim-ae167a04uva1-lwmph    Container image "dynamos-local/sidecar:main" already present on machine
+uva            26m         Normal    Started             pod/jorrit-stutterheim-ae167a04uva1-lwmph    Started container sql-query
+uva            26m         Normal    Created             pod/jorrit-stutterheim-ae167a04uva1-lwmph    Created container: sidecar
+uva            26m         Normal    Started             pod/jorrit-stutterheim-ae167a04uva1-lwmph    Started container sidecar
+uva            26m         Normal    Created             pod/jorrit-stutterheim-ae167a04uva1-lwmph    Created container: sql-query
+surf           26m         Normal    Killing             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Stopping container sql-algorithm
+uva            26m         Normal    Killing             pod/jorrit-stutterheim-ae167a04uva1-lwmph    Stopping container sidecar
+surf           26m         Normal    Killing             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Stopping container sidecar
+uva            26m         Normal    Killing             pod/jorrit-stutterheim-ae167a04uva1-lwmph    Stopping container sql-query
+surf           26m         Normal    Killing             pod/jorrit-stutterheim-ae167a04surf1-t4vvv   Stopping container sql-aggregate
+surf           25m         Normal    Scheduled           pod/jorrit-stutterheim-df0946b0surf1-f88hk   Successfully assigned surf/jorrit-stutterheim-df0946b0surf1-f88hk to dynamos-main-diagnose-control-plane
+surf           25m         Normal    Created             pod/jorrit-stutterheim-df0946b0surf1-f88hk   Created container: sql-aggregate
+uva            25m         Normal    Created             pod/jorrit-stutterheim-df0946b0uva1-m7s5m    Created container: sql-query
+uva            25m         Normal    Pulled              pod/jorrit-stutterheim-df0946b0uva1-m7s5m    Container image "dynamos-local/sql-query:main" already present on machine
+uva            25m         Normal    Scheduled           pod/jorrit-stutterheim-df0946b0uva1-m7s5m    Successfully assigned uva/jorrit-stutterheim-df0946b0uva1-m7s5m to dynamos-main-diagnose-control-plane
+surf           25m         Normal    SuccessfulCreate    job/jorrit-stutterheim-df0946b0surf1         Created pod: jorrit-stutterheim-df0946b0surf1-f88hk
+uva            25m         Normal    SuccessfulCreate    job/jorrit-stutterheim-df0946b0uva1          Created pod: jorrit-stutterheim-df0946b0uva1-m7s5m
+surf           25m         Normal    Pulled              pod/jorrit-stutterheim-df0946b0surf1-f88hk   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           25m         Normal    Started             pod/jorrit-stutterheim-df0946b0surf1-f88hk   Started container sidecar
+surf           25m         Normal    Created             pod/jorrit-stutterheim-df0946b0surf1-f88hk   Created container: sql-algorithm
+surf           25m         Normal    Pulled              pod/jorrit-stutterheim-df0946b0surf1-f88hk   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           25m         Normal    Started             pod/jorrit-stutterheim-df0946b0surf1-f88hk   Started container sql-aggregate
+surf           25m         Normal    Started             pod/jorrit-stutterheim-df0946b0surf1-f88hk   Started container sql-algorithm
+surf           25m         Normal    Pulled              pod/jorrit-stutterheim-df0946b0surf1-f88hk   Container image "dynamos-local/sidecar:main" already present on machine
+surf           25m         Normal    Created             pod/jorrit-stutterheim-df0946b0surf1-f88hk   Created container: sidecar
+uva            25m         Normal    Pulled              pod/jorrit-stutterheim-df0946b0uva1-m7s5m    Container image "dynamos-local/sidecar:main" already present on machine
+uva            25m         Normal    Created             pod/jorrit-stutterheim-df0946b0uva1-m7s5m    Created container: sidecar
+uva            25m         Normal    Started             pod/jorrit-stutterheim-df0946b0uva1-m7s5m    Started container sidecar
+uva            25m         Normal    Started             pod/jorrit-stutterheim-df0946b0uva1-m7s5m    Started container sql-query
+uva            25m         Normal    Killing             pod/jorrit-stutterheim-df0946b0uva1-m7s5m    Stopping container sql-query
+surf           24m         Normal    Scheduled           pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Successfully assigned surf/jorrit-stutterheim-05aef4efsurf1-h65lf to dynamos-main-diagnose-control-plane
+surf           24m         Normal    SuccessfulCreate    job/jorrit-stutterheim-05aef4efsurf1         Created pod: jorrit-stutterheim-05aef4efsurf1-h65lf
+uva            24m         Normal    SuccessfulCreate    job/jorrit-stutterheim-05aef4efuva1          Created pod: jorrit-stutterheim-05aef4efuva1-cwn88
+uva            24m         Normal    Scheduled           pod/jorrit-stutterheim-05aef4efuva1-cwn88    Successfully assigned uva/jorrit-stutterheim-05aef4efuva1-cwn88 to dynamos-main-diagnose-control-plane
+uva            24m         Normal    Created             pod/jorrit-stutterheim-05aef4efuva1-cwn88    Created container: sidecar
+surf           24m         Normal    Started             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Started container sql-aggregate
+surf           24m         Normal    Pulled              pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           24m         Normal    Created             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Created container: sql-aggregate
+surf           24m         Normal    Created             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Created container: sql-algorithm
+uva            24m         Normal    Pulled              pod/jorrit-stutterheim-05aef4efuva1-cwn88    Container image "dynamos-local/sql-query:main" already present on machine
+uva            24m         Normal    Created             pod/jorrit-stutterheim-05aef4efuva1-cwn88    Created container: sql-query
+uva            24m         Normal    Started             pod/jorrit-stutterheim-05aef4efuva1-cwn88    Started container sql-query
+uva            24m         Normal    Pulled              pod/jorrit-stutterheim-05aef4efuva1-cwn88    Container image "dynamos-local/sidecar:main" already present on machine
+surf           24m         Normal    Pulled              pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           24m         Normal    Started             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Started container sql-algorithm
+uva            24m         Normal    Started             pod/jorrit-stutterheim-05aef4efuva1-cwn88    Started container sidecar
+surf           24m         Normal    Created             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Created container: sidecar
+surf           24m         Normal    Pulled              pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Container image "dynamos-local/sidecar:main" already present on machine
+surf           24m         Normal    Started             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Started container sidecar
+uva            24m         Normal    Killing             pod/jorrit-stutterheim-05aef4efuva1-cwn88    Stopping container sidecar
+surf           24m         Normal    Killing             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Stopping container sql-algorithm
+surf           24m         Normal    Killing             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Stopping container sidecar
+surf           24m         Normal    Killing             pod/jorrit-stutterheim-05aef4efsurf1-h65lf   Stopping container sql-aggregate
+uva            24m         Normal    Killing             pod/jorrit-stutterheim-05aef4efuva1-cwn88    Stopping container sql-query
+surf           23m         Normal    SuccessfulCreate    job/jorrit-stutterheim-1b59c1f5surf1         Created pod: jorrit-stutterheim-1b59c1f5surf1-2pb6d
+uva            23m         Normal    SuccessfulCreate    job/jorrit-stutterheim-1b59c1f5uva1          Created pod: jorrit-stutterheim-1b59c1f5uva1-z2zh6
+uva            23m         Normal    Created             pod/jorrit-stutterheim-1b59c1f5uva1-z2zh6    Created container: sql-query
+uva            23m         Normal    Created             pod/jorrit-stutterheim-1b59c1f5uva1-z2zh6    Created container: sidecar
+surf           23m         Normal    Created             pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Created container: sql-aggregate
+surf           23m         Normal    Pulled              pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            23m         Normal    Pulled              pod/jorrit-stutterheim-1b59c1f5uva1-z2zh6    Container image "dynamos-local/sql-query:main" already present on machine
+uva            23m         Normal    Scheduled           pod/jorrit-stutterheim-1b59c1f5uva1-z2zh6    Successfully assigned uva/jorrit-stutterheim-1b59c1f5uva1-z2zh6 to dynamos-main-diagnose-control-plane
+uva            23m         Normal    Started             pod/jorrit-stutterheim-1b59c1f5uva1-z2zh6    Started container sql-query
+surf           23m         Normal    Started             pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Started container sql-aggregate
+surf           23m         Normal    Scheduled           pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Successfully assigned surf/jorrit-stutterheim-1b59c1f5surf1-2pb6d to dynamos-main-diagnose-control-plane
+surf           23m         Normal    Pulled              pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            23m         Normal    Pulled              pod/jorrit-stutterheim-1b59c1f5uva1-z2zh6    Container image "dynamos-local/sidecar:main" already present on machine
+surf           23m         Normal    Created             pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Created container: sidecar
+surf           23m         Normal    Created             pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Created container: sql-algorithm
+surf           23m         Normal    Started             pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Started container sql-algorithm
+surf           23m         Normal    Pulled              pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Container image "dynamos-local/sidecar:main" already present on machine
+surf           23m         Normal    Started             pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Started container sidecar
+uva            23m         Normal    Started             pod/jorrit-stutterheim-1b59c1f5uva1-z2zh6    Started container sidecar
+uva            23m         Normal    Killing             pod/jorrit-stutterheim-1b59c1f5uva1-z2zh6    Stopping container sql-query
+surf           23m         Normal    Killing             pod/jorrit-stutterheim-1b59c1f5surf1-2pb6d   Stopping container sidecar
+surf           22m         Normal    Scheduled           pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Successfully assigned surf/jorrit-stutterheim-b108e2basurf1-kkjzs to dynamos-main-diagnose-control-plane
+uva            22m         Normal    SuccessfulCreate    job/jorrit-stutterheim-b108e2bauva1          Created pod: jorrit-stutterheim-b108e2bauva1-n7qm5
+surf           22m         Normal    SuccessfulCreate    job/jorrit-stutterheim-b108e2basurf1         Created pod: jorrit-stutterheim-b108e2basurf1-kkjzs
+uva            22m         Normal    Scheduled           pod/jorrit-stutterheim-b108e2bauva1-n7qm5    Successfully assigned uva/jorrit-stutterheim-b108e2bauva1-n7qm5 to dynamos-main-diagnose-control-plane
+uva            22m         Normal    Pulled              pod/jorrit-stutterheim-b108e2bauva1-n7qm5    Container image "dynamos-local/sidecar:main" already present on machine
+uva            22m         Normal    Started             pod/jorrit-stutterheim-b108e2bauva1-n7qm5    Started container sql-query
+surf           22m         Normal    Pulled              pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           22m         Normal    Created             pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Created container: sql-aggregate
+uva            22m         Normal    Created             pod/jorrit-stutterheim-b108e2bauva1-n7qm5    Created container: sidecar
+surf           22m         Normal    Started             pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Started container sql-aggregate
+surf           22m         Normal    Created             pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Created container: sql-algorithm
+surf           22m         Normal    Pulled              pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            22m         Normal    Pulled              pod/jorrit-stutterheim-b108e2bauva1-n7qm5    Container image "dynamos-local/sql-query:main" already present on machine
+uva            22m         Normal    Created             pod/jorrit-stutterheim-b108e2bauva1-n7qm5    Created container: sql-query
+surf           22m         Normal    Started             pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Started container sql-algorithm
+uva            22m         Normal    Started             pod/jorrit-stutterheim-b108e2bauva1-n7qm5    Started container sidecar
+surf           22m         Normal    Pulled              pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Container image "dynamos-local/sidecar:main" already present on machine
+surf           22m         Normal    Created             pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Created container: sidecar
+surf           22m         Normal    Started             pod/jorrit-stutterheim-b108e2basurf1-kkjzs   Started container sidecar
+uva            21m         Normal    Killing             pod/jorrit-stutterheim-b108e2bauva1-n7qm5    Stopping container sql-query
+surf           21m         Normal    SuccessfulCreate    job/jorrit-stutterheim-332e888csurf1         Created pod: jorrit-stutterheim-332e888csurf1-6bgc4
+uva            21m         Normal    Scheduled           pod/jorrit-stutterheim-332e888cuva1-9l9pt    Successfully assigned uva/jorrit-stutterheim-332e888cuva1-9l9pt to dynamos-main-diagnose-control-plane
+surf           21m         Normal    Scheduled           pod/jorrit-stutterheim-332e888csurf1-6bgc4   Successfully assigned surf/jorrit-stutterheim-332e888csurf1-6bgc4 to dynamos-main-diagnose-control-plane
+uva            21m         Normal    SuccessfulCreate    job/jorrit-stutterheim-332e888cuva1          Created pod: jorrit-stutterheim-332e888cuva1-9l9pt
+surf           21m         Normal    Created             pod/jorrit-stutterheim-332e888csurf1-6bgc4   Created container: sql-aggregate
+surf           21m         Normal    Started             pod/jorrit-stutterheim-332e888csurf1-6bgc4   Started container sql-aggregate
+surf           21m         Normal    Created             pod/jorrit-stutterheim-332e888csurf1-6bgc4   Created container: sidecar
+uva            21m         Normal    Pulled              pod/jorrit-stutterheim-332e888cuva1-9l9pt    Container image "dynamos-local/sql-query:main" already present on machine
+uva            21m         Normal    Started             pod/jorrit-stutterheim-332e888cuva1-9l9pt    Started container sidecar
+surf           21m         Normal    Started             pod/jorrit-stutterheim-332e888csurf1-6bgc4   Started container sidecar
+surf           21m         Normal    Pulled              pod/jorrit-stutterheim-332e888csurf1-6bgc4   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           21m         Normal    Pulled              pod/jorrit-stutterheim-332e888csurf1-6bgc4   Container image "dynamos-local/sidecar:main" already present on machine
+surf           21m         Normal    Started             pod/jorrit-stutterheim-332e888csurf1-6bgc4   Started container sql-algorithm
+surf           21m         Normal    Created             pod/jorrit-stutterheim-332e888csurf1-6bgc4   Created container: sql-algorithm
+surf           21m         Normal    Pulled              pod/jorrit-stutterheim-332e888csurf1-6bgc4   Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            21m         Normal    Created             pod/jorrit-stutterheim-332e888cuva1-9l9pt    Created container: sidecar
+uva            21m         Normal    Created             pod/jorrit-stutterheim-332e888cuva1-9l9pt    Created container: sql-query
+uva            21m         Normal    Started             pod/jorrit-stutterheim-332e888cuva1-9l9pt    Started container sql-query
+uva            21m         Normal    Pulled              pod/jorrit-stutterheim-332e888cuva1-9l9pt    Container image "dynamos-local/sidecar:main" already present on machine
+uva            20m         Normal    Killing             pod/jorrit-stutterheim-332e888cuva1-9l9pt    Stopping container sql-query
+uva            20m         Normal    Scheduled           pod/jorrit-stutterheim-ccf1996buva1-7jwrh    Successfully assigned uva/jorrit-stutterheim-ccf1996buva1-7jwrh to dynamos-main-diagnose-control-plane
+uva            20m         Normal    SuccessfulCreate    job/jorrit-stutterheim-ccf1996buva1          Created pod: jorrit-stutterheim-ccf1996buva1-7jwrh
+surf           20m         Normal    Scheduled           pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Successfully assigned surf/jorrit-stutterheim-ccf1996bsurf1-9dc98 to dynamos-main-diagnose-control-plane
+surf           20m         Normal    SuccessfulCreate    job/jorrit-stutterheim-ccf1996bsurf1         Created pod: jorrit-stutterheim-ccf1996bsurf1-9dc98
+uva            20m         Normal    Pulled              pod/jorrit-stutterheim-ccf1996buva1-7jwrh    Container image "dynamos-local/sidecar:main" already present on machine
+surf           20m         Normal    Created             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Created container: sql-algorithm
+surf           20m         Normal    Pulled              pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           20m         Normal    Started             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Started container sql-aggregate
+surf           20m         Normal    Pulled              pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            20m         Normal    Pulled              pod/jorrit-stutterheim-ccf1996buva1-7jwrh    Container image "dynamos-local/sql-query:main" already present on machine
+uva            20m         Normal    Created             pod/jorrit-stutterheim-ccf1996buva1-7jwrh    Created container: sql-query
+uva            20m         Normal    Started             pod/jorrit-stutterheim-ccf1996buva1-7jwrh    Started container sql-query
+uva            20m         Normal    Created             pod/jorrit-stutterheim-ccf1996buva1-7jwrh    Created container: sidecar
+uva            20m         Normal    Started             pod/jorrit-stutterheim-ccf1996buva1-7jwrh    Started container sidecar
+surf           20m         Normal    Created             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Created container: sql-aggregate
+surf           20m         Normal    Started             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Started container sql-algorithm
+surf           20m         Normal    Pulled              pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Container image "dynamos-local/sidecar:main" already present on machine
+surf           20m         Normal    Started             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Started container sidecar
+surf           20m         Normal    Created             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Created container: sidecar
+surf           19m         Normal    Killing             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Stopping container sidecar
+surf           19m         Normal    Killing             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Stopping container sql-algorithm
+surf           19m         Normal    Killing             pod/jorrit-stutterheim-ccf1996bsurf1-9dc98   Stopping container sql-aggregate
+uva            19m         Normal    Killing             pod/jorrit-stutterheim-ccf1996buva1-7jwrh    Stopping container sql-query
+uva            19m         Normal    Scheduled           pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Successfully assigned uva/jorrit-stutterheim-a7d227c3uva1-v9ms4 to dynamos-main-diagnose-control-plane
+surf           19m         Normal    Scheduled           pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Successfully assigned surf/jorrit-stutterheim-a7d227c3surf1-v9rq8 to dynamos-main-diagnose-control-plane
+uva            19m         Normal    SuccessfulCreate    job/jorrit-stutterheim-a7d227c3uva1          Created pod: jorrit-stutterheim-a7d227c3uva1-v9ms4
+surf           19m         Normal    SuccessfulCreate    job/jorrit-stutterheim-a7d227c3surf1         Created pod: jorrit-stutterheim-a7d227c3surf1-v9rq8
+surf           19m         Normal    Pulled              pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           19m         Normal    Created             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Created container: sql-aggregate
+surf           19m         Normal    Started             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Started container sql-algorithm
+surf           19m         Normal    Started             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Started container sidecar
+uva            19m         Normal    Started             pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Started container sql-query
+uva            19m         Normal    Created             pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Created container: sql-query
+uva            19m         Normal    Pulled              pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Container image "dynamos-local/sql-query:main" already present on machine
+uva            19m         Normal    Created             pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Created container: sidecar
+uva            19m         Normal    Started             pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Started container sidecar
+surf           19m         Normal    Pulled              pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Container image "dynamos-local/sidecar:main" already present on machine
+uva            19m         Normal    Pulled              pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Container image "dynamos-local/sidecar:main" already present on machine
+surf           19m         Normal    Created             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Created container: sidecar
+surf           19m         Normal    Started             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Started container sql-aggregate
+surf           19m         Normal    Pulled              pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           19m         Normal    Created             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Created container: sql-algorithm
+surf           19m         Normal    Killing             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Stopping container sql-algorithm
+surf           19m         Normal    Killing             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Stopping container sidecar
+surf           19m         Normal    Killing             pod/jorrit-stutterheim-a7d227c3surf1-v9rq8   Stopping container sql-aggregate
+uva            19m         Normal    Killing             pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Stopping container sql-query
+uva            19m         Normal    Killing             pod/jorrit-stutterheim-a7d227c3uva1-v9ms4    Stopping container sidecar
+surf           18m         Normal    Scheduled           pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Successfully assigned surf/jorrit-stutterheim-b4ff21a5surf1-z2zz4 to dynamos-main-diagnose-control-plane
+surf           18m         Normal    Pulled              pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           18m         Normal    SuccessfulCreate    job/jorrit-stutterheim-b4ff21a5surf1         Created pod: jorrit-stutterheim-b4ff21a5surf1-z2zz4
+uva            18m         Normal    SuccessfulCreate    job/jorrit-stutterheim-b4ff21a5uva1          Created pod: jorrit-stutterheim-b4ff21a5uva1-g98fr
+uva            18m         Normal    Scheduled           pod/jorrit-stutterheim-b4ff21a5uva1-g98fr    Successfully assigned uva/jorrit-stutterheim-b4ff21a5uva1-g98fr to dynamos-main-diagnose-control-plane
+uva            18m         Normal    Created             pod/jorrit-stutterheim-b4ff21a5uva1-g98fr    Created container: sql-query
+uva            18m         Normal    Pulled              pod/jorrit-stutterheim-b4ff21a5uva1-g98fr    Container image "dynamos-local/sql-query:main" already present on machine
+surf           18m         Normal    Started             pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Started container sql-aggregate
+uva            18m         Normal    Started             pod/jorrit-stutterheim-b4ff21a5uva1-g98fr    Started container sql-query
+uva            18m         Normal    Pulled              pod/jorrit-stutterheim-b4ff21a5uva1-g98fr    Container image "dynamos-local/sidecar:main" already present on machine
+uva            18m         Normal    Created             pod/jorrit-stutterheim-b4ff21a5uva1-g98fr    Created container: sidecar
+surf           18m         Normal    Created             pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Created container: sql-aggregate
+surf           18m         Normal    Created             pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Created container: sidecar
+surf           18m         Normal    Pulled              pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           18m         Normal    Created             pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Created container: sql-algorithm
+surf           18m         Normal    Started             pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Started container sql-algorithm
+surf           18m         Normal    Pulled              pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Container image "dynamos-local/sidecar:main" already present on machine
+surf           18m         Normal    Started             pod/jorrit-stutterheim-b4ff21a5surf1-z2zz4   Started container sidecar
+uva            18m         Normal    Started             pod/jorrit-stutterheim-b4ff21a5uva1-g98fr    Started container sidecar
+uva            17m         Normal    Killing             pod/jorrit-stutterheim-b4ff21a5uva1-g98fr    Stopping container sql-query
+uva            17m         Normal    SuccessfulCreate    job/jorrit-stutterheim-3e0535e6uva1          Created pod: jorrit-stutterheim-3e0535e6uva1-p4dtn
+surf           17m         Normal    Scheduled           pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Successfully assigned surf/jorrit-stutterheim-3e0535e6surf1-9zlnq to dynamos-main-diagnose-control-plane
+uva            17m         Normal    Scheduled           pod/jorrit-stutterheim-3e0535e6uva1-p4dtn    Successfully assigned uva/jorrit-stutterheim-3e0535e6uva1-p4dtn to dynamos-main-diagnose-control-plane
+surf           17m         Normal    SuccessfulCreate    job/jorrit-stutterheim-3e0535e6surf1         Created pod: jorrit-stutterheim-3e0535e6surf1-9zlnq
+surf           17m         Normal    Pulled              pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            17m         Normal    Created             pod/jorrit-stutterheim-3e0535e6uva1-p4dtn    Created container: sql-query
+uva            17m         Normal    Pulled              pod/jorrit-stutterheim-3e0535e6uva1-p4dtn    Container image "dynamos-local/sql-query:main" already present on machine
+surf           17m         Normal    Created             pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Created container: sql-aggregate
+uva            17m         Normal    Started             pod/jorrit-stutterheim-3e0535e6uva1-p4dtn    Started container sql-query
+uva            17m         Normal    Pulled              pod/jorrit-stutterheim-3e0535e6uva1-p4dtn    Container image "dynamos-local/sidecar:main" already present on machine
+uva            17m         Normal    Created             pod/jorrit-stutterheim-3e0535e6uva1-p4dtn    Created container: sidecar
+surf           17m         Normal    Started             pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Started container sql-aggregate
+surf           17m         Normal    Created             pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Created container: sql-algorithm
+surf           17m         Normal    Pulled              pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           17m         Normal    Pulled              pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Container image "dynamos-local/sidecar:main" already present on machine
+surf           17m         Normal    Started             pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Started container sidecar
+surf           17m         Normal    Started             pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Started container sql-algorithm
+surf           17m         Normal    Created             pod/jorrit-stutterheim-3e0535e6surf1-9zlnq   Created container: sidecar
+uva            17m         Normal    Started             pod/jorrit-stutterheim-3e0535e6uva1-p4dtn    Started container sidecar
+uva            16m         Normal    Killing             pod/jorrit-stutterheim-3e0535e6uva1-p4dtn    Stopping container sql-query
+uva            16m         Normal    Scheduled           pod/jorrit-stutterheim-3b395df7uva1-25c4r    Successfully assigned uva/jorrit-stutterheim-3b395df7uva1-25c4r to dynamos-main-diagnose-control-plane
+surf           16m         Normal    Scheduled           pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Successfully assigned surf/jorrit-stutterheim-3b395df7surf1-tfb4b to dynamos-main-diagnose-control-plane
+surf           16m         Normal    SuccessfulCreate    job/jorrit-stutterheim-3b395df7surf1         Created pod: jorrit-stutterheim-3b395df7surf1-tfb4b
+uva            16m         Normal    SuccessfulCreate    job/jorrit-stutterheim-3b395df7uva1          Created pod: jorrit-stutterheim-3b395df7uva1-25c4r
+uva            16m         Normal    Created             pod/jorrit-stutterheim-3b395df7uva1-25c4r    Created container: sql-query
+uva            16m         Normal    Pulled              pod/jorrit-stutterheim-3b395df7uva1-25c4r    Container image "dynamos-local/sidecar:main" already present on machine
+surf           16m         Normal    Created             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Created container: sql-aggregate
+surf           16m         Normal    Started             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Started container sql-aggregate
+surf           16m         Normal    Pulled              pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           16m         Normal    Pulled              pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            16m         Normal    Pulled              pod/jorrit-stutterheim-3b395df7uva1-25c4r    Container image "dynamos-local/sql-query:main" already present on machine
+surf           16m         Normal    Created             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Created container: sql-algorithm
+uva            16m         Normal    Started             pod/jorrit-stutterheim-3b395df7uva1-25c4r    Started container sql-query
+uva            16m         Normal    Created             pod/jorrit-stutterheim-3b395df7uva1-25c4r    Created container: sidecar
+uva            16m         Normal    Started             pod/jorrit-stutterheim-3b395df7uva1-25c4r    Started container sidecar
+surf           16m         Normal    Started             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Started container sidecar
+surf           16m         Normal    Created             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Created container: sidecar
+surf           16m         Normal    Pulled              pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Container image "dynamos-local/sidecar:main" already present on machine
+surf           16m         Normal    Started             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Started container sql-algorithm
+surf           15m         Normal    Killing             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Stopping container sql-aggregate
+surf           15m         Normal    Killing             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Stopping container sql-algorithm
+uva            15m         Normal    Killing             pod/jorrit-stutterheim-3b395df7uva1-25c4r    Stopping container sql-query
+uva            15m         Normal    Killing             pod/jorrit-stutterheim-3b395df7uva1-25c4r    Stopping container sidecar
+surf           15m         Normal    Killing             pod/jorrit-stutterheim-3b395df7surf1-tfb4b   Stopping container sidecar
+surf           15m         Normal    Pulled              pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            15m         Normal    Pulled              pod/jorrit-stutterheim-58efa7d4uva1-dnt7v    Container image "dynamos-local/sql-query:main" already present on machine
+surf           15m         Normal    SuccessfulCreate    job/jorrit-stutterheim-58efa7d4surf1         Created pod: jorrit-stutterheim-58efa7d4surf1-26jmq
+uva            15m         Normal    SuccessfulCreate    job/jorrit-stutterheim-58efa7d4uva1          Created pod: jorrit-stutterheim-58efa7d4uva1-dnt7v
+surf           15m         Normal    Created             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Created container: sql-aggregate
+uva            15m         Normal    Created             pod/jorrit-stutterheim-58efa7d4uva1-dnt7v    Created container: sidecar
+uva            15m         Normal    Pulled              pod/jorrit-stutterheim-58efa7d4uva1-dnt7v    Container image "dynamos-local/sidecar:main" already present on machine
+uva            15m         Normal    Started             pod/jorrit-stutterheim-58efa7d4uva1-dnt7v    Started container sql-query
+uva            15m         Normal    Created             pod/jorrit-stutterheim-58efa7d4uva1-dnt7v    Created container: sql-query
+uva            15m         Normal    Scheduled           pod/jorrit-stutterheim-58efa7d4uva1-dnt7v    Successfully assigned uva/jorrit-stutterheim-58efa7d4uva1-dnt7v to dynamos-main-diagnose-control-plane
+surf           15m         Normal    Started             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Started container sql-aggregate
+surf           15m         Normal    Created             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Created container: sql-algorithm
+surf           15m         Normal    Scheduled           pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Successfully assigned surf/jorrit-stutterheim-58efa7d4surf1-26jmq to dynamos-main-diagnose-control-plane
+surf           15m         Normal    Pulled              pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           15m         Normal    Started             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Started container sql-algorithm
+surf           15m         Normal    Pulled              pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Container image "dynamos-local/sidecar:main" already present on machine
+uva            15m         Normal    Started             pod/jorrit-stutterheim-58efa7d4uva1-dnt7v    Started container sidecar
+surf           15m         Normal    Created             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Created container: sidecar
+surf           15m         Normal    Started             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Started container sidecar
+surf           14m         Normal    Killing             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Stopping container sql-aggregate
+surf           14m         Normal    Killing             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Stopping container sidecar
+surf           14m         Normal    Killing             pod/jorrit-stutterheim-58efa7d4surf1-26jmq   Stopping container sql-algorithm
+uva            14m         Normal    Killing             pod/jorrit-stutterheim-58efa7d4uva1-dnt7v    Stopping container sql-query
+surf           14m         Normal    Scheduled           pod/jorrit-stutterheim-849fc895surf1-7fzr2   Successfully assigned surf/jorrit-stutterheim-849fc895surf1-7fzr2 to dynamos-main-diagnose-control-plane
+surf           14m         Normal    SuccessfulCreate    job/jorrit-stutterheim-849fc895surf1         Created pod: jorrit-stutterheim-849fc895surf1-7fzr2
+uva            14m         Normal    Scheduled           pod/jorrit-stutterheim-849fc895uva1-xhj8b    Successfully assigned uva/jorrit-stutterheim-849fc895uva1-xhj8b to dynamos-main-diagnose-control-plane
+uva            14m         Normal    SuccessfulCreate    job/jorrit-stutterheim-849fc895uva1          Created pod: jorrit-stutterheim-849fc895uva1-xhj8b
+uva            14m         Normal    Pulled              pod/jorrit-stutterheim-849fc895uva1-xhj8b    Container image "dynamos-local/sidecar:main" already present on machine
+surf           14m         Normal    Created             pod/jorrit-stutterheim-849fc895surf1-7fzr2   Created container: sql-algorithm
+surf           14m         Normal    Pulled              pod/jorrit-stutterheim-849fc895surf1-7fzr2   Container image "dynamos-local/sidecar:main" already present on machine
+surf           14m         Normal    Pulled              pod/jorrit-stutterheim-849fc895surf1-7fzr2   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            14m         Normal    Created             pod/jorrit-stutterheim-849fc895uva1-xhj8b    Created container: sql-query
+surf           14m         Normal    Created             pod/jorrit-stutterheim-849fc895surf1-7fzr2   Created container: sidecar
+surf           14m         Normal    Started             pod/jorrit-stutterheim-849fc895surf1-7fzr2   Started container sidecar
+surf           14m         Normal    Started             pod/jorrit-stutterheim-849fc895surf1-7fzr2   Started container sql-aggregate
+uva            14m         Normal    Started             pod/jorrit-stutterheim-849fc895uva1-xhj8b    Started container sql-query
+surf           14m         Normal    Pulled              pod/jorrit-stutterheim-849fc895surf1-7fzr2   Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            14m         Normal    Created             pod/jorrit-stutterheim-849fc895uva1-xhj8b    Created container: sidecar
+surf           14m         Normal    Started             pod/jorrit-stutterheim-849fc895surf1-7fzr2   Started container sql-algorithm
+surf           14m         Normal    Created             pod/jorrit-stutterheim-849fc895surf1-7fzr2   Created container: sql-aggregate
+uva            14m         Normal    Started             pod/jorrit-stutterheim-849fc895uva1-xhj8b    Started container sidecar
+uva            14m         Normal    Pulled              pod/jorrit-stutterheim-849fc895uva1-xhj8b    Container image "dynamos-local/sql-query:main" already present on machine
+uva            13m         Normal    Killing             pod/jorrit-stutterheim-849fc895uva1-xhj8b    Stopping container sql-query
+uva            13m         Normal    SuccessfulCreate    job/jorrit-stutterheim-bc11b319uva1          Created pod: jorrit-stutterheim-bc11b319uva1-kj58r
+uva            13m         Normal    Pulled              pod/jorrit-stutterheim-bc11b319uva1-kj58r    Container image "dynamos-local/sql-query:main" already present on machine
+uva            13m         Normal    Created             pod/jorrit-stutterheim-bc11b319uva1-kj58r    Created container: sql-query
+surf           13m         Normal    Scheduled           pod/jorrit-stutterheim-bc11b319surf1-xms5b   Successfully assigned surf/jorrit-stutterheim-bc11b319surf1-xms5b to dynamos-main-diagnose-control-plane
+uva            13m         Normal    Scheduled           pod/jorrit-stutterheim-bc11b319uva1-kj58r    Successfully assigned uva/jorrit-stutterheim-bc11b319uva1-kj58r to dynamos-main-diagnose-control-plane
+surf           13m         Normal    SuccessfulCreate    job/jorrit-stutterheim-bc11b319surf1         Created pod: jorrit-stutterheim-bc11b319surf1-xms5b
+uva            13m         Normal    Started             pod/jorrit-stutterheim-bc11b319uva1-kj58r    Started container sql-query
+uva            13m         Normal    Pulled              pod/jorrit-stutterheim-bc11b319uva1-kj58r    Container image "dynamos-local/sidecar:main" already present on machine
+surf           13m         Normal    Pulled              pod/jorrit-stutterheim-bc11b319surf1-xms5b   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           13m         Normal    Created             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Created container: sql-aggregate
+surf           13m         Normal    Started             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Started container sql-aggregate
+surf           13m         Normal    Pulled              pod/jorrit-stutterheim-bc11b319surf1-xms5b   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           13m         Normal    Created             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Created container: sql-algorithm
+uva            13m         Normal    Created             pod/jorrit-stutterheim-bc11b319uva1-kj58r    Created container: sidecar
+uva            13m         Normal    Started             pod/jorrit-stutterheim-bc11b319uva1-kj58r    Started container sidecar
+surf           13m         Normal    Started             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Started container sql-algorithm
+surf           13m         Normal    Pulled              pod/jorrit-stutterheim-bc11b319surf1-xms5b   Container image "dynamos-local/sidecar:main" already present on machine
+surf           13m         Normal    Created             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Created container: sidecar
+surf           13m         Normal    Started             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Started container sidecar
+surf           12m         Normal    Killing             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Stopping container sidecar
+surf           12m         Normal    Killing             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Stopping container sql-algorithm
+surf           12m         Normal    Killing             pod/jorrit-stutterheim-bc11b319surf1-xms5b   Stopping container sql-aggregate
+uva            12m         Normal    Killing             pod/jorrit-stutterheim-bc11b319uva1-kj58r    Stopping container sql-query
+uva            12m         Normal    Killing             pod/jorrit-stutterheim-bc11b319uva1-kj58r    Stopping container sidecar
+surf           12m         Normal    Scheduled           pod/jorrit-stutterheim-13960821surf1-zw7pr   Successfully assigned surf/jorrit-stutterheim-13960821surf1-zw7pr to dynamos-main-diagnose-control-plane
+surf           12m         Normal    SuccessfulCreate    job/jorrit-stutterheim-13960821surf1         Created pod: jorrit-stutterheim-13960821surf1-zw7pr
+uva            12m         Normal    SuccessfulCreate    job/jorrit-stutterheim-13960821uva1          Created pod: jorrit-stutterheim-13960821uva1-hbs9p
+uva            12m         Normal    Scheduled           pod/jorrit-stutterheim-13960821uva1-hbs9p    Successfully assigned uva/jorrit-stutterheim-13960821uva1-hbs9p to dynamos-main-diagnose-control-plane
+uva            12m         Normal    Pulled              pod/jorrit-stutterheim-13960821uva1-hbs9p    Container image "dynamos-local/sql-query:main" already present on machine
+surf           12m         Normal    Started             pod/jorrit-stutterheim-13960821surf1-zw7pr   Started container sql-aggregate
+surf           12m         Normal    Started             pod/jorrit-stutterheim-13960821surf1-zw7pr   Started container sql-algorithm
+surf           12m         Normal    Created             pod/jorrit-stutterheim-13960821surf1-zw7pr   Created container: sql-algorithm
+surf           12m         Normal    Pulled              pod/jorrit-stutterheim-13960821surf1-zw7pr   Container image "dynamos-local/sql-algorithm:main" already present on machine
+uva            12m         Normal    Pulled              pod/jorrit-stutterheim-13960821uva1-hbs9p    Container image "dynamos-local/sidecar:main" already present on machine
+uva            12m         Normal    Started             pod/jorrit-stutterheim-13960821uva1-hbs9p    Started container sql-query
+surf           12m         Normal    Created             pod/jorrit-stutterheim-13960821surf1-zw7pr   Created container: sidecar
+surf           12m         Normal    Created             pod/jorrit-stutterheim-13960821surf1-zw7pr   Created container: sql-aggregate
+surf           12m         Normal    Pulled              pod/jorrit-stutterheim-13960821surf1-zw7pr   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           12m         Normal    Pulled              pod/jorrit-stutterheim-13960821surf1-zw7pr   Container image "dynamos-local/sidecar:main" already present on machine
+uva            12m         Normal    Created             pod/jorrit-stutterheim-13960821uva1-hbs9p    Created container: sidecar
+uva            12m         Normal    Started             pod/jorrit-stutterheim-13960821uva1-hbs9p    Started container sidecar
+uva            12m         Normal    Created             pod/jorrit-stutterheim-13960821uva1-hbs9p    Created container: sql-query
+surf           12m         Normal    Started             pod/jorrit-stutterheim-13960821surf1-zw7pr   Started container sidecar
+surf           11m         Normal    Killing             pod/jorrit-stutterheim-13960821surf1-zw7pr   Stopping container sql-algorithm
+surf           11m         Normal    Killing             pod/jorrit-stutterheim-13960821surf1-zw7pr   Stopping container sql-aggregate
+surf           11m         Normal    Killing             pod/jorrit-stutterheim-13960821surf1-zw7pr   Stopping container sidecar
+uva            11m         Normal    Killing             pod/jorrit-stutterheim-13960821uva1-hbs9p    Stopping container sql-query
+surf           11m         Normal    Scheduled           pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Successfully assigned surf/jorrit-stutterheim-c703d3e2surf1-zdkgp to dynamos-main-diagnose-control-plane
+uva            11m         Normal    SuccessfulCreate    job/jorrit-stutterheim-c703d3e2uva1          Created pod: jorrit-stutterheim-c703d3e2uva1-8xffd
+uva            11m         Normal    Scheduled           pod/jorrit-stutterheim-c703d3e2uva1-8xffd    Successfully assigned uva/jorrit-stutterheim-c703d3e2uva1-8xffd to dynamos-main-diagnose-control-plane
+surf           11m         Normal    SuccessfulCreate    job/jorrit-stutterheim-c703d3e2surf1         Created pod: jorrit-stutterheim-c703d3e2surf1-zdkgp
+surf           11m         Normal    Created             pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Created container: sql-aggregate
+uva            11m         Normal    Pulled              pod/jorrit-stutterheim-c703d3e2uva1-8xffd    Container image "dynamos-local/sidecar:main" already present on machine
+uva            11m         Normal    Started             pod/jorrit-stutterheim-c703d3e2uva1-8xffd    Started container sidecar
+surf           11m         Normal    Started             pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Started container sql-aggregate
+surf           11m         Normal    Pulled              pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           11m         Normal    Created             pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Created container: sql-algorithm
+surf           11m         Normal    Pulled              pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            11m         Normal    Created             pod/jorrit-stutterheim-c703d3e2uva1-8xffd    Created container: sidecar
+uva            11m         Normal    Pulled              pod/jorrit-stutterheim-c703d3e2uva1-8xffd    Container image "dynamos-local/sql-query:main" already present on machine
+uva            11m         Normal    Created             pod/jorrit-stutterheim-c703d3e2uva1-8xffd    Created container: sql-query
+uva            11m         Normal    Started             pod/jorrit-stutterheim-c703d3e2uva1-8xffd    Started container sql-query
+surf           11m         Normal    Pulled              pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Container image "dynamos-local/sidecar:main" already present on machine
+surf           11m         Normal    Created             pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Created container: sidecar
+surf           11m         Normal    Started             pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Started container sql-algorithm
+surf           11m         Normal    Started             pod/jorrit-stutterheim-c703d3e2surf1-zdkgp   Started container sidecar
+uva            10m         Normal    Killing             pod/jorrit-stutterheim-c703d3e2uva1-8xffd    Stopping container sql-query
+uva            10m         Normal    Scheduled           pod/jorrit-stutterheim-2186dfe0uva1-b25ds    Successfully assigned uva/jorrit-stutterheim-2186dfe0uva1-b25ds to dynamos-main-diagnose-control-plane
+uva            10m         Normal    SuccessfulCreate    job/jorrit-stutterheim-2186dfe0uva1          Created pod: jorrit-stutterheim-2186dfe0uva1-b25ds
+surf           10m         Normal    SuccessfulCreate    job/jorrit-stutterheim-2186dfe0surf1         Created pod: jorrit-stutterheim-2186dfe0surf1-vjw6v
+surf           10m         Normal    Scheduled           pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Successfully assigned surf/jorrit-stutterheim-2186dfe0surf1-vjw6v to dynamos-main-diagnose-control-plane
+surf           10m         Normal    Created             pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Created container: sidecar
+surf           10m         Normal    Pulled              pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Container image "dynamos-local/sidecar:main" already present on machine
+uva            10m         Normal    Started             pod/jorrit-stutterheim-2186dfe0uva1-b25ds    Started container sql-query
+uva            10m         Normal    Started             pod/jorrit-stutterheim-2186dfe0uva1-b25ds    Started container sidecar
+uva            10m         Normal    Created             pod/jorrit-stutterheim-2186dfe0uva1-b25ds    Created container: sql-query
+uva            10m         Normal    Created             pod/jorrit-stutterheim-2186dfe0uva1-b25ds    Created container: sidecar
+uva            10m         Normal    Pulled              pod/jorrit-stutterheim-2186dfe0uva1-b25ds    Container image "dynamos-local/sql-query:main" already present on machine
+surf           10m         Normal    Started             pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Started container sidecar
+uva            10m         Normal    Pulled              pod/jorrit-stutterheim-2186dfe0uva1-b25ds    Container image "dynamos-local/sidecar:main" already present on machine
+surf           10m         Normal    Pulled              pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           10m         Normal    Created             pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Created container: sql-aggregate
+surf           10m         Normal    Started             pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Started container sql-aggregate
+surf           10m         Normal    Pulled              pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           10m         Normal    Created             pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Created container: sql-algorithm
+surf           10m         Normal    Started             pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Started container sql-algorithm
+surf           9m47s       Normal    Killing             pod/jorrit-stutterheim-2186dfe0surf1-vjw6v   Stopping container sidecar
+uva            9m47s       Normal    Killing             pod/jorrit-stutterheim-2186dfe0uva1-b25ds    Stopping container sql-query
+uva            9m10s       Normal    SuccessfulCreate    job/jorrit-stutterheim-1df20a4auva1          Created pod: jorrit-stutterheim-1df20a4auva1-82dwl
+surf           9m10s       Normal    Scheduled           pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Successfully assigned surf/jorrit-stutterheim-1df20a4asurf1-jkfn8 to dynamos-main-diagnose-control-plane
+surf           9m10s       Normal    Pulled              pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           9m10s       Normal    Created             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Created container: sql-aggregate
+uva            9m10s       Normal    Scheduled           pod/jorrit-stutterheim-1df20a4auva1-82dwl    Successfully assigned uva/jorrit-stutterheim-1df20a4auva1-82dwl to dynamos-main-diagnose-control-plane
+uva            9m10s       Normal    Pulled              pod/jorrit-stutterheim-1df20a4auva1-82dwl    Container image "dynamos-local/sql-query:main" already present on machine
+surf           9m10s       Normal    SuccessfulCreate    job/jorrit-stutterheim-1df20a4asurf1         Created pod: jorrit-stutterheim-1df20a4asurf1-jkfn8
+uva            9m10s       Normal    Created             pod/jorrit-stutterheim-1df20a4auva1-82dwl    Created container: sql-query
+surf           9m9s        Normal    Created             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Created container: sidecar
+surf           9m9s        Normal    Created             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Created container: sql-algorithm
+uva            9m9s        Normal    Started             pod/jorrit-stutterheim-1df20a4auva1-82dwl    Started container sql-query
+surf           9m9s        Normal    Started             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Started container sql-algorithm
+surf           9m9s        Normal    Pulled              pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Container image "dynamos-local/sidecar:main" already present on machine
+surf           9m9s        Normal    Started             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Started container sidecar
+uva            9m9s        Normal    Pulled              pod/jorrit-stutterheim-1df20a4auva1-82dwl    Container image "dynamos-local/sidecar:main" already present on machine
+uva            9m9s        Normal    Created             pod/jorrit-stutterheim-1df20a4auva1-82dwl    Created container: sidecar
+uva            9m9s        Normal    Started             pod/jorrit-stutterheim-1df20a4auva1-82dwl    Started container sidecar
+surf           9m9s        Normal    Started             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Started container sql-aggregate
+surf           9m9s        Normal    Pulled              pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           8m58s       Normal    Killing             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Stopping container sql-aggregate
+surf           8m58s       Normal    Killing             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Stopping container sidecar
+surf           8m58s       Normal    Killing             pod/jorrit-stutterheim-1df20a4asurf1-jkfn8   Stopping container sql-algorithm
+uva            8m57s       Normal    Killing             pod/jorrit-stutterheim-1df20a4auva1-82dwl    Stopping container sidecar
+uva            8m57s       Normal    Killing             pod/jorrit-stutterheim-1df20a4auva1-82dwl    Stopping container sql-query
+surf           8m21s       Normal    SuccessfulCreate    job/jorrit-stutterheim-3445e02bsurf1         Created pod: jorrit-stutterheim-3445e02bsurf1-66jxj
+uva            8m21s       Normal    SuccessfulCreate    job/jorrit-stutterheim-3445e02buva1          Created pod: jorrit-stutterheim-3445e02buva1-wbs6b
+uva            8m21s       Normal    Scheduled           pod/jorrit-stutterheim-3445e02buva1-wbs6b    Successfully assigned uva/jorrit-stutterheim-3445e02buva1-wbs6b to dynamos-main-diagnose-control-plane
+surf           8m21s       Normal    Scheduled           pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Successfully assigned surf/jorrit-stutterheim-3445e02bsurf1-66jxj to dynamos-main-diagnose-control-plane
+surf           8m20s       Normal    Started             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Started container sql-algorithm
+uva            8m20s       Normal    Pulled              pod/jorrit-stutterheim-3445e02buva1-wbs6b    Container image "dynamos-local/sql-query:main" already present on machine
+surf           8m20s       Normal    Created             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Created container: sidecar
+uva            8m20s       Normal    Created             pod/jorrit-stutterheim-3445e02buva1-wbs6b    Created container: sidecar
+surf           8m20s       Normal    Pulled              pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            8m20s       Normal    Pulled              pod/jorrit-stutterheim-3445e02buva1-wbs6b    Container image "dynamos-local/sidecar:main" already present on machine
+uva            8m20s       Normal    Started             pod/jorrit-stutterheim-3445e02buva1-wbs6b    Started container sql-query
+uva            8m20s       Normal    Created             pod/jorrit-stutterheim-3445e02buva1-wbs6b    Created container: sql-query
+surf           8m20s       Normal    Pulled              pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Container image "dynamos-local/sidecar:main" already present on machine
+surf           8m20s       Normal    Created             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Created container: sql-algorithm
+surf           8m20s       Normal    Pulled              pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           8m20s       Normal    Created             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Created container: sql-aggregate
+surf           8m20s       Normal    Started             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Started container sql-aggregate
+surf           8m19s       Normal    Started             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Started container sidecar
+uva            8m19s       Normal    Started             pod/jorrit-stutterheim-3445e02buva1-wbs6b    Started container sidecar
+surf           8m4s        Normal    Killing             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Stopping container sidecar
+surf           8m4s        Normal    Killing             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Stopping container sql-algorithm
+surf           8m4s        Normal    Killing             pod/jorrit-stutterheim-3445e02bsurf1-66jxj   Stopping container sql-aggregate
+uva            8m4s        Normal    Killing             pod/jorrit-stutterheim-3445e02buva1-wbs6b    Stopping container sql-query
+uva            7m24s       Normal    Scheduled           pod/jorrit-stutterheim-5fd8e5f2uva1-shq7d    Successfully assigned uva/jorrit-stutterheim-5fd8e5f2uva1-shq7d to dynamos-main-diagnose-control-plane
+surf           7m24s       Normal    Pulled              pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            7m24s       Normal    SuccessfulCreate    job/jorrit-stutterheim-5fd8e5f2uva1          Created pod: jorrit-stutterheim-5fd8e5f2uva1-shq7d
+surf           7m24s       Normal    Scheduled           pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Successfully assigned surf/jorrit-stutterheim-5fd8e5f2surf1-dx6h4 to dynamos-main-diagnose-control-plane
+surf           7m24s       Normal    SuccessfulCreate    job/jorrit-stutterheim-5fd8e5f2surf1         Created pod: jorrit-stutterheim-5fd8e5f2surf1-dx6h4
+uva            7m23s       Normal    Started             pod/jorrit-stutterheim-5fd8e5f2uva1-shq7d    Started container sidecar
+surf           7m23s       Normal    Created             pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Created container: sidecar
+uva            7m23s       Normal    Pulled              pod/jorrit-stutterheim-5fd8e5f2uva1-shq7d    Container image "dynamos-local/sql-query:main" already present on machine
+uva            7m23s       Normal    Created             pod/jorrit-stutterheim-5fd8e5f2uva1-shq7d    Created container: sql-query
+surf           7m23s       Normal    Started             pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Started container sql-algorithm
+uva            7m23s       Normal    Started             pod/jorrit-stutterheim-5fd8e5f2uva1-shq7d    Started container sql-query
+uva            7m23s       Normal    Pulled              pod/jorrit-stutterheim-5fd8e5f2uva1-shq7d    Container image "dynamos-local/sidecar:main" already present on machine
+uva            7m23s       Normal    Created             pod/jorrit-stutterheim-5fd8e5f2uva1-shq7d    Created container: sidecar
+surf           7m23s       Normal    Created             pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Created container: sql-aggregate
+surf           7m23s       Normal    Pulled              pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Container image "dynamos-local/sidecar:main" already present on machine
+surf           7m23s       Normal    Created             pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Created container: sql-algorithm
+surf           7m23s       Normal    Started             pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Started container sql-aggregate
+surf           7m23s       Normal    Pulled              pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           7m23s       Normal    Started             pod/jorrit-stutterheim-5fd8e5f2surf1-dx6h4   Started container sidecar
+uva            6m33s       Normal    Killing             pod/jorrit-stutterheim-5fd8e5f2uva1-shq7d    Stopping container sql-query
+uva            5m55s       Normal    Scheduled           pod/jorrit-stutterheim-ce4219b2uva1-vp9pb    Successfully assigned uva/jorrit-stutterheim-ce4219b2uva1-vp9pb to dynamos-main-diagnose-control-plane
+surf           5m55s       Normal    SuccessfulCreate    job/jorrit-stutterheim-ce4219b2surf1         Created pod: jorrit-stutterheim-ce4219b2surf1-6vxf8
+surf           5m55s       Normal    Created             pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Created container: sql-aggregate
+uva            5m55s       Normal    SuccessfulCreate    job/jorrit-stutterheim-ce4219b2uva1          Created pod: jorrit-stutterheim-ce4219b2uva1-vp9pb
+uva            5m55s       Normal    Created             pod/jorrit-stutterheim-ce4219b2uva1-vp9pb    Created container: sql-query
+uva            5m55s       Normal    Pulled              pod/jorrit-stutterheim-ce4219b2uva1-vp9pb    Container image "dynamos-local/sql-query:main" already present on machine
+surf           5m55s       Normal    Scheduled           pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Successfully assigned surf/jorrit-stutterheim-ce4219b2surf1-6vxf8 to dynamos-main-diagnose-control-plane
+surf           5m55s       Normal    Pulled              pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            5m54s       Normal    Started             pod/jorrit-stutterheim-ce4219b2uva1-vp9pb    Started container sidecar
+surf           5m54s       Normal    Created             pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Created container: sidecar
+surf           5m54s       Normal    Pulled              pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           5m54s       Normal    Created             pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Created container: sql-algorithm
+surf           5m54s       Normal    Started             pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Started container sql-algorithm
+surf           5m54s       Normal    Pulled              pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Container image "dynamos-local/sidecar:main" already present on machine
+uva            5m54s       Normal    Started             pod/jorrit-stutterheim-ce4219b2uva1-vp9pb    Started container sql-query
+surf           5m54s       Normal    Started             pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Started container sql-aggregate
+surf           5m54s       Normal    Started             pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Started container sidecar
+uva            5m54s       Normal    Created             pod/jorrit-stutterheim-ce4219b2uva1-vp9pb    Created container: sidecar
+uva            5m54s       Normal    Pulled              pod/jorrit-stutterheim-ce4219b2uva1-vp9pb    Container image "dynamos-local/sidecar:main" already present on machine
+surf           5m36s       Normal    Killing             pod/jorrit-stutterheim-ce4219b2surf1-6vxf8   Stopping container sidecar
+uva            5m36s       Normal    Killing             pod/jorrit-stutterheim-ce4219b2uva1-vp9pb    Stopping container sql-query
+surf           4m59s       Normal    SuccessfulCreate    job/jorrit-stutterheim-6787ea03surf1         Created pod: jorrit-stutterheim-6787ea03surf1-8pz2n
+surf           4m58s       Normal    Started             pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Started container sql-aggregate
+uva            4m58s       Normal    Scheduled           pod/jorrit-stutterheim-6787ea03uva1-8d9dq    Successfully assigned uva/jorrit-stutterheim-6787ea03uva1-8d9dq to dynamos-main-diagnose-control-plane
+surf           4m58s       Normal    Pulled              pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           4m58s       Normal    Created             pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Created container: sql-aggregate
+uva            4m58s       Normal    SuccessfulCreate    job/jorrit-stutterheim-6787ea03uva1          Created pod: jorrit-stutterheim-6787ea03uva1-8d9dq
+surf           4m58s       Normal    Scheduled           pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Successfully assigned surf/jorrit-stutterheim-6787ea03surf1-8pz2n to dynamos-main-diagnose-control-plane
+uva            4m58s       Normal    Pulled              pod/jorrit-stutterheim-6787ea03uva1-8d9dq    Container image "dynamos-local/sql-query:main" already present on machine
+uva            4m58s       Normal    Created             pod/jorrit-stutterheim-6787ea03uva1-8d9dq    Created container: sidecar
+uva            4m58s       Normal    Pulled              pod/jorrit-stutterheim-6787ea03uva1-8d9dq    Container image "dynamos-local/sidecar:main" already present on machine
+uva            4m58s       Normal    Created             pod/jorrit-stutterheim-6787ea03uva1-8d9dq    Created container: sql-query
+surf           4m58s       Normal    Pulled              pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           4m58s       Normal    Created             pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Created container: sql-algorithm
+uva            4m58s       Normal    Started             pod/jorrit-stutterheim-6787ea03uva1-8d9dq    Started container sql-query
+uva            4m57s       Normal    Started             pod/jorrit-stutterheim-6787ea03uva1-8d9dq    Started container sidecar
+surf           4m57s       Normal    Started             pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Started container sql-algorithm
+surf           4m57s       Normal    Pulled              pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Container image "dynamos-local/sidecar:main" already present on machine
+surf           4m57s       Normal    Started             pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Started container sidecar
+surf           4m57s       Normal    Created             pod/jorrit-stutterheim-6787ea03surf1-8pz2n   Created container: sidecar
+uva            4m26s       Normal    Killing             pod/jorrit-stutterheim-6787ea03uva1-8d9dq    Stopping container sql-query
+surf           3m48s       Normal    Scheduled           pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Successfully assigned surf/jorrit-stutterheim-f39dbf4dsurf1-llfdj to dynamos-main-diagnose-control-plane
+surf           3m48s       Normal    SuccessfulCreate    job/jorrit-stutterheim-f39dbf4dsurf1         Created pod: jorrit-stutterheim-f39dbf4dsurf1-llfdj
+uva            3m48s       Normal    Scheduled           pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Successfully assigned uva/jorrit-stutterheim-f39dbf4duva1-5fvfp to dynamos-main-diagnose-control-plane
+uva            3m48s       Normal    SuccessfulCreate    job/jorrit-stutterheim-f39dbf4duva1          Created pod: jorrit-stutterheim-f39dbf4duva1-5fvfp
+surf           3m47s       Normal    Created             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Created container: sql-aggregate
+surf           3m47s       Normal    Pulled              pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           3m47s       Normal    Pulled              pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Container image "dynamos-local/sidecar:main" already present on machine
+uva            3m47s       Normal    Pulled              pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Container image "dynamos-local/sql-query:main" already present on machine
+uva            3m47s       Normal    Created             pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Created container: sql-query
+uva            3m47s       Normal    Started             pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Started container sql-query
+surf           3m47s       Normal    Started             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Started container sql-algorithm
+surf           3m47s       Normal    Created             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Created container: sql-algorithm
+surf           3m47s       Normal    Started             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Started container sql-aggregate
+surf           3m47s       Normal    Pulled              pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           3m47s       Normal    Created             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Created container: sidecar
+uva            3m47s       Normal    Pulled              pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Container image "dynamos-local/sidecar:main" already present on machine
+uva            3m47s       Normal    Created             pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Created container: sidecar
+uva            3m47s       Normal    Started             pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Started container sidecar
+surf           3m46s       Normal    Started             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Started container sidecar
+surf           3m35s       Normal    Killing             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Stopping container sidecar
+surf           3m35s       Normal    Killing             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Stopping container sql-algorithm
+surf           3m35s       Normal    Killing             pod/jorrit-stutterheim-f39dbf4dsurf1-llfdj   Stopping container sql-aggregate
+uva            3m34s       Normal    Killing             pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Stopping container sidecar
+uva            3m34s       Normal    Killing             pod/jorrit-stutterheim-f39dbf4duva1-5fvfp    Stopping container sql-query
+uva            2m58s       Normal    Created             pod/jorrit-stutterheim-82412feeuva1-d69wm    Created container: sql-query
+surf           2m58s       Normal    Created             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Created container: sql-aggregate
+surf           2m58s       Normal    SuccessfulCreate    job/jorrit-stutterheim-82412feesurf1         Created pod: jorrit-stutterheim-82412feesurf1-dxs5c
+uva            2m58s       Normal    Pulled              pod/jorrit-stutterheim-82412feeuva1-d69wm    Container image "dynamos-local/sql-query:main" already present on machine
+uva            2m58s       Normal    Scheduled           pod/jorrit-stutterheim-82412feeuva1-d69wm    Successfully assigned uva/jorrit-stutterheim-82412feeuva1-d69wm to dynamos-main-diagnose-control-plane
+uva            2m58s       Normal    SuccessfulCreate    job/jorrit-stutterheim-82412feeuva1          Created pod: jorrit-stutterheim-82412feeuva1-d69wm
+surf           2m58s       Normal    Scheduled           pod/jorrit-stutterheim-82412feesurf1-dxs5c   Successfully assigned surf/jorrit-stutterheim-82412feesurf1-dxs5c to dynamos-main-diagnose-control-plane
+surf           2m58s       Normal    Pulled              pod/jorrit-stutterheim-82412feesurf1-dxs5c   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            2m57s       Normal    Started             pod/jorrit-stutterheim-82412feeuva1-d69wm    Started container sidecar
+uva            2m57s       Normal    Created             pod/jorrit-stutterheim-82412feeuva1-d69wm    Created container: sidecar
+surf           2m57s       Normal    Pulled              pod/jorrit-stutterheim-82412feesurf1-dxs5c   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           2m57s       Normal    Created             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Created container: sql-algorithm
+surf           2m57s       Normal    Started             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Started container sql-algorithm
+surf           2m57s       Normal    Pulled              pod/jorrit-stutterheim-82412feesurf1-dxs5c   Container image "dynamos-local/sidecar:main" already present on machine
+surf           2m57s       Normal    Created             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Created container: sidecar
+uva            2m57s       Normal    Started             pod/jorrit-stutterheim-82412feeuva1-d69wm    Started container sql-query
+surf           2m57s       Normal    Started             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Started container sidecar
+surf           2m57s       Normal    Started             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Started container sql-aggregate
+uva            2m57s       Normal    Pulled              pod/jorrit-stutterheim-82412feeuva1-d69wm    Container image "dynamos-local/sidecar:main" already present on machine
+surf           2m45s       Normal    Killing             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Stopping container sql-algorithm
+surf           2m45s       Normal    Killing             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Stopping container sql-aggregate
+surf           2m45s       Normal    Killing             pod/jorrit-stutterheim-82412feesurf1-dxs5c   Stopping container sidecar
+uva            2m44s       Normal    Killing             pod/jorrit-stutterheim-82412feeuva1-d69wm    Stopping container sql-query
+uva            2m6s        Normal    Scheduled           pod/jorrit-stutterheim-f58219eduva1-swcbk    Successfully assigned uva/jorrit-stutterheim-f58219eduva1-swcbk to dynamos-main-diagnose-control-plane
+uva            2m6s        Normal    SuccessfulCreate    job/jorrit-stutterheim-f58219eduva1          Created pod: jorrit-stutterheim-f58219eduva1-swcbk
+surf           2m6s        Normal    SuccessfulCreate    job/jorrit-stutterheim-f58219edsurf1         Created pod: jorrit-stutterheim-f58219edsurf1-c9n5f
+surf           2m6s        Normal    Scheduled           pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Successfully assigned surf/jorrit-stutterheim-f58219edsurf1-c9n5f to dynamos-main-diagnose-control-plane
+uva            2m5s        Normal    Created             pod/jorrit-stutterheim-f58219eduva1-swcbk    Created container: sql-query
+surf           2m5s        Normal    Created             pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Created container: sql-aggregate
+uva            2m5s        Normal    Started             pod/jorrit-stutterheim-f58219eduva1-swcbk    Started container sidecar
+uva            2m5s        Normal    Created             pod/jorrit-stutterheim-f58219eduva1-swcbk    Created container: sidecar
+uva            2m5s        Normal    Pulled              pod/jorrit-stutterheim-f58219eduva1-swcbk    Container image "dynamos-local/sidecar:main" already present on machine
+uva            2m5s        Normal    Started             pod/jorrit-stutterheim-f58219eduva1-swcbk    Started container sql-query
+uva            2m5s        Normal    Pulled              pod/jorrit-stutterheim-f58219eduva1-swcbk    Container image "dynamos-local/sql-query:main" already present on machine
+surf           2m5s        Normal    Pulled              pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           2m5s        Normal    Pulled              pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Container image "dynamos-local/sql-aggregate:main" already present on machine
+surf           2m5s        Normal    Created             pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Created container: sql-algorithm
+surf           2m5s        Normal    Started             pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Started container sql-aggregate
+surf           2m5s        Normal    Started             pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Started container sql-algorithm
+surf           2m5s        Normal    Pulled              pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Container image "dynamos-local/sidecar:main" already present on machine
+surf           2m5s        Normal    Created             pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Created container: sidecar
+surf           2m4s        Normal    Started             pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Started container sidecar
+surf           102s        Normal    Killing             pod/jorrit-stutterheim-f58219edsurf1-c9n5f   Stopping container sidecar
+uva            102s        Normal    Killing             pod/jorrit-stutterheim-f58219eduva1-swcbk    Stopping container sql-query
+surf           102s        Warning   FailedKillPod       pod/jorrit-stutterheim-f58219edsurf1-c9n5f   error killing pod: failed to "KillContainer" for "sidecar" with KillContainerError: "rpc error: code = Unknown desc = failed to stop container \"97c066a4d133ff1e1e5c8053e0301bff1a5a2f066317a27e9f662f714beafdec\": ttrpc: closed"
+uva            65s         Normal    Scheduled           pod/jorrit-stutterheim-9fc73a9fuva1-q9bkj    Successfully assigned uva/jorrit-stutterheim-9fc73a9fuva1-q9bkj to dynamos-main-diagnose-control-plane
+uva            65s         Normal    SuccessfulCreate    job/jorrit-stutterheim-9fc73a9fuva1          Created pod: jorrit-stutterheim-9fc73a9fuva1-q9bkj
+surf           65s         Normal    Scheduled           pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Successfully assigned surf/jorrit-stutterheim-9fc73a9fsurf1-rpt22 to dynamos-main-diagnose-control-plane
+surf           65s         Normal    SuccessfulCreate    job/jorrit-stutterheim-9fc73a9fsurf1         Created pod: jorrit-stutterheim-9fc73a9fsurf1-rpt22
+uva            64s         Normal    Created             pod/jorrit-stutterheim-9fc73a9fuva1-q9bkj    Created container: sidecar
+surf           64s         Normal    Created             pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Created container: sql-aggregate
+uva            64s         Normal    Started             pod/jorrit-stutterheim-9fc73a9fuva1-q9bkj    Started container sidecar
+uva            64s         Normal    Created             pod/jorrit-stutterheim-9fc73a9fuva1-q9bkj    Created container: sql-query
+uva            64s         Normal    Pulled              pod/jorrit-stutterheim-9fc73a9fuva1-q9bkj    Container image "dynamos-local/sidecar:main" already present on machine
+uva            64s         Normal    Started             pod/jorrit-stutterheim-9fc73a9fuva1-q9bkj    Started container sql-query
+surf           64s         Normal    Pulled              pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Container image "dynamos-local/sql-algorithm:main" already present on machine
+surf           64s         Normal    Created             pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Created container: sql-algorithm
+surf           64s         Normal    Pulled              pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Container image "dynamos-local/sidecar:main" already present on machine
+surf           64s         Normal    Pulled              pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Container image "dynamos-local/sql-aggregate:main" already present on machine
+uva            64s         Normal    Pulled              pod/jorrit-stutterheim-9fc73a9fuva1-q9bkj    Container image "dynamos-local/sql-query:main" already present on machine
+surf           64s         Normal    Started             pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Started container sql-aggregate
+surf           64s         Normal    Started             pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Started container sql-algorithm
+surf           63s         Normal    Created             pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Created container: sidecar
+surf           63s         Normal    Started             pod/jorrit-stutterheim-9fc73a9fsurf1-rpt22   Started container sidecar
+uva            33s         Normal    Killing             pod/jorrit-stutterheim-9fc73a9fuva1-q9bkj    Stopping container sql-query

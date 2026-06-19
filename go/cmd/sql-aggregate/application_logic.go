@@ -45,7 +45,7 @@ func mergeData(msCommList []*pb.MicroserviceCommunication) *pb.MicroserviceCommu
 	for key, value := range msCommList[0].Data.GetFields() {
 		mergedData.Fields[key] = value
 	}
-	for _, msComm := range msCommList {
+	for _, msComm := range msCommList[1:] {
 
 		// Merge rest of the data into mergedData, checking for and handling identical fields
 		for key, value2 := range msComm.Data.GetFields() {

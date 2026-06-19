@@ -1,0 +1,35 @@
+{
+  "archetype": "computeToData",
+  "bodyPreview": "Request timed out\n",
+  "clientTimeoutSeconds": 900.0,
+  "dataset": "large",
+  "doneSeconds": null,
+  "elapsedSeconds": 600.067342,
+  "error": "HTTP Error 408: Request Timeout",
+  "errors": [
+    "HTTP Error 408: Request Timeout",
+    "invalid JSON: Expecting value: line 1 column 1 (char 0)",
+    "HTTP status 408",
+    "rows mismatch: observed None, expected 100000"
+  ],
+  "events": [],
+  "expectedRows": 100000,
+  "firstResultSeconds": null,
+  "gatewayError": "invalid JSON: Expecting value: line 1 column 1 (char 0)",
+  "limit": 100000,
+  "ok": false,
+  "partialResultCount": 0,
+  "providers": [
+    "UVA"
+  ],
+  "queryShape": "default",
+  "rawLineCount": 1,
+  "requestBytes": 435,
+  "responseBytes": 18,
+  "responseMode": "classic-unary",
+  "responseSha256": "edfc217e7bb8c4a3508615fe6b6cc521eaa9a8bdd357e4a4a40909768a12e404",
+  "status": 408,
+  "transport": "unary",
+  "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+  "workload": "bulk"
+}

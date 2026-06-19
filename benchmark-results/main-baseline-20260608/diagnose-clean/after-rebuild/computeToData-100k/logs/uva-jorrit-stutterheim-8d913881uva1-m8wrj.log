@@ -1,0 +1,80 @@
+2026-06-08T18:27:57.976907869Z /usr/local/lib/python3.12/site-packages/opentelemetry/instrumentation/dependencies.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+2026-06-08T18:27:57.976949363Z   from pkg_resources import (
+2026-06-08T18:27:58.110381500Z 2026-06-08 18:27:58,109 - main.py - main.py:34 - DEBUG - tracer host: collector.linkerd-jaeger:4317
+2026-06-08T18:27:58.110480892Z 2026-06-08 18:27:58,109 - main.py - main.py:35 - DEBUG - tracer: <opentelemetry.sdk.trace.Tracer object at 0x76c92f7ce810>
+2026-06-08T18:27:58.111575131Z 2026-06-08 18:27:58,111 - main.py - ms_init.py:183 - DEBUG - NewConfiguration query, 
+2026-06-08T18:27:58.111619135Z job_name: jorrit-stutterheim-8d913881uva1 
+2026-06-08T18:27:58.111620468Z port: 50053,  
+2026-06-08T18:27:58.111627751Z first_service: 1,  
+2026-06-08T18:27:58.111628776Z last_service: 0
+2026-06-08T18:27:58.145276519Z 2026-06-08 18:27:58,145 - main.py - grpc_client.py:91 - DEBUG - Try connecting to: localhost:50051
+2026-06-08T18:27:58.149119177Z 2026-06-08 18:27:58,148 - main.py - grpc_server.py:184 - INFO - gRPC server started on localhost:50053
+2026-06-08T18:27:58.165505886Z 2026-06-08 18:27:58,165 - main.py - grpc_client.py:97 - INFO - Successfully connected to gRPC server at localhost:50051
+2026-06-08T18:27:58.182108407Z Attempting to instrument while already instrumented
+2026-06-08T18:27:58.183118331Z 2026-06-08 18:27:58,181 - main.py - grpc_client.py:91 - DEBUG - Try connecting to: localhost:50054
+2026-06-08T18:27:58.194883451Z 2026-06-08 18:27:58,193 - main.py - grpc_client.py:97 - INFO - Successfully connected to gRPC server at localhost:50054
+2026-06-08T18:27:58.370034086Z 2026-06-08 18:27:58,367 - main.py - grpc_server.py:75 - INFO - Received health check request
+2026-06-08T18:27:58.397672644Z 2026-06-08 18:27:58,394 - main.py - grpc_server.py:116 - DEBUG - Starting MicroserviceServicer grpc_server.py/SendData: jorrit-stutterheim-8d913881uva1
+2026-06-08T18:27:58.399478938Z 2026-06-08 18:27:58,399 - main.py - grpc_server.py:128 - DEBUG - msComm type: <class 'microserviceCommunication_pb2.MicroserviceCommunication'>
+2026-06-08T18:27:58.399727880Z 2026-06-08 18:27:58,399 - main.py - ms_init.py:108 - DEBUG - 1. scMap: {'SpanID': 'ee60f96562498168', 'TraceID': '6967abd5f4a8712e39a8a6176e1ebffc'}
+2026-06-08T18:27:58.399850044Z 2026-06-08 18:27:58,399 - main.py - ms_init.py:109 - DEBUG - 1. state: ['{key=sampled, value=1}']
+2026-06-08T18:27:58.399958462Z 2026-06-08 18:27:58,399 - main.py - ms_init.py:120 - DEBUG - 2
+2026-06-08T18:27:58.400287719Z 2026-06-08 18:27:58,399 - main.py - main.py:140 - INFO - Received original request type: sqlDataRequest
+2026-06-08T18:27:58.400442808Z 2026-06-08 18:27:58,400 - main.py - main.py:120 - DEBUG - Start process_sql_data_request
+2026-06-08T18:27:58.401109013Z 2026-06-08 18:27:58,400 - main.py - main.py:75 - DEBUG - Loading file /app/datasets/PersonenLarge_UVA.csv
+2026-06-08T18:27:58.809442793Z 2026-06-08 18:27:58,808 - main.py - main.py:77 - DEBUG - after read csv
+2026-06-08T18:27:58.809468333Z 2026-06-08 18:27:58,808 - main.py - main.py:75 - DEBUG - Loading file /app/datasets/AanstellingenLarge_UVA.csv
+2026-06-08T18:27:59.407649685Z 2026-06-08 18:27:59,396 - main.py - main.py:77 - DEBUG - after read csv
+2026-06-08T18:28:03.122329196Z Transient error StatusCode.UNAVAILABLE encountered while exporting traces to collector.linkerd-jaeger:4317, retrying in 1s.
+2026-06-08T18:28:04.128226946Z Transient error StatusCode.UNAVAILABLE encountered while exporting traces to collector.linkerd-jaeger:4317, retrying in 2s.
+2026-06-08T18:28:05.370485925Z Transient error StatusCode.UNAVAILABLE encountered while exporting traces to collector.linkerd-jaeger:4317, retrying in 4s.
+2026-06-08T18:28:07.324469351Z 2026-06-08 18:28:07,317 - main.py - main.py:88 - DEBUG - after result_df
+2026-06-08T18:28:07.325235589Z 2026-06-08 18:28:07,323 - main.py - main.py:124 - DEBUG - after load and query csv
+2026-06-08T18:28:09.377660168Z Transient error StatusCode.UNAVAILABLE encountered while exporting traces to collector.linkerd-jaeger:4317, retrying in 8s.
+2026-06-08T18:28:09.572538937Z 2026-06-08 18:28:09,569 - main.py - main.py:159 - DEBUG - Forwarding result, metadata: {'Unieknr': 'int64', 'Geslacht': 'str', 'Gebdat': 'int64', 'Salschal': 'int64', 'Ingdatdv': 'int64', 'Functcat': 'int64'}
+2026-06-08T18:28:09.572577911Z Invalid type dict for attribute 'handleMsCommunication finished:' value. Expected one of ['bool', 'str', 'bytes', 'int', 'float'] or a sequence of those types
+2026-06-08T18:28:09.609251523Z 2026-06-08 18:28:09,607 - main.py - grpc_client.py:158 - DEBUG - Sending message to <microserviceCommunication_pb2_grpc.MicroserviceStub object at 0x76c92f678a40>
+2026-06-08T18:28:11.455078116Z 2026-06-08 18:28:11,454 - main.py - grpc_server.py:203 - INFO - Stopping gRPC server...
+2026-06-08T18:28:11.465200754Z 2026-06-08 18:28:11,455 - main.py - grpc_server.py:189 - INFO - Server stopped
+2026-06-08T18:28:11.465251932Z 2026-06-08 18:28:11,456 - main.py - grpc_server.py:208 - INFO - gRPC server stopped
+2026-06-08T18:28:11.465255214Z 2026-06-08 18:28:11,456 - main.py - grpc_client.py:71 - DEBUG - Closed gRPC channel
+2026-06-08T18:28:13.458107120Z 2026-06-08 18:28:13,457 - main.py - main.py:195 - DEBUG - Exiting query
+2026-06-08T18:28:17.380862456Z Transient error StatusCode.UNAVAILABLE encountered while exporting traces to collector.linkerd-jaeger:4317, retrying in 16s.
+2026-06-08T18:27:52.661436044Z 1.7809432726572475e+09	[35mDEBUG[0m	/app/cmd/sql-algorithm/main.go:18	Starting algorithmService service
+2026-06-08T18:27:52.687444825Z 1.780943272686861e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:75	NewConfiguration algorithmService, firstServer: %!s(int=0), port: %!s(int=50054). lastservice: %!s(int=1)
+2026-06-08T18:27:52.687734768Z 1.7809432726875134e+09	[34mINFO[0m	/app/pkg/msinit/main.go:149	Start listening on port: 50054
+2026-06-08T18:27:52.705162763Z 1.7809432727049267e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:27:52.705284266Z 1.7809432727052422e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:27:53.706598306Z 1.7809432737062879e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:27:53.706629323Z 1.7809432737063637e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:27:54.711407579Z 1.780943274711243e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:96	returning conn GetGrpcConnection
+2026-06-08T18:28:10.116041327Z 1.7809432901142437e+09	[35mDEBUG[0m	/app/pkg/lib/grpc_server.go:47	Starting (to next MS) lib.SendData: jorrit-stutterheim-8d913881uva1
+2026-06-08T18:28:10.118112253Z 1.780943290115252e+09	[34mINFO[0m	/app/cmd/sql-algorithm/application_logic.go:38	Start handleSqlDataRequest
+2026-06-08T18:28:10.118129996Z 1.7809432901162488e+09	[35mDEBUG[0m	/app/cmd/sql-algorithm/application_logic.go:68	Length metadata: 6
+2026-06-08T18:28:11.349486202Z 1.7809432913445966e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:166	Start SafeExit
+2026-06-08T18:28:11.349711223Z 1.7809432913449605e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:172	Send StopReceivingRabbit	{"service": "algorithmService"}
+2026-06-08T18:28:11.376549986Z 1.7809432913523686e+09	[34mINFO[0m	/app/pkg/msinit/main.go:180	Wait 2 seconds before ending algorithmService
+2026-06-08T18:28:13.353898046Z 1.7809432933536339e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:184	Start closing gRPC connections NextClientConnection and RabbitConnection
+2026-06-08T18:28:13.353929943Z 1.7809432933538291e+09	[35mDEBUG[0m	/app/pkg/msinit/main.go:189	Close own gRPC server
+2026-06-08T18:28:13.353981429Z 1.7809432933538547e+09	[34mINFO[0m	/app/pkg/msinit/main.go:195	Stopping StopGrpcServer
+2026-06-08T18:28:13.354023992Z 1.780943293353917e+09	[34mINFO[0m	/app/pkg/msinit/main.go:209	Finished graceful stop
+2026-06-08T18:27:52.941669075Z 1.7809432729347138e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:38	Serving on 50051
+2026-06-08T18:27:58.207408321Z 1.7809432781980562e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:60	InitRabbitForChain Received:	{"Servicename": "query", "RoutingKey": "jorrit-stutterheim-8d913881uva1", "Port": 50053}
+2026-06-08T18:27:58.207433246Z 1.7809432781995037e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_setup_functions.go:38	Start getConnectionToRabbitMq
+2026-06-08T18:27:58.382271550Z 1.7809432783734002e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:96	returning conn GetGrpcConnection
+2026-06-08T18:27:58.383402202Z 1.780943278382564e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:108	Start ChainConsume	{"queueName:": "jorrit-stutterheim-8d913881uva1"}
+2026-06-08T18:27:58.390890065Z 1.7809432783900623e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:123	Started consuming	{"queue": "jorrit-stutterheim-8d913881uva1"}
+2026-06-08T18:27:58.391440980Z 1.7809432783912666e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:129	switchin:	{"msg,Type": "microserviceCommunication"}
+2026-06-08T18:27:58.391831472Z 1.7809432783916802e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:141	Send Mscomm to main container
+2026-06-08T18:27:58.391842550Z 1.7809432783917255e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:143	msg.Headers != nil
+2026-06-08T18:27:58.391844499Z 1.7809432783917334e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:148	Adding jsonTraces
+2026-06-08T18:27:58.391846037Z 1.7809432783917377e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:155	Adding binaryTrace
+2026-06-08T18:28:11.123066727Z 1.7809432911223714e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:174	Starting (to AMQ) lib.SendData: jorrit-stutterheim-8d913881uva1
+2026-06-08T18:28:11.123099034Z 1.780943291122804e+09	[35mDEBUG[0m	/app/cmd/sidecar/ms_communication_handlers.go:43	Starting lib.SendDataThroughAMQ
+2026-06-08T18:28:11.350368951Z 1.7809432913424892e+09	[35mDEBUG[0m	/app/cmd/sidecar/ms_communication_handlers.go:84	Ending lib.SendDataThroughAMQ
+2026-06-08T18:28:11.350386181Z 1.7809432913427143e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:187	Returning from SendData (to Microservice)
+2026-06-08T18:28:11.376242096Z 1.780943291352051e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:37	StopReceivingRabbit Received stop request
+2026-06-08T18:28:11.469691932Z 1.780943291456183e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_ms_chain.go:167	SendData response: 
+2026-06-08T18:28:11.470317251Z 1.7809432914562123e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_ms_chain.go:175	Received stop signal, exiting ChainConsume
+2026-06-08T18:28:11.470327404Z 1.7809432914562414e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:66	Stopping sidecar wait for a few 4 seconds before initating stop
+2026-06-08T18:28:15.460499609Z 1.7809432954593723e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:98	Exiting sidecar server

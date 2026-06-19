@@ -1,0 +1,382 @@
+apiVersion: v1
+items:
+- apiVersion: batch/v1
+  kind: Job
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":{},"name":"init-rabbit-pvc-local","namespace":"core"},"spec":{"template":{"spec":{"containers":[{"command":["sh","-c","mkdir -p /mnt \u0026\u0026 cp /config/definitions.json /mnt/definitions.json \u0026\u0026 cp /config/rabbitmq.conf /mnt/rabbitmq.conf \u0026\u0026 ls -la /mnt"],"image":"busybox:1.36","name":"seed","volumeMounts":[{"mountPath":"/mnt","name":"rabbit-pvc"},{"mountPath":"/config","name":"config"}]}],"restartPolicy":"Never","volumes":[{"name":"rabbit-pvc","persistentVolumeClaim":{"claimName":"rabbit-pvc"}},{"configMap":{"name":"rabbitmq-config-files"},"name":"config"}]}}}}
+    creationTimestamp: "2026-06-08T18:05:44Z"
+    generation: 1
+    labels:
+      batch.kubernetes.io/controller-uid: d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+      batch.kubernetes.io/job-name: init-rabbit-pvc-local
+      controller-uid: d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+      job-name: init-rabbit-pvc-local
+    name: init-rabbit-pvc-local
+    namespace: core
+    resourceVersion: "757"
+    uid: d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+  spec:
+    backoffLimit: 6
+    completionMode: NonIndexed
+    completions: 1
+    manualSelector: false
+    parallelism: 1
+    podReplacementPolicy: TerminatingOrFailed
+    selector:
+      matchLabels:
+        batch.kubernetes.io/controller-uid: d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+    suspend: false
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          batch.kubernetes.io/controller-uid: d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+          batch.kubernetes.io/job-name: init-rabbit-pvc-local
+          controller-uid: d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+          job-name: init-rabbit-pvc-local
+      spec:
+        containers:
+        - command:
+          - sh
+          - -c
+          - mkdir -p /mnt && cp /config/definitions.json /mnt/definitions.json &&
+            cp /config/rabbitmq.conf /mnt/rabbitmq.conf && ls -la /mnt
+          image: busybox:1.36
+          imagePullPolicy: IfNotPresent
+          name: seed
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /mnt
+            name: rabbit-pvc
+          - mountPath: /config
+            name: config
+        dnsPolicy: ClusterFirst
+        restartPolicy: Never
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: rabbit-pvc
+          persistentVolumeClaim:
+            claimName: rabbit-pvc
+        - configMap:
+            defaultMode: 420
+            name: rabbitmq-config-files
+          name: config
+  status:
+    completionTime: "2026-06-08T18:05:53Z"
+    conditions:
+    - lastProbeTime: "2026-06-08T18:05:53Z"
+      lastTransitionTime: "2026-06-08T18:05:53Z"
+      message: Reached expected number of succeeded pods
+      reason: CompletionsReached
+      status: "True"
+      type: SuccessCriteriaMet
+    - lastProbeTime: "2026-06-08T18:05:53Z"
+      lastTransitionTime: "2026-06-08T18:05:53Z"
+      message: Reached expected number of succeeded pods
+      reason: CompletionsReached
+      status: "True"
+      type: Complete
+    ready: 0
+    startTime: "2026-06-08T18:05:44Z"
+    succeeded: 1
+    terminating: 0
+    uncountedTerminatedPods: {}
+- apiVersion: batch/v1
+  kind: Job
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":{},"name":"init-etcd-pvc-local","namespace":"orchestrator"},"spec":{"template":{"spec":{"containers":[{"command":["sh","-c","mkdir -p /etcd \u0026\u0026 cp -R /config/* /etcd/ \u0026\u0026 ls -la /etcd"],"image":"busybox:1.36","name":"seed","volumeMounts":[{"mountPath":"/etcd","name":"etcd-pvc"},{"mountPath":"/config","name":"config"}]}],"restartPolicy":"Never","volumes":[{"name":"etcd-pvc","persistentVolumeClaim":{"claimName":"etcd-pvc"}},{"configMap":{"name":"etcd-launch-files"},"name":"config"}]}}}}
+    creationTimestamp: "2026-06-08T18:05:34Z"
+    generation: 1
+    labels:
+      batch.kubernetes.io/controller-uid: baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+      batch.kubernetes.io/job-name: init-etcd-pvc-local
+      controller-uid: baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+      job-name: init-etcd-pvc-local
+    name: init-etcd-pvc-local
+    namespace: orchestrator
+    resourceVersion: "707"
+    uid: baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+  spec:
+    backoffLimit: 6
+    completionMode: NonIndexed
+    completions: 1
+    manualSelector: false
+    parallelism: 1
+    podReplacementPolicy: TerminatingOrFailed
+    selector:
+      matchLabels:
+        batch.kubernetes.io/controller-uid: baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+    suspend: false
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          batch.kubernetes.io/controller-uid: baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+          batch.kubernetes.io/job-name: init-etcd-pvc-local
+          controller-uid: baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+          job-name: init-etcd-pvc-local
+      spec:
+        containers:
+        - command:
+          - sh
+          - -c
+          - mkdir -p /etcd && cp -R /config/* /etcd/ && ls -la /etcd
+          image: busybox:1.36
+          imagePullPolicy: IfNotPresent
+          name: seed
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /etcd
+            name: etcd-pvc
+          - mountPath: /config
+            name: config
+        dnsPolicy: ClusterFirst
+        restartPolicy: Never
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: etcd-pvc
+          persistentVolumeClaim:
+            claimName: etcd-pvc
+        - configMap:
+            defaultMode: 420
+            name: etcd-launch-files
+          name: config
+  status:
+    completionTime: "2026-06-08T18:05:44Z"
+    conditions:
+    - lastProbeTime: "2026-06-08T18:05:44Z"
+      lastTransitionTime: "2026-06-08T18:05:44Z"
+      message: Reached expected number of succeeded pods
+      reason: CompletionsReached
+      status: "True"
+      type: SuccessCriteriaMet
+    - lastProbeTime: "2026-06-08T18:05:44Z"
+      lastTransitionTime: "2026-06-08T18:05:44Z"
+      message: Reached expected number of succeeded pods
+      reason: CompletionsReached
+      status: "True"
+      type: Complete
+    ready: 0
+    startTime: "2026-06-08T18:05:34Z"
+    succeeded: 1
+    terminating: 0
+    uncountedTerminatedPods: {}
+- apiVersion: batch/v1
+  kind: Job
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":{},"name":"reseed-etcd-pvc","namespace":"orchestrator"},"spec":{"template":{"spec":{"containers":[{"command":["sh","-c","rm -f /etcd/*.json \u0026\u0026 cp -L /config/*.json /etcd/ \u0026\u0026 chmod 644 /etcd/*.json \u0026\u0026 ls -la /etcd \u0026\u0026 head -c 80 /etcd/requestType.json"],"image":"busybox:1.36","name":"seed","volumeMounts":[{"mountPath":"/etcd","name":"etcd-pvc"},{"mountPath":"/config","name":"config"}]}],"restartPolicy":"Never","volumes":[{"name":"etcd-pvc","persistentVolumeClaim":{"claimName":"etcd-pvc"}},{"configMap":{"name":"etcd-launch-files"},"name":"config"}]}}}}
+    creationTimestamp: "2026-06-08T18:11:20Z"
+    generation: 1
+    labels:
+      batch.kubernetes.io/controller-uid: 9e8527b9-c118-46d6-8f06-849d4850649d
+      batch.kubernetes.io/job-name: reseed-etcd-pvc
+      controller-uid: 9e8527b9-c118-46d6-8f06-849d4850649d
+      job-name: reseed-etcd-pvc
+    name: reseed-etcd-pvc
+    namespace: orchestrator
+    resourceVersion: "1672"
+    uid: 9e8527b9-c118-46d6-8f06-849d4850649d
+  spec:
+    backoffLimit: 6
+    completionMode: NonIndexed
+    completions: 1
+    manualSelector: false
+    parallelism: 1
+    podReplacementPolicy: TerminatingOrFailed
+    selector:
+      matchLabels:
+        batch.kubernetes.io/controller-uid: 9e8527b9-c118-46d6-8f06-849d4850649d
+    suspend: false
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          batch.kubernetes.io/controller-uid: 9e8527b9-c118-46d6-8f06-849d4850649d
+          batch.kubernetes.io/job-name: reseed-etcd-pvc
+          controller-uid: 9e8527b9-c118-46d6-8f06-849d4850649d
+          job-name: reseed-etcd-pvc
+      spec:
+        containers:
+        - command:
+          - sh
+          - -c
+          - rm -f /etcd/*.json && cp -L /config/*.json /etcd/ && chmod 644 /etcd/*.json
+            && ls -la /etcd && head -c 80 /etcd/requestType.json
+          image: busybox:1.36
+          imagePullPolicy: IfNotPresent
+          name: seed
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /etcd
+            name: etcd-pvc
+          - mountPath: /config
+            name: config
+        dnsPolicy: ClusterFirst
+        restartPolicy: Never
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: etcd-pvc
+          persistentVolumeClaim:
+            claimName: etcd-pvc
+        - configMap:
+            defaultMode: 420
+            name: etcd-launch-files
+          name: config
+  status:
+    completionTime: "2026-06-08T18:11:25Z"
+    conditions:
+    - lastProbeTime: "2026-06-08T18:11:25Z"
+      lastTransitionTime: "2026-06-08T18:11:25Z"
+      message: Reached expected number of succeeded pods
+      reason: CompletionsReached
+      status: "True"
+      type: SuccessCriteriaMet
+    - lastProbeTime: "2026-06-08T18:11:26Z"
+      lastTransitionTime: "2026-06-08T18:11:26Z"
+      message: Reached expected number of succeeded pods
+      reason: CompletionsReached
+      status: "True"
+      type: Complete
+    ready: 0
+    startTime: "2026-06-08T18:11:20Z"
+    succeeded: 1
+    terminating: 0
+    uncountedTerminatedPods: {}
+- apiVersion: batch/v1
+  kind: Job
+  metadata:
+    creationTimestamp: "2026-06-08T18:13:01Z"
+    generation: 1
+    labels:
+      app: uva
+      jobName: jorrit-stutterheim-8d421645uva1
+    name: jorrit-stutterheim-8d421645uva1
+    namespace: uva
+    resourceVersion: "1892"
+    uid: fe47797c-bc06-4821-b7e7-474dcf24972b
+  spec:
+    activeDeadlineSeconds: 600
+    backoffLimit: 6
+    completionMode: NonIndexed
+    completions: 1
+    manualSelector: false
+    parallelism: 1
+    podReplacementPolicy: TerminatingOrFailed
+    selector:
+      matchLabels:
+        batch.kubernetes.io/controller-uid: fe47797c-bc06-4821-b7e7-474dcf24972b
+    suspend: false
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: uva
+          batch.kubernetes.io/controller-uid: fe47797c-bc06-4821-b7e7-474dcf24972b
+          batch.kubernetes.io/job-name: jorrit-stutterheim-8d421645uva1
+          controller-uid: fe47797c-bc06-4821-b7e7-474dcf24972b
+          job-name: jorrit-stutterheim-8d421645uva1
+      spec:
+        containers:
+        - env:
+          - name: DATA_STEWARD_NAME
+            value: UVA
+          - name: DESIGNATED_GRPC_PORT
+            value: "50053"
+          - name: FIRST
+            value: "1"
+          - name: LAST
+            value: "0"
+          - name: JOB_NAME
+            value: jorrit-stutterheim-8d421645uva1
+          - name: SIDECAR_PORT
+            value: "50051"
+          - name: OC_AGENT_HOST
+            value: collector.linkerd-jaeger:55678
+          - name: NR_OF_DATA_PROVIDERS
+            value: "0"
+          - name: AGENT_ROLE
+            value: all
+          image: dynamos-local/sql-query:main
+          imagePullPolicy: IfNotPresent
+          name: sql-query
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        - env:
+          - name: DATA_STEWARD_NAME
+            value: UVA
+          - name: DESIGNATED_GRPC_PORT
+            value: "50054"
+          - name: FIRST
+            value: "0"
+          - name: LAST
+            value: "1"
+          - name: JOB_NAME
+            value: jorrit-stutterheim-8d421645uva1
+          - name: SIDECAR_PORT
+            value: "50051"
+          - name: OC_AGENT_HOST
+            value: collector.linkerd-jaeger:55678
+          - name: NR_OF_DATA_PROVIDERS
+            value: "0"
+          - name: AGENT_ROLE
+            value: all
+          image: dynamos-local/sql-algorithm:main
+          imagePullPolicy: IfNotPresent
+          name: sql-algorithm
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        - env:
+          - name: DESIGNATED_GRPC_PORT
+            value: "50051"
+          - name: TEMPORARY_JOB
+            value: "true"
+          - name: AMQ_USER
+            value: normal_user
+          - name: OC_AGENT_HOST
+            value: collector.linkerd-jaeger:55678
+          - name: AMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: rabbit
+          image: dynamos-local/sidecar:main
+          imagePullPolicy: IfNotPresent
+          name: sidecar
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: OnFailure
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    ttlSecondsAfterFinished: 30
+  status:
+    active: 1
+    ready: 0
+    startTime: "2026-06-08T18:13:01Z"
+    terminating: 0
+    uncountedTerminatedPods: {}
+kind: List
+metadata:
+  resourceVersion: ""

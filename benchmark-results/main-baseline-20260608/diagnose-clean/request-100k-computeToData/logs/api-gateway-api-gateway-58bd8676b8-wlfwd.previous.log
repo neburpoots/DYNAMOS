@@ -1,0 +1,1 @@
+Error from server (BadRequest): previous terminated container "api-gateway" in pod "api-gateway-58bd8676b8-wlfwd" not found

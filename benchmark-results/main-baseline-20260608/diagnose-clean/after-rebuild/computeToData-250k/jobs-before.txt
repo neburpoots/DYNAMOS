@@ -1,0 +1,4 @@
+NAMESPACE      NAME                    STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES         SELECTOR
+core           init-rabbit-pvc-local   Complete   1/1           9s         25m   seed         busybox:1.36   batch.kubernetes.io/controller-uid=d60f0df4-cdbf-477c-99ae-aeb7ebfe190c
+orchestrator   init-etcd-pvc-local     Complete   1/1           10s        25m   seed         busybox:1.36   batch.kubernetes.io/controller-uid=baaed565-7dc2-432f-b6aa-2dfe6ea4d5cd
+orchestrator   reseed-etcd-pvc         Complete   1/1           5s         20m   seed         busybox:1.36   batch.kubernetes.io/controller-uid=9e8527b9-c118-46d6-8f06-849d4850649d

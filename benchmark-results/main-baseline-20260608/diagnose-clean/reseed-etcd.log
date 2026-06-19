@@ -1,0 +1,49 @@
+Switched to context "kind-dynamos-main-diagnose".
+[2026-06-08T20:11:20+02:00] Reseeding etcd PVC with dereferenced files
+job.batch/reseed-etcd-pvc created
+job.batch/reseed-etcd-pvc condition met
+total 32
+drwxrwxrwx    2 root     root          4096 Jun  8 18:11 .
+drwxr-xr-x    1 root     root          4096 Jun  8 18:11 ..
+-rw-r--r--    1 root     root          1679 Jun  8 18:11 agreements.json
+-rw-r--r--    1 root     root           298 Jun  8 18:11 archetype.json
+-rw-r--r--    1 root     root           279 Jun  8 18:11 datasets.json
+-rw-r--r--    1 root     root           976 Jun  8 18:11 microservices.json
+-rw-r--r--    1 root     root           153 Jun  8 18:11 optional_microservices.json
+-rw-r--r--    1 root     root           410 Jun  8 18:11 requestType.json
+[
+    {
+        "name": "sqlDataRequest",
+        "requiredServices": [
+        [2026-06-08T20:11:26+02:00] Restarting orchestrator
+deployment.apps/orchestrator restarted
+Waiting for deployment spec update to be observed...
+Waiting for deployment "orchestrator" rollout to finish: 0 out of 1 new replicas have been updated...
+Waiting for deployment "orchestrator" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "orchestrator" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "orchestrator" rollout to finish: 1 old replicas are pending termination...
+deployment "orchestrator" successfully rolled out
+NAMESPACE            NAME                                                          READY   STATUS        RESTARTS   AGE
+api-gateway          api-gateway-58bd8676b8-wlfwd                                  2/2     Running       0          2m30s
+core                 etcd-0                                                        1/1     Running       0          5m35s
+core                 etcd-1                                                        1/1     Running       0          4m58s
+core                 etcd-2                                                        1/1     Running       0          4m53s
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed     0          5m45s
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running       0          5m35s
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running       0          7m38s
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running       0          7m38s
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running       0          7m45s
+kube-system          kindnet-sn492                                                 1/1     Running       0          7m38s
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running       0          7m43s
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running       0          7m43s
+kube-system          kube-proxy-pt7nv                                              1/1     Running       0          7m38s
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running       0          7m43s
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running       0          7m38s
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed     0          5m55s
+orchestrator         orchestrator-6f685b788b-782bl                                 2/2     Running       0          3s
+orchestrator         orchestrator-7bfd698fcd-7p796                                 1/2     Terminating   4          2m35s
+orchestrator         policy-enforcer-5fb7c4b5fb-dghvq                              2/2     Running       0          2m35s
+orchestrator         reseed-etcd-pvc-tpqfc                                         0/1     Completed     0          9s
+surf                 surf-75f8bd5d6b-6qvpn                                         2/2     Running       0          2m19s
+uva                  uva-5f9f6b5766-m2vrj                                          2/2     Running       0          2m26s
+vu                   vu-655bfbd598-vvvrf                                           2/2     Running       0          2m26s

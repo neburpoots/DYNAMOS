@@ -1,0 +1,6 @@
+[2026-06-08T20:46:25+02:00] Starting main classic dataThroughTtp UVA clean10 benchmark
+[2026-06-08T20:46:25+02:00] Repo a2d9531 branch main
+[2026-06-08T20:46:25+02:00] Cleaning leftover generated jobs
+[2026-06-08T20:46:26+02:00] Port-forward ready; launching matrix with resource sampling
+{"json": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/main-baseline-20260608/classic-dtt-uva-clean10-20260608/main-classic-dtt-uva-clean10.json", "csv": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/main-baseline-20260608/classic-dtt-uva-clean10-20260608/main-classic-dtt-uva-clean10.csv", "markdown": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/main-baseline-20260608/classic-dtt-uva-clean10-20260608/main-classic-dtt-uva-clean10.md"}
+[2026-06-08T21:17:23+02:00] Matrix finished rc=0

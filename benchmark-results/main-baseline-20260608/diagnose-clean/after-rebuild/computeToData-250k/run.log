@@ -1,0 +1,18 @@
+[2026-06-08T20:31:54+02:00] rc=0 elapsed=27s
+job.batch "jorrit-stutterheim-9caf4b2fuva1" deleted
+{
+  "ok": true,
+  "status": 200,
+  "elapsedSeconds": 23.39956,
+  "archetype": "computeToData",
+  "providers": [
+    "UVA"
+  ],
+  "limit": 250000,
+  "expectedRows": 250000,
+  "observedRows": 250000,
+  "providerErrorCount": 0,
+  "errors": [],
+  "jobId": "jorrit-stutterheim-9caf4b2f",
+  "responseBytes": 15986272
+}

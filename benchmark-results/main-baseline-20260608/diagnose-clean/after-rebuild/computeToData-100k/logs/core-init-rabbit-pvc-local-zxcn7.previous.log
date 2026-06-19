@@ -1,0 +1,1 @@
+Error from server (BadRequest): previous terminated container "seed" in pod "init-rabbit-pvc-local-zxcn7" not found

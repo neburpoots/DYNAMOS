@@ -1,0 +1,1 @@
+Error from server (BadRequest): previous terminated container "seed" in pod "init-etcd-pvc-local-k8d97" not found

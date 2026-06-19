@@ -13,6 +13,9 @@ from typing import Any
 DEFAULT_URL = "http://127.0.0.1:18080/api/v1/requestApproval"
 RESPONSE_MODE_CLASSIC_UNARY = "classic-unary"
 WORKLOAD_BULK = "bulk"
+QUERY_SHAPE_DEFAULT = "default"
+QUERY_SHAPE_NARROW = "narrow"
+QUERY_SHAPE_WIDE = "wide"
 
 
 def parse_args() -> argparse.Namespace:
@@ -25,27 +28,59 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--timeout", type=float, default=1800)
     parser.add_argument("--dataset", default="large")
     parser.add_argument("--archetype", default="dataThroughTtp")
+    parser.add_argument(
+        "--query-shape",
+        default=QUERY_SHAPE_DEFAULT,
+        choices=[QUERY_SHAPE_DEFAULT, QUERY_SHAPE_NARROW, QUERY_SHAPE_WIDE],
+    )
     parser.add_argument("--expected-rows", type=int)
     parser.add_argument("--strict", action="store_true")
     parser.add_argument("--output", help="Optional JSON summary path")
     return parser.parse_args()
 
 
-def build_payload(limit: int, providers: list[str]) -> dict[str, Any]:
+def resolve_tables(dataset: str) -> tuple[str, str]:
+    if dataset == "original":
+        return "Personen", "Aanstellingen"
+    return "PersonenLarge", "AanstellingenLarge"
+
+
+def build_bulk_query(limit: int, dataset: str, query_shape: str) -> str:
+    personen_table, aanstellingen_table = resolve_tables(dataset)
+    if query_shape == QUERY_SHAPE_NARROW:
+        projection = "p.Unieknr, s.Salschal"
+    elif query_shape == QUERY_SHAPE_WIDE:
+        projection = (
+            "p.Instcode AS p_Instcode, p.Unieknr AS p_Unieknr, p.Geslacht, p.Gebdat, "
+            "p.Nationaliteit, p.BKO, p.SKO, p.Peildat AS p_Peildat, "
+            "s.Instcode AS s_Instcode, s.Unieknr AS s_Unieknr, s.Volgnrar, s.Aadnstvb, "
+            "s.Ingdatdv, s.Eindatdv, s.HOOPgeb, s.Functcat, s.WelGeenHGL, s.Salschal, "
+            "s.Taakomv, s.Aanst_22, s.Peildat AS s_Peildat"
+        )
+    elif query_shape == QUERY_SHAPE_DEFAULT:
+        projection = "p.Unieknr, p.Geslacht, p.Gebdat, s.Salschal, s.Ingdatdv, s.Functcat"
+    else:
+        raise ValueError(f"unsupported query shape {query_shape!r}")
+    return (
+        f"SELECT {projection} "
+        f"FROM {personen_table} p "
+        f"JOIN {aanstellingen_table} s ON p.Unieknr = s.Unieknr "
+        f"LIMIT {limit}"
+    )
+
+
+def build_payload(limit: int, providers: list[str], dataset: str, archetype: str, query_shape: str) -> dict[str, Any]:
+    aggregate = archetype == "dataThroughTtp"
     return {
         "type": "sqlDataRequest",
         "user": {"id": "12324", "userName": "jorrit.stutterheim@cloudnation.nl"},
         "dataProviders": providers,
         "data_request": {
             "type": "sqlDataRequest",
-            "query": (
-                "SELECT p.Unieknr, p.Geslacht, p.Gebdat, s.Salschal, s.Ingdatdv, s.Functcat "
-                "FROM PersonenLarge p JOIN AanstellingenLarge s ON p.Unieknr = s.Unieknr "
-                f"LIMIT {limit}"
-            ),
+            "query": build_bulk_query(limit, dataset, query_shape),
             # Any non-average algorithm keeps the main branch on its full row-table path.
             "algorithm": "rows",
-            "options": {"graph": False, "aggregate": True},
+            "options": {"graph": False, "aggregate": aggregate},
             "requestMetadata": {},
         },
     }
@@ -179,7 +214,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if not providers:
         raise SystemExit("--providers must contain at least one provider")
 
-    payload = build_payload(args.limit, providers)
+    payload = build_payload(args.limit, providers, args.dataset, args.archetype, args.query_shape)
     request_body = json.dumps(payload).encode("utf-8")
     request = urllib.request.Request(
         args.url,
@@ -206,6 +241,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     summary: dict[str, Any] = {
         "dataset": args.dataset,
         "archetype": args.archetype,
+        "queryShape": args.query_shape,
         "transport": "unary",
         "responseMode": RESPONSE_MODE_CLASSIC_UNARY,
         "workload": WORKLOAD_BULK,

@@ -1,0 +1,72 @@
+Name:             reseed-etcd-pvc-tpqfc
+Namespace:        orchestrator
+Priority:         0
+Service Account:  default
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:11:21 +0200
+Labels:           batch.kubernetes.io/controller-uid=9e8527b9-c118-46d6-8f06-849d4850649d
+                  batch.kubernetes.io/job-name=reseed-etcd-pvc
+                  controller-uid=9e8527b9-c118-46d6-8f06-849d4850649d
+                  job-name=reseed-etcd-pvc
+Annotations:      <none>
+Status:           Succeeded
+IP:               10.244.0.24
+IPs:
+  IP:           10.244.0.24
+Controlled By:  Job/reseed-etcd-pvc
+Containers:
+  seed:
+    Container ID:  containerd://327ac2575244f90a4283af88aa653a6271d9359e174537095f46eeace1230a80
+    Image:         busybox:1.36
+    Image ID:      docker.io/library/busybox@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      rm -f /etcd/*.json && cp -L /config/*.json /etcd/ && chmod 644 /etcd/*.json && ls -la /etcd && head -c 80 /etcd/requestType.json
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Mon, 08 Jun 2026 20:11:22 +0200
+      Finished:     Mon, 08 Jun 2026 20:11:23 +0200
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /config from config (rw)
+      /etcd from etcd-pvc (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wd8sr (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  etcd-pvc:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  etcd-pvc
+    ReadOnly:   false
+  config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      etcd-launch-files
+    Optional:  false
+  kube-api-access-wd8sr:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  5m9s  default-scheduler  Successfully assigned orchestrator/reseed-etcd-pvc-tpqfc to dynamos-main-diagnose-control-plane
+  Normal  Pulled     5m8s  kubelet            Container image "busybox:1.36" already present on machine
+  Normal  Created    5m8s  kubelet            Created container: seed
+  Normal  Started    5m8s  kubelet            Started container seed

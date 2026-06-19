@@ -1,0 +1,191 @@
+2026-06-08T18:24:48.504145903Z 1.780943088503974e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:24:48.504377654Z 1.780943088504293e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:24:49.507199726Z 1.780943089505069e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:24:49.507223096Z 1.7809430895069253e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:24:50.510238583Z 1.7809430905100267e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:96	returning conn GetGrpcConnection
+2026-06-08T18:24:50.510557664Z 1.7809430905104988e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:105	Initializing sidecar messaging with: service_name:"UVA-in"  routing_key:"UVA-in"
+2026-06-08T18:24:50.563054848Z 1.7809430905629146e+09	[34mINFO[0m	/app/cmd/agent/main.go:99	Starting http server on: 	{"port": ":8080"}
+2026-06-08T18:27:51.125861817Z 1.7809432711257439e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "UVA"}
+2026-06-08T18:27:51.125900744Z 1.7809432711258023e+09	[35mDEBUG[0m	/app/cmd/agent/consume.go:28	Received compositionRequest
+2026-06-08T18:27:51.126991803Z 1.7809432711268015e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:83	NOK
+2026-06-08T18:27:51.127409309Z 1.7809432711268475e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:23	Pod info:	{"dataStewardName: ": "uva", "jobName: ": "jorrit-stutterheim-8d913881"}
+2026-06-08T18:27:51.127419785Z 1.7809432711273463e+09	[35mDEBUG[0m	/app/cmd/agent/etcd.go:50	Entering registerUserWithJob
+2026-06-08T18:27:51.144478753Z 1.7809432711440496e+09	[34mINFO[0m	/app/pkg/api/http_utils.go:24	Received request	{"method": "POST", "path": "/agent/v1/sqlDataRequest/uva"}
+2026-06-08T18:27:51.144501040Z 1.7809432711442392e+09	[35mDEBUG[0m	/app/cmd/agent/token_validation.go:10	Entering authMiddleware
+2026-06-08T18:27:51.144503813Z 1.7809432711442504e+09	[35mDEBUG[0m	/app/cmd/agent/token_validation.go:27	Your token: 1234
+2026-06-08T18:27:51.144505354Z 1.7809432711442592e+09	[34mINFO[0m	/app/cmd/agent/token_validation.go:33	Serve next
+2026-06-08T18:27:51.144900366Z 1.7809432711447535e+09	[35mDEBUG[0m	/app/cmd/agent/sql_request_handler.go:26	Entering sqlDataRequestHandler
+2026-06-08T18:27:51.157243630Z 1.7809432711569993e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:20	Starting generateChainAndDeploy
+2026-06-08T18:27:51.157474516Z 1.7809432711571393e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:127	Starting generateMicroserviceChain
+2026-06-08T18:27:51.159231941Z 1.7809432711589696e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:134	After GetAndUnmarshalJSON  compositionRequest.RequestType)
+2026-06-08T18:27:51.159314004Z 1.7809432711590145e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:189	started getRequiredMicroservices
+2026-06-08T18:27:51.164196094Z 1.7809432711636872e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:211	Start getOptionalMicroservices
+2026-06-08T18:27:51.164646363Z 1.7809432711640372e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:212	3
+2026-06-08T18:27:51.164662899Z 1.7809432711640723e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:216	Option: aggregate boolVal: %!b(bool=false)
+2026-06-08T18:27:51.164665364Z 1.7809432711640768e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:216	Option: graph boolVal: %!b(bool=false)
+2026-06-08T18:27:51.164667315Z 1.7809432711640837e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:154	sql-query
+2026-06-08T18:27:51.164668753Z 1.7809432711640968e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:154	sql-algorithm
+2026-06-08T18:27:51.164686624Z 1.7809432711641753e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:30	[{sql-query dataProvider [sql-aggregate sql-algorithm sql-anonymize] []} {sql-algorithm computeProvider [sql-graph] []}]
+2026-06-08T18:27:51.164688062Z 1.7809432711641927e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:41	Starting deployJob
+2026-06-08T18:27:51.164688884Z 1.7809432711642063e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:96	job info:	{"name: ": "sql-query", "Port: ": 50053}
+2026-06-08T18:27:51.164689808Z 1.7809432711642327e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:269	Tag in getMicroserviceTag: 
+2026-06-08T18:27:51.164690732Z 1.7809432711642482e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:106	FullImage name: dynamos-local/sql-query:main
+2026-06-08T18:27:51.164691554Z 1.7809432711642528e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:107	Job name: jorrit-stutterheim-8d913881uva1
+2026-06-08T18:27:51.164692478Z 1.7809432711642737e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:96	job info:	{"name: ": "sql-algorithm", "Port: ": 50054}
+2026-06-08T18:27:51.164693300Z 1.7809432711642797e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:269	Tag in getMicroserviceTag: 
+2026-06-08T18:27:51.164694224Z 1.780943271164283e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:106	FullImage name: dynamos-local/sql-algorithm:main
+2026-06-08T18:27:51.164695046Z 1.7809432711642866e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:107	Job name: jorrit-stutterheim-8d913881uva1
+2026-06-08T18:27:51.164695868Z 1.7809432711642952e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:269	Tag in getMicroserviceTag: main
+2026-06-08T18:27:51.164696792Z 1.7809432711642985e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:163	Sidecar image name: dynamos-local/sidecar:main
+2026-06-08T18:27:51.201319040Z 1.780943271200727e+09	[35mDEBUG[0m	/app/cmd/agent/sql_request_handler.go:171	Sending SendMicroserviceInput to: jorrit-stutterheim-8d913881uva1
+2026-06-08T18:27:51.267983694Z 1.780943271267755e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:40	Event received! Type: PUT Key:/agents/jobs/UVA/queueInfo/jorrit-stutterheim-8d913881uva1 Value:jorrit-stutterheim-8d913881uva1
+2026-06-08T18:27:51.268002181Z 
+2026-06-08T18:28:12.925474633Z 1.7809432928964229e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "UVA"}
+2026-06-08T18:28:12.935781164Z 1.7809432929329655e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:109	Start handleMicroserviceCommunication
+2026-06-08T18:28:13.369493172Z 1.7809432933690863e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:12	Enter isJobWaiting
+2026-06-08T18:28:13.370321563Z 1.7809432933701625e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:28	isJobWaiting: correlationId=6c73fd39-7821-468b-8aed-e6d4dca55535, jobFound=false, nrOfDataStewards=<nil>, mapContent=map[]
+2026-06-08T18:28:13.370339512Z 1.7809432933702319e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:42	No job waiting: false
+2026-06-08T18:28:13.370396946Z 1.780943293370278e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:47	Enter isHttpWaiting
+2026-06-08T18:28:13.370402279Z 1.7809432933703208e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:59	isHttpWaiting: correlationId=6c73fd39-7821-468b-8aed-e6d4dca55535, httpChannelFound=true, mapContent=map[6c73fd39-7821-468b-8aed-e6d4dca55535:0xc000692b40]
+2026-06-08T18:28:13.370405561Z 1.7809432933703368e+09	[34mINFO[0m	/app/cmd/agent/incoming_microservice_communication.go:62	Sending requestData to channel
+2026-06-08T18:28:13.370733246Z 1.780943293370492e+09	[35mDEBUG[0m	/app/cmd/agent/sql_request_handler.go:113	Received response, 6c73fd39-7821-468b-8aed-e6d4dca55535
+2026-06-08T18:28:27.588727671Z 1.7809433075886128e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "UVA"}
+2026-06-08T18:28:27.588744289Z 1.7809433075887063e+09	[35mDEBUG[0m	/app/cmd/agent/consume.go:28	Received compositionRequest
+2026-06-08T18:28:27.588912827Z 1.780943307588799e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:83	NOK
+2026-06-08T18:28:27.588917545Z 1.780943307588845e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:23	Pod info:	{"dataStewardName: ": "uva", "jobName: ": "jorrit-stutterheim-7b429ed5"}
+2026-06-08T18:28:27.588919187Z 1.780943307588872e+09	[35mDEBUG[0m	/app/cmd/agent/etcd.go:50	Entering registerUserWithJob
+2026-06-08T18:28:27.688526390Z 1.7809433076883464e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:40	Event received! Type: PUT Key:/agents/jobs/UVA/queueInfo/jorrit-stutterheim-7b429ed5uva1 Value:jorrit-stutterheim-7b429ed5uva1
+2026-06-08T18:28:27.688551317Z 
+2026-06-08T18:28:27.721672304Z 1.7809433077215917e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "UVA"}
+2026-06-08T18:28:27.721873668Z 1.7809433077217784e+09	[35mDEBUG[0m	/app/cmd/agent/consume.go:48	Received sqlDataRequest from Rabbit (third party)
+2026-06-08T18:28:27.722944803Z 1.7809433077227955e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:20	Starting generateChainAndDeploy
+2026-06-08T18:28:27.723135704Z 1.7809433077230775e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:127	Starting generateMicroserviceChain
+2026-06-08T18:28:27.728416191Z 1.7809433077280297e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:134	After GetAndUnmarshalJSON  compositionRequest.RequestType)
+2026-06-08T18:28:27.728436194Z 1.7809433077280662e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:189	started getRequiredMicroservices
+2026-06-08T18:28:27.739438261Z 1.7809433077390237e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:211	Start getOptionalMicroservices
+2026-06-08T18:28:27.746204511Z 1.780943307744365e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:212	3
+2026-06-08T18:28:27.748469672Z 1.7809433077480175e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:216	Option: aggregate boolVal: %!b(bool=true)
+2026-06-08T18:28:27.754893409Z 1.780943307754426e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:216	Option: graph boolVal: %!b(bool=false)
+2026-06-08T18:28:27.754965932Z 1.7809433077544677e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:154	sql-query
+2026-06-08T18:28:27.754969625Z 1.780943307754482e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:30	[{sql-query dataProvider [sql-aggregate sql-algorithm sql-anonymize] []}]
+2026-06-08T18:28:27.754971267Z 1.7809433077544873e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:41	Starting deployJob
+2026-06-08T18:28:27.754973318Z 1.7809433077544978e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:96	job info:	{"name: ": "sql-query", "Port: ": 50053}
+2026-06-08T18:28:27.754974652Z 1.7809433077545123e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:269	Tag in getMicroserviceTag: 
+2026-06-08T18:28:27.754975883Z 1.7809433077545185e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:106	FullImage name: dynamos-local/sql-query:main
+2026-06-08T18:28:27.754977114Z 1.780943307754522e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:107	Job name: jorrit-stutterheim-7b429ed5uva1
+2026-06-08T18:28:27.754978447Z 1.780943307754567e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:269	Tag in getMicroserviceTag: main
+2026-06-08T18:28:27.754979781Z 1.7809433077545717e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:163	Sidecar image name: dynamos-local/sidecar:main
+2026-06-08T18:28:27.836922888Z 1.780943307836766e+09	[33mWARN[0m	/app/cmd/agent/consume.go:99	key: /agents/jobs/UVA/queueInfo/jorrit-stutterheim-7b429ed5uva1
+2026-06-08T18:28:27.836959509Z 1.7809433078368297e+09	[33mWARN[0m	/app/cmd/agent/consume.go:100	value: jorrit-stutterheim-7b429ed5uva1
+2026-06-08T18:28:27.880516632Z 1.7809433078798578e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:40	Event received! Type: PUT Key:/agents/jobs/UVA/queueInfo/jorrit-stutterheim-7b429ed5uva1 Value:jorrit-stutterheim-7b429ed5uva1
+2026-06-08T18:28:27.880539610Z 
+2026-06-08T18:28:46.360884986Z 1.7809433263606796e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "UVA"}
+2026-06-08T18:28:46.361428226Z 1.78094332636135e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:109	Start handleMicroserviceCommunication
+2026-06-08T18:28:46.583406286Z 1.7809433265829747e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:12	Enter isJobWaiting
+2026-06-08T18:28:46.583423336Z 1.7809433265830615e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:28	isJobWaiting: correlationId=127ec4ff-0fd4-4b67-8a13-36866d88b21b, jobFound=false, nrOfDataStewards=<nil>, mapContent=map[]
+2026-06-08T18:28:46.583425082Z 1.7809433265830693e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:42	No job waiting: false
+2026-06-08T18:28:46.583426622Z 1.7809433265830781e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:47	Enter isHttpWaiting
+2026-06-08T18:28:46.583429601Z 1.780943326583086e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:59	isHttpWaiting: correlationId=127ec4ff-0fd4-4b67-8a13-36866d88b21b, httpChannelFound=false, mapContent=map[]
+2026-06-08T18:28:46.583430936Z 1.7809433265830917e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:79	Enter isThirdPartyWaiting
+2026-06-08T18:28:46.583677032Z 1.780943326583584e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:91	isThirdPartyWaiting: correlationId=127ec4ff-0fd4-4b67-8a13-36866d88b21b, thirdPartyFound=true, mapContent=map[127ec4ff-0fd4-4b67-8a13-36866d88b21b:SURF-in]
+2026-06-08T18:28:46.584115404Z 1.7809433265836232e+09	[34mINFO[0m	/app/cmd/agent/incoming_microservice_communication.go:94	Sending sql response to returnAddress: SURF-in
+2026-06-08T18:31:27.884751741Z 1.7809434878844965e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "UVA"}
+2026-06-08T18:31:27.886917521Z 1.7809434878846388e+09	[35mDEBUG[0m	/app/cmd/agent/consume.go:28	Received compositionRequest
+2026-06-08T18:31:27.898658533Z 1.7809434878981712e+09	[34mINFO[0m	/app/pkg/api/http_utils.go:24	Received request	{"method": "POST", "path": "/agent/v1/sqlDataRequest/uva"}
+2026-06-08T18:31:27.898678540Z 1.780943487898342e+09	[35mDEBUG[0m	/app/cmd/agent/token_validation.go:10	Entering authMiddleware
+2026-06-08T18:31:27.898680387Z 1.7809434878983867e+09	[35mDEBUG[0m	/app/cmd/agent/token_validation.go:27	Your token: 1234
+2026-06-08T18:31:27.898681824Z 1.780943487898392e+09	[34mINFO[0m	/app/cmd/agent/token_validation.go:33	Serve next
+2026-06-08T18:31:27.898683157Z 1.7809434878984354e+09	[35mDEBUG[0m	/app/cmd/agent/sql_request_handler.go:26	Entering sqlDataRequestHandler
+2026-06-08T18:31:27.898974438Z 1.780943487896128e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:83	NOK
+2026-06-08T18:31:27.904326969Z 1.780943487904164e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:23	Pod info:	{"dataStewardName: ": "uva", "jobName: ": "jorrit-stutterheim-9caf4b2f"}
+2026-06-08T18:31:27.906404308Z 1.7809434879059172e+09	[35mDEBUG[0m	/app/cmd/agent/etcd.go:50	Entering registerUserWithJob
+2026-06-08T18:31:27.906425649Z 1.7809434879010358e+09	[33mWARN[0m	/app/pkg/etcd/etcd_get.go:218	no value found for	{"key": "/agents/jobs/UVA/jorrit.stutterheim@cloudnation.nl/jorrit-stutterheim-9caf4b2f"}
+2026-06-08T18:31:28.629218808Z 1.7809434886287482e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:20	Starting generateChainAndDeploy
+2026-06-08T18:31:28.630456573Z 1.7809434886287963e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:127	Starting generateMicroserviceChain
+2026-06-08T18:31:28.631443994Z 1.7809434886312847e+09	[35mDEBUG[0m	/app/cmd/agent/composition_request_handler.go:134	After GetAndUnmarshalJSON  compositionRequest.RequestType)
+2026-06-08T18:31:28.631453535Z 1.780943488631342e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:189	started getRequiredMicroservices
+2026-06-08T18:31:28.635750622Z 1.780943488635529e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:211	Start getOptionalMicroservices
+2026-06-08T18:31:28.635771039Z 1.7809434886355753e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:212	3
+2026-06-08T18:31:28.635772886Z 1.7809434886355865e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:216	Option: aggregate boolVal: %!b(bool=false)
+2026-06-08T18:31:28.635773912Z 1.7809434886355903e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:216	Option: graph boolVal: %!b(bool=false)
+2026-06-08T18:31:28.635775554Z 1.7809434886355968e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:154	sql-query
+2026-06-08T18:31:28.635776477Z 1.7809434886356006e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:154	sql-algorithm
+2026-06-08T18:31:28.635779453Z 1.7809434886356099e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:30	[{sql-query dataProvider [sql-aggregate sql-algorithm sql-anonymize] []} {sql-algorithm computeProvider [sql-graph] []}]
+2026-06-08T18:31:28.635780479Z 1.780943488635632e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:41	Starting deployJob
+2026-06-08T18:31:28.636042519Z 1.7809434886356416e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:96	job info:	{"name: ": "sql-query", "Port: ": 50053}
+2026-06-08T18:31:28.636050008Z 1.7809434886359665e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:269	Tag in getMicroserviceTag: 
+2026-06-08T18:31:28.636051034Z 1.7809434886359785e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:106	FullImage name: dynamos-local/sql-query:main
+2026-06-08T18:31:28.636052163Z 1.7809434886359875e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:107	Job name: jorrit-stutterheim-9caf4b2fuva1
+2026-06-08T18:31:28.636053086Z 1.7809434886359966e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:96	job info:	{"name: ": "sql-algorithm", "Port: ": 50054}
+2026-06-08T18:31:28.636054010Z 1.7809434886360018e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:269	Tag in getMicroserviceTag: 
+2026-06-08T18:31:28.636054830Z 1.7809434886360052e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:106	FullImage name: dynamos-local/sql-algorithm:main
+2026-06-08T18:31:28.636055754Z 1.7809434886360083e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:107	Job name: jorrit-stutterheim-9caf4b2fuva1
+2026-06-08T18:31:28.636056575Z 1.7809434886360147e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:269	Tag in getMicroserviceTag: main
+2026-06-08T18:31:28.636057395Z 1.7809434886360185e+09	[35mDEBUG[0m	/app/cmd/agent/deploy_job.go:163	Sidecar image name: dynamos-local/sidecar:main
+2026-06-08T18:31:28.658165507Z 1.7809434886579716e+09	[35mDEBUG[0m	/app/cmd/agent/sql_request_handler.go:171	Sending SendMicroserviceInput to: jorrit-stutterheim-9caf4b2fuva1
+2026-06-08T18:31:28.670953346Z 1.780943488670735e+09	[34mINFO[0m	/app/cmd/agent/composition_request_handler.go:40	Event received! Type: PUT Key:/agents/jobs/UVA/queueInfo/jorrit-stutterheim-9caf4b2fuva1 Value:jorrit-stutterheim-9caf4b2fuva1
+2026-06-08T18:31:28.670977662Z 
+2026-06-08T18:31:47.340214746Z 1.780943507338498e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "UVA"}
+2026-06-08T18:31:47.340341696Z 1.7809435073385878e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:109	Start handleMicroserviceCommunication
+2026-06-08T18:31:48.349851667Z 1.780943508349624e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:12	Enter isJobWaiting
+2026-06-08T18:31:48.349881761Z 1.780943508349726e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:28	isJobWaiting: correlationId=e73d15be-51f9-4179-b4e0-8164f9f6e153, jobFound=false, nrOfDataStewards=<nil>, mapContent=map[]
+2026-06-08T18:31:48.349884329Z 1.7809435083497362e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:42	No job waiting: false
+2026-06-08T18:31:48.349885767Z 1.7809435083497512e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:47	Enter isHttpWaiting
+2026-06-08T18:31:48.349887616Z 1.780943508349765e+09	[35mDEBUG[0m	/app/cmd/agent/incoming_microservice_communication.go:59	isHttpWaiting: correlationId=e73d15be-51f9-4179-b4e0-8164f9f6e153, httpChannelFound=true, mapContent=map[e73d15be-51f9-4179-b4e0-8164f9f6e153:0xc0009f6ba0]
+2026-06-08T18:31:48.349889054Z 1.78094350834977e+09	[34mINFO[0m	/app/cmd/agent/incoming_microservice_communication.go:62	Sending requestData to channel
+2026-06-08T18:31:48.350023090Z 1.780943508349813e+09	[35mDEBUG[0m	/app/cmd/agent/sql_request_handler.go:113	Received response, e73d15be-51f9-4179-b4e0-8164f9f6e153
+2026-06-08T18:24:49.471451990Z 1.7809430894562716e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:38	Serving on 50051
+2026-06-08T18:24:50.514536389Z 1.7809430905142193e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:47	Received:	{"Servicename": "UVA-in", "RoutingKey": "UVA-in"}
+2026-06-08T18:24:50.514808935Z 1.7809430905146236e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_setup_functions.go:38	Start getConnectionToRabbitMq
+2026-06-08T18:24:50.577938189Z 1.7809430905777168e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:110	Started consuming from UVA-in
+2026-06-08T18:27:51.125863255Z 1.780943271124408e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "compositionRequest", "Port:": 50051}
+2026-06-08T18:27:51.125886878Z 1.7809432711245532e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:27:51.125889343Z 1.7809432711245735e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:27:51.125890781Z 1.7809432711245933e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:27:51.271941315Z 1.7809432712717638e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:252	SendMicroserviceComm destination queue: jorrit-stutterheim-8d913881uva1
+2026-06-08T18:27:51.273343681Z 1.7809432712721198e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "jorrit-stutterheim-8d913881uva1"}
+2026-06-08T18:27:56.288683033Z 1.78094327627549e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: jorrit-stutterheim-8d913881uva1
+2026-06-08T18:27:56.289941403Z 1.7809432762889435e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!
+2026-06-08T18:28:11.630147396Z 1.780943291629416e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "microserviceCommunication", "Port:": 50051}
+2026-06-08T18:28:11.630178575Z 1.7809432916294854e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:105	Starting handleMicroserviceCommunication
+2026-06-08T18:28:12.798164453Z 1.7809432927965176e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:28:12.798674595Z 1.7809432927966876e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:28:12.798685056Z 1.7809432927967002e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:64	Adding jsonTraces
+2026-06-08T18:28:12.798687928Z 1.7809432927967072e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:28:27.588607448Z 1.780943307586206e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "compositionRequest", "Port:": 50051}
+2026-06-08T18:28:27.588632682Z 1.7809433075883503e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:28:27.588636683Z 1.7809433075883613e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:28:27.588638119Z 1.7809433075883656e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:28:27.721084010Z 1.780943307720704e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "sqlDataRequest", "Port:": 50051}
+2026-06-08T18:28:27.721103706Z 1.780943307720756e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:100	Starting handleSqlDataRequest
+2026-06-08T18:28:27.721111707Z 1.7809433077208726e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:28:27.721113656Z 1.780943307720886e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:28:27.721115092Z 1.780943307720891e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:28:27.830755601Z 1.7809433078304029e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:252	SendMicroserviceComm destination queue: jorrit-stutterheim-7b429ed5uva1
+2026-06-08T18:28:27.830789965Z 1.780943307830502e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "jorrit-stutterheim-7b429ed5uva1"}
+2026-06-08T18:28:32.837969912Z 1.7809433128374119e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: jorrit-stutterheim-7b429ed5uva1
+2026-06-08T18:28:32.838084164Z 1.7809433128380365e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!
+2026-06-08T18:28:45.929025168Z 1.7809433259288278e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "microserviceCommunication", "Port:": 50051}
+2026-06-08T18:28:45.929050295Z 1.7809433259289136e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:105	Starting handleMicroserviceCommunication
+2026-06-08T18:28:46.281969114Z 1.7809433262817824e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:28:46.282003419Z 1.7809433262818465e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:28:46.282005576Z 1.780943326281857e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:64	Adding jsonTraces
+2026-06-08T18:28:46.282007014Z 1.7809433262818613e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:28:47.077536301Z 1.7809433270771065e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:252	SendMicroserviceComm destination queue: SURF-in
+2026-06-08T18:28:47.077563622Z 1.78094332707736e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "SURF-in"}
+2026-06-08T18:28:52.084751252Z 1.7809433320845697e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: SURF-in
+2026-06-08T18:28:52.084778676Z 1.780943332084625e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!
+2026-06-08T18:31:27.884662068Z 1.780943487884023e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "compositionRequest", "Port:": 50051}
+2026-06-08T18:31:27.884683512Z 1.7809434878841436e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:31:27.884685666Z 1.7809434878841515e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:31:27.884687103Z 1.7809434878841548e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:31:28.671880540Z 1.7809434886716757e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:252	SendMicroserviceComm destination queue: jorrit-stutterheim-9caf4b2fuva1
+2026-06-08T18:31:28.672286630Z 1.7809434886721804e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "jorrit-stutterheim-9caf4b2fuva1"}
+2026-06-08T18:31:33.181141676Z 1.780943493180719e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: jorrit-stutterheim-9caf4b2fuva1
+2026-06-08T18:31:33.181170404Z 1.7809434931810267e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!
+2026-06-08T18:31:46.156434426Z 1.7809435061545722e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "microserviceCommunication", "Port:": 50051}
+2026-06-08T18:31:46.156890253Z 1.7809435061547084e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:105	Starting handleMicroserviceCommunication
+2026-06-08T18:31:47.155469516Z 1.7809435071540384e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:31:47.155544494Z 1.7809435071541147e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:31:47.155602114Z 1.7809435071541219e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:64	Adding jsonTraces
+2026-06-08T18:31:47.155606120Z 1.780943507154127e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace

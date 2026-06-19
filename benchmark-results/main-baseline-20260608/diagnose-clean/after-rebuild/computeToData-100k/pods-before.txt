@@ -1,0 +1,23 @@
+NAMESPACE            NAME                                                          READY   STATUS      RESTARTS   AGE    IP            NODE                                  NOMINATED NODE   READINESS GATES
+api-gateway          api-gateway-866b4cd946-7vd2z                                  2/2     Running     0          3m5s   10.244.0.30   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-0                                                        1/1     Running     0          21m    10.244.0.12   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-1                                                        1/1     Running     0          21m    10.244.0.15   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 etcd-2                                                        1/1     Running     0          21m    10.244.0.17   dynamos-main-diagnose-control-plane   <none>           <none>
+core                 init-rabbit-pvc-local-zxcn7                                   0/1     Completed   0          22m    10.244.0.8    dynamos-main-diagnose-control-plane   <none>           <none>
+core                 rabbitmq-7d5f6c9784-jq9q7                                     1/1     Running     0          21m    10.244.0.13   dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-f8zfd                                      1/1     Running     0          23m    10.244.0.4    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          coredns-674b8bbfcf-stgrl                                      1/1     Running     0          23m    10.244.0.3    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          etcd-dynamos-main-diagnose-control-plane                      1/1     Running     0          24m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kindnet-sn492                                                 1/1     Running     0          23m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-apiserver-dynamos-main-diagnose-control-plane            1/1     Running     0          24m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-controller-manager-dynamos-main-diagnose-control-plane   1/1     Running     0          24m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-proxy-pt7nv                                              1/1     Running     0          23m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+kube-system          kube-scheduler-dynamos-main-diagnose-control-plane            1/1     Running     0          24m    172.20.0.9    dynamos-main-diagnose-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-m57bg                       1/1     Running     0          23m    10.244.0.2    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         init-etcd-pvc-local-k8d97                                     0/1     Completed   0          22m    10.244.0.6    dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         orchestrator-bf6f6c8c8-gx8d5                                  2/2     Running     0          3m5s   10.244.0.33   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         policy-enforcer-6575bcd66b-n9ldl                              2/2     Running     0          3m5s   10.244.0.31   dynamos-main-diagnose-control-plane   <none>           <none>
+orchestrator         reseed-etcd-pvc-tpqfc                                         0/1     Completed   0          16m    10.244.0.24   dynamos-main-diagnose-control-plane   <none>           <none>
+surf                 surf-58f445c588-6th4h                                         2/2     Running     0          3m4s   10.244.0.35   dynamos-main-diagnose-control-plane   <none>           <none>
+uva                  uva-776c7b95cc-bm64r                                          2/2     Running     0          3m5s   10.244.0.32   dynamos-main-diagnose-control-plane   <none>           <none>
+vu                   vu-65f4b4b6c7-fkh59                                           2/2     Running     0          3m4s   10.244.0.34   dynamos-main-diagnose-control-plane   <none>           <none>

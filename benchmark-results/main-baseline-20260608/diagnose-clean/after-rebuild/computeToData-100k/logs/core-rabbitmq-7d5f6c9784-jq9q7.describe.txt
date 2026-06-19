@@ -1,0 +1,77 @@
+Name:             rabbitmq-7d5f6c9784-jq9q7
+Namespace:        core
+Priority:         0
+Service Account:  default
+Node:             dynamos-main-diagnose-control-plane/172.20.0.9
+Start Time:       Mon, 08 Jun 2026 20:05:59 +0200
+Labels:           app=rabbitmq
+                  pod-template-hash=7d5f6c9784
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.13
+IPs:
+  IP:           10.244.0.13
+Controlled By:  ReplicaSet/rabbitmq-7d5f6c9784
+Containers:
+  rabbitmq:
+    Container ID:  containerd://b1248adcb231a9da5e51c4e9da0c4c66a54a99237b8e10c11e0e71988eb9786a
+    Image:         rabbitmq:3-management
+    Image ID:      docker.io/library/rabbitmq@sha256:e582c0bc7766f3342496d8485efb5a1df782b5ce3886ad017e2eaae442311f69
+    Ports:         5672/TCP, 15672/TCP, 15692/TCP
+    Host Ports:    0/TCP, 0/TCP, 0/TCP
+    Command:
+      /bin/sh
+      -c
+      cp /mnt/definitions.json /opt/ && cp /mnt/rabbitmq.conf /etc/rabbitmq/conf.d/ && docker-entrypoint.sh rabbitmq-server
+    State:          Running
+      Started:      Mon, 08 Jun 2026 20:07:18 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      RABBITMQ_ERLANG_COOKIE:  mysecretcookie
+      RABBITMQ_DEFAULT_USER:   <set to the key 'rabbitmq-user' in secret 'rabbitmq-secret'>      Optional: false
+      RABBITMQ_DEFAULT_PASS:   <set to the key 'rabbitmq-password' in secret 'rabbitmq-secret'>  Optional: false
+      RABBITMQ_LOGS:           -
+    Mounts:
+      /mnt from rabbitmq-config (rw)
+      /var/lib/rabbitmq from rabbitmq-data (rw)
+      /var/log/rabbitmq from rabbitmq-log (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7v55h (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  rabbitmq-data:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  rabbitmq-data-pvc
+    ReadOnly:   false
+  rabbitmq-log:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  rabbitmq-log-pvc
+    ReadOnly:   false
+  rabbitmq-config:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  rabbit-pvc
+    ReadOnly:   false
+  kube-api-access-7v55h:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  22m   default-scheduler  Successfully assigned core/rabbitmq-7d5f6c9784-jq9q7 to dynamos-main-diagnose-control-plane
+  Normal  Pulling    22m   kubelet            Pulling image "rabbitmq:3-management"
+  Normal  Pulled     21m   kubelet            Successfully pulled image "rabbitmq:3-management" in 49.369s (1m19.703s including waiting). Image size: 114479602 bytes.
+  Normal  Created    21m   kubelet            Created container: rabbitmq
+  Normal  Started    21m   kubelet            Started container rabbitmq

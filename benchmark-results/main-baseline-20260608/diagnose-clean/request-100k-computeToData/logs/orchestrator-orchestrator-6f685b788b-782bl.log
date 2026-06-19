@@ -1,0 +1,33 @@
+2026-06-08T18:11:28.466500134Z 1.7809422884662688e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:51	returning conn GetGrpcConnection
+2026-06-08T18:11:28.468319144Z 1.7809422884679773e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:60	Initializing sidecar messaging with: service_name:"orchestrator-in" routing_key:"orchestrator-in"
+2026-06-08T18:11:28.487555917Z 1.7809422884869478e+09	[35mDEBUG[0m	/app/cmd/orchestrator/etcd_config.go:13	Start registerPolicyEnforcerConfiguration
+2026-06-08T18:11:28.487579315Z 1.7809422884874105e+09	[34mINFO[0m	/app/cmd/orchestrator/main.go:84	/api/v1
+2026-06-08T18:11:28.487586160Z 1.7809422884874306e+09	[34mINFO[0m	/app/cmd/orchestrator/main.go:88	Starting http server on: 	{"port": ":8080"}
+2026-06-08T18:13:01.300195679Z 1.7809423812985854e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "orchestrator"}
+2026-06-08T18:13:01.300212644Z 1.7809423812986627e+09	[35mDEBUG[0m	/app/cmd/orchestrator/consume.go:12	start orchestrator handleIncomingMessages
+2026-06-08T18:13:01.300214688Z 1.780942381298683e+09	[35mDEBUG[0m	/app/cmd/orchestrator/consume.go:19	Type:	{"MessageType": "validationResponse"}
+2026-06-08T18:13:01.300216936Z 1.780942381298893e+09	[35mDEBUG[0m	/app/cmd/orchestrator/get_authorized_providers.go:17	key: UVA
+2026-06-08T18:13:01.319692073Z 1.7809423813165555e+09	[35mDEBUG[0m	/app/cmd/orchestrator/get_authorized_providers.go:29	Added agent: UVA
+2026-06-08T18:13:01.319833418Z 1.7809423813165905e+09	[35mDEBUG[0m	/app/cmd/orchestrator/composition_request.go:24	Entering startCompositionRequest
+2026-06-08T18:13:01.319839345Z 1.7809423813166022e+09	[35mDEBUG[0m	/app/cmd/orchestrator/composition_request.go:200	starting chooseArchetype
+2026-06-08T18:13:01.319841389Z 1.780942381316607e+09	[35mDEBUG[0m	/app/cmd/orchestrator/composition_request.go:201	length options: 2
+2026-06-08T18:13:01.319842718Z 1.7809423813166108e+09	[35mDEBUG[0m	/app/cmd/orchestrator/composition_request.go:204	validDataprovider: %s UVA
+2026-06-08T18:13:01.319844762Z 1.7809423813166323e+09	[35mDEBUG[0m	/app/cmd/orchestrator/composition_request.go:147	Start getArchetypeBasedOnOptions, options: map[aggregate:false graph:false]
+2026-06-08T18:13:01.319846499Z 1.78094238131664e+09	[34mINFO[0m	/app/cmd/orchestrator/composition_request.go:120	Start pickArchetypeBasedOnWeight
+2026-06-08T18:13:01.327040473Z 1.780942381326795e+09	[34mINFO[0m	/app/cmd/orchestrator/composition_request.go:33	Chosen archetype: computeToData
+2026-06-08T18:13:01.330052662Z 1.7809423813291728e+09	[34mINFO[0m	/app/cmd/orchestrator/composition_request.go:47	Selected composition transport	{"requestedTransport": "", "selectedTransport": "unary", "computeProvider": "dataProvider"}
+2026-06-08T18:13:01.336168715Z 1.7809423813360348e+09	[35mDEBUG[0m	/app/cmd/orchestrator/consume.go:51	end orchestrator handleIncomingMessages
+2026-06-08T18:11:28.453383196Z 1.7809422884524024e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:38	Serving on 50051
+2026-06-08T18:11:28.469820596Z 1.7809422884696403e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:47	Received:	{"Servicename": "orchestrator-in", "RoutingKey": "orchestrator-in"}
+2026-06-08T18:11:28.470212843Z 1.7809422884700105e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_setup_functions.go:38	Start getConnectionToRabbitMq
+2026-06-08T18:11:28.488992795Z 1.7809422884887705e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:110	Started consuming from orchestrator-in
+2026-06-08T18:13:01.300122911Z 1.780942381296774e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "validationResponse", "Port:": 50051}
+2026-06-08T18:13:01.300289602Z 1.7809423812971132e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:13:01.300296449Z 1.780942381297139e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:13:01.300298085Z 1.780942381297151e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:13:01.330331366Z 1.7809423813299968e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "UVA-in"}
+2026-06-08T18:13:01.335714735Z 1.7809423813354406e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "api-gateway-in"}
+2026-06-08T18:13:06.333505266Z 1.780942386333311e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: UVA-in
+2026-06-08T18:13:06.333681769Z 1.7809423863336096e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!
+2026-06-08T18:13:06.337055547Z 1.7809423863369136e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: api-gateway-in
+2026-06-08T18:13:06.337179722Z 1.7809423863371277e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!

@@ -1,0 +1,59 @@
+[2026-06-08T20:13:00+02:00] Starting retained 100k computeToData diagnostic
+[2026-06-08T20:13:00+02:00] Port-forward ready
+[2026-06-08T20:13:22+02:00] Request exited rc=0 elapsed=22s
+{
+  "archetype": "computeToData",
+  "clientTimeoutSeconds": 420.0,
+  "contentResultHash": "83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183",
+  "dataset": "large",
+  "doneSeconds": 20.223202,
+  "elapsedSeconds": 20.223202,
+  "errors": [],
+  "events": [
+    "response",
+    "done"
+  ],
+  "expectedRows": 100000,
+  "finalResultCount": 1,
+  "finalResultHash": "83bc074522c561a8455563f3ab448b5900a29f86728c8baac25dad355c07d183",
+  "firstResultSeconds": 20.223202,
+  "jobId": "jorrit-stutterheim-8d421645",
+  "limit": 100000,
+  "observedRows": 100000,
+  "ok": true,
+  "partialResultCount": 0,
+  "providerErrorCount": 0,
+  "providerResultCount": 1,
+  "providerResults": [
+    {
+      "bytes": 5194510,
+      "columns": [
+        "Ingdatdv",
+        "Geslacht",
+        "Salschal",
+        "Unieknr",
+        "Functcat",
+        "Gebdat"
+      ],
+      "empty": false,
+      "jsonType": "list",
+      "observedRows": 100000,
+      "sha256": "11059e23d48769e62a3ec9dae05ec7b0cfe8715c71e3f855c67bb7d27e1d0196"
+    }
+  ],
+  "providers": [
+    "UVA"
+  ],
+  "queryShape": "default",
+  "rawLineCount": 1,
+  "rawResultHash": "1538dbfe968b3f4edeb1209ed7b4fc073d2044609ebd813dbc549bc09da517c1",
+  "requestBytes": 435,
+  "responseBytes": 6394605,
+  "responseMode": "classic-unary",
+  "responseSha256": "a94acffa4220a52c47914a1791b9d11d0d57c9cc28be9a6dfe5b4dd8b3eb5800",
+  "status": 200,
+  "transport": "unary",
+  "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+  "workload": "bulk"
+}
+[2026-06-08T20:13:29+02:00] Diagnostic capture complete: /home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/main-baseline-20260608/diagnose-clean/request-100k-computeToData

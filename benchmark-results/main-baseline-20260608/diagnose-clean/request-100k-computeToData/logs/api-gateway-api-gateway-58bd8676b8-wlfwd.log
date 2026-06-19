@@ -1,0 +1,28 @@
+2026-06-08T18:09:00.633851351Z 1.780942140622908e+09	[33mWARN[0m	/app/pkg/lib/go-grpc.go:83	could not check: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:50051: connect: connection refused"
+2026-06-08T18:09:00.634006410Z 1.780942140623074e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:89	Sleep 1 second
+2026-06-08T18:09:01.636050088Z 1.7809421416351044e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:96	returning conn GetGrpcConnection
+2026-06-08T18:09:01.636083424Z 1.7809421416352954e+09	[35mDEBUG[0m	/app/pkg/lib/go-grpc.go:105	Initializing sidecar messaging with: service_name:"api-gateway-in" routing_key:"api-gateway-in"
+2026-06-08T18:09:01.671041303Z 1.7809421416708646e+09	[34mINFO[0m	/app/cmd/api-gateway/main.go:101	/api/v1
+2026-06-08T18:09:01.671064138Z 1.7809421416709194e+09	[34mINFO[0m	/app/cmd/api-gateway/main.go:105	Starting http server on: 	{"port": ":8080"}
+2026-06-08T18:13:01.244522253Z 1.7809423812440467e+09	[34mINFO[0m	/app/pkg/api/http_utils.go:24	Received request	{"method": "POST", "path": "/api/v1/requestApproval"}
+2026-06-08T18:13:01.244909393Z 1.780942381244211e+09	[35mDEBUG[0m	/app/cmd/api-gateway/requests.go:23	Starting requestApprovalHandler
+2026-06-08T18:13:01.341591943Z 1.7809423813389394e+09	[35mDEBUG[0m	/app/pkg/lib/consume.go:40	startConsuming receiving	{"serviceName:": "api-gateway"}
+2026-06-08T18:13:01.341616778Z 1.7809423813389935e+09	[35mDEBUG[0m	/app/cmd/api-gateway/consume.go:15	start api gateway handleIncomingMessages
+2026-06-08T18:13:01.341809530Z 1.7809423813390155e+09	[35mDEBUG[0m	/app/cmd/api-gateway/consume.go:22	Type:	{"MessageType": "requestApprovalResponse"}
+2026-06-08T18:13:01.341832117Z 1.780942381340349e+09	[35mDEBUG[0m	/app/cmd/api-gateway/consume.go:45	end orchestrator handleIncomingMessages
+2026-06-08T18:13:01.341836920Z 1.7809423813405323e+09	[34mINFO[0m	/app/cmd/api-gateway/requests.go:90	Received response, requestApprovalResponse
+2026-06-08T18:13:01.341841724Z 1.7809423813406885e+09	[34mINFO[0m	/app/cmd/api-gateway/requests.go:116	Data Prepared jsonData: {"algorithm":"rows","options":{"aggregate":false,"graph":false},"query":"SELECT p.Unieknr, p.Geslacht, p.Gebdat, s.Salschal, s.Ingdatdv, s.Functcat FROM PersonenLarge p JOIN AanstellingenLarge s ON p.Unieknr = s.Unieknr LIMIT 100000","requestMetadata":{"job_id":"jorrit-stutterheim-8d421645","traces":{"binaryTrace":"AACrtbUy4w1XmJSaVgCgyj8tAR4qvkP/QGM/AgE="}},"type":"sqlDataRequest","user":{"id":"12324","user_name":"jorrit.stutterheim@cloudnation.nl"}}
+2026-06-08T18:13:01.341845710Z 1.78094238134073e+09	[34mINFO[0m	/app/cmd/api-gateway/requests.go:148	Sending request to uva. Endpoint: http://uva.uva.svc.cluster.local:8080/agent/v1/sqlDataRequest/uva JSON:{"algorithm":"rows","options":{"aggregate":false,"graph":false},"query":"SELECT p.Unieknr, p.Geslacht, p.Gebdat, s.Salschal, s.Ingdatdv, s.Functcat FROM PersonenLarge p JOIN AanstellingenLarge s ON p.Unieknr = s.Unieknr LIMIT 100000","requestMetadata":{"job_id":"jorrit-stutterheim-8d421645","traces":{"binaryTrace":"AACrtbUy4w1XmJSaVgCgyj8tAR4qvkP/QGM/AgE="}},"type":"sqlDataRequest","user":{"id":"12324","user_name":"jorrit.stutterheim@cloudnation.nl"}}
+2026-06-08T18:13:21.144504478Z 1.780942401139312e+09	[35mDEBUG[0m	/app/cmd/api-gateway/requests.go:164	Returning responses
+2026-06-08T18:09:00.865995849Z 1.7809421408653789e+09	[34mINFO[0m	/app/cmd/sidecar/main.go:38	Serving on 50051
+2026-06-08T18:09:01.636099735Z 1.780942141635793e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:47	Received:	{"Servicename": "api-gateway-in", "RoutingKey": "api-gateway-in"}
+2026-06-08T18:09:01.636111153Z 1.7809421416358519e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_setup_functions.go:38	Start getConnectionToRabbitMq
+2026-06-08T18:09:01.672475568Z 1.780942141672206e+09	[34mINFO[0m	/app/cmd/sidecar/grpc_server.go:110	Started consuming from api-gateway-in
+2026-06-08T18:13:01.256477904Z 1.780942381255318e+09	[34mINFO[0m	/app/cmd/sidecar/rabbit_send.go:95	Sending message: 	{"My routingKey": "", "exchangeName": "topic_exchange", "target": "policyEnforcer-in"}
+2026-06-08T18:13:01.337932000Z 1.7809423813369737e+09	[35mDEBUG[0m	/app/cmd/sidecar/grpc_server.go:113	switchin: 	{"msg,Type": "requestApprovalResponse", "Port:": 50051}
+2026-06-08T18:13:01.338033997Z 1.780942381337828e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:117	Starting handleRequestApprovalToApiResponse
+2026-06-08T18:13:01.338274069Z 1.7809423813380811e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:57	stream to main container
+2026-06-08T18:13:01.338280201Z 1.7809423813380945e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:59	msg.Headers != nil
+2026-06-08T18:13:01.338281836Z 1.7809423813381114e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_consume.go:70	Adding binaryTrace
+2026-06-08T18:13:06.263275875Z 1.7809423862627466e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:118	5 seconds have passed for target: policyEnforcer-in
+2026-06-08T18:13:06.263301425Z 1.7809423862631338e+09	[35mDEBUG[0m	/app/cmd/sidecar/rabbit_send.go:131	Backoff!!
