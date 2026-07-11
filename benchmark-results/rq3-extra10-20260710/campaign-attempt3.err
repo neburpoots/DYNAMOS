@@ -1,0 +1,6 @@
+[rq3-extra10] Resuming classic deployment with images already loaded
+[rq3-extra10] Deploying DYNAMOS from /home/nebur/src/DYNAMOS-clean-20260511
+[rq3-extra10] Installing Linkerd CRDs and control plane
+Can't install the Linkerd control plane in the 'linkerd' namespace. Reason: ConfigMap/linkerd-config already exists.
+Run the command `linkerd upgrade`, if you are looking to upgrade Linkerd.
+error: no objects passed to apply

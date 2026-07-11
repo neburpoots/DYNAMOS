@@ -1,0 +1,752 @@
+diff --git a/go/cmd/agent/incoming_microservice_communication.go b/go/cmd/agent/incoming_microservice_communication.go
+index e29d6be..57122c5 100644
+--- a/go/cmd/agent/incoming_microservice_communication.go
++++ b/go/cmd/agent/incoming_microservice_communication.go
+@@ -3,12 +3,15 @@ package main
+ import (
+ 	"context"
+ 	"fmt"
++	"time"
+ 
+ 	"github.com/Jorrit05/DYNAMOS/pkg/lib"
+ 	pb "github.com/Jorrit05/DYNAMOS/pkg/proto"
+ 	"go.opencensus.io/trace"
+ )
+ 
++const httpResponseChannelSendTimeout = 5 * time.Second
++
+ func isJobWaiting(ctx context.Context, msComm *pb.MicroserviceCommunication, correlationId string) bool {
+ 	logger.Debug("Enter isJobWaiting")
+ 
+@@ -77,10 +80,24 @@ func isHttpWaiting(ctx context.Context, msComm *pb.MicroserviceCommunication, co
+ 	if ok {
+ 		logger.Sugar().Info("Sending requestData to channel")
+ 
+-		// Send a signal on the channel to indicate that the response is ready
+-		dataResponseChan <- dataResponse{response: msComm, localContext: ctx}
++		final := lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true)
++		select {
++		case dataResponseChan <- dataResponse{response: msComm, localContext: ctx}:
++		case <-time.After(httpResponseChannelSendTimeout):
++			logger.Sugar().Warnw(
++				"HTTP response channel blocked; dropping response to keep agent message handling live",
++				"correlationId", correlationId,
++				"final", final,
++			)
++			if final {
++				mutex.Lock()
++				delete(responseMap, correlationId)
++				mutex.Unlock()
++			}
++			return true
++		}
+ 
+-		if lib.MetadataBool(msComm.Metadata, lib.StreamFinalMetadataKey, true) {
++		if final {
+ 			mutex.Lock()
+ 			delete(responseMap, correlationId)
+ 			mutex.Unlock()
+diff --git a/go/cmd/agent/sql_request_handler.go b/go/cmd/agent/sql_request_handler.go
+index dad5bbf..6263588 100644
+--- a/go/cmd/agent/sql_request_handler.go
++++ b/go/cmd/agent/sql_request_handler.go
+@@ -5,6 +5,8 @@ import (
+ 	"encoding/json"
+ 	"fmt"
+ 	"net/http"
++	"os"
++	"strconv"
+ 	"strings"
+ 	"time"
+ 
+@@ -79,7 +81,7 @@ func sqlDataRequestHandler() http.HandlerFunc {
+ 		// Generate correlationID for this request
+ 		correlationId := uuid.New().String()
+ 
+-		responseChan := make(chan dataResponse, 16)
++		responseChan := make(chan dataResponse, responseChannelBuffer())
+ 		cleanupWaitingResponse := true
+ 		mutex.Lock()
+ 		responseMap[correlationId] = responseChan
+@@ -200,6 +202,20 @@ func sqlDataRequestHandler() http.HandlerFunc {
+ 	}
+ }
+ 
++func responseChannelBuffer() int {
++	const defaultResponseChannelBuffer = 1024
++	value := strings.TrimSpace(os.Getenv("AGENT_RESPONSE_CHANNEL_BUFFER"))
++	if value == "" {
++		return defaultResponseChannelBuffer
++	}
++	parsed, err := strconv.Atoi(value)
++	if err != nil || parsed <= 0 {
++		logger.Sugar().Warnw("Invalid AGENT_RESPONSE_CHANNEL_BUFFER, using default", "value", value, "default", defaultResponseChannelBuffer)
++		return defaultResponseChannelBuffer
++	}
++	return parsed
++}
++
+ func streamHTTPResponses(w http.ResponseWriter, r *http.Request) (http.Flusher, bool) {
+ 	if !api.WantsNDJSON(r) {
+ 		return nil, false
+diff --git a/scripts/benchmark_matrix.py b/scripts/benchmark_matrix.py
+index 4d52c1b..cc91a4e 100755
+--- a/scripts/benchmark_matrix.py
++++ b/scripts/benchmark_matrix.py
+@@ -19,6 +19,7 @@ DEFAULT_ARCHETYPES = "dataThroughTtp,computeToData"
+ DEFAULT_WORKLOADS = "bulk,average"
+ DEFAULT_LARGE_LIMITS = "50000,250000"
+ DEFAULT_PROVIDER_SETS = "UVA;UVA,VU"
++DEFAULT_QUERY_SHAPES = "default"
+ RESPONSE_MODE_BATCHED = "batched"
+ RESPONSE_MODE_CLASSIC_UNARY = "classic-unary"
+ WORKLOAD_AVERAGE = "average"
+@@ -34,6 +35,125 @@ def parse_int_csv(value: str) -> list[int]:
+     return [int(item) for item in parse_csv(value)]
+ 
+ 
++def cleanup_generated_jobs(namespaces: list[str], timeout_seconds: float = 120.0) -> list[str]:
++    errors: list[str] = []
++    for namespace in namespaces:
++        completed = subprocess.run(
++            ["kubectl", "-n", namespace, "get", "jobs", "-o", "name"],
++            text=True,
++            capture_output=True,
++        )
++        if completed.returncode != 0:
++            errors.append(completed.stderr.strip() or completed.stdout.strip())
++            continue
++        jobs = [
++            line.strip()
++            for line in completed.stdout.splitlines()
++            if line.strip().startswith("job.batch/jorrit-stutterheim-")
++        ]
++        if not jobs:
++            continue
++        delete = subprocess.run(
++            ["kubectl", "-n", namespace, "delete", *jobs],
++            text=True,
++            capture_output=True,
++        )
++        if delete.returncode != 0:
++            errors.append(delete.stderr.strip() or delete.stdout.strip())
++
++    deadline = time.monotonic() + timeout_seconds
++    while time.monotonic() < deadline:
++        remaining = 0
++        for namespace in namespaces:
++            completed = subprocess.run(
++                ["kubectl", "-n", namespace, "get", "pods", "-o", "name"],
++                text=True,
++                capture_output=True,
++            )
++            if completed.returncode != 0:
++                continue
++            remaining += sum(
++                1
++                for line in completed.stdout.splitlines()
++                if line.strip().startswith("pod/jorrit-stutterheim-")
++            )
++        if remaining == 0:
++            return errors
++        time.sleep(2)
++
++    errors.append("generated job pod cleanup timed out")
++    return errors
++
++
++def parse_deployments(value: str) -> list[tuple[str, str]]:
++    deployments: list[tuple[str, str]] = []
++    for item in parse_csv(value):
++        namespace, separator, deployment = item.partition("/")
++        if not separator or not namespace or not deployment:
++            raise ValueError(f"invalid deployment target {item!r}; expected namespace/deployment")
++        deployments.append((namespace, deployment))
++    return deployments
++
++
++def restart_deployments(
++    deployments: list[tuple[str, str]], agent_ids: list[str], timeout_seconds: int = 300
++) -> list[str]:
++    errors: list[str] = []
++    if agent_ids:
++        completed = subprocess.run(
++            [
++                "kubectl", "-n", "core", "exec", "etcd-0", "-c", "etcd", "--",
++                "etcdctl", "--endpoints=http://127.0.0.1:2379", "del", "/agents/online", "--prefix",
++            ],
++            text=True,
++            capture_output=True,
++        )
++        if completed.returncode != 0:
++            errors.append(completed.stderr.strip() or completed.stdout.strip())
++
++    for namespace, deployment in deployments:
++        completed = subprocess.run(
++            ["kubectl", "-n", namespace, "rollout", "restart", f"deployment/{deployment}"],
++            text=True,
++            capture_output=True,
++        )
++        if completed.returncode != 0:
++            errors.append(completed.stderr.strip() or completed.stdout.strip())
++
++    for namespace, deployment in deployments:
++        completed = subprocess.run(
++            [
++                "kubectl", "-n", namespace, "rollout", "status", f"deployment/{deployment}",
++                f"--timeout={timeout_seconds}s",
++            ],
++            text=True,
++            capture_output=True,
++        )
++        if completed.returncode != 0:
++            errors.append(completed.stderr.strip() or completed.stdout.strip())
++
++    deadline = time.monotonic() + timeout_seconds
++    pending_agents = set(agent_ids)
++    while pending_agents and time.monotonic() < deadline:
++        for agent_id in list(pending_agents):
++            completed = subprocess.run(
++                [
++                    "kubectl", "-n", "core", "exec", "etcd-0", "-c", "etcd", "--",
++                    "etcdctl", "--endpoints=http://127.0.0.1:2379", "get",
++                    f"/agents/online/{agent_id}", "--print-value-only",
++                ],
++                text=True,
++                capture_output=True,
++            )
++            if completed.returncode == 0 and completed.stdout.strip():
++                pending_agents.remove(agent_id)
++        if pending_agents:
++            time.sleep(2)
++    if pending_agents:
++        errors.append(f"agents did not register after restart: {','.join(sorted(pending_agents))}")
++    return errors
++
++
+ def parse_provider_sets(value: str) -> list[list[str]]:
+     provider_sets = []
+     for item in value.split(";"):
+@@ -134,6 +254,7 @@ def run_once(
+     response_mode: str,
+     workload: str,
+     providers: list[str],
++    query_shape: str,
+     strict: bool,
+     require_partial: bool,
+ ) -> dict[str, Any]:
+@@ -156,6 +277,8 @@ def run_once(
+         archetype,
+         "--providers",
+         ",".join(providers),
++        "--query-shape",
++        query_shape,
+         "--timeout",
+         str(timeout),
+     ]
+@@ -217,6 +340,7 @@ def mark_cross_transport_mismatches(summaries: list[dict[str, Any]]) -> None:
+             summary["workload"],
+             summary["archetype"],
+             summary["providersLabel"],
++            summary.get("queryShape"),
+             summary["temperature"],
+             summary["responseMode"],
+             summary.get("sqlBatchRows"),
+@@ -232,6 +356,7 @@ def mark_cross_transport_mismatches(summaries: list[dict[str, Any]]) -> None:
+             summary["workload"],
+             summary["archetype"],
+             summary["providersLabel"],
++            summary.get("queryShape"),
+             summary["temperature"],
+             summary["responseMode"],
+             summary.get("sqlBatchRows"),
+@@ -253,6 +378,7 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
+         "dataset",
+         "limit",
+         "workload",
++        "queryShape",
+         "archetype",
+         "providers",
+         "temperature",
+@@ -282,6 +408,7 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
+                     "dataset": summary["dataset"],
+                     "limit": summary["limit"],
+                     "workload": summary["workload"],
++                    "queryShape": summary.get("queryShape") or "default",
+                     "archetype": summary["archetype"],
+                     "providers": summary["providersLabel"],
+                     "temperature": summary["temperature"],
+@@ -308,19 +435,20 @@ def write_csv(path: Path, summaries: list[dict[str, Any]]) -> None:
+ def write_markdown(path: Path, summaries: list[dict[str, Any]]) -> None:
+     path.parent.mkdir(parents=True, exist_ok=True)
+     lines = [
+-        "| dataset | limit | workload | archetype | providers | temperature | transport | response mode | batch | chunk | ok/runs | first median (min-max) | done median (min-max) | rows | content match | raw match |",
+-        "| --- | ---: | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |",
++        "| dataset | limit | workload | query shape | archetype | providers | temperature | transport | response mode | batch | chunk | ok/runs | first median (min-max) | done median (min-max) | rows | content match | raw match |",
++        "| --- | ---: | --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |",
+     ]
+     for summary in summaries:
+         first = summary["firstResultSeconds"]
+         done = summary["doneSeconds"]
+         rows = summary["observedRows"]
+         lines.append(
+-            "| {dataset} | {limit} | {workload} | {archetype} | {providers} | {temperature} | {transport} | {response_mode} | {batch} | {chunk} | {ok}/{runs} | "
++            "| {dataset} | {limit} | {workload} | {query_shape} | {archetype} | {providers} | {temperature} | {transport} | {response_mode} | {batch} | {chunk} | {ok}/{runs} | "
+             "{first_median} ({first_min}-{first_max}) | {done_median} ({done_min}-{done_max}) | {rows_median} | {content_match} | {raw_match} |".format(
+                 dataset=summary["dataset"],
+                 limit=summary["limit"],
+                 workload=summary["workload"],
++                query_shape=summary.get("queryShape") or "default",
+                 archetype=summary["archetype"],
+                 providers=summary["providersLabel"],
+                 temperature=summary["temperature"],
+@@ -357,6 +485,7 @@ def parse_args() -> argparse.Namespace:
+     parser.add_argument("--archetypes", default=DEFAULT_ARCHETYPES)
+     parser.add_argument("--provider-sets", default=DEFAULT_PROVIDER_SETS)
+     parser.add_argument("--providers")
++    parser.add_argument("--query-shapes", default=DEFAULT_QUERY_SHAPES)
+     parser.add_argument("--repetitions", type=int, default=3)
+     parser.add_argument("--timeout", type=int, default=1800)
+     parser.add_argument("--sql-batch-rows")
+@@ -367,6 +496,12 @@ def parse_args() -> argparse.Namespace:
+     parser.add_argument("--shuffle-seed", type=int, default=0)
+     parser.add_argument("--strict", action="store_true")
+     parser.add_argument("--require-partial", action="store_true")
++    parser.add_argument("--cleanup-generated-jobs", action="store_true")
++    parser.add_argument("--cleanup-namespaces", default="surf,uva,vu")
++    parser.add_argument("--retry-failed-runs", type=int, default=0)
++    parser.add_argument("--restart-deployments-on-failure", default="")
++    parser.add_argument("--recovery-agent-ids", default="")
++    parser.add_argument("--recovery-wait-seconds", type=float, default=5.0)
+     return parser.parse_args()
+ 
+ 
+@@ -379,6 +514,17 @@ def main() -> int:
+     workloads = parse_csv(args.workloads)
+     datasets = parse_csv(args.datasets)
+     archetypes = parse_csv(args.archetypes)
++    query_shapes = parse_csv(args.query_shapes)
++    cleanup_namespaces = parse_csv(args.cleanup_namespaces)
++    recovery_agent_ids = parse_csv(args.recovery_agent_ids)
++    try:
++        recovery_deployments = parse_deployments(args.restart_deployments_on_failure)
++    except ValueError as exc:
++        print(json.dumps({"error": str(exc)}))
++        return 2
++    if args.retry_failed_runs < 0:
++        print(json.dumps({"error": "retry-failed-runs must be non-negative"}))
++        return 2
+     if args.providers:
+         provider_sets = [parse_csv(args.providers)]
+     else:
+@@ -393,41 +539,49 @@ def main() -> int:
+     if not provider_sets:
+         print(json.dumps({"error": "no provider sets selected"}))
+         return 2
++    if not query_shapes:
++        print(json.dumps({"error": "no query shapes selected"}))
++        return 2
+ 
+     groups = []
+     for dataset, limit in cases:
+         for workload in workloads:
+-            for providers in provider_sets:
+-                providers_label = ",".join(providers)
+-                for archetype in archetypes:
+-                    for transport in transports:
+-                        for response_mode in response_modes_for_transport(transport, response_modes):
+-                            groups.append(
+-                                {
+-                                    "dataset": dataset,
+-                                    "limit": limit,
+-                                    "workload": workload,
+-                                    "archetype": archetype,
+-                                    "providers": providers,
+-                                    "providersLabel": providers_label,
+-                                    "temperature": args.temperature,
+-                                    "transport": transport,
+-                                    "responseMode": response_mode,
+-                                    "sqlBatchRows": args.sql_batch_rows,
+-                                    "rabbitmqChunkRows": args.rabbitmq_chunk_rows,
+-                                }
+-                            )
++            workload_query_shapes = query_shapes if workload == WORKLOAD_BULK else ["default"]
++            for query_shape in workload_query_shapes:
++                for providers in provider_sets:
++                    providers_label = ",".join(providers)
++                    for archetype in archetypes:
++                        for transport in transports:
++                            for response_mode in response_modes_for_transport(transport, response_modes):
++                                groups.append(
++                                    {
++                                        "dataset": dataset,
++                                        "limit": limit,
++                                        "workload": workload,
++                                        "queryShape": query_shape,
++                                        "archetype": archetype,
++                                        "providers": providers,
++                                        "providersLabel": providers_label,
++                                        "temperature": args.temperature,
++                                        "transport": transport,
++                                        "responseMode": response_mode,
++                                        "sqlBatchRows": args.sql_batch_rows,
++                                        "rabbitmqChunkRows": args.rabbitmq_chunk_rows,
++                                    }
++                                )
+ 
+     if not groups:
+         print(json.dumps({"error": "no benchmark cases selected after transport/response-mode filtering"}))
+         return 2
+ 
+     all_runs = []
++    failed_attempts = []
+     runs_by_group: dict[tuple[Any, ...], list[dict[str, Any]]] = {
+         (
+             group["dataset"],
+             group["limit"],
+             group["workload"],
++            group["queryShape"],
+             group["archetype"],
+             group["providersLabel"],
+             group["temperature"],
+@@ -443,45 +597,72 @@ def main() -> int:
+         repetition_groups = list(groups)
+         random.Random(args.shuffle_seed + repetition).shuffle(repetition_groups)
+         for group in repetition_groups:
+-            print(
+-                f"running {group['dataset']} limit={group['limit']} workload={group['workload']} "
+-                f"providers={group['providersLabel']} {group['temperature']} {group['archetype']} {group['transport']} "
+-                f"response-mode={group['responseMode']} rep={repetition}/{args.repetitions}",
+-                file=sys.stderr,
+-                flush=True,
+-            )
+-            run = run_once(
+-                benchmark_script,
+-                args.url,
+-                args.timeout,
+-                group["dataset"],
+-                group["limit"],
+-                group["archetype"],
+-                group["transport"],
+-                group["responseMode"],
+-                group["workload"],
+-                group["providers"],
+-                args.strict,
+-                require_partial_for_case(
++            run: dict[str, Any] = {}
++            for attempt in range(1, args.retry_failed_runs + 2):
++                cleanup_before_errors: list[str] = []
++                if args.cleanup_generated_jobs:
++                    cleanup_before_errors = cleanup_generated_jobs(cleanup_namespaces)
++                    for error in cleanup_before_errors:
++                        print(f"cleanup before warning: {error}", file=sys.stderr, flush=True)
++                print(
++                    f"running {group['dataset']} limit={group['limit']} workload={group['workload']} "
++                    f"query-shape={group['queryShape']} providers={group['providersLabel']} "
++                    f"{group['temperature']} {group['archetype']} {group['transport']} "
++                    f"response-mode={group['responseMode']} rep={repetition}/{args.repetitions} attempt={attempt}",
++                    file=sys.stderr,
++                    flush=True,
++                )
++                run = run_once(
++                    benchmark_script,
++                    args.url,
++                    args.timeout,
++                    group["dataset"],
++                    group["limit"],
++                    group["archetype"],
++                    group["transport"],
+                     group["responseMode"],
+                     group["workload"],
+-                    args.require_partial,
+-                    expected_rows(
+-                        group["dataset"],
+-                        group["limit"],
+-                        group["providers"],
+-                        group["responseMode"],
+-                        group["workload"],
++                    group["providers"],
++                    group["queryShape"],
++                    args.strict,
++                    require_partial_for_case(
++                        group["responseMode"], group["workload"], args.require_partial,
++                        expected_rows(
++                            group["dataset"], group["limit"], group["providers"],
++                            group["responseMode"], group["workload"],
++                        ),
++                        group["sqlBatchRows"],
+                     ),
+-                    group["sqlBatchRows"],
+-                ),
+-            )
+-            run.update(group)
+-            run["repetition"] = repetition
++                )
++                run.update(group)
++                run["repetition"] = repetition
++                run["attempt"] = attempt
++                if cleanup_before_errors:
++                    run["cleanupBeforeErrors"] = cleanup_before_errors
++                cleanup_after_errors: list[str] = []
++                if args.cleanup_generated_jobs:
++                    cleanup_after_errors = cleanup_generated_jobs(cleanup_namespaces)
++                    for error in cleanup_after_errors:
++                        print(f"cleanup after warning: {error}", file=sys.stderr, flush=True)
++                if cleanup_after_errors:
++                    run["cleanupAfterErrors"] = cleanup_after_errors
++                if run.get("ok") or attempt > args.retry_failed_runs:
++                    break
++
++                print(f"run failed; recovering before retry {attempt + 1}", file=sys.stderr, flush=True)
++                recovery_errors = restart_deployments(recovery_deployments, recovery_agent_ids)
++                if recovery_errors:
++                    run["recoveryErrors"] = recovery_errors
++                    for error in recovery_errors:
++                        print(f"recovery warning: {error}", file=sys.stderr, flush=True)
++                failed_attempts.append(dict(run))
++                if args.recovery_wait_seconds > 0:
++                    time.sleep(args.recovery_wait_seconds)
+             key = (
+                 group["dataset"],
+                 group["limit"],
+                 group["workload"],
++                group["queryShape"],
+                 group["archetype"],
+                 group["providersLabel"],
+                 group["temperature"],
+@@ -499,6 +680,7 @@ def main() -> int:
+             group["dataset"],
+             group["limit"],
+             group["workload"],
++            group["queryShape"],
+             group["archetype"],
+             group["providersLabel"],
+             group["temperature"],
+@@ -515,7 +697,7 @@ def main() -> int:
+     json_path = output_dir / f"{args.name}.json"
+     csv_path = output_dir / f"{args.name}.csv"
+     markdown_path = output_dir / f"{args.name}.md"
+-    write_json(json_path, {"runs": all_runs, "summaries": summaries})
++    write_json(json_path, {"runs": all_runs, "failedAttempts": failed_attempts, "summaries": summaries})
+     write_csv(csv_path, summaries)
+     write_markdown(markdown_path, summaries)
+ 
+diff --git a/scripts/benchmark_ndjson.py b/scripts/benchmark_ndjson.py
+index 9429e43..b4cf48a 100755
+--- a/scripts/benchmark_ndjson.py
++++ b/scripts/benchmark_ndjson.py
+@@ -17,6 +17,9 @@ WORKLOAD_AVERAGE = "average"
+ WORKLOAD_BULK = "bulk"
+ DEFAULT_WORKLOAD = WORKLOAD_AVERAGE
+ JSON_CONTENT_TYPE = "application/json"
++QUERY_SHAPE_DEFAULT = "default"
++QUERY_SHAPE_NARROW = "narrow"
++QUERY_SHAPE_WIDE = "wide"
+ 
+ 
+ def resolve_tables(dataset: str) -> tuple[str, str]:
+@@ -39,21 +42,35 @@ def build_average_query(limit: int, dataset: str) -> str:
+     )
+ 
+ 
+-def build_bulk_query(limit: int, dataset: str) -> str:
++def build_bulk_query(limit: int, dataset: str, query_shape: str = QUERY_SHAPE_DEFAULT) -> str:
+     personen_table, aanstellingen_table = resolve_tables(dataset)
++    if query_shape == QUERY_SHAPE_NARROW:
++        projection = "p.Unieknr, s.Salschal"
++    elif query_shape == QUERY_SHAPE_WIDE:
++        projection = (
++            "p.Instcode AS p_Instcode, p.Unieknr AS p_Unieknr, p.Geslacht, p.Gebdat, "
++            "p.Nationaliteit, p.BKO, p.SKO, p.Peildat AS p_Peildat, "
++            "s.Instcode AS s_Instcode, s.Unieknr AS s_Unieknr, s.Volgnrar, s.Aadnstvb, "
++            "s.Ingdatdv, s.Eindatdv, s.HOOPgeb, s.Functcat, s.WelGeenHGL, s.Salschal, "
++            "s.Taakomv, s.Aanst_22, s.Peildat AS s_Peildat"
++        )
++    elif query_shape == QUERY_SHAPE_DEFAULT:
++        projection = "p.Unieknr, p.Geslacht, p.Gebdat, s.Salschal, s.Ingdatdv, s.Functcat"
++    else:
++        raise ValueError(f"unsupported query shape {query_shape!r}")
+     return (
+-        "SELECT p.Unieknr, p.Geslacht, p.Gebdat, s.Salschal, s.Ingdatdv, s.Functcat "
++        f"SELECT {projection} "
+         f"FROM {personen_table} p "
+         f"JOIN {aanstellingen_table} s ON p.Unieknr = s.Unieknr "
+         f"LIMIT {limit}"
+     )
+ 
+ 
+-def build_query(limit: int, dataset: str, workload: str) -> str:
++def build_query(limit: int, dataset: str, workload: str, query_shape: str = QUERY_SHAPE_DEFAULT) -> str:
+     if workload == WORKLOAD_AVERAGE:
+         return build_average_query(limit, dataset)
+     if workload == WORKLOAD_BULK:
+-        return build_bulk_query(limit, dataset)
++        return build_bulk_query(limit, dataset, query_shape)
+     raise ValueError(f"unsupported workload {workload!r}")
+ 
+ 
+@@ -91,6 +108,7 @@ def build_payload(
+     providers: list[str],
+     response_mode: str,
+     workload: str,
++    query_shape: str = QUERY_SHAPE_DEFAULT,
+ ) -> dict[str, Any]:
+     aggregate = archetype == "dataThroughTtp"
+     return {
+@@ -103,7 +121,7 @@ def build_payload(
+         "transport": transport,
+         "data_request": {
+             "type": "sqlDataRequest",
+-            "query": build_query(limit, dataset, workload),
++            "query": build_query(limit, dataset, workload, query_shape),
+             "algorithm": algorithm_for_workload(workload),
+             "transport": transport,
+             "options": {
+@@ -322,6 +340,7 @@ def parse_args() -> argparse.Namespace:
+     parser.add_argument("--dataset", choices=["large", "original"], default="large")
+     parser.add_argument("--archetype", choices=["dataThroughTtp", "computeToData"], default="dataThroughTtp")
+     parser.add_argument("--workload", choices=[WORKLOAD_AVERAGE, WORKLOAD_BULK], default=DEFAULT_WORKLOAD)
++    parser.add_argument("--query-shape", choices=[QUERY_SHAPE_NARROW, QUERY_SHAPE_DEFAULT, QUERY_SHAPE_WIDE], default=QUERY_SHAPE_DEFAULT)
+     parser.add_argument("--providers", default=",".join(DEFAULT_PROVIDERS))
+     parser.add_argument("--timeout", type=int, default=1800)
+     parser.add_argument("--expected-rows", type=int)
+@@ -372,6 +391,7 @@ def main() -> int:
+         providers,
+         args.response_mode,
+         args.workload,
++        args.query_shape,
+     )
+     request = urllib.request.Request(
+         args.url,
+@@ -409,6 +429,7 @@ def main() -> int:
+                             "transport": args.transport,
+                             "responseMode": args.response_mode,
+                             "workload": args.workload,
++                            "queryShape": args.query_shape,
+                             "limit": args.limit,
+                             "error": "response was not NDJSON",
+                             "contentType": content_type,
+@@ -432,6 +453,7 @@ def main() -> int:
+                                 "transport": args.transport,
+                                 "responseMode": args.response_mode,
+                                 "workload": args.workload,
++                                "queryShape": args.query_shape,
+                                 "limit": args.limit,
+                                 "contentType": content_type,
+                                 "error": parsed_response["error"],
+@@ -481,6 +503,7 @@ def main() -> int:
+                             "transport": args.transport,
+                             "responseMode": args.response_mode,
+                             "workload": args.workload,
++                            "queryShape": args.query_shape,
+                             "limit": args.limit,
+                             "providers": providers,
+                             "expectedRows": args.expected_rows,
+@@ -520,6 +543,7 @@ def main() -> int:
+                                 "transport": args.transport,
+                                 "responseMode": args.response_mode,
+                                 "workload": args.workload,
++                                "queryShape": args.query_shape,
+                                 "limit": args.limit,
+                                 "error": f"invalid NDJSON line: {exc}",
+                                 "rawLine": line,
+@@ -604,6 +628,7 @@ def main() -> int:
+                     "transport": args.transport,
+                     "responseMode": args.response_mode,
+                     "workload": args.workload,
++                    "queryShape": args.query_shape,
+                     "limit": args.limit,
+                     "providers": providers,
+                     "expectedRows": args.expected_rows,
+@@ -637,6 +662,7 @@ def main() -> int:
+                     "transport": args.transport,
+                     "responseMode": args.response_mode,
+                     "workload": args.workload,
++                    "queryShape": args.query_shape,
+                     "limit": args.limit,
+                     "httpStatus": exc.code,
+                     "error": body,
+@@ -654,12 +680,63 @@ def main() -> int:
+                     "transport": args.transport,
+                     "responseMode": args.response_mode,
+                     "workload": args.workload,
++                    "queryShape": args.query_shape,
+                     "limit": args.limit,
+                     "error": str(exc),
+                 }
+             )
+         )
+         return 1
++    except TimeoutError as exc:
++        rows_observed = observed_rows(provider_rows, rows_processed)
++        result_rows_observed = result_events_row_count(provider_results if args.workload == WORKLOAD_BULK else final_results)
++        if result_rows_observed is not None:
++            rows_observed = result_rows_observed
++        timeout_errors = list(errors)
++        timeout_errors.append(f"client timed out: {exc}")
++        if done_seconds is None:
++            timeout_errors.append("missing done event")
++        if first_result_seconds is None:
++            timeout_errors.append("missing providerResult event")
++        if args.require_partial and partial_result_count == 0:
++            timeout_errors.append("missing partial providerResult before final")
++        if args.expected_rows is not None and rows_observed != args.expected_rows:
++            timeout_errors.append(f"rows mismatch: observed {rows_observed}, expected {args.expected_rows}")
++
++        hashes = result_hashes(provider_results, final_results, args.workload)
++        print(
++            json.dumps(
++                {
++                    "ok": False,
++                    "dataset": args.dataset,
++                    "archetype": args.archetype,
++                    "transport": args.transport,
++                    "responseMode": args.response_mode,
++                    "workload": args.workload,
++                    "queryShape": args.query_shape,
++                    "limit": args.limit,
++                    "providers": providers,
++                    "expectedRows": args.expected_rows,
++                    "firstResultSeconds": first_result_seconds,
++                    "doneSeconds": done_seconds,
++                    "rowsProcessed": rows_processed,
++                    "rowsTotal": rows_total,
++                    "observedRows": rows_observed,
++                    "providerRows": provider_rows,
++                    "partialResultCount": partial_result_count,
++                    "providerResultCount": len(provider_results),
++                    "finalResultCount": len(final_results),
++                    "providerErrorCount": provider_error_count,
++                    "sequenceErrors": sequence_errors,
++                    **hashes,
++                    "events": events,
++                    "rawLineCount": len(raw_lines),
++                    "errors": timeout_errors,
++                    "error": "client timed out",
++                }
++            )
++        )
++        return 1
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/scripts/controlled_kind_benchmark.sh b/scripts/controlled_kind_benchmark.sh
+index 46107b8..5c9c86e 100755
+--- a/scripts/controlled_kind_benchmark.sh
++++ b/scripts/controlled_kind_benchmark.sh
+@@ -20,6 +20,7 @@ RESPONSE_MODES="${RESPONSE_MODES:-batched,classic-unary}"
+ WORKLOADS="${WORKLOADS:-bulk,average}"
+ DATASETS="${DATASETS:-large,original}"
+ LARGE_LIMITS="${LARGE_LIMITS:-50000,250000}"
++QUERY_SHAPES="${QUERY_SHAPES:-default}"
+ ARCHETYPES="${ARCHETYPES:-dataThroughTtp,computeToData}"
+ PROVIDER_SETS="${PROVIDER_SETS:-UVA;UVA,VU}"
+ RUN_TEMPERATURES="${RUN_TEMPERATURES:-cold,warm}"
+@@ -352,6 +353,7 @@ run_matrix() {
+     --workloads "${WORKLOADS}" \
+     --datasets "${DATASETS}" \
+     --large-limits "${LARGE_LIMITS}" \
++    --query-shapes "${QUERY_SHAPES}" \
+     --original-limit "${ORIGINAL_LIMIT}" \
+     --archetypes "${ARCHETYPES}" \
+     --provider-sets "${PROVIDER_SETS}" \

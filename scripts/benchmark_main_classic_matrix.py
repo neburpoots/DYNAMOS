@@ -70,6 +70,100 @@ def cleanup_generated_jobs(namespaces: list[str], timeout_seconds: float = 120.0
     return errors
 
 
+def parse_deployments(value: str) -> list[tuple[str, str]]:
+    deployments: list[tuple[str, str]] = []
+    for item in parse_csv(value):
+        namespace, separator, deployment = item.partition("/")
+        if not separator or not namespace or not deployment:
+            raise ValueError(f"invalid deployment target {item!r}; expected namespace/deployment")
+        deployments.append((namespace, deployment))
+    return deployments
+
+
+def restart_deployments(
+    deployments: list[tuple[str, str]], agent_ids: list[str], timeout_seconds: int = 300
+) -> list[str]:
+    errors: list[str] = []
+    if agent_ids:
+        completed = subprocess.run(
+            [
+                "kubectl",
+                "-n",
+                "core",
+                "exec",
+                "etcd-0",
+                "-c",
+                "etcd",
+                "--",
+                "etcdctl",
+                "--endpoints=http://127.0.0.1:2379",
+                "del",
+                "/agents/online",
+                "--prefix",
+            ],
+            text=True,
+            capture_output=True,
+        )
+        if completed.returncode != 0:
+            errors.append(completed.stderr.strip() or completed.stdout.strip())
+
+    for namespace, deployment in deployments:
+        completed = subprocess.run(
+            ["kubectl", "-n", namespace, "rollout", "restart", f"deployment/{deployment}"],
+            text=True,
+            capture_output=True,
+        )
+        if completed.returncode != 0:
+            errors.append(completed.stderr.strip() or completed.stdout.strip())
+
+    for namespace, deployment in deployments:
+        completed = subprocess.run(
+            [
+                "kubectl",
+                "-n",
+                namespace,
+                "rollout",
+                "status",
+                f"deployment/{deployment}",
+                f"--timeout={timeout_seconds}s",
+            ],
+            text=True,
+            capture_output=True,
+        )
+        if completed.returncode != 0:
+            errors.append(completed.stderr.strip() or completed.stdout.strip())
+
+    deadline = time.monotonic() + timeout_seconds
+    pending_agents = set(agent_ids)
+    while pending_agents and time.monotonic() < deadline:
+        for agent_id in list(pending_agents):
+            completed = subprocess.run(
+                [
+                    "kubectl",
+                    "-n",
+                    "core",
+                    "exec",
+                    "etcd-0",
+                    "-c",
+                    "etcd",
+                    "--",
+                    "etcdctl",
+                    "--endpoints=http://127.0.0.1:2379",
+                    "get",
+                    f"/agents/online/{agent_id}",
+                ],
+                text=True,
+                capture_output=True,
+            )
+            if completed.returncode == 0 and f"/agents/online/{agent_id}" in completed.stdout:
+                pending_agents.remove(agent_id)
+        if pending_agents:
+            time.sleep(2)
+    if pending_agents:
+        errors.append(f"agents did not register after restart: {','.join(sorted(pending_agents))}")
+    return errors
+
+
 def rounded(value: float | None) -> float | None:
     if value is None:
         return None
@@ -296,6 +390,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--strict", action="store_true")
     parser.add_argument("--cleanup-generated-jobs", action="store_true")
     parser.add_argument("--cleanup-namespaces", default="surf,uva,vu")
+    parser.add_argument("--retry-failed-runs", type=int, default=0)
+    parser.add_argument(
+        "--restart-deployments-on-failure",
+        default="",
+        help="Comma-separated namespace/deployment targets restarted before retrying a failed run.",
+    )
+    parser.add_argument("--recovery-agent-ids", default="")
+    parser.add_argument("--recovery-wait-seconds", type=float, default=5.0)
     return parser.parse_args()
 
 
@@ -308,6 +410,15 @@ def main() -> int:
     archetypes = parse_csv(args.archetypes)
     query_shapes = parse_csv(args.query_shapes)
     cleanup_namespaces = parse_csv(args.cleanup_namespaces)
+    recovery_agent_ids = parse_csv(args.recovery_agent_ids)
+    try:
+        recovery_deployments = parse_deployments(args.restart_deployments_on_failure)
+    except ValueError as exc:
+        print(json.dumps({"error": str(exc)}))
+        return 2
+    if args.retry_failed_runs < 0:
+        print(json.dumps({"error": "retry-failed-runs must be non-negative"}))
+        return 2
     if not providers:
         print(json.dumps({"error": "no providers selected"}))
         return 2
@@ -340,6 +451,7 @@ def main() -> int:
     ]
 
     all_runs = []
+    failed_attempts = []
     runs_by_group: dict[tuple[int, str, str], list[dict[str, Any]]] = {
         (group["limit"], group["archetype"], group["queryShape"]): []
         for group in groups
@@ -348,40 +460,59 @@ def main() -> int:
         repetition_groups = list(groups)
         random.Random(args.shuffle_seed + repetition).shuffle(repetition_groups)
         for group in repetition_groups:
-            cleanup_before_errors: list[str] = []
-            if args.cleanup_generated_jobs:
-                cleanup_before_errors = cleanup_generated_jobs(cleanup_namespaces)
-                for error in cleanup_before_errors:
-                    print(f"cleanup before warning: {error}", file=sys.stderr, flush=True)
-            print(
-                "running main classic "
-                f"limit={group['limit']} archetype={group['archetype']} "
-                f"query-shape={group['queryShape']} providers={group['providersLabel']} "
-                f"rep={repetition}/{args.repetitions}",
-                file=sys.stderr,
-                flush=True,
-            )
-            run = run_once(
-                benchmark_script,
-                args.url,
-                args.timeout,
-                group["limit"],
-                group["providers"],
-                group["archetype"],
-                group["queryShape"],
-                args.strict,
-            )
-            run.update(group)
-            run["repetition"] = repetition
-            if cleanup_before_errors:
-                run["cleanupBeforeErrors"] = cleanup_before_errors
-            cleanup_after_errors: list[str] = []
-            if args.cleanup_generated_jobs:
-                cleanup_after_errors = cleanup_generated_jobs(cleanup_namespaces)
-                for error in cleanup_after_errors:
-                    print(f"cleanup after warning: {error}", file=sys.stderr, flush=True)
-            if cleanup_after_errors:
-                run["cleanupAfterErrors"] = cleanup_after_errors
+            run: dict[str, Any] = {}
+            for attempt in range(1, args.retry_failed_runs + 2):
+                cleanup_before_errors: list[str] = []
+                if args.cleanup_generated_jobs:
+                    cleanup_before_errors = cleanup_generated_jobs(cleanup_namespaces)
+                    for error in cleanup_before_errors:
+                        print(f"cleanup before warning: {error}", file=sys.stderr, flush=True)
+                print(
+                    "running main classic "
+                    f"limit={group['limit']} archetype={group['archetype']} "
+                    f"query-shape={group['queryShape']} providers={group['providersLabel']} "
+                    f"rep={repetition}/{args.repetitions} attempt={attempt}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                run = run_once(
+                    benchmark_script,
+                    args.url,
+                    args.timeout,
+                    group["limit"],
+                    group["providers"],
+                    group["archetype"],
+                    group["queryShape"],
+                    args.strict,
+                )
+                run.update(group)
+                run["repetition"] = repetition
+                run["attempt"] = attempt
+                if cleanup_before_errors:
+                    run["cleanupBeforeErrors"] = cleanup_before_errors
+                cleanup_after_errors: list[str] = []
+                if args.cleanup_generated_jobs:
+                    cleanup_after_errors = cleanup_generated_jobs(cleanup_namespaces)
+                    for error in cleanup_after_errors:
+                        print(f"cleanup after warning: {error}", file=sys.stderr, flush=True)
+                if cleanup_after_errors:
+                    run["cleanupAfterErrors"] = cleanup_after_errors
+                if run.get("ok") or attempt > args.retry_failed_runs:
+                    break
+
+                print(
+                    f"run failed; recovering before retry {attempt + 1}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                recovery_errors = restart_deployments(recovery_deployments, recovery_agent_ids)
+                if recovery_errors:
+                    run["recoveryErrors"] = recovery_errors
+                    for error in recovery_errors:
+                        print(f"recovery warning: {error}", file=sys.stderr, flush=True)
+                failed_attempts.append(dict(run))
+                if args.recovery_wait_seconds > 0:
+                    time.sleep(args.recovery_wait_seconds)
             runs_by_group[(group["limit"], group["archetype"], group["queryShape"])].append(run)
             all_runs.append(run)
             if args.cooldown_seconds > 0 and not (
@@ -398,7 +529,7 @@ def main() -> int:
     json_path = output_dir / f"{args.name}.json"
     csv_path = output_dir / f"{args.name}.csv"
     markdown_path = output_dir / f"{args.name}.md"
-    write_json(json_path, {"runs": all_runs, "summaries": summaries})
+    write_json(json_path, {"runs": all_runs, "failedAttempts": failed_attempts, "summaries": summaries})
     write_csv(csv_path, summaries)
     write_markdown(markdown_path, summaries)
 

@@ -1,0 +1,4 @@
+[rq3-extra10] Resuming classic deployment with images already loaded
+[rq3-extra10] Deploying DYNAMOS from /home/nebur/src/DYNAMOS-clean-20260511
+[rq3-extra10] Existing Linkerd control plane detected
+running main classic limit=5000 archetype=dataThroughTtp query-shape=default providers=UVA rep=1/1

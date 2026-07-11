@@ -1,0 +1,802 @@
+{
+  "runs": [
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435",
+      "dataset": "large",
+      "doneSeconds": 15.844431,
+      "elapsedSeconds": 15.844431,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 2,
+      "finalResultHash": "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435",
+      "firstResultSeconds": 15.844431,
+      "jobId": "jorrit-stutterheim-f60f2679",
+      "limit": 250000,
+      "observedRows": 500000,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerResults": [
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "4edba954403428fc806dfb1bb7767bfe14323f049b0dad0a084a0eb1a8751d71"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat",
+            "Gebdat"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "3adbc7d16203c0c33114fafc35c7f915aab622ab4eaf0ce1faaed01bde76dbcc"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "66998561bf55641310557b047117e218f2bd3473427fc2e34e660166934d8d0d",
+      "repetition": 1,
+      "requestBytes": 441,
+      "responseBytes": 31972473,
+      "responseMode": "classic-unary",
+      "responseSha256": "1d78d0c27bdd653616b5db6c95106a61d75dd357e18158c5d0243276d6500a7d",
+      "returnCode": 0,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 20.786,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435",
+      "dataset": "large",
+      "doneSeconds": 15.927071,
+      "elapsedSeconds": 15.927071,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 2,
+      "finalResultHash": "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435",
+      "firstResultSeconds": 15.927071,
+      "jobId": "jorrit-stutterheim-0621928e",
+      "limit": 250000,
+      "observedRows": 500000,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerResults": [
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat",
+            "Gebdat",
+            "Ingdatdv"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "97e4d936158dd93f7d06c74d09cf3878903b12121cb94fd69cd6cecd9d111bbd"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Salschal",
+            "Unieknr",
+            "Functcat",
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "e11b839df99f79b04f1d87fb1f51c39c33ca7d32d3d63d50e59d096c8bed2f42"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "6966af238f9bf0d6f66e41217cd2a4c125c9f05bdd5146606f9e992c7f10936b",
+      "repetition": 2,
+      "requestBytes": 441,
+      "responseBytes": 31972473,
+      "responseMode": "classic-unary",
+      "responseSha256": "30c0be3549f73b343ef98bed71cfdd94b3d64aa89441cb79ced6c4886d82df7a",
+      "returnCode": 0,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 20.933,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435",
+      "dataset": "large",
+      "doneSeconds": 15.703929,
+      "elapsedSeconds": 15.703929,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 2,
+      "finalResultHash": "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435",
+      "firstResultSeconds": 15.703929,
+      "jobId": "jorrit-stutterheim-cf0d17d7",
+      "limit": 250000,
+      "observedRows": 500000,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerResults": [
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Unieknr",
+            "Functcat",
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "5390a7ebaa8cae6a7546e63f86c3db53916fc981ef440bb66a5e9e4b3bd92dc6"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat",
+            "Gebdat",
+            "Ingdatdv"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "97e4d936158dd93f7d06c74d09cf3878903b12121cb94fd69cd6cecd9d111bbd"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "84affd6fa2ec17745f593112f6ef96059d478b98ee903fef2ba628a6a43acc12",
+      "repetition": 3,
+      "requestBytes": 441,
+      "responseBytes": 31972473,
+      "responseMode": "classic-unary",
+      "responseSha256": "154c4c551d29f3bb0de222507680c35b32ae80720ada1bb57f1730646c64538a",
+      "returnCode": 0,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 20.846,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435",
+      "dataset": "large",
+      "doneSeconds": 15.949352,
+      "elapsedSeconds": 15.949352,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 2,
+      "finalResultHash": "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435",
+      "firstResultSeconds": 15.949352,
+      "jobId": "jorrit-stutterheim-1ba42e98",
+      "limit": 250000,
+      "observedRows": 500000,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 2,
+      "providerResults": [
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Salschal",
+            "Unieknr",
+            "Functcat",
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "e11b839df99f79b04f1d87fb1f51c39c33ca7d32d3d63d50e59d096c8bed2f42"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "4edba954403428fc806dfb1bb7767bfe14323f049b0dad0a084a0eb1a8751d71"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "8a27e0181dffcdd78e6091d1587e4d307da69c83ae8e01d78f194ad58d116a84",
+      "repetition": 4,
+      "requestBytes": 441,
+      "responseBytes": 31972473,
+      "responseMode": "classic-unary",
+      "responseSha256": "691feb534fc358c10240b44dca79f84473a81f4bfad915604cf8f4a0052b0d11",
+      "returnCode": 0,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 20.949,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "dataset": "large",
+      "doneSeconds": 1800.27915,
+      "elapsedSeconds": 1800.27915,
+      "errors": [
+        "provider response missing final body",
+        "rows mismatch: observed 250000, expected 500000"
+      ],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 1,
+      "finalResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "firstResultSeconds": 1800.27915,
+      "jobId": "jorrit-stutterheim-103a5a1e",
+      "limit": 250000,
+      "observedRows": 250000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 1,
+      "providerResultCount": 1,
+      "providerResults": [
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Functcat",
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "ddd49eace0ed8b04b70d07cac91c05d6e292375f2d96ddc7c9f3f7cbe9b6d9e7"
+        },
+        {
+          "bytes": 0,
+          "empty": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "184accb09e3dfe6177590abb9e77191d9a20185d9eca2408498bf633e21e9ba1",
+      "repetition": 5,
+      "requestBytes": 441,
+      "responseBytes": 15986284,
+      "responseMode": "classic-unary",
+      "responseSha256": "bee4b497723d3de36209a108fa84819f74a342fa1e74791056d2acc03361d6b1",
+      "returnCode": 1,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 1802.717,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "dataset": "large",
+      "doneSeconds": 14.270657,
+      "elapsedSeconds": 14.270657,
+      "errors": [
+        "provider response missing final body",
+        "rows mismatch: observed 250000, expected 500000"
+      ],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 1,
+      "finalResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "firstResultSeconds": 14.270657,
+      "jobId": "jorrit-stutterheim-aac67651",
+      "limit": 250000,
+      "observedRows": 250000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 1,
+      "providerResultCount": 1,
+      "providerResults": [
+        {
+          "bytes": 0,
+          "empty": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "94355eca9b761ebc89b8dc7ddbe9e5a79110c129f80aaaf98afadf96e3c5b9c0"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "2738a9110411bfce7e6e3ef3235124cdf1f87695997a036d32c54831b4ca7c3d",
+      "repetition": 6,
+      "requestBytes": 441,
+      "responseBytes": 15986284,
+      "responseMode": "classic-unary",
+      "responseSha256": "714d10b3e3573dcf5be1c0cb4074defb2778dfc03e78c1990aa04a4dc594ccc5",
+      "returnCode": 1,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 16.767,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "dataset": "large",
+      "doneSeconds": 14.781511,
+      "elapsedSeconds": 14.781511,
+      "errors": [
+        "provider response missing final body",
+        "rows mismatch: observed 250000, expected 500000"
+      ],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 1,
+      "finalResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "firstResultSeconds": 14.781511,
+      "jobId": "jorrit-stutterheim-585909e5",
+      "limit": 250000,
+      "observedRows": 250000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 1,
+      "providerResultCount": 1,
+      "providerResults": [
+        {
+          "bytes": 0,
+          "empty": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Functcat",
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "ddd49eace0ed8b04b70d07cac91c05d6e292375f2d96ddc7c9f3f7cbe9b6d9e7"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "195eff6c7c9ee07ccad8da81bcfa5c28d2ee143058c6942a4a2ecad907385d8e",
+      "repetition": 7,
+      "requestBytes": 441,
+      "responseBytes": 15986284,
+      "responseMode": "classic-unary",
+      "responseSha256": "958ab37175eed6382eec38f05c53b12e2cb00e13da12b06eddf36e29eceb6112",
+      "returnCode": 1,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 17.201,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "dataset": "large",
+      "doneSeconds": 14.132892,
+      "elapsedSeconds": 14.132892,
+      "errors": [
+        "provider response missing final body",
+        "rows mismatch: observed 250000, expected 500000"
+      ],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 1,
+      "finalResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "firstResultSeconds": 14.132892,
+      "jobId": "jorrit-stutterheim-806d3a13",
+      "limit": 250000,
+      "observedRows": 250000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 1,
+      "providerResultCount": 1,
+      "providerResults": [
+        {
+          "bytes": 0,
+          "empty": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "94355eca9b761ebc89b8dc7ddbe9e5a79110c129f80aaaf98afadf96e3c5b9c0"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "2738a9110411bfce7e6e3ef3235124cdf1f87695997a036d32c54831b4ca7c3d",
+      "repetition": 8,
+      "requestBytes": 441,
+      "responseBytes": 15986284,
+      "responseMode": "classic-unary",
+      "responseSha256": "594d75de386af6eaf51443305fa59a500ef502907ae6ccda4ec0f9e6b5991086",
+      "returnCode": 1,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 16.574,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "dataset": "large",
+      "doneSeconds": 13.62527,
+      "elapsedSeconds": 13.62527,
+      "errors": [
+        "provider response missing final body",
+        "rows mismatch: observed 250000, expected 500000"
+      ],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 1,
+      "finalResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "firstResultSeconds": 13.62527,
+      "jobId": "jorrit-stutterheim-9012fffe",
+      "limit": 250000,
+      "observedRows": 250000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 1,
+      "providerResultCount": 1,
+      "providerResults": [
+        {
+          "bytes": 0,
+          "empty": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "94355eca9b761ebc89b8dc7ddbe9e5a79110c129f80aaaf98afadf96e3c5b9c0"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "2738a9110411bfce7e6e3ef3235124cdf1f87695997a036d32c54831b4ca7c3d",
+      "repetition": 9,
+      "requestBytes": 441,
+      "responseBytes": 15986284,
+      "responseMode": "classic-unary",
+      "responseSha256": "0a261cbe1dc710f48684250d7a92e67cad8c182a859c7d1ac15509ced7ce8db2",
+      "returnCode": 1,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 16.099,
+      "workload": "bulk"
+    },
+    {
+      "archetype": "computeToData",
+      "clientTimeoutSeconds": 2700.0,
+      "contentResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "dataset": "large",
+      "doneSeconds": 14.507445,
+      "elapsedSeconds": 14.507445,
+      "errors": [
+        "provider response missing final body",
+        "rows mismatch: observed 250000, expected 500000"
+      ],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 500000,
+      "finalResultCount": 1,
+      "finalResultHash": "40d77c923b67decd52a2038b2d33d5f93961ab08db5f668ec332b88daf19a128",
+      "firstResultSeconds": 14.507445,
+      "jobId": "jorrit-stutterheim-dbffc035",
+      "limit": 250000,
+      "observedRows": 250000,
+      "ok": false,
+      "partialResultCount": 0,
+      "providerErrorCount": 1,
+      "providerResultCount": 1,
+      "providerResults": [
+        {
+          "bytes": 0,
+          "empty": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 12986177,
+          "columns": [
+            "Functcat",
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 250000,
+          "sha256": "ddd49eace0ed8b04b70d07cac91c05d6e292375f2d96ddc7c9f3f7cbe9b6d9e7"
+        }
+      ],
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "195eff6c7c9ee07ccad8da81bcfa5c28d2ee143058c6942a4a2ecad907385d8e",
+      "repetition": 10,
+      "requestBytes": 441,
+      "responseBytes": 15986284,
+      "responseMode": "classic-unary",
+      "responseSha256": "f9fe210f7c2bcbd395caca6c9884956765af4559087b4d2a1d4be37715324ea8",
+      "returnCode": 1,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 16.988,
+      "workload": "bulk"
+    }
+  ],
+  "summaries": [
+    {
+      "archetype": "computeToData",
+      "contentResultHashes": [
+        "6e1b7c52ab8dc678925db22e1805b192f6eb22b07c2c07909ed5d1ecf1e63435"
+      ],
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 15.949,
+        "median": 15.886,
+        "min": 15.704
+      },
+      "errors": [
+        [
+          "provider response missing final body",
+          "rows mismatch: observed 250000, expected 500000"
+        ],
+        [
+          "provider response missing final body",
+          "rows mismatch: observed 250000, expected 500000"
+        ],
+        [
+          "provider response missing final body",
+          "rows mismatch: observed 250000, expected 500000"
+        ],
+        [
+          "provider response missing final body",
+          "rows mismatch: observed 250000, expected 500000"
+        ],
+        [
+          "provider response missing final body",
+          "rows mismatch: observed 250000, expected 500000"
+        ],
+        [
+          "provider response missing final body",
+          "rows mismatch: observed 250000, expected 500000"
+        ]
+      ],
+      "failedRuns": 6,
+      "firstResultSeconds": {
+        "max": 15.949,
+        "median": 15.886,
+        "min": 15.704
+      },
+      "limit": 250000,
+      "observedRows": {
+        "max": 500000,
+        "median": 500000.0,
+        "min": 500000
+      },
+      "okRuns": 4,
+      "providers": [
+        "UVA",
+        "VU"
+      ],
+      "providersLabel": "UVA,VU",
+      "queryShape": "default",
+      "rawResultHashes": [
+        "66998561bf55641310557b047117e218f2bd3473427fc2e34e660166934d8d0d",
+        "6966af238f9bf0d6f66e41217cd2a4c125c9f05bdd5146606f9e992c7f10936b",
+        "84affd6fa2ec17745f593112f6ef96059d478b98ee903fef2ba628a6a43acc12",
+        "8a27e0181dffcdd78e6091d1587e4d307da69c83ae8e01d78f194ad58d116a84"
+      ],
+      "responseBytes": {
+        "max": 31972473,
+        "median": 31972473.0,
+        "min": 31972473
+      },
+      "responseMode": "classic-unary",
+      "runs": 10,
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": {
+        "max": 20.949,
+        "median": 20.889,
+        "min": 20.786
+      },
+      "workload": "bulk"
+    }
+  ]
+}

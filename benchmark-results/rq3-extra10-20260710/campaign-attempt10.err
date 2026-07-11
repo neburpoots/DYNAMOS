@@ -1,0 +1,15 @@
+[rq3-extra10] Resuming classic deployment with images already loaded
+[rq3-extra10] Deploying DYNAMOS from /home/nebur/src/DYNAMOS-clean-20260511
+[rq3-extra10] Existing Linkerd control plane detected
+running main classic limit=5000 archetype=dataThroughTtp query-shape=default providers=UVA rep=1/1
+running main classic limit=5000 archetype=computeToData query-shape=default providers=UVA,VU rep=1/1
+running main classic limit=5000 archetype=dataThroughTtp query-shape=default providers=UVA,VU rep=1/1
+[rq3-extra10] Resetting broker and application deployments between cells
+Error: this command requires the 'rabbit' app to be running on the target node. Start it with 'rabbitmqctl start_app'.
+Arguments given:
+	change_password normal_user defaultPassword
+
+Usage
+
+rabbitmqctl [--node <node>] [--longnames] [--quiet] change_password <username> <password>
+command terminated with exit code 64

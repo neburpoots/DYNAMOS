@@ -1,0 +1,117 @@
+{
+  "failedAttempts": [],
+  "runs": [
+    {
+      "archetype": "dataThroughTtp",
+      "attempt": 1,
+      "clientTimeoutSeconds": 600.0,
+      "contentResultHash": "b9814dd1912e922fed35fb0ad15b04292adc74710512caf10b7709d08e8f1bac",
+      "dataset": "large",
+      "doneSeconds": 9.599462,
+      "elapsedSeconds": 9.599462,
+      "errors": [],
+      "events": [
+        "response",
+        "done"
+      ],
+      "expectedRows": 5000,
+      "finalResultCount": 1,
+      "finalResultHash": "b9814dd1912e922fed35fb0ad15b04292adc74710512caf10b7709d08e8f1bac",
+      "firstResultSeconds": 9.599462,
+      "jobId": "jorrit-stutterheim-efdf46a5",
+      "limit": 5000,
+      "observedRows": 5000,
+      "ok": true,
+      "partialResultCount": 0,
+      "providerErrorCount": 0,
+      "providerResultCount": 1,
+      "providerResults": [
+        {
+          "bytes": 259787,
+          "columns": [
+            "Gebdat",
+            "Ingdatdv",
+            "Geslacht",
+            "Salschal",
+            "Unieknr",
+            "Functcat"
+          ],
+          "empty": false,
+          "jsonType": "list",
+          "observedRows": 5000,
+          "sha256": "777955eb6441d5459af46095367683d8c8ddfe6683944ac107918ad8822bc7b7"
+        }
+      ],
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "queryShape": "default",
+      "rawLineCount": 1,
+      "rawResultHash": "aa3bc88979475f65473c61baa69879939af53ebb756a842c7d336aa0f7f8091b",
+      "repetition": 1,
+      "requestBytes": 432,
+      "responseBytes": 319882,
+      "responseMode": "classic-unary",
+      "responseSha256": "e5dc5f18cd59b10574a33ea3ae9ac5c26cca38861ff2c034667f0f1480021931",
+      "returnCode": 0,
+      "status": 200,
+      "temperature": "warm",
+      "transport": "unary",
+      "url": "http://127.0.0.1:18080/api/v1/requestApproval",
+      "wallSeconds": 9.749,
+      "workload": "bulk"
+    }
+  ],
+  "summaries": [
+    {
+      "archetype": "dataThroughTtp",
+      "contentResultHashes": [
+        "b9814dd1912e922fed35fb0ad15b04292adc74710512caf10b7709d08e8f1bac"
+      ],
+      "dataset": "large",
+      "doneSeconds": {
+        "max": 9.599,
+        "median": 9.599,
+        "min": 9.599
+      },
+      "errors": [],
+      "failedRuns": 0,
+      "firstResultSeconds": {
+        "max": 9.599,
+        "median": 9.599,
+        "min": 9.599
+      },
+      "limit": 5000,
+      "observedRows": {
+        "max": 5000,
+        "median": 5000,
+        "min": 5000
+      },
+      "okRuns": 1,
+      "providers": [
+        "UVA"
+      ],
+      "providersLabel": "UVA",
+      "queryShape": "default",
+      "rawResultHashes": [
+        "aa3bc88979475f65473c61baa69879939af53ebb756a842c7d336aa0f7f8091b"
+      ],
+      "responseBytes": {
+        "max": 319882,
+        "median": 319882.0,
+        "min": 319882
+      },
+      "responseMode": "classic-unary",
+      "runs": 1,
+      "temperature": "warm",
+      "transport": "unary",
+      "wallSeconds": {
+        "max": 9.749,
+        "median": 9.749,
+        "min": 9.749
+      },
+      "workload": "bulk"
+    }
+  ]
+}

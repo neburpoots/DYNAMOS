@@ -1,0 +1,18 @@
+[rq3-extra10] Resuming classic deployment with images already loaded
+[rq3-extra10] Deploying DYNAMOS from /home/nebur/src/DYNAMOS-clean-20260511
+[rq3-extra10] Downloading Linkerd CLI stable-2.13.5
+[rq3-extra10] Installing Linkerd CRDs and control plane
+Rendering Linkerd CRDs...
+Next, run `linkerd install | kubectl apply -f -` to install the control plane.
+
+Warning: spec.template.spec.containers[2].ports[1]: duplicate port name "admin-http" with spec.template.spec.containers[1].ports[1], services and probes that select ports by name will use spec.template.spec.containers[1].ports[1]
+Warning: spec.template.spec.containers[3].ports[0]: duplicate port name "grpc" with spec.template.spec.containers[1].ports[0], services and probes that select ports by name will use spec.template.spec.containers[1].ports[0]
+Warning: spec.template.spec.containers[3].ports[1]: duplicate port name "admin-http" with spec.template.spec.containers[1].ports[1], services and probes that select ports by name will use spec.template.spec.containers[1].ports[1]
+Error: 5 errors occurred:
+	* namespaces "linkerd-jaeger" not found
+	* namespaces "linkerd-jaeger" not found
+	* namespaces "linkerd-jaeger" not found
+	* namespaces "linkerd-jaeger" not found
+	* namespaces "linkerd-jaeger" not found
+
+
