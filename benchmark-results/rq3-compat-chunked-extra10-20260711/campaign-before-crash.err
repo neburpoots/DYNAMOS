@@ -1,0 +1,16 @@
+[rq3-extra10] Reusing ready streaming deployment
+running large limit=10000 workload=bulk query-shape=default providers=UVA,VU warm dataThroughTtp rabbitmq-streams response-mode=batched rep=1/1 attempt=1
+running large limit=10000 workload=bulk query-shape=default providers=UVA,VU warm computeToData unary response-mode=batched rep=1/1 attempt=1
+running large limit=10000 workload=bulk query-shape=default providers=UVA,VU warm computeToData rabbitmq-streams response-mode=batched rep=1/1 attempt=1
+running large limit=10000 workload=bulk query-shape=default providers=UVA,VU warm dataThroughTtp unary response-mode=batched rep=1/1 attempt=1
+running large limit=10000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=1/1 attempt=1
+running large limit=10000 workload=bulk query-shape=default providers=UVA,VU warm dataThroughTtp streaming response-mode=batched rep=1/1 attempt=1
+[rq3-extra10] Skipping completed streaming cell compatibility unary computeToData UVA,VU 50000
+[rq3-extra10] Resetting broker and application deployments between cells
+[rq3-extra10] Streaming cell compatibility unary computeToData UVA,VU 250000
+[rq3-extra10] Resetting broker and application deployments between cells
+[rq3-extra10] Streaming cell compatibility unary dataThroughTtp UVA,VU 50000
+[rq3-extra10] Resetting broker and application deployments between cells
+[rq3-extra10] Streaming cell compatibility unary dataThroughTtp UVA,VU 250000
+[rq3-extra10] Resetting broker and application deployments between cells
+[rq3-extra10] Streaming cell compatibility streaming computeToData UVA,VU 50000

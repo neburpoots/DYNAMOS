@@ -21,6 +21,7 @@ HTTP_TIMEOUT="${HTTP_TIMEOUT:-30m}"
 HTTP_STREAM_TIMEOUT="${HTTP_STREAM_TIMEOUT:-45m}"
 SKIP_CLASSIC="${SKIP_CLASSIC:-0}"
 SKIP_STREAMING="${SKIP_STREAMING:-0}"
+STREAMING_SCOPE="${STREAMING_SCOPE:-all}"
 RESUME_CLASSIC_DEPLOYMENT="${RESUME_CLASSIC_DEPLOYMENT:-0}"
 RESUME_STREAMING_DEPLOYMENT="${RESUME_STREAMING_DEPLOYMENT:-0}"
 LINKERD_VERSION="${LINKERD_VERSION:-stable-2.13.5}"
@@ -654,19 +655,46 @@ run_streaming_campaign() {
       return 2
       ;;
   esac
-  smoke_streaming
-  for transport in unary streaming rabbitmq-streams; do
-    for limit in 50000 100000 250000; do
-      run_stream_cell primary "${transport}" dataThroughTtp UVA "${limit}"
-    done
-  done
-  for transport in unary streaming rabbitmq-streams; do
-    for archetype in computeToData dataThroughTtp; do
-      for limit in 50000 250000; do
-        run_stream_cell compatibility "${transport}" "${archetype}" UVA,VU "${limit}"
+  case "${STREAMING_SCOPE}" in
+    all)
+      smoke_streaming
+      for transport in unary streaming rabbitmq-streams; do
+        for limit in 50000 100000 250000; do
+          run_stream_cell primary "${transport}" dataThroughTtp UVA "${limit}"
+        done
+      done
+      ;;
+    compatibility)
+      local output_dir="${RESULT_ROOT}/streaming/smoke"
+      mkdir -p "${output_dir}"
+      start_port_forward "${output_dir}"
+      python3 "${STREAM_ROOT}/scripts/benchmark_matrix.py" \
+        --url "http://127.0.0.1:${PORT_FORWARD_PORT}/api/v1/requestApproval" \
+        --transports unary,streaming,rabbitmq-streams --response-modes batched \
+        --workloads bulk --datasets large --large-limits 10000 \
+        --archetypes dataThroughTtp,computeToData --provider-sets UVA,VU --query-shapes default \
+        --repetitions 1 --timeout 600 --strict --require-partial --cleanup-generated-jobs \
+        --retry-failed-runs 2 \
+        --restart-deployments-on-failure uva/uva,vu/vu,surf/surf \
+        --recovery-agent-ids UVA,VU,SURF \
+        --sql-batch-rows "${SQL_STREAM_BATCH_ROWS}" --rabbitmq-chunk-rows "${RABBITMQ_STREAM_CHUNK_ROWS}" \
+        --output-dir "${output_dir}" --name streaming-compatibility-smoke
+      stop_port_forward
+      ;;
+    *)
+      echo "STREAMING_SCOPE must be all or compatibility" >&2
+      return 2
+      ;;
+  esac
+  if [[ "${STREAMING_SCOPE}" == "all" || "${STREAMING_SCOPE}" == "compatibility" ]]; then
+    for transport in unary streaming rabbitmq-streams; do
+      for archetype in computeToData dataThroughTtp; do
+        for limit in 50000 250000; do
+          run_stream_cell compatibility "${transport}" "${archetype}" UVA,VU "${limit}"
+        done
       done
     done
-  done
+  fi
 }
 
 main() {

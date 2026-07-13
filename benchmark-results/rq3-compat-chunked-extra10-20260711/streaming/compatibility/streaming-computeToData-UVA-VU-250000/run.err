@@ -1,0 +1,10 @@
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=1/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=2/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=3/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=4/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=5/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=6/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=7/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=8/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=9/10 attempt=1
+running large limit=250000 workload=bulk query-shape=default providers=UVA,VU warm computeToData streaming response-mode=batched rep=10/10 attempt=1

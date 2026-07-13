@@ -1,0 +1,70 @@
+Building dynamos-local/sidecar:rq3-streaming-extra10
+Building dynamos-local/policy-enforcer:rq3-streaming-extra10
+Building dynamos-local/orchestrator:rq3-streaming-extra10
+Building dynamos-local/agent:rq3-streaming-extra10
+Building dynamos-local/api-gateway:rq3-streaming-extra10
+Building dynamos-local/sql-algorithm:rq3-streaming-extra10
+Building dynamos-local/sql-anonymize:rq3-streaming-extra10
+Building dynamos-local/sql-aggregate:rq3-streaming-extra10
+Building dynamos-local/sql-test:rq3-streaming-extra10
+Generating sql-query benchmark tables (250000 rows per provider: UVA,VU)
+Generated benchmark SQL tables for UVA, VU with 250000 rows per provider in /tmp/tmp.0cpmTnyj2r/sql-query
+Building Python wheel for sql-query
+running bdist_wheel
+running build
+running build_py
+creating build/lib/dynamos
+copying dynamos/rabbit_client.py -> build/lib/dynamos
+copying dynamos/signal_flow.py -> build/lib/dynamos
+copying dynamos/logger.py -> build/lib/dynamos
+copying dynamos/grpc_server.py -> build/lib/dynamos
+copying dynamos/__init__.py -> build/lib/dynamos
+copying dynamos/ms_init.py -> build/lib/dynamos
+copying dynamos/base_client.py -> build/lib/dynamos
+copying dynamos/grpc_client.py -> build/lib/dynamos
+copying dynamos/tracer.py -> build/lib/dynamos
+running egg_info
+creating dynamos.egg-info
+writing dynamos.egg-info/PKG-INFO
+writing dependency_links to dynamos.egg-info/dependency_links.txt
+writing requirements to dynamos.egg-info/requires.txt
+writing top-level names to dynamos.egg-info/top_level.txt
+writing manifest file 'dynamos.egg-info/SOURCES.txt'
+reading manifest file 'dynamos.egg-info/SOURCES.txt'
+writing manifest file 'dynamos.egg-info/SOURCES.txt'
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/dynamos
+copying build/lib/dynamos/rabbit_client.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/signal_flow.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/logger.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/grpc_server.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/__init__.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/ms_init.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/base_client.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/grpc_client.py -> build/bdist.linux-x86_64/wheel/./dynamos
+copying build/lib/dynamos/tracer.py -> build/bdist.linux-x86_64/wheel/./dynamos
+running install_egg_info
+Copying dynamos.egg-info to build/bdist.linux-x86_64/wheel/./dynamos-0.1-py3.12.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/dynamos-0.1.dist-info/WHEEL
+creating '/dist/dynamos-0.1-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'dynamos/__init__.py'
+adding 'dynamos/base_client.py'
+adding 'dynamos/grpc_client.py'
+adding 'dynamos/grpc_server.py'
+adding 'dynamos/logger.py'
+adding 'dynamos/ms_init.py'
+adding 'dynamos/rabbit_client.py'
+adding 'dynamos/signal_flow.py'
+adding 'dynamos/tracer.py'
+adding 'dynamos-0.1.dist-info/METADATA'
+adding 'dynamos-0.1.dist-info/WHEEL'
+adding 'dynamos-0.1.dist-info/top_level.txt'
+adding 'dynamos-0.1.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Building dynamos-local/sql-query:rq3-streaming-extra10
+Built local DYNAMOS images with repository dynamos-local and tag rq3-streaming-extra10
+{"json": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/rq3-compat-chunked-extra10-20260711/streaming/smoke/streaming-compatibility-smoke.json", "csv": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/rq3-compat-chunked-extra10-20260711/streaming/smoke/streaming-compatibility-smoke.csv", "markdown": "/home/nebur/src/DYNAMOS-clean-20260511/benchmark-results/rq3-compat-chunked-extra10-20260711/streaming/smoke/streaming-compatibility-smoke.md"}

@@ -1,0 +1,2 @@
+dataset,limit,workload,queryShape,archetype,providers,temperature,transport,responseMode,sqlBatchRows,rabbitmqChunkRows,runs,okRuns,failedRuns,firstMedian,firstMin,firstMax,doneMedian,doneMin,doneMax,rowsMedian,crossTransportContentMatch,crossTransportRawMatch
+large,250000,bulk,default,dataThroughTtp,"UVA,VU",warm,rabbitmq-streams,batched,5000,100,10,10,0,4.407,3.375,5.852,12.79,11.288,19.894,500000.0,True,False
